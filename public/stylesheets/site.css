@@ -131,13 +131,16 @@ body.contact dt#contact a:hover {
 #sidebar-a {
         float: right;
 	width: 280px;
-        padding-top: 20px;
 }
 
 #sidebar-infouser {
   padding: 10px;
   background: #FF9900;
   height: 50px;
+}
+
+#sidebar-infouser a {
+  color: #666666;
 }
 
 #sidebar-a .padding {
