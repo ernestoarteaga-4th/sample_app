@@ -9,7 +9,7 @@
     <% flash.each do |key, value| %>
       <div class="flash <%= key %>"><%= value %></div>
     <% end %>
-  
+    <br/>  
     <%= gravatar_for @user, :size => 30 %>
     <%= @user.name %>
   </h1>
