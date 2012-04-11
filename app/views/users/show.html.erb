@@ -6,6 +6,10 @@
 </div>
 <div id="content">
   <h1>
+    <% flash.each do |key, value| %>
+      <div class="flash <%= key %>"><%= value %></div>
+    <% end %>
+  
     <%= gravatar_for @user, :size => 30 %>
     <%= @user.name %>
   </h1>

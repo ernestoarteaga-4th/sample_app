@@ -170,7 +170,6 @@ body.contact dt#contact a:hover {
 }
 
 #footer {
-        position: absolute;
         bottom: 0;
         width: 760px;
 	clear: both;

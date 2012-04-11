@@ -61,6 +61,10 @@ describe User do
   
   describe "password validations" do
 
+    before(:each) do
+      @user = User.create!(@attr)
+    end
+
     it "should require a password" do
       hash = @attr.merge(:password => "", 
                          :password_confirmation => "")
