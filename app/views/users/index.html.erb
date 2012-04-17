@@ -1,14 +1,12 @@
-<div id="list">
-  <div id="left">  
-    <% @users.each do |user| %>
-      <%= link_to user.id, :controller => "users", :action => "show", :id => user.id %>
-      <br/>
-    <% end %>
-  </div>
-  <div id="right">
-    <% @users.each do |user| %>
-      <%=user.name%><br/>
-    <% end %>
-  </div>
+<div id="pagination">
+  <%= will_paginate %>
+  <br/>
 </div>
-
+<div id="list">
+  <% @users.each do |user| %>
+    <div id="row">
+      <%= render user %>
+    </div>
+  <% end %>
+</div>
+<br/>

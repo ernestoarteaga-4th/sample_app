@@ -13,6 +13,8 @@
 #
 
 class User < ActiveRecord::Base
+  self.per_page = 10
+
   attr_accessor   :password
   attr_accessible :name, :email, :password, :password_confirmation
   
@@ -42,6 +44,11 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.authenticate_with_salt(id, cookie_salt) 
+    user = find_by_id(id)
+    (user && user.salt == cookie_salt) ? user : nil
+  end
+
   private
     def encrypt_password
       self.salt = make_salt if new_record? 
@@ -60,3 +67,5 @@ class User < ActiveRecord::Base
       Digest::SHA2.hexdigest(string)
     end
 end
+
+WillPaginate.per_page = 10

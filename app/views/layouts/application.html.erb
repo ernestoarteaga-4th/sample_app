@@ -11,10 +11,15 @@
 
 	<div id="main-nav">
 	<dl>
-		<dt id="about"><a href="#">About</a></dt>
-		<dt id="services"><a href="#">Services</a></dt>
-		<dt id="portfolio"><a href="#">Portfolio</a></dt>
-		<dt id="contact"><a href="#">Contact Us</a></dt>
+                <%= link_to "Home", root_path %>
+                <% if signed_in? %>
+                  | <%= link_to "Users", users_path %>
+                  | <%= link_to "Profile", current_user %> |
+                    <%= link_to "Settings", edit_user_path(current_user) %> |
+                    <%= link_to "Sign out", signout_path, :method => :delete %>
+                <% else %>
+                  | <%= link_to "Sign in", signin_path %>
+                <% end %>
 	</dl>
 	</div>
 	

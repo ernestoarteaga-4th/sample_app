@@ -2,6 +2,8 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.0.12'
 
+gem 'will_paginate'
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
@@ -30,7 +32,8 @@ gem 'gravatar_image_tag'
 # and rake tasks are available in development mode:
  group :development do
    gem 'rspec-rails'
-   gem 'annotate-models', '1.0.2' 
+   gem 'annotate-models', '1.0.2'
+   gem 'faker' 
 end
  group :test do
    gem 'webrat'

@@ -15,33 +15,24 @@ h1 {
   text-align: center;
 }
 
-#list {
-  overflow:auto; 
-  width: 460px; 
-  background: gray; 
-} 
-
-#left {
-  width:   10%;
-  margin:  2px;
-  padding: 2px;
-  background: white;
+#pagination {
+  margin: auto;
   text-align: center;
 }
 
-#left a {
-  color: #666666;
+#list {
+  display: table;
+  margin: auto;
 } 
 
-#right { 
-  width: 80%; 
-  margin:2px; 
-  padding: 2px; 
-  background: white; 
-} 
+#row {
+  display: table-row;
+}
 
-#left  { float:left;  }
-#right { float:right; } 
+#left, #right {
+  display: table-cell;
+  padding-left: 20px;
+}
 
 dy {
 	margin: 0;
