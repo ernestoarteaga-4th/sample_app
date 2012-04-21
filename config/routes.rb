@@ -1,5 +1,6 @@
 SampleApp::Application.routes.draw do
-  
+
+  resources :hello_message  
   resources :users
   resources :sessions, :only => [:new, :create, :destroy]
 
