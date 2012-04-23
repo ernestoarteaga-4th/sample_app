@@ -1,16 +1,26 @@
+<div id="container-info">
 <div id="sidebar-a">
-  <div id="sidebar-infouser">
-    <strong>Name</strong> <%= @user.name %><br />
-    <strong>URL</strong> <%= link_to user_path(@user), @user%>
-  </div>
+    <strong>Name</strong> <%= @user.name %> <br/>
+    <strong>URL</strong> <%= link_to user_path(@user), @user%> <br/>
+    <strong>Microposts</strong> <%= @user.microposts.count %>
 </div>
 <div id="content">
-  <h1>
+  <div id="content-margin">
     <% flash.each do |key, value| %>
       <div class="flash <%= key %>"><%= value %></div>
     <% end %>
     <br/>  
-    <%= gravatar_for @user, :size => 30 %>
-    <%= @user.name %>
-  </h1>
+    <h1><%= gravatar_for @user, :size => 30 %>
+    <%= @user.name %></h1>
+  <br/>
+  <% unless @user.microposts.empty? %>
+    <table class="microposts" summary="User microposts"> 
+      <%= render @microposts %>
+    </table>
+    <div id="micropost-pagination">
+    <%= will_paginate @microposts %>
+    </div>
+  <% end %>
+  </div>
+</div>
 </div>

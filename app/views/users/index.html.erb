@@ -1,12 +1,14 @@
-<div id="pagination">
-  <%= will_paginate %>
+<div id="wrapper">
   <br/>
+  <div id="list">
+    <% @users.each do |user| %>
+      <div id="row">
+        <%= render user %>
+      </div>
+    <% end %>
+  </div>
+  <br/><br/>
+  <div id="pagination">
+    <%= will_paginate %>
+  </div>
 </div>
-<div id="list">
-  <% @users.each do |user| %>
-    <div id="row">
-      <%= render user %>
-    </div>
-  <% end %>
-</div>
-<br/>
