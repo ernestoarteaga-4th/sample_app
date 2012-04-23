@@ -4,6 +4,8 @@ gem 'rails', '3.0.12'
 
 gem 'will_paginate'
 
+gem 'taps'
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
