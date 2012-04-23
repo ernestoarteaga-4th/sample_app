@@ -41,3 +41,6 @@ end
    gem 'spork'
    gem 'factory_girl_rails'
  end
+ group :production do
+   gem 'faker'
+ end
