@@ -2,6 +2,19 @@ html, body {
   height: 100%;
 }
 
+#feed {
+  padding-left: 25px;
+  padding-top:   7px;
+}
+
+#feed-pagination {
+  text-align: center;
+}
+
+#feed-pagination a {
+  color: #666666;
+}
+
 #main-nav {
   margin: 10px;
   color:  #848484;
@@ -69,11 +82,6 @@ h1 {
   display: table-cell;
 }
 
-dy {
-  margin: 0;
-  padding: 0;
-}
-
 body {
   font-family: Arial, Helvetica, Verdana, Sans-serif;
   font-size: 12px;
@@ -113,6 +121,18 @@ body {
 
 #sidebar-a a {
   color: #666666;
+}
+
+#sidebar-gravatar {
+  float:   left;
+  width:   3px;
+  padding: 5px;
+}
+
+#sidebar-user {
+  float: right;
+  width: 155px;
+  padding-top: 5px;
 }
 
 #content-margin {
@@ -172,7 +192,8 @@ h1 {
 }
 
 h1.micropost {
-  margin-bottom: 0.3em; 
+  margin-bottom: 0.3em;
+  margin-top:    0.5em;
 }
 
 table.microposts { 
@@ -189,16 +210,27 @@ table.microposts tr td.gravatar {
   width: 50px;
 }
 
-table.microposts tr td.micropost { 
+table.microposts tr td.micropost {
+  width: 390px; 
   border-top: 1px solid #ccc; 
   vertical-align: top; 
   padding-top: 10px;
+}
+
+table.microposts tr td.micropost a {
+  color: #585858;
+  font-weight: bold;
 }
 
 table.microposts tr td.micropost span.timestamp { 
   display: block;
   font-size: 85%;
   color: #666;
+}
+
+table.microposts tr td.micropost-delete a {
+  color: #666666;
+  padding-left: 5px;
 }
 
 form.new_micropost { 

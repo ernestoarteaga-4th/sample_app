@@ -1,9 +1,13 @@
 <div id="container-info">
   <div id="sidebar-a">
     <% if signed_in? %>
-      <%= gravatar_for current_user, :size => 30 %>
-      <strong><%= current_user.name %></strong> <br/>
-      <strong><%= current_user.microposts.count %> microposts</strong>
+      <div id="sidebar-gravatar">                        
+        <%= gravatar_for current_user, :size => 30 %>
+      </div>
+      <div id="sidebar-user">
+        <strong><%= current_user.name %></strong> <br/>
+        <strong><%= current_user.microposts.count %> microposts</strong>
+      </div>
     <% end %>
   </div>
   <div id="content">
