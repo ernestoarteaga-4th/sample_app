@@ -7,45 +7,40 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
-<div id="page-container">
-
-	<div id="main-nav">
-	<dl>
-                <%= link_to "Home", root_path %>
-                <% if signed_in? %>
-                  | <%= link_to "Users", users_path %>
-                  | <%= link_to "Profile", current_user %> |
-                    <%= link_to "Settings", edit_user_path(current_user) %> |
-                    <%= link_to "Sign out", signout_path, :method => :delete %>
-                <% else %>
-                  | <%= link_to "Sign in", signin_path %>
-                <% end %>
-	</dl>
-	</div>
-	
-	<div id="header">
-		<div id="logo">
-                  <img src="/images/logo_enlighten.gif" 
-		       width="236"
-                       height="36" 
-                       alt="Enlighten Designs" 
-                       border="0" />
-                </div>
-	</div>	
-        <%= yield %>	
-	<div id="footer">
-	  <div id="altnav">
-		<a href="#">About</a> - 
-		<a href="#">Services</a> - 
-		<a href="#">Portfolio</a> - 
-		<a href="#">Contact Us</a> - 
-		<a href="#">Terms of Trade</a>
-	  </div>
-	  <div id="copyright">
+  <div id="page-container">
+    <div id="main-nav">
+      <%= link_to "Home", root_path %>
+        <% if signed_in? %>
+          | <%= link_to "Users", users_path %>
+          | <%= link_to "Profile", current_user %>
+          | <%= link_to "Settings", edit_user_path(current_user) %>
+          | <%= link_to "Sign out", signout_path, :method => :delete %>
+        <% else %>
+          | <%= link_to "Sign in", signin_path %>
+        <% end %>
+   </div>	
+   <div id="header">
+     <div id="logo">
+       <img src="/images/logo_enlighten.gif" 
+            width="236"
+            height="36" 
+            border="0" />
+     </div>
+   </div>	
+   <%= yield %>	
+   <div id="footer">
+     <div id="altnav">
+       <a href="#">About</a> - 
+       <a href="#">Services</a> - 
+       <a href="#">Portfolio</a> - 
+       <a href="#">Contact Us</a> - 
+       <a href="#">Terms of Trade</a>
+     </div>
+     <div id="copyright">
 	    Copyright &copy; Jesus Ariel Parra Inukai<br />
 	    Powered by <a href="http://www.4thsource.com/">4thsource</a>
-	  </div>
-	</div>
-</div>
+     </div>
+    </div>
+  </div>
 </body>
 </html>

@@ -16,15 +16,18 @@ class UsersController < ApplicationController
   
   def new
     @user  = User.new
+    @error = @user.errors
     @title = "Sign up"
   end
 
   def edit
    @title  = "Edit user"
+   @error  = current_user.errors
   end 
 
   def create
     @user = User.new(params[:user])
+    @error = @user.errors
     if @user.save
       sign_in @user
       flash[:success] = "Welcome to the Sample App!"
@@ -37,6 +40,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    @error = @user.errors
     if @user.update_attributes(params[:user])
       flash[:success] = "Profile updated."
       redirect_to @user
