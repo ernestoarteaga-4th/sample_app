@@ -43,6 +43,11 @@ h1 {
 
 #micropost-pagination {
   padding-left: 31px;
+  padding-top: 109px;
+}
+
+#micropost-pagination a {
+  color: #666666;
 }
 
 #pagination {
@@ -136,6 +141,11 @@ body {
 }
 
 #content-margin {
+  margin: auto;
+  padding-left: 120px;
+}
+
+#content-show {
   margin: auto;
   padding-left: 120px;
 }
