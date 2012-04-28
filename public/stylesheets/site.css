@@ -43,7 +43,7 @@ h1 {
 
 #micropost-pagination {
   padding-left: 31px;
-  padding-top: 109px;
+  padding-top: 73px;
 }
 
 #micropost-pagination a {
@@ -148,6 +148,10 @@ body {
 #content-show {
   margin: auto;
   padding-left: 120px;
+}
+
+#flash {
+  padding-left: 8px;
 }
 
 h1 {

@@ -6,12 +6,18 @@
 </div>
 <div id="content">
   <div id="content-show">
-    <% flash.each do |key, value| %>
-      <div class="flash <%= key %>"><%= value %></div>
-    <% end %>
+    <br/>
+    <div id="flash">
+      <% flash.each do |key, value| %>
+        <div class="flash <%= key %>"><%= value %></div>
+      <% end %>
+    </div>
     <br/>  
-    <h1><%= gravatar_for @user, :size => 30 %>
-    <%= @user.name %></h1>
+    <h1>
+      <%= gravatar_for @user, :size => 30 %>
+      <%= @user.name %>
+    </h1>
+    <%= render 'follow' if followed_in? @user %>
   <br/>
   <% unless @user.microposts.empty? %>
     <table class="microposts" summary="User microposts"> 

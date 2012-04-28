@@ -19,6 +19,8 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation
 
   has_many        :microposts, :dependent => :destroy 
+  has_many        :followings, :dependent => :destroy
+
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   validates :name,     :presence => true,
@@ -36,6 +38,16 @@ class User < ActiveRecord::Base
     # This is preliminary. See Chapter 12 for the full implementation.
     Micropost.where("user_id = ?", id)
   end
+
+  def is_follow?(follow_user)
+    follow = Following.where("user_id = ? AND follow_user = ?", id, follow_user)
+     
+    if follow.empty?
+     false
+    else
+      true
+    end 
+ end
 
   def has_password?(submitted_password)
     encrypted_password == encrypt(submitted_password)
