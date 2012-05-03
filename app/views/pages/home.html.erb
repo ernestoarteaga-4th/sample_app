@@ -19,6 +19,7 @@
             </div>
             <% flash.each do |key, value| %>
                 <div class="flash <%= key %>"><%= value %></div>
+                <br/>
               <% end %>
             <div id="feed">
               <%= render 'shared/feed' %>
