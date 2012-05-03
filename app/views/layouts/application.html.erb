@@ -1,46 +1,66 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title><%=title%></title>
-  <%= stylesheet_link_tag :all %>
-  <%= javascript_include_tag :defaults %>
-  <%= csrf_meta_tag %>
-</head>
-<body>
-  <div id="page-container">
-    <div id="main-nav">
-      <%= link_to "Home", root_path %>
-        <% if signed_in? %>
-          | <%= link_to "Users", users_path %>
-          | <%= link_to "Profile", current_user %>
-          | <%= link_to "Settings", edit_user_path(current_user) %>
-          | <%= link_to "Sign out", signout_path, :method => :delete %>
-        <% else %>
-          | <%= link_to "Sign in", signin_path %>
-        <% end %>
-   </div>	
-   <div id="header">
-     <div id="logo">
-       <img src="/images/logo_enlighten.gif" 
-            width="236"
-            height="36" 
-            border="0" />
-     </div>
-   </div>	
-   <%= yield %>	
-   <div id="footer">
-     <div id="altnav">
-       <a href="#">About</a> - 
-       <a href="#">Services</a> - 
-       <a href="#">Portfolio</a> - 
-       <a href="#">Contact Us</a> - 
-       <a href="#">Terms of Trade</a>
-     </div>
-     <div id="copyright">
-	    Copyright &copy; Jesus Ariel Parra Inukai<br />
-	    Powered by <a href="http://www.4thsource.com/">4thsource</a>
-     </div>
-    </div>
-  </div>
-</body>
-</html>
+		<!DOCTYPE HTML>
+		<html lang="en-US">
+		  <head>
+		    <title>Nearshore Outsourcing Solutions | Oracle Solutions |&nbsp;</title>
+
+		    <!-- Stylesheets -->
+		    <%= stylesheet_link_tag "slider" %>
+		    <%= stylesheet_link_tag "index" %>
+		    <!--[if IE]>
+		    <link rel="stylesheet" href="http://www.4thsource.com/en//public/css/ie.css" type="text/css">
+		    <![endif]-->
+
+		    <!-- Scripts -->
+		    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+		    <%= javascript_include_tag "global" %>
+		    <%= javascript_include_tag "prototype" %>
+		    <%= javascript_include_tag "application" %>
+		    <%= javascript_include_tag "controls" %>
+		    <%= javascript_include_tag "dragdrop" %>
+		    <%= javascript_include_tag "rails" %>
+		    <%= javascript_include_tag "effects" %>
+		  </head>
+		  <body>
+		    <div id="top_bar">
+		      <div id="top_bar_contents">
+		        <div class="clear"/>
+		      </div> <!-- end top_bar_contents -->
+		    </div> <!-- end top_bar -->
+		    <div id="container">
+		      <!-- Logo, Branding -->
+		      <h1><a href="http://www.4thsource.com/en/">4th Source - Proximity Matters</a></h1>				
+		      <div id="site_url" class="http://www.4thsource.com/"></div>		
+
+		      <!-- Primary Navigation -->
+			  <ul id="nav_full"> 
+		        <li><%= link_to "Home", root_path %></li>
+		        <% if signed_in? %>
+		        <li><%= link_to "Users", users_path %></li>
+		        <li class="parent_here"><%= link_to "Profile", current_user %></li>
+		        <li><a href="#">Settings</a>
+		          <ul>
+		            <li><%= link_to "Update profile", edit_user_path(current_user) %></li>
+		            <li><a href="#">Change password</a></li>
+		          </ul>
+		        </li>
+		        <li><%= link_to "Sign out", signout_path, :method => :delete %></li>
+		        <% else %>
+		          <li><%= link_to "Sign in", signin_path %></li>		          
+			    <% end %>
+		      </ul>
+			  <!-- page -->
+			  <div id="page">
+				<%= yield %>
+		        <div class="clear"></div>
+		      </div> <!-- end page -->
+		      <div class="clear"></div>
+		    </div> <!-- end container -->
+		    <div id="footer">
+		      <div id="footer_contents">	
+			    <div class="column two_thirds">			
+			      <p class="copyright" style="text-align: center;">Copyright &copy; 2012 4th Source Inc. All rights reserved.</p>
+		        </div> <!-- end left_column -->
+		      </div> <!-- end footer_contents -->	
+		    </div> <!-- end footer -->
+		  </body>
+		</html>

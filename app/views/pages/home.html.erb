@@ -1,40 +1,69 @@
-<div id="container-info">
-  <div id="sidebar-a">
+
+<!-- content -->			
+<div id="content">
+  <img src="http://www.4thsource.com//public/images/subheader_services.jpg" alt="Sub Header" class="subheader" />	
+  <ul id="breadcrumbs">
+    <li><a href="http://www.4thsource.com/en/index.php">Home</a> &raquo;</li>
     <% if signed_in? %>
-      <div id="sidebar-gravatar">                        
-        <%= gravatar_for current_user, :size => 30 %>
-      </div>
-      <div id="sidebar-user">
-        <strong><%= current_user.name %></strong> <br/>
-        <strong><%= current_user.microposts.count %> microposts</strong>
-      </div>
-    <% end %>
+    <li><em><%= current_user.name %></em></li>
+    <% end %>						
+	<div class="clear"></div>
+  </ul>
+  	 <% if signed_in? %>
+      <table class="front" summary="For signed-in users">
+        <tr>
+          <td class="main">
+            <div id="content-margin">
+              <h1 class="micropost">What is happening?</h1>
+              <%= render 'shared/micropost_form' %>
+            </div>
+            <% flash.each do |key, value| %>
+                <div class="flash <%= key %>"><%= value %></div>
+              <% end %>
+            <div id="feed">
+              <%= render 'shared/feed' %>
+            </div>
+          </td>
+       </tr>
+     </table> 
+   <% else %>
+     <h1>Sample App</h1>
+     <p>
+       This is the home page for the
+       <a href="http://railstutorial.org/">Ruby on Rails Tutorial</a> sample application.
+     </p>
+     <%= link_to "Sign up now!", signup_path, :class => "signup_button round" %> 
+   <% end %>
+  <div class="clear"></div>
+</div> <!-- end content -->
+<!-- Sidebar -->
+<div id="sidebar">
+  <!-- Subnav -->
+  <h4 id="if_sub_nav"><a href="http://www.4thsource.com/en//services">Profile Information</a></h4>
+  <div id="if_subnav" class="divider"></div>
+  <% if signed_in? %>
+  <div id="sidebar-profile">
+    <div id="sidebar-gravatar">
+	  <a href="#"><%= gravatar_for current_user, :size => 40 %></a>
+    </div>
+    <div id="sidebar-user">
+	  <%= current_user.name %><br/>
+	  <%= current_user.microposts.count %> microposts
+	</div>
   </div>
-  <div id="content">
-      <% if signed_in? %>
-        <table class="front" summary="For signed-in users">
-          <tr>
-            <td class="main">
-              <div id="content-margin">
-                <% flash.each do |key, value| %>
-                  <div class="flash <%= key %>"><%= value %></div>
-                <% end %>
-                <h1 class="micropost">What's up?</h1>
-                <%= render 'shared/micropost_form' %>
-              </div>
-              <div id="feed">
-                <%= render 'shared/feed' %>
-              </div>
-            </td>
-         </tr>
-       </table> 
-     <% else %>
-       <h1>Sample App</h1>
-       <p>
-         This is the home page for the
-         <a href="http://railstutorial.org/">Ruby on Rails Tutorial</a> sample application.
-       </p>
-       <%= link_to "Sign up now!", signup_path, :class => "signup_button round" %> 
-     <% end %>
-  </div>
-</div>
+  <br/>
+  <% end %>	
+  <br/>
+  <ul id="nav_sub" class="sub_navigation">
+    <li><a href="#">Microsoft Solutions</a></li>
+    <li><a href="#">Custom Mobile Software & Smartphone Development</a></li>
+    <li><a href="#">Application Maintenance Outsourcing</a></li>
+    <li><a href="#">Sharepoint, Portals & CMS</a></li>
+    <li><a href="#">Custom Application Development</a></li>
+    <li><a href="#">Quality Assurance & Testing</a></li>
+    <li><a href="#">Strategic Guidance</a></li>
+    <li class="last"><a href="#">Nearshore Staff Augmentation</a></li>
+  </ul>
+  <br/>
+  <div class="clear"></div>
+</div> <!-- end sidebar -->

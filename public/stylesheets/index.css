@@ -22,6 +22,7 @@ body {
 }
 p, ul, a { color: #6a737b; }
 .clear { clear: both; }
+.clear-window { clear: both; }
 strong { color:#222; font-weight: bold; }
 p, ul, h1, h2, h3, h4 { line-height: 19px; margin-bottom: 12px; }
 a { text-decoration: none; }
@@ -158,7 +159,7 @@ h1 a {
 #nav_full li a { 
 	display: block;
 	color: #ededed;
-	padding: 5px 70px;
+	padding: 5px 31px;
 	background: url(http://www.4thsource.com/public/images/nav_divider.png) repeat-y right;
 	cursor: pointer;
 }
@@ -262,7 +263,7 @@ a.nivo-prevNav {
 .third { width: 27.5%; margin-left: 2.1%; padding:1.7% 2%; margin-top: 1%; }
 .first { margin-left: 5px; }
 .full { clear: both; width: 95%; margin-left: 5px; }
-.two_thirds { width:68%; margin-left: 0px; padding-left: 0px; }
+.two_thirds { width:100%; margin-left: 0px; padding-left: 0px;}
 .one_third { width: 25%; padding:1.7% 2%; }
 .half { width: 50%; }
 .no_padding { padding:0px;}
@@ -273,11 +274,7 @@ a.nivo-prevNav {
 
 /* Page Headline Colors */
 #content h3.page_headline { font-weight: normal; font-size: 20px; color: #333; }
-#content h3.technology { color:#58a46a; }
-#content h3.financial_services { color:#8b9557; }
-#content h3.healthcare { color:#cc9762; }
-#content h3.isv_independant_software_vendor { color:#dbad5a; }
-#content h3.manufacturing { color:#9b8a7e; }
+#content h2.page_headline { font-weight: normal; font-size: 16px; color: #333; }
 
 /* Blocks */
 .block { 
@@ -308,9 +305,12 @@ a.nivo-prevNav {
 .block h2.no_en a:hover { text-decoration:none; }
 
 /* If english */
-h2.headline_about a { background: url(http://www.4thsource.com/public/images/headline_about_us.png); width: 132px; }
-h2.headline_services a { background: url(http://www.4thsource.com/public/images/headline_services.png); width: 122px; }
-h2.headline_industries a { background: url(http://www.4thsource.com/public/images/headline_industries.png); width: 148px; }
+h2.headline_about a { 
+background: url(http://www.4thsource.com/public/images/headline_about_us.png); width: 132px; }
+h2.headline_services a { 
+background: url(http://www.4thsource.com/public/images/headline_services.png); width: 122px; }
+h2.headline_industries a { 
+background: url(http://www.4thsource.com/public/images/headline_industries.png); width: 148px; }
 h2.partners { 
 	background: url(http://www.4thsource.com/public/images/partners.jpg) no-repeat; 
 	width: 113px; 
@@ -357,7 +357,8 @@ h2.no_en_part {
 	background: url(http://www.4thsource.com/public/images/read_more.jpg) no-repeat;
 	margin-bottom:10px;
 }
-.block a.brown { background: url(http://www.4thsource.com/public/images/read_more_brown.jpg) no-repeat; } 
+.block a.brown { 
+background: url(http://www.4thsource.com/public/images/read_more_brown.jpg) no-repeat; } 
 .logos img, .logos h2 { float: left; }
 .logos img { margin-left: 60px; margin-bottom: 0px; }
 
@@ -371,7 +372,7 @@ h2.no_en_part {
 }
 
 /* Sidebar on the right */
-#sidebar, #content {
+#sidebar {
 	-webkit-box-shadow: 0px 2px 5px #888;
 	-moz-box-shadow: 0px 2px 5px #888;
 	box-shadow: 0px 2px 5px #888;
@@ -379,6 +380,17 @@ h2.no_en_part {
 	padding: 0px 20px;
 	position: relative;
 }
+
+#content {
+	min-height: 49em;
+	-webkit-box-shadow: 0px 2px 5px #888;
+	-moz-box-shadow: 0px 2px 5px #888;
+	box-shadow: 0px 2px 5px #888;
+	float: left;
+	padding: 0px 20px;
+	position: relative;
+}
+
 #sidebar { background: #dedede; width:241px; padding: 0px 15px; z-index: 10; }
 #sidebar h4, #sidebar h4 a { 
 	text-shadow: 0px 1px 0px #fff; 
@@ -395,6 +407,8 @@ h2.no_en_part {
 #sidebar ul li a:hover,
 #sidebar ul li.here a { color: #2268ae; background: #fff; text-decoration: none; }
 
+#sidebar ul li.here { color: #2268ae; background: #fff; text-decoration: none;}
+
 /* Subnav */
 #nav_sub { margin-bottom: 15px; }
 #nav_sub li a { padding:5px 5px; }
@@ -403,6 +417,21 @@ h2.no_en_part {
 	margin-left: 10px;
 	font-style: italic;
 }
+
+#sidebar-profile { color: #2268ae; background: #fff; text-decoration: none; padding-bottom: 50px; padding-top: 10px;}
+#sidebar-gravatar {
+ 	float:left; 
+    width: 5px;
+    padding-left: 5px;
+}
+
+#sidebar-user {
+  float: left;
+  padding-left: 60px;
+  padding-top: 7px;
+}
+
+
 #sidebar ul li.parent_here a { background: #fff; color: #2268ae; }
 #sidebar #nav_sub li ul li a { color:#666; }
 #sidebar #nav_sub li ul li a:hover,
@@ -546,17 +575,25 @@ form.rfi input[type="submit"] {
 #footer { background: url(http://www.4thsource.com/public/images/footer_bg.jpg) #171717 repeat-x; padding:0px; }
 #footer_contents { 
 	margin: 0px auto;
-	width: 1250px;
+	width: 950px;
 	clear: both;
-        padding: 20px 10px 20px 260px;
+	padding: 10px 10px 32px 10px;
 }
-#footer_contents .column { margin-top: 0px; }
+#footer_contents .column { margin-top: 0px;}
 
 /* If english */
 #footer_contents h3 { float: left; text-indent: -9999px; }
 #footer_contents h3.headline_sitemap { 
+	background: url(../images/footer_headline_sitemap.png) no-repeat;
+	width: 103px;
+	height: 25px;
 }
-
+#footer_contents h3.headline_inquiries { 
+	background: url(../images/footer_headline_inquiries.png) no-repeat;
+	width: 114px;
+	height: 22px;
+	margin-bottom: 10px;
+}
 /* If not english */
 #footer_contents h3.no_en_foot { 
 	float: left; 
@@ -571,19 +608,130 @@ form.rfi input[type="submit"] {
 	font-weight: normal;
 }
 
-p.copyright { float: right; font-size: 11px; font-style: italic; }
+p.copyright { font-size: 11px; font-style: italic; }
 #footer_contents .divider { border-bottom: 1px solid #545454; border-top: none; clear: both; margin-bottom: 15px; }
 #footer_contents p a { color: #84b3d3; }
-#footer_contents p, #footer_contents li { color:#fff;}
+#footer_contents p, #footer_contents li { color:#fff; }
 #footer_contents ul li a { 
 	font-size: 12px;
 	color:#f4f4f4;
-        margin-left: 100px;
 }
 #footer_contents .three { margin-left: 25px;  }
 #footer_contents .first { margin-left: 0px; width:225px; }
 #footer_contents ul li ul { margin-left: 12px; }
 #footer_contents ul li ul li { font-style: italic; }
-#footer_contents ul li ul li a { color: #b0b0b0; font-size: 11px;} 
+#footer_contents ul li ul li a { color: #b0b0b0; font-size: 11px; } 
 #footer_contents .column { padding:0; }
 #footer_contents .one_third { padding-left:35px;}
+
+/* Form */
+#content form textarea {
+	padding:8px 5px;
+	border: none;
+	margin-top: -2px;
+	color:#7f98b7;
+	font-family: "lucida grande", "lucida sans", arial, sans-serif; 
+	font-size: 12px;
+	width: 100%; 
+	-webkit-box-shadow: 0px 0px 4px #222;
+	-moz-box-shadow: 0px 0px 4px #222;
+	box-shadow: 0px 0px 4px #222;
+	background-color: rgba(250, 250, 250, .7);
+	margin-bottom: 10px;
+}
+ 
+#content form textarea:focus { background-color: rgba(250, 250, 250, 1); }
+#content form textarea { height: 60px; }
+#content form input[type="submit"] {
+	width: 92px;
+	height: 28px;
+	border: none;
+	text-indent: -9999px;
+	background: url(http://www.4thsource.com/public/images/submit_btn.jpg);
+	cursor: pointer;
+	margin-bottom: 15px;
+}
+
+h1.micropost {
+margin-bottom: 0.3em; }
+table.microposts { margin-top: 1em;
+	margin:auto;
+}
+
+table.microposts tr { height: 70px; 
+}
+table.microposts tr td.gravatar { border-top: 1px solid #ccc; vertical-align: top;
+width: 50px; padding-top:10px; padding-right: 5px;
+}
+table.microposts tr td.micropost { 
+	border-top: 1px solid #ccc; vertical-align: top; padding-top: 20px; font-style: bold;
+}
+
+table.microposts tr td.micropost span.timestamp { display: block;
+font-size: 85%;
+color: #666;
+padding-top: 3px;
+}
+
+table.microposts tr td.micropost span.content { 
+  padding-left: 0.3em;
+}
+
+table.microposts tr td.micropost span.user { 
+  font-weight: bold;
+}
+
+table.microposts tr td.micropost-delete { 
+  padding-top:20px;
+  padding-left: 10px;
+}
+
+#feed-pagination {
+	padding-top: 30px;
+	padding-bottom: 30px;
+	text-align: center;	
+}
+
+.field {
+	padding-top: 0.5em;
+}
+
+.actions {
+	padding-left: 2px;
+	padding-top: 0.5em;
+	padding-bottom: 1em;
+}
+
+#list {
+	margin: auto;
+	padding-left: 60px;
+}
+
+#left {
+	padding-top: 15px;
+	float: left;
+	width: 10px;
+}
+
+#middle {
+	padding-left: 30px;
+	width: 180px;
+}
+
+#right {
+	float: right;
+	width: 20px;
+	padding-right: 90px;
+	padding-bottom: 18px;
+}
+
+#follow form input[type="submit"] {
+	width: 22px;
+	height: 23px;
+	border: none;
+	text-indent: -9999px;
+	background: url(http://www.4thsource.com/public/images/search_icon.png);
+	margin-right: 10px;
+	margin-top: -2px;
+	cursor: pointer;
+}

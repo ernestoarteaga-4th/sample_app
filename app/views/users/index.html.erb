@@ -1,5 +1,13 @@
-<div id="wrapper">
-  <br/>
+<!-- Content -->			
+<div id="content">
+  <img src="http://www.4thsource.com//public/images/subheader_services.jpg" alt="Sub Header" class="subheader" />
+  <ul id="breadcrumbs">
+    <li><a href="http://www.4thsource.com/en/index.php">Home</a> &raquo; </li>
+    <li><em><%= link_to "Users", users_path %></em></li>
+	<div class="clear"></div>
+  </ul>
+  <h3 class="page_headline ">All users</h3>
+  <div class="divider"></div>
   <div id="list">
     <% @users.each do |user| %>
       <div id="row">
@@ -8,7 +16,26 @@
     <% end %>
   </div>
   <br/><br/>
-  <div id="pagination">
+  <div id="feed-pagination">
     <%= will_paginate %>
-  </div>
-</div>
+  </div> 
+  <div class="clear"></div>
+</div> <!-- End Content -->
+	
+<!-- Sidebar -->
+<div id="sidebar">
+  <!-- Subnav -->
+  <h4 id="if_sub_nav"><a href="#">About</a></h4>
+  <div id="if_subnav" class="divider"></div>
+  <ul id="nav_sub" class="sub_navigation">
+    <li><a href="http://www.4thsource.com/index.php/about/corporate_overview/">Corporate Overview</a></li>
+    <li><a href="http://www.4thsource.com/index.php/about/clients/">Clients</a></li>
+    <li class="last"><a href="http://www.4thsource.com/index.php/about/executive_leadership/">Executive Leadership</a></li>
+  </ul>
+  <img src="http://www.4thsource.com//public/images/sidebar_about.jpg" alt="about" class="sidebar_img" />
+  <div class="clear"></div>
+</div> <!-- End Sidebar -->
+
+
+
+
