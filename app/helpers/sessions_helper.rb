@@ -28,6 +28,11 @@ module SessionsHelper
     current_user != user 
   end
 
+  def is_follow? (user)
+    @follow = current_user.followings.find_by_follow_user(user)
+    !@follow.nil?
+  end
+  
   def current_user
     @current_user ||= user_from_remember_token
   end

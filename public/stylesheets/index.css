@@ -725,3 +725,13 @@ table.microposts tr td.micropost-delete {
 	cursor: pointer;
 	margin-bottom: 15px;
 }
+
+#unfollow form input[type="submit"] {
+	width: 92px;
+	height: 28px;
+	border: none;
+	text-indent: -9999px;
+	background: url(/images/unfollow_btn.jpg);
+	cursor: pointer;
+	margin-bottom: 15px;
+}

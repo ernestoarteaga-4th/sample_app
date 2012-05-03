@@ -17,7 +17,11 @@
       <% end %>
     </div>
     <% if followed_in? @user%>  
-      <%= render 'follow' %>
+      <% if is_follow? @user %>
+        <%= render 'unfollow' %>
+      <% else %>
+        <%= render 'follow' %>
+      <% end %>
     <% else %>
       <h2 class="page_headline">My current posts:</h2>
     <% end %>
