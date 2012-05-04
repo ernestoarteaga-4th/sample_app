@@ -29,7 +29,7 @@ module SessionsHelper
   end
 
   def is_follow? (user)
-    @follow = current_user.followings.find_by_follow_user(user)
+    @follow = current_user.followings.find_by_followed_id(user)
     !@follow.nil?
   end
   

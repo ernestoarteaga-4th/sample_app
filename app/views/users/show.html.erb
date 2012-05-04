@@ -48,6 +48,9 @@
   <strong>URL</strong> <%= link_to user_path(@user), @user%> <br/>
   <strong>Microposts</strong> <%= @user.microposts.count %> <br/>
   <br/><br/>
+  <strong>Following</strong> <a href="<%= following_user_path(@user) %>"><%= @user.following.count %></a> <br/>
+  <strong>Followers</strong> <a href="<%= followers_user_path(@user) %>"><%= @user.followers.count %></a> <br/>
+  <br/><br/>
   <ul id="nav_sub" class="sub_navigation">
     <li><a href="#">Microsoft Solutions</a></li>
     <li><a href="#">Custom Mobile Software & Smartphone Development</a></li>

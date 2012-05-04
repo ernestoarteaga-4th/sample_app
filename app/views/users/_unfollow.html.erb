@@ -1,6 +1,6 @@
 <div id="unfollow">
-	<%= form_for current_user.followings.find_by_follow_user(@user), :html => { :method => :delete } do |f| %>
-	  <div><%= f.hidden_field :follow_user, :value => @user.id %></div>
+	<%= form_for current_user.followings.find_by_followed_id(@user), :html => { :method => :delete } do |f| %>
+	  <div><%= f.hidden_field :followed_id, :value => @user.id %></div>
 	  <div class="actions">
 	    <%= f.submit "Unfollow" %>
 	  </div> 

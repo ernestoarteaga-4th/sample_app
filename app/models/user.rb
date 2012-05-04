@@ -19,7 +19,16 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation
 
   has_many        :microposts, :dependent => :destroy 
-  has_many        :followings, :dependent => :destroy
+  
+  has_many        :followings, :foreign_key => "follower_id",
+                               :dependent => :destroy
+                               
+  has_many :reverse_followings, :foreign_key => "followed_id",
+                                :class_name => "Following",
+                                :dependent => :destroy
+                                
+  has_many :followers, :through => :reverse_followings, :source => :follower
+  has_many :following, :through => :followings, :source => :followed
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
@@ -40,7 +49,7 @@ class User < ActiveRecord::Base
   end
 
   def is_follow?(follow_user)
-    follow = Following.where("user_id = ? AND follow_user = ?", id, follow_user)
+    follow = Following.where("follower_id = ? AND followed_user = ?", id, follow_user)
      
     if follow.empty?
      false
