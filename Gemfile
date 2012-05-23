@@ -54,7 +54,4 @@ end
    gem 'factory_girl_rails'
  end
  group :production do
-   gem 'faker'
-   gem 'rspec-rails'
-   gem 'annotate-models', '1.0.2'
  end
