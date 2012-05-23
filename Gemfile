@@ -13,6 +13,9 @@ gem 'acts_as_ferret', '>= 0.5'
 gem 'paginator'
 
 gem 'haml'
+
+gem "hoe", '= 2.8.0'
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
@@ -42,7 +45,7 @@ gem 'gravatar_image_tag'
  group :development do
    gem 'rspec-rails'
    gem 'annotate-models', '1.0.2'
-   gem 'faker' 
+   gem 'faker'
 end
  group :test do
    gem 'webrat'
