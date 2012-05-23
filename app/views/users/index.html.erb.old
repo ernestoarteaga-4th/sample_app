@@ -8,8 +8,29 @@
   </ul>
   <h3 class="page_headline ">All users</h3>
   <div class="divider"></div>
+  <br/>
+  <div id="search">
+    <div id="search-form">	
+      <% form_tag({ :action => "search" }, :method => "get") do %>
+        <fieldset>
+          <div class="form_row">
+            <label for="q">Search:</label>
+            <%= text_field_tag "q", params[:q] %>
+            <input type="submit" value="Search" />
+          </div>
+        </fieldset>
+      <% end %>
+    </div> <!-- end form -->
+    <div id="search-results">
+	  <div id="flash">
+	    <% flash.each do |key, value| %>
+		  <div class="flash <%= key %>"><%= value %></div>
+        <% end %>
+	  </div>
+	</div> <!-- end search-results -->
+  </div> <!-- end search-->
   <div id="list">
-    <% @users.each do |user| %>
+    <% @page_results.each do |user| %>
       <div id="row">
         <%= render user %>
       </div>
@@ -17,7 +38,7 @@
   </div>
   <br/><br/>
   <div id="feed-pagination">
-    <%= will_paginate %>
+    <%= will_paginate @page_results %>
   </div> 
   <div class="clear"></div>
 </div> <!-- End Content -->

@@ -1,0 +1,54 @@
+<!-- Content -->			
+#content
+  %img(src="http://www.4thsource.com//public/images/subheader_services.jpg" alt="Sub Header" class="subheader")
+  %ul#breadcrumbs
+    %li
+      = link_to 'Home', '#' 
+      = raw '&raquo;'
+    %li
+      = link_to @user.id, user_path 
+      = raw '&raquo;'
+    %li
+      = raw '<em>'
+      Edit
+      = raw '</em>'
+    .clear
+  %h3.page_headline
+    Edit User
+  .divider
+  = gravatar_for @user
+  = link_to 'change', 'http://gravatar.com/emails'
+  %br
+  - form_for(@user) do |f|
+    = render 'shared/error_messages', :object => f.object
+    .field
+      = f.label :name
+      %br
+      = f.text_field :name
+    .field
+      = f.label :email
+      %br
+      = f.text_field :email
+    .field
+      = f.label :password
+      %br
+      = f.password_field :password 
+    .field
+      = f.label :password_confirmation, "Confirmation"
+      %br 
+      = f.password_field :password_confirmation
+    .actions
+      %br
+      = f.submit "Update" 
+<!-- Sidebar -->
+#sidebar
+  <!-- Subnav -->
+  %h4#if_sub_nav
+    = link_to 'About', '#'
+  #if_subnav.divider
+  %ul#nav_sub.sub_navigation
+    %li= link_to 'Corporate Overview, '#'
+    %li= link_to 'Clients', '#'
+    %li.last= link_to 'Executive Leadership', '#'
+  %img(src="http://www.4thsource.com//public/images/sidebar_about.jpg" alt="about" class="sidebar_img")
+  .clear

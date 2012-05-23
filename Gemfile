@@ -6,6 +6,13 @@ gem 'will_paginate'
 
 gem 'taps'
 
+gem 'ferret'
+
+gem 'acts_as_ferret', '>= 0.5'
+
+gem 'paginator'
+
+gem 'haml'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 

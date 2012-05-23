@@ -17,10 +17,28 @@
               <h1 class="micropost">What is happening?</h1>
               <%= render 'shared/micropost_form' %>
             </div>
-            <% flash.each do |key, value| %>
-                <div class="flash <%= key %>"><%= value %></div>
-                <br/>
-              <% end %>
+            <br/>
+			  <div id="feed"></div>
+			  <div id="search">
+			    <div id="search-form">	
+			      <% form_tag({ :action => "search" }, :method => "get") do %>
+			        <fieldset>
+			          <div class="form_row">
+			            <label for="q">Search feeds:</label>
+			            <%= text_field_tag "q", params[:q] %>
+			            <input type="submit" value="Search" />
+			          </div>
+			        </fieldset>
+			      <% end %>
+			    </div> <!-- end form -->
+			    <div id="search-results">
+				  <div id="flash">
+				    <% flash.each do |key, value| %>
+					  <div class="flash <%= key %>"><%= value %></div>
+			        <% end %>
+				  </div>
+				</div> <!-- end search-results -->
+			  </div> <!-- end search-->
             <div id="feed">
               <%= render 'shared/feed' %>
             </div>

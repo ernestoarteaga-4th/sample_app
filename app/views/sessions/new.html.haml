@@ -1,0 +1,42 @@
+<!-- Content -->			
+#content
+  %img(src='http://www.4thsource.com//public/images/subheader_services.jpg' class='subheader' alt='Sub Header')
+  %ul#breadcrumbs
+    %li
+      = link_to 'Home', '#' 
+      = raw '&raquo;'
+    %li= link_to raw('<em>Login</em>'), signin_path
+    .clear
+  %h3.page_headline Login credentials
+  .divider
+  - form_for(:session, :url => sessions_path) do |f|  
+    - flash.each do |key, value| 
+      .flash{:class => key}= value
+    .field
+      = f.label :email
+      %br
+      = f.text_field :email 
+    .field
+      = f.label :password
+      %br 
+      = f.password_field :password
+    .actions
+      = f.submit "Sign in"   
+  %p 
+    New user?
+    = link_to "Sign up now!", signup_path
+  %p 
+    Forgot your email or password? 
+    = link_to "Forgot password", :controller => "email", :action => "remind"
+  .clear	
+<!-- Sidebar -->
+#sidebar
+  <!-- Subnav -->
+  %h4#if_sub_nav= link_to "About", "#"
+  #if_subnav.divider
+  %ul#nav_sub.sub_navigation
+    %li= link_to "Corporate Overview", "#"
+    %li= link_to "Clients", "#"
+    %li.last= link_to "Executive Leadership", "#"
+  %img(src="http://www.4thsource.com//public/images/sidebar_about.jpg" class="sidebar_img")
+  .clear

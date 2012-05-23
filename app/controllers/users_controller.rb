@@ -1,11 +1,13 @@
 class UsersController < ApplicationController
-  before_filter :authenticate, :except => [:show, :new, :create]
+  before_filter :authenticate, :except => [:show, :new, :create, :change]
   before_filter :correct_user, :only => [:edit, :update]
   before_filter :admin_user,   :only => [:destroy]
 
   def index
-    @users = User.paginate(:page => params[:page])
+    @users = User.all
     @title = "All users"
+    paginate(@users, 10)
+    flash[:success] = "About #{@users.count} results."
   end
 
   def show
@@ -24,12 +26,35 @@ class UsersController < ApplicationController
    @title  = "Edit user"
    @error  = current_user.errors
   end 
+  
+  def change
+   if param_posted?(:user)
+     @user = User.find(params[:id])
+     @user.change_password_flag = nil
+     if @user.update_attributes(params[:user])
+       flash[:success] = "Profile updated."
+       redirect_to :signin
+     else
+       render :change
+     end
+    else
+      @user = User.find(params[:id])
+      if @user && @user.change_password_flag == params[:code]
+        @error = @user.errors
+        render :change
+      else
+        flash[:notice] = "Invalid code!"
+        redirect_to root_path
+      end
+    end
+  end
 
   def create
     @user = User.new(params[:user])
     @error = @user.errors
     if @user.save
       sign_in @user
+      UserMailer.welcome_email(@user).deliver
       flash[:success] = "Welcome to the Sample App!"
       redirect_to @user
     else
@@ -71,8 +96,22 @@ class UsersController < ApplicationController
     @users = User.where("id IN (#{users_id})").paginate(:page => params[:page])
     render 'show_follow'
   end
-
+  
+  def search
+    if params[:q]
+      query = params[:q]
+      @users = User.find_with_ferret(query + "*", :limit => :all)
+      @users = @users.sort_by{ |user| user.name}
+      paginate(@users, 10)
+      flash[:success] = "About #{@users.count} results."
+      render 'index'
+    end
+  end
+  
   private
+    def param_posted?(sym)
+      request.post? and params[sym]
+    end
 
     def admin_user
       redirect_to(root_path) unless current_user.admin? 

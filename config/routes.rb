@@ -1,9 +1,23 @@
 SampleApp::Application.routes.draw do
   
+  get "email/remind"
+  
+  post "email/remind"
+
   resources :users do
     member do
-      get :following, :followers
+      get :following, :followers, :change
+      post :change
+    end
+    collection do
+      get 'search'
     end 
+  end
+ 
+  resources :pages do
+    collection do
+      get 'search'
+    end
   end
   
   resources :users

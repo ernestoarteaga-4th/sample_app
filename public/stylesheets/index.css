@@ -677,6 +677,10 @@ table.microposts tr td.micropost-delete {
   padding-left: 10px;
 }
 
+#feed {
+  padding-top: 15px;	
+}
+
 #feed-pagination {
 	padding-top: 30px;
 	padding-bottom: 30px;
@@ -734,4 +738,20 @@ table.microposts tr td.micropost-delete {
 	background: url(/images/unfollow_btn.jpg);
 	cursor: pointer;
 	margin-bottom: 15px;
+}
+
+#search {
+	margin: auto;
+	width: 500px;
+	margin-bottom: 55px;
+}
+
+#search-form {
+	float: left;
+}
+
+#search-results {
+	float:left;
+	padding-left: 25px;
+	margin-top: 7px;
 }

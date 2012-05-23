@@ -1,0 +1,74 @@
+<!-- content -->			
+#content
+  %img(src='http://www.4thsource.com//public/images/subheader_services.jpg' alt='Sub Header' class='subheader')
+  %ul#breadcrumbs
+    %li
+      = link_to 'Home', '#' 
+      = raw '&raquo;'
+    - if signed_in?
+      %li
+        = raw '<em>'
+        = current_user.name
+        = raw '</em>'
+    .clear						
+  - if signed_in?
+    %table{:class => 'front'}
+      %tr
+        %td.main
+          #content-margin
+            %h1.micropost What is happening?
+            = render 'shared/micropost_form'
+            %br
+            #feed
+            #search
+              #search-form
+                - form_tag({ :action => "search" }, :method => "get") do
+                  = raw '<fieldset>'
+                  .form_row
+                    %label{:for => "q"} Search feeds:
+                    = text_field_tag "q", params[:q] 
+                    %input{:type => "submit", :value => "Search"}
+                  = raw '</fieldset>'
+              #search-results
+                #flash
+                  - flash.each do |key, value|
+                    .flash{:class => key}= value
+            #feed
+              = render 'shared/feed'
+  - else
+    %h1 Sample App
+    %p
+      This is the home page for the
+      = link_to 'Ruby on Rails Tutorial', 'http://railstutorial.org'
+      sample application.
+    = link_to "Sign up now!", signup_path, :class => "signup_button round"
+    .clear
+<!-- Sidebar -->
+#sidebar
+  <!-- Subnav -->
+  %h4#if_sub_nav
+    = link_to 'Profile Information', '#'
+  #if_subnav.divider
+    - if signed_in?
+      #sidebar-profile
+        #sidebar-gravatar
+          =link_to("#") do 
+            =gravatar_for current_user, :size => 40
+        #sidebar-user
+          = current_user.name
+          %br
+          = current_user.microposts.count 
+          microposts
+      %br
+    %br
+    %ul#nav_sub.sub_navigation
+      %li= link_to 'Microsoft Solutions', '#'
+      %li= link_to 'Custom Mobile Software & Smartphone Development', '#'
+      %li= link_to 'Application Maintenance Outsourcing', '#'
+      %li= link_to 'Sharepoint, Portals & CMS', '#'
+      %li= link_to 'Custom Application Development', '#'
+      %li= link_to 'Quality Assurance & Testing', '#'
+      %li= link_to 'Strategic Guidance', '#'
+      %li.last= link_to 'Nearshore Staff Augmentation', '#'   
+    %br
+    .clear

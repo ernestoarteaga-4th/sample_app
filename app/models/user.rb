@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   self.per_page = 10
 
   attr_accessor   :password
-  attr_accessible :name, :email, :password, :password_confirmation
+  attr_accessible :name, :email, :password, :password_confirmation, :change_password_flag
 
   has_many        :microposts, :dependent => :destroy 
   
@@ -29,6 +29,8 @@ class User < ActiveRecord::Base
                                 
   has_many :followers, :through => :reverse_followings, :source => :follower
   has_many :following, :through => :followings, :source => :followed
+  
+  acts_as_ferret :fields => ['name', 'email']
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
@@ -78,8 +80,10 @@ class User < ActiveRecord::Base
 
   private
     def encrypt_password
-      self.salt = make_salt if new_record? 
-      self.encrypted_password = encrypt(password)
+      self.salt = make_salt if new_record?
+      if password != change_password_flag 
+        self.encrypted_password = encrypt(password)
+      end
     end
 
     def encrypt(string) 

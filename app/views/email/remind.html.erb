@@ -3,25 +3,21 @@
   <img src="http://www.4thsource.com//public/images/subheader_services.jpg" alt="Sub Header" class="subheader" />
   <ul id="breadcrumbs">
     <li><a href="#">Home</a> &raquo; </li>
-    <li><em><%= link_to "Login", signin_path %></em></li>
+    <li><em>Forgot password</em></li>
 	<div class="clear"></div>
   </ul>
-  <h3 class="page_headline ">Login credentials</h3>
+  <h3 class="page_headline ">Change my old password</h3>
   <div class="divider"></div>
-    <%= form_for(:session, :url => sessions_path) do |f| %> 
+    <% form_for :user do |f| %> 
       <% flash.each do |key, value| %>
-        <div class="flash <%= key %>"><%= value %></div>
+        <div class="flash <%= key %>"><%= value %></div><br/>
       <% end %>
       <div class="field">
         <%= f.label :email %><br />
         <%= f.text_field :email %> 
       </div>
-      <div class="field">
-        <%= f.label :password %><br /> 
-        <%= f.password_field :password %>
-      </div>
       <div class="actions">
-        <%= f.submit "Sign in" %> 
+        <%= f.submit "Submit" %> 
       </div>
     <% end %>
     <p>New user? <%= link_to "Sign up now!", signup_path %></p>
@@ -41,3 +37,4 @@
   <img src="http://www.4thsource.com//public/images/sidebar_about.jpg" alt="about" class="sidebar_img" />
   <div class="clear"></div>
 </div> <!-- End Sidebar -->
+
