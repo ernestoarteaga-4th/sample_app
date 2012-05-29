@@ -20,8 +20,12 @@ class Micropost < ActiveRecord::Base
   end
   
   def self.search_from_users_followed_by(user, words)
-      followed_ids = user.following.map(&:id).join(", ")
-      followed_ids.concat(", " + user.id.to_s)
+      if user.following.count > 0
+        followed_ids = user.following.map(&:id).join(", ")
+        followed_ids.concat(", " + user.id.to_s)
+      else
+        followed_ids = user.id.to_s
+      end
       where("content LIKE ? AND user_id IN (#{followed_ids})", "%#{words}%") 
   end
 end 

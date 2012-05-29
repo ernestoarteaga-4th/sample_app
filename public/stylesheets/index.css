@@ -19,10 +19,19 @@ p, ul, h1, h2, h3, h4 { line-height: 19px; margin-bottom: 12px; }
 a { text-decoration: none; }
 a:hover { text-decoration: underline; }
 h3 { font-size: 25px; font-weight: bold; color: #222; }
+h6 { font-size: 13px; font-weight: bold; color: #222; }
 h4, h5, h4 a { font-size: 16px; font-weight: bold; color: #2268ae; }
 h5 { color: #fff; font-weight: normal; }
 .divider, .divider_light, hr { 
 	height: 0px; 
+	border-top: #bcbcbc solid 1px; 
+	border-bottom: #fff solid 1px;	
+	margin:0px 0px 10px; 
+	background: none;
+}
+.divider-headline { 
+	height: 0px; 
+	width: 300px;
 	border-top: #bcbcbc solid 1px; 
 	border-bottom: #fff solid 1px;	
 	margin:0px 0px 10px; 
@@ -630,7 +639,22 @@ p.copyright { font-size: 11px; font-style: italic; }
 	background-color: rgba(250, 250, 250, .7);
 	margin-bottom: 10px;
 }
- 
+
+#content form.experience textarea {
+	padding:8px 5px;
+	border: none;
+	margin-top: -2px;
+	color:#7f98b7;
+	font-family: "lucida grande", "lucida sans", arial, sans-serif; 
+	font-size: 12px;
+	width: 27%; 
+	-webkit-box-shadow: 0px 0px 4px #222;
+	-moz-box-shadow: 0px 0px 4px #222;
+	box-shadow: 0px 0px 4px #222;
+	background-color: rgba(250, 250, 250, .7);
+	margin-bottom: 10px;
+}
+
 #content form textarea:focus { background-color: rgba(250, 250, 250, 1); }
 #content form textarea { height: 60px; }
 #content form input[type="submit"] {
@@ -645,8 +669,10 @@ p.copyright { font-size: 11px; font-style: italic; }
 
 h1.micropost {
 margin-bottom: 0.3em; }
-table.microposts { margin-top: 1em;
-	margin:auto;
+
+table.microposts { 
+  margin-top: 1em;
+  margin:auto;
 }
 
 table.microposts tr { height: 70px; 
@@ -656,6 +682,8 @@ width: 50px; padding-top:10px; padding-right: 5px;
 }
 table.microposts tr td.micropost { 
 	border-top: 1px solid #ccc; vertical-align: top; padding-top: 20px; font-style: bold;
+  min-width: 500px;
+  width: 500px;
 }
 
 table.microposts tr td.micropost span.timestamp { display: block;
@@ -754,4 +782,152 @@ table.microposts tr td.micropost-delete {
 	float:left;
 	padding-left: 25px;
 	margin-top: 7px;
+}
+
+.iconContact-info, .iconCoinsHeadLine, .iconPhoto, .iconSummary, .iconExperience, .iconExperienceHeadLine, .iconEducation, .iconSkills, .iconSkillsHeadLine, .iconMembershipAwards, .iconInterests, .iconInterestsHeadLine {
+	background: url(/images/probook_icons_img.axd);
+	background-repeat: no-repeat;
+	display: inline-block;
+	position: absolute;
+	margin-top: 8px;
+}
+
+.iconCoinsHeadLine {
+	background-position: -148px -19px; 
+	width: 16px; 
+	height: 11px; 
+}
+
+.iconCoinsHeadLine {
+	margin-top: 0px;
+}
+
+.iconContact-info {
+	background-position: -118px -19px;
+	width: 16px;
+	height: 13px;
+}
+
+.iconPhoto {
+	background-position: -325px -19px;
+	width: 14px; 
+	height: 16px; 
+}
+
+.iconSummaryHeadLine {
+	margin-top: 0px;
+}
+
+.iconSummary, iconSummaryHeadLine {
+	background-position: -134px -19px;
+	width: 14px; 
+	height: 16px;
+}
+
+.iconExperienceHeadLine {
+	margin-top: 0px;
+}
+
+.iconExperience, .iconExperienceHeadLine {
+	background-position: -74px 0px;
+	width: 16px; 
+	height: 16px;
+}
+
+.iconEducation {
+	background-position: -16px -19px;
+	width: 16px; 
+	height: 14px;
+}
+
+.iconSkills, .iconSkillsHeadLine {
+	background-position: -418px -19px;
+	width: 16px; 
+	height: 16px; 
+}
+
+.iconSkillsHeadLine {
+	margin-top: 0px;
+}
+
+.iconMembershipAwards {
+	background-position: -371px -19px;
+	width: 16px; 
+	height: 16px;
+}
+
+.iconInterests, .iconInterestsHeadLine {
+	background-position: -278px -19px;
+	width: 16px; 
+	height: 16px;
+}
+
+.iconInterestsHeadLine {
+	margin-top: 0px;
+}
+
+.profile-sub_navigation {
+	margin-left: 20px;
+}
+
+.search-text-field {
+	width: 190px;
+}
+
+.h3-page-headline {
+	margin-left: 25px;
+	margin-top: 15px;
+}
+
+#experience-date {
+	margin-top: 4px;
+	font-size: 10px; 
+	font-weight: bold; 
+	color: #222;
+}
+
+#experience-description {
+	margin-top: 4px;
+}
+
+.experience_wrapper {
+	width: 550px;
+}
+
+.experience_left {
+	float:left;
+	padding: 10px;
+	width:450px;
+}
+
+.experience_right {
+	float:right;
+	padding: 10px;
+	width: 50px;
+}
+
+.experience_details_wrapper {
+	width: 550px;
+}
+
+.experience_details_left {
+	float:left;
+	padding-left:1px;
+	padding-bottom: 2px;
+	width:450px;
+}
+
+.experience_details_right {
+	float:right;
+	width: 50px;
+	padding-bottom: 3px;
+}
+
+.abc, .row_center {
+	margin:auto;
+	text-align:center;
+}
+
+#skills {
+	min-height: 240px;
 }

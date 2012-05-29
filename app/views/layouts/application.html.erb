@@ -6,19 +6,21 @@
 		    <!-- Stylesheets -->
 		    <%= stylesheet_link_tag "slider" %>
 		    <%= stylesheet_link_tag "index" %>
+			<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/base/jquery-ui.css" type="text/css" media="all" /> 
 		    <!--[if IE]>
 		    <link rel="stylesheet" href="http://www.4thsource.com/en//public/css/ie.css" type="text/css">
 		    <![endif]-->
 
 		    <!-- Scripts -->
-		    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-		    <%= javascript_include_tag "global" %>
 		    <%= javascript_include_tag "prototype" %>
-		    <%= javascript_include_tag "application" %>
-		    <%= javascript_include_tag "controls" %>
-		    <%= javascript_include_tag "dragdrop" %>
-		    <%= javascript_include_tag "rails" %>
-		    <%= javascript_include_tag "effects" %>
+		    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.min.js" type="text/javascript"></script>
+			<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js" type="text/javascript"></script>
+			<%= javascript_include_tag "global" %>
+			<%= javascript_include_tag "application" %>
+			<%= javascript_include_tag "controls" %>
+			<%= javascript_include_tag "dragdrop" %>
+			<%= javascript_include_tag "rails" %>
+			<%= javascript_include_tag "effects" %>
 		  </head>
 		  <body>
 		    <div id="top_bar">

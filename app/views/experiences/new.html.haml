@@ -1,0 +1,103 @@
+<!-- Content -->			
+#content
+  %img(src='http://www.4thsource.com//public/images/subheader_services.jpg' class='subheader' alt='Sub Header')
+  %ul#breadcrumbs
+    %li
+      = link_to 'Home', '#' 
+      = raw '&raquo;'
+    %li
+      = link_to 'Resume', '#'
+      = raw '&raquo;'
+    %li
+      = link_to 'Experience', '#'
+      = raw '&raquo;'
+    %li= raw('<em>new</em>')
+    .clear
+  %h3.page_headline 
+    %i.iconExperienceHeadLine
+    .h3-page-headline
+      Experience
+  .divider-headline
+  %br
+  #flash
+    - flash.each do |key, value|
+      .flash{:class => key}= value
+  %br
+  - form_for(:experience, :html => {:class => "experience"}) do |f|
+    %h4
+      Please enter the following information
+    .divider
+    %br  
+    .field
+      = f.label "Employer"
+      %br
+      = f.text_field :company_name
+    .field
+      = f.label :job_position
+      %br 
+      = f.text_field :job_position 
+    .field
+      = f.label :description
+      %br
+      %br
+      = f.text_area :description
+    .field
+      = f.label :start_date
+      %br 
+      %br
+      = date_select(:experience, :start_date, :start_year => 1950, :discard_day => true, :order => [:month, :year])
+    .field
+      = f.label :end_date
+      %br
+      %br 
+      = date_select(:experience, :end_date, :start_year => 1950, :discard_day => true, :order => [:month, :year])
+    .actions
+      %br
+      = f.submit "Sign in"
+  .clear	
+<!-- Sidebar -->
+#sidebar
+  <!-- Subnav -->
+  %h4#if_sub_nav
+    = link_to 'Profile Information', '#'
+  #if_subnav.divider
+    - if signed_in?
+      #sidebar-profile
+        #sidebar-gravatar
+          =link_to("#") do 
+            =gravatar_for current_user, :size => 40
+        #sidebar-user
+          = current_user.name
+          %br
+          = current_user.microposts.count 
+          microposts
+      %br
+    %br
+    %ul#nav_sub.sub_navigation
+      %li
+        %i.iconContact-info
+        = link_to 'Contact Information', '#', :class => "profile-sub_navigation"
+      %li
+        %i.iconPhoto 
+        =link_to 'Photo', '#', :class => "profile-sub_navigation"
+      %li
+        %i.iconSummary
+        = link_to_resume('Summary', @user.id, :action => 'summary', :class => 'profile-sub_navigation')
+      %li
+        %i.iconExperience
+        = link_to_resume('Experience', @user.id, :action => 'experience', :class => 'profile-sub_navigation')
+      %li
+        %i.iconEducation
+        = link_to 'Education', '#', :class => "profile-sub_navigation"
+      %li
+        %i.iconSkills
+        = link_to 'Skills', '#', :class => "profile-sub_navigation"
+      %li
+        %i.iconMembershipAwards
+        = link_to 'Certifications & Awards', '#', :class => "profile-sub_navigation"
+      %li.last
+        %i.iconInterests
+        = link_to_resume('Idioms', @user.id, :action => 'idioms', :class => 'profile-sub_navigation')
+    %br
+    .clear
+

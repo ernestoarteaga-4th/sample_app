@@ -13,38 +13,82 @@
 #
 
 class User < ActiveRecord::Base
+  has_attached_file :avatar, :styles => { :medium => "300x300#", :thumb => "40x40#" }
+
   self.per_page = 10
 
   attr_accessor   :password
-  attr_accessible :name, :email, :password, :password_confirmation, :change_password_flag
+  attr_accessible :avatar,
+                  :name,
+                  :gender,
+                  :birthday, 
+                  :email, 
+                  :password, 
+                  :password_confirmation, 
+                  :change_password_flag,
+                  :address,
+                  :city,
+                  :zip_code,
+                  :country,
+                  :home_phone,
+                  :cell_phone,
+                  :office_phone
 
-  has_many        :microposts, :dependent => :destroy 
+  has_many        :microposts,         :dependent => :destroy   
+  has_many        :followings,         :foreign_key => "follower_id",
+                                       :dependent => :destroy                            
+  has_many        :reverse_followings, :foreign_key => "followed_id",
+                                       :class_name => "Following",
+                                       :dependent => :destroy
+  has_many        :followers,          :through => :reverse_followings, 
+                                       :source => :follower
+  has_many        :following,          :through => :followings, 
+                                       :source => :followed
+  has_one         :resume,             :dependent => :destroy 
   
-  has_many        :followings, :foreign_key => "follower_id",
-                               :dependent => :destroy
-                               
-  has_many :reverse_followings, :foreign_key => "followed_id",
-                                :class_name => "Following",
-                                :dependent => :destroy
-                                
-  has_many :followers, :through => :reverse_followings, :source => :follower
-  has_many :following, :through => :followings, :source => :followed
+  accepts_nested_attributes_for :resume
   
   acts_as_ferret :fields => ['name', 'email']
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  phone_regex = /\A[0-9]{10}\Z/
 
-  validates :name,     :presence => true,
-                       :length   => { :maximum => 50 }
-  validates :email,    :presence => true,
-                       :format   => { :with => email_regex },
-                       :uniqueness => { :case_sensitive => false }
-  validates :password, :presence => true,
-                       :confirmation => true,
-                       :length => { :within => 6..40 }
+  validates :name,         :presence => true,
+                           :length   => { :maximum => 50 }
+  validates :email,        :presence => true,
+                           :format   => { :with => email_regex },
+                           :uniqueness => { :case_sensitive => false }
+  validates :password,     :presence => true,
+                           :confirmation => true,
+                           :length => { :within => 6..40 }
+  validates :address,      :presence => true
+  validates :city,         :presence => true
+  
+  validates :gender,       :inclusion => { :in => %w(M F),
+                           :message => "is invalid" }
+      
+  validates :zip_code,     :length => { :minimum => 5 },
+                           :numericality => { :only_integer => true }
+  validates :home_phone,   :format => { :with => phone_regex },
+                           :allow_blank => true,
+                           :allow_nil => true
+  validates :cell_phone,   :format => { :with => phone_regex },
+                           :allow_blank => true,
+                           :allow_nil => true
+  validates :office_phone, :format => { :with => phone_regex },
+                           :allow_blank => true,
+                           :allow_nil => true
+
+  validates :avatar,       :attachment_presence => true
 
   before_save :encrypt_password
-
+  
+  def validate
+    if country == '0'
+      errors.add_to_base("Country is invalid")
+    end
+  end
+  
   def feed
     #Micropost.where("user_id = ?", id)
     Micropost.from_users_followed_by(self)

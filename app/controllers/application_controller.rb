@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   
   include SessionsHelper
 
+  helper :date
+
   def paginate(results, per_page)
     if(params[:page].to_i>0)
       current_page = params[:page].to_i

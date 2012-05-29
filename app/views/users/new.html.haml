@@ -7,18 +7,36 @@
       = raw '&raquo;' 
     %li
       = raw '<em>'
-      Sign up
+      Register
       = raw '</em>'
     .clear
   %h3.page_headline
-    Sign up
+    Candidate registration
   .divider
-  = form_for(@user) do |f| 
+  = form_for(@user, :html => { :multipart => true }) do |f| 
     = render 'shared/error_messages', :object => f.object
+    .field
+      = f.label "Image"
+      %br
+      = f.file_field :avatar
     .field
       = f.label :name
       %br
-      = f.text_field :name 
+      = f.text_field :name
+    .field
+      = f.label :gender
+      %br
+      = f.select :gender, gender_list
+    .field
+      = f.label :birthday
+      %br
+      = f.text_field :birthday
+    %br
+    %br
+    %h4
+      Select an ID and password
+    .divider
+    %br 
     .field
       = f.label :email
       %br
@@ -31,6 +49,50 @@
       = f.label :password_confirmation, "Confirmation"
       %br 
       = f.password_field :password_confirmation
+    %br
+    %br
+    %h4
+      General information
+    .divider
+    .field
+      = f.label :address
+      %br
+      = f.text_field :address
+    .field
+      = f.label :city
+      %br
+      = f.text_field :city
+    .field
+      = f.label :zip_code
+      %br
+      = f.text_field :zip_code
+    .field
+      = f.label :country
+      %br
+      = f.select :country, country_list
+    %br
+    %br
+    %h4
+      Contact information
+    .divider
+    %br
+    .field
+      = f.label :home_phone
+      %br
+      = f.text_field :home_phone
+    .field
+      = f.label :cell_phone
+      %br
+      = f.text_field :cell_phone
+    .field
+      = f.label :office_phone
+      %br
+      = f.text_field :office_phone
+    %br
+    %br
+    .divider
+    = recaptcha_tags
+    %br
     .actions
       = f.submit "Sign up" 
   .clear

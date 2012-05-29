@@ -20,19 +20,20 @@
             = render 'shared/micropost_form'
             %br
             #feed
-            #search
-              #search-form
-                - form_tag({ :action => "search" }, :method => "get") do
-                  = raw '<fieldset>'
-                  .form_row
-                    %label{:for => "q"} Search feeds:
-                    = text_field_tag "q", params[:q] 
-                    %input{:type => "submit", :value => "Search"}
-                  = raw '</fieldset>'
-              #search-results
-                #flash
-                  - flash.each do |key, value|
-                    .flash{:class => key}= value
+            - if @page_results.size>0
+              #search
+                #search-form
+                  - form_tag({ :action => "search" }, :method => "get") do
+                    = raw '<fieldset>'
+                    .form_row
+                      %label{:for => "q"} Search feeds:
+                      = text_field_tag "q", params[:q], :class => "search-text-field" 
+                      %input{:type => "submit", :value => "Search"}
+                    = raw '</fieldset>'
+                #search-results
+                  #flash
+                    - flash.each do |key, value|
+                      .flash{:class => key}= value
             #feed
               = render 'shared/feed'
   - else
@@ -53,7 +54,7 @@
       #sidebar-profile
         #sidebar-gravatar
           =link_to("#") do 
-            =gravatar_for current_user, :size => 40
+            = image_tag @user.avatar.url(:thumb)
         #sidebar-user
           = current_user.name
           %br
@@ -62,13 +63,29 @@
       %br
     %br
     %ul#nav_sub.sub_navigation
-      %li= link_to 'Microsoft Solutions', '#'
-      %li= link_to 'Custom Mobile Software & Smartphone Development', '#'
-      %li= link_to 'Application Maintenance Outsourcing', '#'
-      %li= link_to 'Sharepoint, Portals & CMS', '#'
-      %li= link_to 'Custom Application Development', '#'
-      %li= link_to 'Quality Assurance & Testing', '#'
-      %li= link_to 'Strategic Guidance', '#'
-      %li.last= link_to 'Nearshore Staff Augmentation', '#'   
+      %li
+        %i.iconContact-info
+        = link_to 'Contact Information', '#', :class => "profile-sub_navigation"
+      %li
+        %i.iconPhoto 
+        =link_to 'Photo', '#', :class => "profile-sub_navigation"
+      %li
+        %i.iconSummary
+        = link_to_resume('Summary', @user.id, :action => 'summary', :class => 'profile-sub_navigation')
+      %li
+        %i.iconExperience
+        = link_to_resume('Experience', @user.id, :action => 'experience', :class => 'profile-sub_navigation')
+      %li
+        %i.iconEducation
+        = link_to 'Education', '#', :class => "profile-sub_navigation"
+      %li
+        %i.iconSkills
+        = link_to 'Skills', skills_path, :class => "profile-sub_navigation"
+      %li
+        %i.iconMembershipAwards
+        = link_to 'Certifications & Awards', '#', :class => "profile-sub_navigation"
+      %li.last
+        %i.iconInterests
+        = link_to_resume('Idioms', @user.id, :action => 'idioms', :class => 'profile-sub_navigation')
     %br
     .clear

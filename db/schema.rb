@@ -11,7 +11,33 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120515002446) do
+ActiveRecord::Schema.define(:version => 20120529030750) do
+
+  create_table "experience_details", :force => true do |t|
+    t.integer  "experience_id"
+    t.string   "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "experiences", :force => true do |t|
+    t.integer  "resume_id"
+    t.string   "company_name"
+    t.string   "job_position"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "experienceskills", :force => true do |t|
+    t.integer  "experience_id"
+    t.string   "name"
+    t.string   "version"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "followings", :force => true do |t|
     t.integer  "follower_id"
@@ -23,6 +49,14 @@ ActiveRecord::Schema.define(:version => 20120515002446) do
   add_index "followings", ["followed_id"], :name => "index_followings_on_followed_id"
   add_index "followings", ["follower_id"], :name => "index_followings_on_follower_id"
 
+  create_table "idioms", :force => true do |t|
+    t.string   "name"
+    t.string   "level"
+    t.integer  "resume_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "microposts", :force => true do |t|
     t.string   "content"
     t.integer  "user_id"
@@ -31,6 +65,27 @@ ActiveRecord::Schema.define(:version => 20120515002446) do
   end
 
   add_index "microposts", ["user_id"], :name => "index_microposts_on_user_id"
+
+  create_table "resumes", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "summary"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "skills", :force => true do |t|
+    t.string   "name"
+    t.string   "version"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tools", :force => true do |t|
+    t.integer  "skill_id"
+    t.integer  "experience_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "name"
@@ -41,6 +96,19 @@ ActiveRecord::Schema.define(:version => 20120515002446) do
     t.string   "salt"
     t.boolean  "admin",                :default => false
     t.string   "change_password_flag"
+    t.string   "gender"
+    t.date     "birthday"
+    t.string   "address"
+    t.string   "city"
+    t.integer  "zip_code"
+    t.string   "country"
+    t.integer  "home_phone"
+    t.integer  "office_phone"
+    t.integer  "cell_phone"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

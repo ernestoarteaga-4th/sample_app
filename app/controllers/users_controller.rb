@@ -52,12 +52,15 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     @error = @user.errors
-    if @user.save
+    if @user.save && verify_recaptcha()
       sign_in @user
       UserMailer.welcome_email(@user).deliver
       flash[:success] = "Welcome to the Sample App!"
       redirect_to @user
     else
+      if verify_recaptcha() == false
+        @user.errors[:recaptcha] = "is invalid"
+      end
       @title = "Sign up"
       render :new
     end
