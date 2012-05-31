@@ -1,5 +1,10 @@
 class ResumeController < ApplicationController
 
+  def index
+    @user = User.find(params[:id])
+    @experience_items = @user.resume.experiences
+  end
+  
   def summary
     if request.post?
       @user = User.find(params[:id])

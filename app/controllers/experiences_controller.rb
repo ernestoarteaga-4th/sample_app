@@ -1,5 +1,7 @@
 class ExperiencesController < ApplicationController
-
+  before_filter :authenticate
+  before_filter :correct_user
+  
   def show
   end
   
@@ -21,6 +23,7 @@ class ExperiencesController < ApplicationController
   end
   
   def new
+    @user = current_user
     if request.post?
       @user = User.find(params[:id])
       if @user.resume.nil?
@@ -42,5 +45,11 @@ class ExperiencesController < ApplicationController
     Experience.find(params[:id]).destroy
     redirect_to request.referer
   end
+  
+  private 
+    def correct_user
+      @user = User.find(params[:id])
+      redirect_to(root_path) unless current_user?(@user)
+    end
   
 end

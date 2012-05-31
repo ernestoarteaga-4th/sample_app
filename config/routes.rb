@@ -6,7 +6,7 @@ SampleApp::Application.routes.draw do
 
   resources :users do
     member do
-      get :following, :followers, :change, :resume
+      get :following, :followers, :change
       post :change
     end
     collection do
@@ -36,6 +36,7 @@ SampleApp::Application.routes.draw do
   match '/help',    :to => 'pages#help'
   match '/home',    :to => 'pages#home'
   
+  match "/users/:id/resume" => 'resume#index'
   match "/users/:id/resume/summary" => 'resume#summary'
   match "/users/:id/resume/experience" => 'resume#experience'
   match "/users/:id/resume/experience/new" => 'experiences#new'
