@@ -2,7 +2,9 @@ class ResumeController < ApplicationController
 
   def index
     @user = User.find(params[:id])
-    @experience_items = @user.resume.experiences
+    if @user.resume.nil?
+      @user.build_resume.save
+    end
   end
   
   def summary
@@ -33,5 +35,17 @@ class ResumeController < ApplicationController
     end
     @experience_items = @user.resume.experiences
   end
-
+   
+  def photo
+    @user = User.find(params[:id])
+    @error = @user.errors
+    
+    if request.post?
+      if @user.update_attributes(params[:user])
+        flash[:success] = "Photo updated."
+      else
+        flash[:notice] = "An error occurred while the system save the photo. Please try again."
+      end
+    end
+  end
 end

@@ -13,99 +13,91 @@
       Resume
   .divider-headline
   %br
-  #flash
-    - flash.each do |key, value|
-      .flash{:class => key}= value
+  .photo_wrapper
+    .photo_left
+      = image_tag @user.avatar.url(:thumb)
+    .photo_right
+      %h4
+        = @user.name
+        = @user.last_name
+      = @user.email
   %br
   %br
   %br
-  - if @experience_items.count > 0
-    #list
-      - @experience_items.each do |experience|
+  %br
+  .experience_wrapper
+    %br
+    %br
+    %br
+    .experience_left
+      - if @user.resume.summary.nil?
+        %h4 Please write a summary in your resume.
+        .divider
         %br
-        #row
-          .experience_wrapper
-            .experience_left
-              %h6
-                = experience.company_name
-              %h6
-                = experience.job_position
-              #experience-date
-                = Date::MONTHNAMES[experience.start_date.month]
-                = experience.start_date.year
-                = raw(' - ')
-                = Date::MONTHNAMES[experience.end_date.month]
-                = experience.end_date.year
-                %br
+        %br
+      - else
+        %h4
+          Summary
+        .divider-headline
+        = @user.resume.summary
+        %br
+        %br
+        - if @user.resume.experiences.count > 0
+          %br
+          %br
+          #list
+            - @user.resume.experiences.each do |experience|
               %br
-              #experience-description
-                = experience.description
-              %br
-              %ul
-                - experience.experience_details.each do |detail|
-                  %li 
-                    = detail.content
-              %br
-              %br
-              %h6
-                Tools used
-              %ul
-                - experience.skills.each do |skill|
-                  %li
-                    = skill.name
-                    = skill.version
-              %br
-              %br
-              .divider
-            .experience_right
+              #row
+                .experience_wrapper
+                  .experience_left
+                    %h6
+                      = experience.company_name
+                    %h6
+                      = experience.job_position
+                    #experience-date
+                      = Date::MONTHNAMES[experience.start_date.month]
+                      = experience.start_date.year
+                      = raw(' - ')
+                      = Date::MONTHNAMES[experience.end_date.month]
+                      = experience.end_date.year
+                      %br
+                    %br
+                    #experience-description
+                      = experience.description
+                    %br
+                    %ul
+                      - experience.experience_details.each do |detail|
+                        %li 
+                          = detail.content
+                    %br
+                    %br
+                    %h6
+                      Tools used
+                    %ul
+                      - experience.skills.each do |skill|
+                        %li
+                          = skill.name
+                          = skill.version
+                    %br
+                    %br
+                    .divider
+                  .experience_right
 
-  - else
-    %h4 Please create at least one labor experience.
-    .divider
-  %br
+        - else
+          %br
+          %br
+          %h4 Please create at least one labor experience.
+          .divider
+        %br
+        %br
+        - if @user.resume.idioms.count > 0
+
+        - else
+          %br
+          %h4 Please create at least one language in your resume.
+          .divider 
+        %br
   .clear	
 <!-- Sidebar -->
-#sidebar
-  <!-- Subnav -->
-  %h4#if_sub_nav
-    = link_to 'Profile Information', '#'
-  #if_subnav.divider
-    - if signed_in?
-      #sidebar-profile
-        #sidebar-gravatar
-          =link_to("#") do 
-            =gravatar_for current_user, :size => 40
-        #sidebar-user
-          = current_user.name
-          %br
-          = current_user.microposts.count 
-          microposts
-      %br
-    %br
-    %ul#nav_sub.sub_navigation
-      %li
-        %i.iconContact-info
-        = link_to 'Contact Information', '#', :class => "profile-sub_navigation"
-      %li
-        %i.iconPhoto 
-        =link_to 'Photo', '#', :class => "profile-sub_navigation"
-      %li
-        %i.iconSummary
-        = link_to_resume('Summary', @user.id, :action => 'summary', :class => 'profile-sub_navigation')
-      %li
-        %i.iconExperience
-        = link_to_resume('Experience', @user.id, :action => 'experience', :class => 'profile-sub_navigation')
-      %li
-        %i.iconEducation
-        = link_to 'Education', '#', :class => "profile-sub_navigation"
-      %li
-        %i.iconSkills
-        = link_to 'Skills', skills_path, :class => "profile-sub_navigation"
-      %li
-        %i.iconMembershipAwards
-        = link_to 'Certifications & Awards', '#', :class => "profile-sub_navigation"
-      %li.last
-        %i.iconInterests
-        = link_to_resume('Idioms', @user.id, :action => 'idioms', :class => 'profile-sub_navigation')
-    %br
-    .clear
+= render 'shared/sidebar_signed'

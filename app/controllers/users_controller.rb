@@ -56,7 +56,7 @@ class UsersController < ApplicationController
       sign_in @user
       UserMailer.welcome_email(@user).deliver
       flash[:success] = "Welcome to the Sample App!"
-      redirect_to @user
+      redirect_to root_path
     else
       if verify_recaptcha() == false
         @user.errors[:recaptcha] = "is invalid"
@@ -71,7 +71,7 @@ class UsersController < ApplicationController
     @error = @user.errors
     if @user.update_attributes(params[:user])
       flash[:success] = "Profile updated."
-      redirect_to @user
+      redirect_to root_path
     else
       @title = "Edit user"
       render :edit

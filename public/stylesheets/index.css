@@ -784,12 +784,22 @@ table.microposts tr td.micropost-delete {
 	margin-top: 7px;
 }
 
-.iconContact-info, .iconCoinsHeadLine, .iconPhoto, .iconSummary, .iconExperience, .iconExperienceHeadLine, .iconEducation, .iconSkills, .iconSkillsHeadLine, .iconMembershipAwards, .iconInterests, .iconInterestsHeadLine {
+.iconContact-info, .iconContact-infoHeadLine, .iconCoinsHeadLine, .iconResume, .iconResumeHeadLine, .iconPhoto, .iconPhotoHeadLine, .iconSummary, .iconExperience, .iconExperienceHeadLine, .iconEducation, .iconSkills, .iconSkillsHeadLine, .iconMembershipAwards, .iconInterests, .iconInterestsHeadLine {
 	background: url(/images/probook_icons_img.axd);
 	background-repeat: no-repeat;
 	display: inline-block;
 	position: absolute;
 	margin-top: 8px;
+}
+
+.iconResume {
+	background-position: 0px -19px;
+	width: 16px; 
+	height: 14px;
+}
+
+.iconResumeHeadLine {
+	margin-top: 0px;
 }
 
 .iconCoinsHeadLine {
@@ -802,16 +812,24 @@ table.microposts tr td.micropost-delete {
 	margin-top: 0px;
 }
 
-.iconContact-info {
+.iconContact-infoHeadLine {
+	margin-top: 0px;
+}
+
+.iconContact-info, .iconContact-infoHeadLine {
 	background-position: -118px -19px;
 	width: 16px;
 	height: 13px;
 }
 
-.iconPhoto {
+.iconPhoto, .iconPhotoHeadLine {
 	background-position: -325px -19px;
 	width: 14px; 
 	height: 16px; 
+}
+
+.iconPhotoHeadLine {
+	margin-top: 0px;
 }
 
 .iconSummaryHeadLine {
@@ -930,4 +948,21 @@ table.microposts tr td.micropost-delete {
 
 #skills {
 	min-height: 240px;
+}
+
+.photo_wrapper {
+	width: 550px;
+}
+
+.photo_left {
+	float:left;
+	padding-left:5px;
+	padding-bottom: 2px;
+	width:70px;
+}
+
+.photo_right {
+	float:right;
+	width: 470px;
+	padding-bottom: 3px;
 }

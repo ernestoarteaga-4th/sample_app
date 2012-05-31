@@ -74,47 +74,4 @@
           %br
   .clear	
 <!-- Sidebar -->
-#sidebar
-  <!-- Subnav -->
-  %h4#if_sub_nav
-    = link_to 'Profile Information', '#'
-  #if_subnav.divider
-    - if signed_in?
-      #sidebar-profile
-        #sidebar-gravatar
-          =link_to("#") do 
-            =gravatar_for current_user, :size => 40
-        #sidebar-user
-          = current_user.name
-          %br
-          = current_user.microposts.count 
-          microposts
-      %br
-    %br
-    %ul#nav_sub.sub_navigation
-      %li
-        %i.iconContact-info
-        = link_to 'Contact Information', '#', :class => "profile-sub_navigation"
-      %li
-        %i.iconPhoto 
-        =link_to 'Photo', '#', :class => "profile-sub_navigation"
-      %li
-        %i.iconSummary
-        = link_to_resume('Summary', @user.id, :action => 'summary', :class => 'profile-sub_navigation')
-      %li
-        %i.iconExperience
-        = link_to_resume('Experience', @user.id, :action => 'experience', :class => 'profile-sub_navigation')
-      %li
-        %i.iconEducation
-        = link_to 'Education', '#', :class => "profile-sub_navigation"
-      %li
-        %i.iconSkills
-        = link_to 'Skills', '#', :class => "profile-sub_navigation"
-      %li
-        %i.iconMembershipAwards
-        = link_to 'Certifications & Awards', '#', :class => "profile-sub_navigation"
-      %li.last
-        %i.iconInterests
-        = link_to 'Idioms', '#', :class => "profile-sub_navigation"
-    %br
-    .clear
+= render 'shared/sidebar_signed'

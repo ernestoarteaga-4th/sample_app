@@ -10,6 +10,7 @@
             = image_tag @user.avatar.url(:thumb)
         #sidebar-user
           = current_user.name
+          = current_user.last_name
           %br
           = current_user.microposts.count 
           microposts
@@ -18,10 +19,13 @@
     %ul#nav_sub.sub_navigation
       %li
         %i.iconContact-info
-        = link_to 'Contact Information', '#', :class => "profile-sub_navigation"
+        = link_to 'Contact Information', edit_user_path(current_user), :class => "profile-sub_navigation"
       %li
         %i.iconPhoto 
-        =link_to 'Photo', '#', :class => "profile-sub_navigation"
+        = link_to_resume('Photo', @user.id, :action => 'photo', :class => 'profile-sub_navigation')
+      %li
+        %i.iconResume
+        = link_to_resume('Resume', @user.id, :action => 'resume', :class => 'profile-sub_navigation')
       %li
         %i.iconSummary
         = link_to_resume('Summary', @user.id, :action => 'summary', :class => 'profile-sub_navigation')

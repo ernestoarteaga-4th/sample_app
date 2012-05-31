@@ -34,6 +34,8 @@ module ApplicationHelper
                 "/users/#{userId}/resume/idioms"
               when 'resume'
                 "/users/#{userId}/resume"
+              when 'photo'
+                "/users/#{userId}/resume/photo"
             end
       link_to( name, url, options, html_options )
   end

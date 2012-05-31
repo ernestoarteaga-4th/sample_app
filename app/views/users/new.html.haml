@@ -24,13 +24,21 @@
       %br
       = f.text_field :name
     .field
+      = f.label :last_name
+      %br
+      = f.text_field :last_name
+    .field
+      = f.label :second_last_name
+      %br
+      = f.text_field :second_last_name
+    .field
       = f.label :gender
       %br
       = f.select :gender, gender_list
     .field
       = f.label :birthday
       %br
-      = f.text_field :birthday
+      = date_select(:user, :birthday, :start_year => 1950, :order => [:month, :day, :year])
     %br
     %br
     %h4

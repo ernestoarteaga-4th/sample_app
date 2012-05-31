@@ -3,21 +3,21 @@
   %img(src="http://www.4thsource.com//public/images/subheader_services.jpg" alt="Sub Header" class="subheader")
   %ul#breadcrumbs
     %li
-      = link_to 'Home', '#' 
+      = link_to 'Home', '/' 
       = raw '&raquo;'
     %li
-      = link_to @user.id, user_path 
+      = link_to_resume('My Profile', @user.id, :action => 'resume')
       = raw '&raquo;'
     %li
       = raw '<em>'
       Edit
       = raw '</em>'
     .clear
-  %h3.page_headline
-    Edit User
-  .divider
-  = gravatar_for @user
-  = link_to 'change', 'http://gravatar.com/emails'
+  %h3.page_headline 
+    %i.iconContact-infoHeadLine
+    .h3-page-headline
+      Contact Information
+  .divider-headline
   %br
   - form_for(@user) do |f|
     = render 'shared/error_messages', :object => f.object
@@ -26,29 +26,69 @@
       %br
       = f.text_field :name
     .field
+      = f.label :last_name
+      %br
+      = f.text_field :last_name
+    .field
+      = f.label :second_last_name
+      %br
+      = f.text_field :second_last_name
+    .field
+      = f.label :gender
+      %br
+      = f.select :gender, gender_list
+    .field
+      = f.label :birthday
+      %br
+      = date_select(:user, :birthday, :start_year => 1950, :order => [:month, :day, :year])
+    %br
+    .divider
+    .field
       = f.label :email
       %br
       = f.text_field :email
     .field
       = f.label :password
       %br
-      = f.password_field :password 
+      = f.password_field :password
     .field
-      = f.label :password_confirmation, "Confirmation"
-      %br 
+      = f.label :password_confirmation
+      %br
       = f.password_field :password_confirmation
+    %br
+    .divider
+    .field
+      = f.label :address
+      %br
+      = f.text_field :address
+    .field
+      = f.label :city
+      %br
+      = f.text_field :city
+    .field
+      = f.label :zip_code
+      %br
+      = f.text_field :zip_code
+    .field
+      = f.label :country
+      %br
+      = f.select :country, country_list
+    %br
+    .divider
+    .field
+      = f.label :home_phone
+      %br
+      = f.text_field :home_phone
+    .field
+      = f.label :cell_phone
+      %br
+      = f.text_field :cell_phone
+    .field
+      = f.label :office_phone
+      %br
+      = f.text_field :office_phone
     .actions
       %br
       = f.submit "Update" 
 <!-- Sidebar -->
-#sidebar
-  <!-- Subnav -->
-  %h4#if_sub_nav
-    = link_to 'About', '#'
-  #if_subnav.divider
-  %ul#nav_sub.sub_navigation
-    %li= link_to 'Corporate Overview, '#'
-    %li= link_to 'Clients', '#'
-    %li.last= link_to 'Executive Leadership', '#'
-  %img(src="http://www.4thsource.com//public/images/sidebar_about.jpg" alt="about" class="sidebar_img")
-  .clear
+= render 'shared/sidebar_signed'

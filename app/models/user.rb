@@ -13,13 +13,13 @@
 #
 
 class User < ActiveRecord::Base
-  has_attached_file :avatar, :styles => { :medium => "300x300#", :thumb => "40x40#" }
-
   self.per_page = 10
 
   attr_accessor   :password
   attr_accessible :avatar,
                   :name,
+                  :last_name,
+                  :second_last_name,
                   :gender,
                   :birthday, 
                   :email, 
@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
                   :home_phone,
                   :cell_phone,
                   :office_phone
-
+               
   has_many        :microposts,         :dependent => :destroy   
   has_many        :followings,         :foreign_key => "follower_id",
                                        :dependent => :destroy                            
@@ -46,6 +46,9 @@ class User < ActiveRecord::Base
                                        :source => :followed
   has_one         :resume,             :dependent => :destroy 
   
+  has_attached_file :avatar, :styles => { :medium => "300x300#", :thumb => "40x40#" },
+                             :default_url => "/images/4thsource_avatar.jpg"
+  
   accepts_nested_attributes_for :resume
   
   acts_as_ferret :fields => ['name', 'email']
@@ -53,33 +56,33 @@ class User < ActiveRecord::Base
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   phone_regex = /\A[0-9]{10}\Z/
 
-  validates :name,         :presence => true,
-                           :length   => { :maximum => 50 }
-  validates :email,        :presence => true,
-                           :format   => { :with => email_regex },
-                           :uniqueness => { :case_sensitive => false }
-  validates :password,     :presence => true,
-                           :confirmation => true,
-                           :length => { :within => 6..40 }
-  validates :address,      :presence => true
-  validates :city,         :presence => true
+  validates :name,            :presence => true,
+                              :length   => { :maximum => 50 }
+  validates :last_name,       :presence => true,
+                              :length   => { :maximum => 50 }
+  validates :second_last_name,:presence => true,
+                              :length   => { :maximum => 50 }
+  validates :email,           :presence => true,
+                              :format   => { :with => email_regex },
+                              :uniqueness => { :case_sensitive => false }
+  validates :password,        :confirmation => true
+  validates :address,         :presence => true
+  validates :city,            :presence => true
   
-  validates :gender,       :inclusion => { :in => %w(M F),
-                           :message => "is invalid" }
+  validates :gender,          :inclusion => { :in => %w(M F),
+                              :message => "is invalid" }
       
-  validates :zip_code,     :length => { :minimum => 5 },
-                           :numericality => { :only_integer => true }
-  validates :home_phone,   :format => { :with => phone_regex },
-                           :allow_blank => true,
-                           :allow_nil => true
-  validates :cell_phone,   :format => { :with => phone_regex },
-                           :allow_blank => true,
-                           :allow_nil => true
-  validates :office_phone, :format => { :with => phone_regex },
-                           :allow_blank => true,
-                           :allow_nil => true
-
-  validates :avatar,       :attachment_presence => true
+  validates :zip_code,        :length => { :minimum => 5 },
+                              :numericality => { :only_integer => true }
+  validates :home_phone,      :format => { :with => phone_regex },
+                              :allow_blank => true,
+                              :allow_nil => true
+  validates :cell_phone,      :format => { :with => phone_regex },
+                              :allow_blank => true,
+                              :allow_nil => true
+  validates :office_phone,    :format => { :with => phone_regex },
+                              :allow_blank => true,
+                              :allow_nil => true
 
   before_save :encrypt_password
   
@@ -125,7 +128,7 @@ class User < ActiveRecord::Base
   private
     def encrypt_password
       self.salt = make_salt if new_record?
-      if password != change_password_flag 
+      if password != change_password_flag && password!=""
         self.encrypted_password = encrypt(password)
       end
     end
