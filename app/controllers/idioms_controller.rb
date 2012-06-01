@@ -5,10 +5,9 @@ class IdiomsController < ApplicationController
     @error = @user.errors
     
     if @user.resume.nil?
-      @resume = @user.build_resume.save
-    else
-      @total_idioms = @user.resume.idioms
+      @user.build_resume.save
     end
+    @total_idioms = @user.resume.idioms
   end
   
   def new
