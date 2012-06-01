@@ -47,7 +47,9 @@ SampleApp::Application.routes.draw do
   match "/users/:id/resume/idioms" => 'idioms#index'
   match "/idioms/new" => 'idioms#new'
   match "/idioms/destroy" => 'idioms#destroy'
-  
+  match "/resume_details/:id/destroy" => 'resume_details#destroy'
+  match "/users/:id/resume/education" => 'resume#education'
+  match "/education/destroy" => 'educations#destroy'
   match "/experience_details/:id/destroy" => 'experience_details#destroy'
   
   match '/skills', :to => 'skills#index'

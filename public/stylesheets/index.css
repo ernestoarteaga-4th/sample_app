@@ -784,7 +784,7 @@ table.microposts tr td.micropost-delete {
 	margin-top: 7px;
 }
 
-.iconContact-info, .iconContact-infoHeadLine, .iconCoinsHeadLine, .iconResume, .iconResumeHeadLine, .iconPhoto, .iconPhotoHeadLine, .iconSummary, .iconExperience, .iconExperienceHeadLine, .iconEducation, .iconSkills, .iconSkillsHeadLine, .iconMembershipAwards, .iconInterests, .iconInterestsHeadLine {
+.iconSummaryHeadLine, .iconSummary, .iconContact-info, .iconContact-infoHeadLine, .iconCoinsHeadLine, .iconResume, .iconResumeHeadLine, .iconPhoto, .iconPhotoHeadLine, .iconSummary, .iconExperience, .iconExperienceHeadLine, .iconEducation, .iconEducationHeadLine, .iconSkills, .iconSkillsHeadLine, .iconMembershipAwards, .iconInterests, .iconInterestsHeadLine {
 	background: url(/images/probook_icons_img.axd);
 	background-repeat: no-repeat;
 	display: inline-block;
@@ -792,7 +792,7 @@ table.microposts tr td.micropost-delete {
 	margin-top: 8px;
 }
 
-.iconResume {
+.iconResume, .iconResumeHeadLine {
 	background-position: 0px -19px;
 	width: 16px; 
 	height: 14px;
@@ -836,7 +836,7 @@ table.microposts tr td.micropost-delete {
 	margin-top: 0px;
 }
 
-.iconSummary, iconSummaryHeadLine {
+.iconSummary, .iconSummaryHeadLine {
 	background-position: -134px -19px;
 	width: 14px; 
 	height: 16px;
@@ -852,10 +852,14 @@ table.microposts tr td.micropost-delete {
 	height: 16px;
 }
 
-.iconEducation {
+.iconEducation, .iconEducationHeadLine {
 	background-position: -16px -19px;
 	width: 16px; 
 	height: 14px;
+}
+
+.iconEducationHeadLine {
+	margin-top: 0px;
 }
 
 .iconSkills, .iconSkillsHeadLine {

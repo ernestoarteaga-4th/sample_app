@@ -34,13 +34,10 @@
         = link_to_resume('Experience', @user.id, :action => 'experience', :class => 'profile-sub_navigation')
       %li
         %i.iconEducation
-        = link_to 'Education', '#', :class => "profile-sub_navigation"
+        = link_to_resume('Education', @user.id, :action => 'education', :class => 'profile-sub_navigation')
       %li
         %i.iconSkills
         = link_to 'Skills', skills_path, :class => "profile-sub_navigation"
-      %li
-        %i.iconMembershipAwards
-        = link_to 'Certifications & Awards', '#', :class => "profile-sub_navigation"
       %li.last
         %i.iconInterests
         = link_to_resume('Idioms', @user.id, :action => 'idioms', :class => 'profile-sub_navigation')

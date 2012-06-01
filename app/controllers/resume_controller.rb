@@ -10,16 +10,13 @@ class ResumeController < ApplicationController
   def summary
     if request.post?
       @user = User.find(params[:id])
-      @user.resume.summary = params[:user][:resume][:summary]
-      if @user.resume.save
+      if @user.resume.resume_details.new(params[:resume_details]).save
         flash.now[:success] = "Summary was saved successfully."
       else
-        flash.now[:notice] = "An error occurred while the system save the summary."
+        flash.now[:notice] = "An error occurred while the system save the summary. Please try again."
       end
     else
       @user = User.find(params[:id])
-      @error = @user.errors
-      
       if @user.resume.nil?
         @resume = @user.build_resume
         @resume.save
@@ -46,6 +43,22 @@ class ResumeController < ApplicationController
       else
         flash[:notice] = "An error occurred while the system save the photo. Please try again."
       end
+    end
+  end
+  
+  def education
+    if request.post?
+      @user = User.find(params[:id])
+      @total_educations = @user.resume.educations
+      @education =  @user.resume.educations.new(params[:education])
+      @error = @education.errors
+      if @education.save
+        flash[:success] = "Education was saved successfully."      
+      end
+    else
+      @user = User.find(params[:id])
+      @error = @user.errors
+      @total_educations = @user.resume.educations
     end
   end
 end

@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120531164217) do
+ActiveRecord::Schema.define(:version => 20120601194407) do
+
+  create_table "educations", :force => true do |t|
+    t.integer  "resume_id"
+    t.string   "name"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.string   "degree_level"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "experience_details", :force => true do |t|
     t.integer  "experience_id"
@@ -66,9 +76,22 @@ ActiveRecord::Schema.define(:version => 20120531164217) do
 
   add_index "microposts", ["user_id"], :name => "index_microposts_on_user_id"
 
+  create_table "resume_details", :force => true do |t|
+    t.string   "summary"
+    t.integer  "resume_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resume_summaries", :force => true do |t|
+    t.integer  "resume_id"
+    t.string   "summary"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "resumes", :force => true do |t|
     t.integer  "user_id"
-    t.string   "summary"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

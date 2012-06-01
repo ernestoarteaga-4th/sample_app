@@ -3,13 +3,13 @@
   %img(src='http://www.4thsource.com//public/images/subheader_services.jpg' class='subheader' alt='Sub Header')
   %ul#breadcrumbs
     %li
-      = link_to 'Home', '#' 
+      = link_to 'Home', root_path 
       = raw '&raquo;'
     %li
-      = link_to 'Resume', '#'
+      = link_to_resume("Resume", @user.id, :action => "resume")
       = raw '&raquo;'
     %li
-      = link_to 'Experience', '#'
+      = link_to_resume("Experience", @user.id, :action => "experience")
       = raw '&raquo;'
     %li
       = link_to 'Skills', '#'

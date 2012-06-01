@@ -3,12 +3,9 @@
   %img(src="http://www.4thsource.com//public/images/subheader_services.jpg" alt="Sub Header" class="subheader")
   %ul#breadcrumbs
     %li
-      = link_to 'Home', 'http://www.4thsource.com/en/index.php' 
+      = link_to 'Home', root_path
       = raw '&raquo;'
-    %li
-      = raw '<em>'
-      = link_to "Users", users_path
-      = raw '</em>'
+    %li= raw('<em>Candidates</em>')
     .clear
   %h3.page_headline
     All users

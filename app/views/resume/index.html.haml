@@ -3,12 +3,12 @@
   %img(src='http://www.4thsource.com//public/images/subheader_services.jpg' class='subheader' alt='Sub Header')
   %ul#breadcrumbs
     %li
-      = link_to 'Home', '#' 
+      = link_to 'Home', root_path 
       = raw '&raquo;'
     %li= raw('<em>Resume</em>')
     .clear
   %h3.page_headline 
-    %i.iconExperienceHeadLine
+    %i.iconResumeHeadLine
     .h3-page-headline
       Resume
   .divider-headline
@@ -30,74 +30,100 @@
     %br
     %br
     .experience_left
-      - if @user.resume.summary.nil?
+      - if @user.resume.resume_details.empty?
         %h4 Please write a summary in your resume.
         .divider
         %br
         %br
       - else
         %h4
-          Summary
+          Professional Summary
         .divider-headline
-        = @user.resume.summary
-        %br
-        %br
-        - if @user.resume.experiences.count > 0
-          %br
-          %br
-          #list
-            - @user.resume.experiences.each do |experience|
-              %br
-              #row
-                .experience_wrapper
-                  .experience_left
-                    %h6
-                      = experience.company_name
-                    %h6
-                      = experience.job_position
-                    #experience-date
-                      = Date::MONTHNAMES[experience.start_date.month]
-                      = experience.start_date.year
-                      = raw(' - ')
-                      = Date::MONTHNAMES[experience.end_date.month]
-                      = experience.end_date.year
-                      %br
+        %ul
+          - @user.resume.resume_details.each do |summary|
+            %li= summary.summary
+      %br
+      - if @user.resume.educations.empty?
+        %h4 Please specify at least one education in your resume.
+        .divider
+      - else
+        %h4
+          Education
+        .divider-headline
+        %ul
+          - @user.resume.educations.each do |education|
+            %li
+              %h6
+                = education.name
+              #experience-date
+                = Date::MONTHNAMES[education.start_date.month]
+                = education.start_date.year
+                = raw ' - '
+                = Date::MONTHNAMES[education.end_date.month]
+                = education.end_date.year
+              #experience-description
+                = education.degree_level
+            %br
+      - if @user.resume.experiences.count > 0
+        #list
+          - @user.resume.experiences.each do |experience|
+            %br
+            #row
+              .experience_wrapper
+                .experience_left
+                  %h6
+                    = experience.company_name
+                  %h6
+                    = experience.job_position
+                  #experience-date
+                    = Date::MONTHNAMES[experience.start_date.month]
+                    = experience.start_date.year
+                    = raw(' - ')
+                    = Date::MONTHNAMES[experience.end_date.month]
+                    = experience.end_date.year
                     %br
-                    #experience-description
-                      = experience.description
-                    %br
-                    %ul
-                      - experience.experience_details.each do |detail|
-                        %li 
-                          = detail.content
-                    %br
-                    %br
-                    %h6
-                      Tools used
-                    %ul
-                      - experience.skills.each do |skill|
-                        %li
-                          = skill.name
-                          = skill.version
-                    %br
-                    %br
-                    .divider
-                  .experience_right
+                  %br
+                  #experience-description
+                    = experience.description
+                  %br
+                  %ul
+                    - experience.experience_details.each do |detail|
+                      %li 
+                        = detail.content
+                  %br
+                  %h6
+                    Tools used
+                  %ul
+                    - experience.skills.each do |skill|
+                      %li
+                        = skill.name
+                        = skill.version
+                .experience_right
 
-        - else
-          %br
-          %br
-          %h4 Please create at least one labor experience.
-          .divider
+      - else
         %br
         %br
-        - if @user.resume.idioms.count > 0
-
-        - else
-          %br
-          %h4 Please create at least one language in your resume.
-          .divider 
+        %h4 Please create at least one labor experience.
+        .divider
+      %br
+      %br
+      - if @user.resume.idioms.count > 0
+        %h4
+          List of languages
+        .divider-headline
+        %ul
+          - @user.resume.idioms.each do |idiom|
+            %li
+              = idiom.name
+              = raw ' - '
+              = idiom.level
         %br
+        %br
+      - else
+        %br
+        %h4 Please create at least one language in your resume.
+        .divider 
+      %br
   .clear	
 <!-- Sidebar -->
 = render 'shared/sidebar_signed'

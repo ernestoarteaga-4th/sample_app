@@ -36,8 +36,24 @@ module ApplicationHelper
                 "/users/#{userId}/resume"
               when 'photo'
                 "/users/#{userId}/resume/photo"
+              when 'education'
+                "/users/#{userId}/resume/education"
             end
       link_to( name, url, options, html_options )
+  end
+  
+  def degree_level_list
+    [
+      ['- Select one -', ''],
+      ['Associate Degree', 'Associate Degree'],
+      ["Bachelor's Degree","Bachelor's Degree"],
+      ['Certification','Certification'],
+      ['Doctorate','Doctorate'],
+      ["Master's Degree","Master's Degree"],
+      ['Coursework Completed','Coursework Completed'],
+      ['Vocational','Vocational'],
+      ['Vocacional Degree','Vocacional Degree']
+    ]
   end
   
   def idiom_level_list
