@@ -7,7 +7,7 @@
       #sidebar-profile
         #sidebar-gravatar
           =link_to("#") do 
-            = image_tag @user.avatar.url(:thumb)
+            = image_tag current_user.avatar.url(:thumb)
         #sidebar-user
           = current_user.name
           = current_user.last_name
@@ -22,24 +22,24 @@
         = link_to 'Contact Information', edit_user_path(current_user), :class => "profile-sub_navigation"
       %li
         %i.iconPhoto 
-        = link_to_resume('Photo', @user.id, :action => 'photo', :class => 'profile-sub_navigation')
+        = link_to_resume('Photo', current_user.id, :action => 'photo', :class => 'profile-sub_navigation')
       %li
         %i.iconResume
-        = link_to_resume('Resume', @user.id, :action => 'resume', :class => 'profile-sub_navigation')
+        = link_to_resume('Resume', current_user.id, :action => 'resume', :class => 'profile-sub_navigation')
       %li
         %i.iconSummary
-        = link_to_resume('Summary', @user.id, :action => 'summary', :class => 'profile-sub_navigation')
+        = link_to_resume('Summary', current_user.id, :action => 'summary', :class => 'profile-sub_navigation')
       %li
         %i.iconExperience
-        = link_to_resume('Experience', @user.id, :action => 'experience', :class => 'profile-sub_navigation')
+        = link_to_resume('Experience', current_user.id, :action => 'experience', :class => 'profile-sub_navigation')
       %li
         %i.iconEducation
-        = link_to_resume('Education', @user.id, :action => 'education', :class => 'profile-sub_navigation')
+        = link_to_resume('Education', current_user.id, :action => 'education', :class => 'profile-sub_navigation')
       %li
         %i.iconSkills
         = link_to 'Skills', skills_path, :class => "profile-sub_navigation"
       %li.last
         %i.iconInterests
-        = link_to_resume('Idioms', @user.id, :action => 'idioms', :class => 'profile-sub_navigation')
+        = link_to_resume('Idioms', current_user.id, :action => 'idioms', :class => 'profile-sub_navigation')
     %br
     .clear

@@ -48,7 +48,6 @@ gem 'gravatar_image_tag'
 # and rake tasks are available in development mode:
  group :development do
    gem 'rspec-rails'
-   gem 'annotate-models', '1.0.2'
    gem 'faker'
 end
  group :test do
