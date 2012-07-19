@@ -20,7 +20,7 @@
             = render 'shared/micropost_form'
             %br
             #feed
-            - if @page_results.size>0 || !params[:q].empty?
+            - if !@page_results.nil? || !params[:q].empty?
               #search
                 #search-form
                   - form_tag({ :action => "search" }, :method => "get") do

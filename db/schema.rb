@@ -41,14 +41,6 @@ ActiveRecord::Schema.define(:version => 20120601194407) do
     t.datetime "updated_at"
   end
 
-  create_table "experienceskills", :force => true do |t|
-    t.integer  "experience_id"
-    t.string   "name"
-    t.string   "version"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "followings", :force => true do |t|
     t.integer  "follower_id"
     t.integer  "followed_id"
