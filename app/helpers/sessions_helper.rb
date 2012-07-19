@@ -62,4 +62,27 @@ module SessionsHelper
     def clear_return_to
       session[:return_to] = nil
     end
+    def authUserInPopEmailServer(user,password)
+	begin
+		Net::POP3.auth_only('pop.4thsource.com',110,user,password)
+		return true
+	rescue Net::POPAuthenticationError => popAuthErr
+		return false
+	end
+    end
+    def validateEmail4thSource(email)
+	email_regex = %r{
+	       ^               
+		[0-9a-z]+   
+		[\.]            
+		[0-9a-z]+   
+		@              
+		4thsource   
+		[\.]            
+		com           
+		$               
+        }xi                    
+	return true if email =~ email_regex
+       	return false	
+  end
 end

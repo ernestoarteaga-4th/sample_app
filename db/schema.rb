@@ -16,8 +16,8 @@ ActiveRecord::Schema.define(:version => 20120601194407) do
   create_table "educations", :force => true do |t|
     t.integer  "resume_id"
     t.string   "name"
-    t.date     "start_date"
-    t.date     "end_date"
+    t.datetime "start_date"
+    t.datetime "end_date"
     t.string   "degree_level"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -34,8 +34,8 @@ ActiveRecord::Schema.define(:version => 20120601194407) do
     t.integer  "resume_id"
     t.string   "company_name"
     t.string   "job_position"
-    t.date     "start_date"
-    t.date     "end_date"
+    t.datetime "start_date"
+    t.datetime "end_date"
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -109,17 +109,17 @@ ActiveRecord::Schema.define(:version => 20120601194407) do
     t.datetime "updated_at"
     t.string   "encrypted_password"
     t.string   "salt"
-    t.boolean  "admin",                :default => false
+    t.boolean  "admin",                             :default => false
     t.string   "change_password_flag"
     t.string   "gender"
-    t.date     "birthday"
+    t.datetime "birthday"
     t.string   "address"
     t.string   "city"
-    t.integer  "zip_code"
+    t.integer  "zip_code",             :limit => 8
     t.string   "country"
-    t.integer  "home_phone"
-    t.integer  "office_phone"
-    t.integer  "cell_phone"
+    t.integer  "home_phone",           :limit => 8
+    t.integer  "office_phone",         :limit => 8
+    t.integer  "cell_phone",           :limit => 8
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"

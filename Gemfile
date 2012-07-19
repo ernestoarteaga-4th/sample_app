@@ -1,30 +1,23 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.12'
-
 gem 'will_paginate'
-
 gem 'taps'
-
 gem 'ferret'
-
 gem 'acts_as_ferret', '>= 0.5'
-
 gem 'paginator'
-
 gem 'haml'
-
 gem "hoe", '= 2.8.0'
-
 gem "recaptcha", :require => "recaptcha/rails"
-
 gem "paperclip", "~> 3.0"
+gem 'activerecord-sqlserver-adapter', '~> 3.0.0'
+gem 'sql_server'
+gem 'tiny_tds'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
-
+#gem 'sqlite3'
 # Use unicorn as the web server
 # gem 'unicorn'
 
@@ -38,7 +31,7 @@ gem 'sqlite3'
 # Bundle the extra gems:
 # gem 'bj'
 # gem 'nokogiri'
- gem 'sqlite3-ruby', :require => 'sqlite3'
+# gem 'sqlite3-ruby', :require => 'sqlite3'
 # gem 'aws-s3', :require => 'aws/s3'
 
 gem 'gravatar_image_tag'
