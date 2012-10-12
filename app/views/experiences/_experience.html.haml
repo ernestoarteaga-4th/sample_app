@@ -19,7 +19,7 @@
       - experience.experience_details.each do |detail|
         %li 
           = detail.content
-    =link_to_resume("Add details to the project", @user.id, {:action => "experience-details", :experienceId => experience.id})
+    =link_to_resume("Add details to the project", @candidate.id, {:action => "experience-details", :experienceId => experience.id})
     %br
     %br
     %h6
@@ -29,7 +29,7 @@
         %li
           = skill.name
           = skill.version
-    =link_to_resume("Add Tool to the project", @user.id, {:action => "experience-tools", :experienceId => experience.id})
+    =link_to_resume("Add Tool to the project", @candidate.id, {:action => "experience-tools", :experienceId => experience.id})
     %br
     %br
     %br

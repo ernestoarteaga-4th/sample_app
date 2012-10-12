@@ -2,19 +2,19 @@ class FollowingsController < ApplicationController
   before_filter :authenticate
 
   def create
-      @user = User.find(params[:following][:followed_id])
-      @follow = current_user.followings.build(:followed_id => @user.id)
+      @candidate = Candidate.find(params[:following][:followed_id])
+      @follow = current_candidate.followings.build(:followed_id => @candidate.id)
       if @follow.save
-        redirect_to @user
+        redirect_to @candidate
       else
         flash[:success] = "Error"
-        redirect_to @user
+        redirect_to @candidate
       end
   end
   
   def destroy
-     @user = User.find(params[:following][:followed_id])
-    current_user.followings.find_by_followed_id(@user.id).destroy
-    redirect_to @user
+     @candidate = Candidate.find(params[:following][:followed_id])
+    current_candidate.followings.find_by_followed_id(@candidate.id).destroy
+    redirect_to @candidate
   end  
 end

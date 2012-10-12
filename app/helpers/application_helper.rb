@@ -9,35 +9,73 @@ module ApplicationHelper
     end
   end
   
-  def link_to_resume(name, userId, options = {}, html_options = {})
+  def link_to_resume(name, candidateId, options = {}, html_options = {})
       options.reverse_merge! :action     => 'show',
                              :method     => :get
 
       url = case options[:action]
               when 'summary'
-                "/users/#{userId}/resume/summary"
+                "/candidates/#{candidateId}/resume/summary"
               when 'experience'
-                "/users/#{userId}/resume/experience"
+                "/candidates/#{candidateId}/resume/experience"
               when 'experience-new'
-                "/users/#{userId}/resume/experience/new"
+                "/candidates/#{candidateId}/resume/experience/new"
               when 'experience-details'
                 experienceId = options[:experienceId]
-                "/users/#{userId}/resume/experience/#{experienceId}/details/new"
+                "/candidates/#{candidateId}/resume/experience/#{experienceId}/details/new"
               when 'experience-tools'
                 experienceId = options[:experienceId]
-                "/users/#{userId}/resume/experience/#{experienceId}/skills/new"
+                "/candidates/#{candidateId}/resume/experience/#{experienceId}/skills/new"
               when '/skills'
                 "/skills"
               when 'skills-new'
                 "/skills/new"
-              when 'idioms'
-                "/users/#{userId}/resume/idioms"
+              when 'languages'
+                "/candidates/#{candidateId}/resume/languages"
+              when 'languages-new'
+                "/candidates/#{candidateId}/resume/languages/new"
               when 'resume'
-                "/users/#{userId}/resume"
+                "/candidates/#{candidateId}/resume"
               when 'photo'
-                "/users/#{userId}/resume/photo"
+                "/candidates/#{candidateId}/resume/photo"
               when 'education'
-                "/users/#{userId}/resume/education"
+                "/candidates/#{candidateId}/resume/education"
+              when 'education-new'
+                "/candidates/#{candidateId}/resume/education/new"
+              when 'certification'
+                "/candidates/#{candidateId}/resume/certification"
+              when 'certification-new'
+                "/candidates/#{candidateId}/resume/certification/new"
+              when 'training'
+                "/candidates/#{candidateId}/resume/training"
+              when 'training-new'
+                "/candidates/#{candidateId}/resume/training/new"
+              when 'project'
+                "/candidates/#{candidateId}/resume/projects"
+              when 'project-new'
+                "/candidates/#{candidateId}/resume/projects/new"
+              when 'project_role-new'
+                projectId = options[:projectId]
+                "/candidates/#{candidateId}/resume/#{projectId}/project-roles/new"
+              when 'project_role-edit'
+                projectId = options[:projectId]
+                "/candidates/#{candidateId}/resume/#{projectId}/project-roles/edit"
+              when 'project_tool_tag-new'
+                projectId = options[:projectId]
+                projectRoleId = options[:projectRoleId]
+                "/candidates/#{candidateId}/resume/#{projectId}/project-roles/#{projectRoleId}/tools/new"
+              when 'project_technology_tag-new'
+                projectId = options[:projectId]
+                projectRoleId = options[:projectRoleId]
+                "/candidates/#{candidateId}/resume/#{projectId}/project-roles/#{projectRoleId}/tech/new"
+              when 'project_knowledge_tag-new'
+                projectId = options[:projectId]
+                projectRoleId = options[:projectRoleId]
+                "/candidates/#{candidateId}/resume/#{projectId}/project-roles/#{projectRoleId}/knowledge/new"
+              when 'project_responsibility_tag-new'
+                projectId = options[:projectId]
+                projectRoleId = options[:projectRoleId]
+                "/candidates/#{candidateId}/resume/#{projectId}/project-roles/#{projectRoleId}/responsibility/new"
             end
       link_to( name, url, options, html_options )
   end
@@ -56,7 +94,7 @@ module ApplicationHelper
     ]
   end
   
-  def idiom_level_list
+  def language_level_list
     [
       ['- Select one -', ''],
       ['Elementary', 'Elementary'],
@@ -67,7 +105,7 @@ module ApplicationHelper
       ['Native','Native']
     ]
   end
-  
+
   def gender_list
     [
       ['- Select one -', 'Select one'],
@@ -75,7 +113,27 @@ module ApplicationHelper
       ['Female','Female']
     ]
   end
+
+  def yes_or_no_list
+    [
+      ['- Select one -', '0'],
+      ['Yes', 'Yes'],
+      ['No','No']
+    ]
+  end
   
+  def year_list
+    array = Array.new
+    for i in (Time.now.year - 1) .. (Time.now.year + 11)
+      if i == (Time.now.year - 1)
+        array.push ['- Select year -', '0']
+      else
+        array.push [i.to_s, i.to_s]
+      end
+    end
+    return array
+  end
+
   def country_list
     [
       ['- Select one -', '0'],

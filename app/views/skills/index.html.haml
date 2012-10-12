@@ -17,7 +17,7 @@
     - flash.each do |key, value|
       .flash{:class => key}= value
   %br
-  =link_to_resume("Add new skill", @user.id, :action => "skills-new")
+  =link_to_resume("Add new skill", @candidate.id, :action => "skills-new")
   %br
   %br
   .abc

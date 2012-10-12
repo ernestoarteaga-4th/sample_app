@@ -24,7 +24,7 @@
         <%= f.submit "Sign in" %> 
       </div>
     <% end %>
-    <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+    <p>New candidate? <%= link_to "Sign up now!", signup_path %></p>
     <p>
       Forgot your email or password? 
       <%= link_to "Forgot password", :controller => "email", :action => "remind" %>

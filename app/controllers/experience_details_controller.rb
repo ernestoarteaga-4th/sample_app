@@ -1,6 +1,6 @@
 class ExperienceDetailsController < ApplicationController
   def new
-    @user = User.find(params[:id])
+    @candidate = Candidate.find(params[:id])
     @experience = Experience.find(params[:experience_id])
     if request.post?
       @experience_details = @experience.experience_details.new(params[:experience_details])

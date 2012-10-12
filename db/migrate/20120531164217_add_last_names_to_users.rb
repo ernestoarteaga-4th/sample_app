@@ -5,7 +5,7 @@ class AddLastNamesToUsers < ActiveRecord::Migration
   end
 
   def self.down
-    remove_column :users, :last_name, :string
-    remove_column :users, :second_last_name, :string
+    remove_column :users, :last_name
+    remove_column :users, :second_last_name
   end
 end

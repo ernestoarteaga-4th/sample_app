@@ -8,7 +8,7 @@
   </ul>
   <h3 class="page_headline ">Change my old password</h3>
   <div class="divider"></div>
-    <% form_for :user do |f| %> 
+    <% form_for :candidate do |f| %> 
       <% flash.each do |key, value| %>
         <div class="flash <%= key %>"><%= value %></div><br/>
       <% end %>
@@ -20,7 +20,7 @@
         <%= f.submit "Submit" %> 
       </div>
     <% end %>
-    <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+    <p>New candidate? <%= link_to "Sign up now!", signup_path %></p>
     <div class="clear"></div>
 </div> <!-- End Content -->
 	

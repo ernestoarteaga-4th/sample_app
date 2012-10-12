@@ -7,39 +7,45 @@
       #sidebar-profile
         #sidebar-gravatar
           =link_to("#") do 
-            = image_tag current_user.avatar.url(:thumb)
-        #sidebar-user
-          = current_user.name
-          = current_user.last_name
+            = image_tag current_candidate.avatar.url(:thumb)
+        #sidebar-candidate
+          = current_candidate.first_name
+          = current_candidate.first_last_name
           %br
-          = current_user.microposts.count 
+          = current_candidate.microposts.count 
           microposts
       %br
     %br
     %ul#nav_sub.sub_navigation
       %li
         %i.iconContact-info
-        = link_to 'Contact Information', edit_user_path(current_user), :class => "profile-sub_navigation"
+        = link_to 'Contact Information', edit_candidate_path(current_candidate), :class => "profile-sub_navigation"
       %li
         %i.iconPhoto 
-        = link_to_resume('Photo', current_user.id, :action => 'photo', :class => 'profile-sub_navigation')
+        = link_to_resume('Photo', current_candidate.id, :action => 'photo', :class => 'profile-sub_navigation')
       %li
         %i.iconResume
-        = link_to_resume('Resume', current_user.id, :action => 'resume', :class => 'profile-sub_navigation')
+        = link_to_resume('Resume', current_candidate.id, :action => 'resume', :class => 'profile-sub_navigation')
       %li
         %i.iconSummary
-        = link_to_resume('Summary', current_user.id, :action => 'summary', :class => 'profile-sub_navigation')
+        = link_to_resume('Summary', current_candidate.id, :action => 'summary', :class => 'profile-sub_navigation')
       %li
         %i.iconExperience
-        = link_to_resume('Experience', current_user.id, :action => 'experience', :class => 'profile-sub_navigation')
+        = link_to_resume('Projects', current_candidate.id, :action => 'project', :class => 'profile-sub_navigation')
       %li
         %i.iconEducation
-        = link_to_resume('Education', current_user.id, :action => 'education', :class => 'profile-sub_navigation')
+        = link_to_resume('Education', current_candidate.id, :action => 'education', :class => 'profile-sub_navigation')
+      %li
+        %i.iconCertification
+        = link_to_resume('Certification', current_candidate.id, :action => 'certification', :class => 'profile-sub_navigation')
+      %li
+        %i.iconTraining
+        = link_to_resume('Training', current_candidate.id, :action => 'training', :class => 'profile-sub_navigation')
       %li
         %i.iconSkills
         = link_to 'Skills', skills_path, :class => "profile-sub_navigation"
       %li.last
         %i.iconInterests
-        = link_to_resume('Idioms', current_user.id, :action => 'idioms', :class => 'profile-sub_navigation')
+        = link_to_resume('Languages', current_candidate.id, :action => 'languages', :class => 'profile-sub_navigation')
     %br
     .clear

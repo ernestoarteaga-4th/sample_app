@@ -28,15 +28,15 @@ class UsersController < ApplicationController
   end 
   
   def change
-   if param_posted?(:user)
-     @user = User.find(params[:id])
-     @user.change_password_flag = nil
-     if @user.update_attributes(params[:user])
-       flash[:success] = "Profile updated."
-       redirect_to :signin
-     else
-       render :change
-     end
+    if param_posted?(:user)
+      @user = User.find(params[:id])
+      @user.change_password_flag = nil
+      if @user.update_attributes(params[:user])
+        flash[:success] = "Profile updated."
+        redirect_to :signin
+      else
+        render :change
+      end
     else
       @user = User.find(params[:id])
       if @user && @user.change_password_flag == params[:code]

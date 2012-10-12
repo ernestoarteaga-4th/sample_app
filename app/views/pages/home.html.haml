@@ -8,7 +8,8 @@
     - if signed_in?
       %li
         = raw '<em>'
-        = current_user.name
+        = current_candidate.first_name
+        = current_candidate.first_last_name
         = raw '</em>'
     .clear						
   - if signed_in?

@@ -15,12 +15,12 @@
   %br
   .photo_wrapper
     .photo_left
-      = image_tag @user.avatar.url(:thumb)
+      = image_tag @candidate.avatar.url(:thumb)
     .photo_right
       %h4
-        = @user.name
-        = @user.last_name
-      = @user.email
+        = @candidate.first_name
+        = @candidate.first_last_name
+      = @candidate.email
   %br
   %br
   %br
@@ -30,7 +30,7 @@
     %br
     %br
     .experience_left
-      - if @user.resume.resume_details.empty?
+      - if @candidate.resume.resume_details.empty?
         %h4 Please write a summary in your resume.
         .divider
         %br
@@ -40,10 +40,10 @@
           Professional Summary
         .divider-headline
         %ul
-          - @user.resume.resume_details.each do |summary|
+          - @candidate.resume.resume_details.each do |summary|
             %li= summary.summary
       %br
-      - if @user.resume.educations.empty?
+      - if @candidate.resume.educations.empty?
         %h4 Please specify at least one education in your resume.
         .divider
       - else
@@ -51,7 +51,7 @@
           Education
         .divider-headline
         %ul
-          - @user.resume.educations.each do |education|
+          - @candidate.resume.educations.each do |education|
             %li
               %h6
                 = education.name
@@ -64,9 +64,9 @@
               #experience-description
                 = education.degree_level
             %br
-      - if @user.resume.experiences.count > 0
+      - if @candidate.resume.experiences.count > 0
         #list
-          - @user.resume.experiences.each do |experience|
+          - @candidate.resume.experiences.each do |experience|
             %br
             #row
               .experience_wrapper
@@ -107,16 +107,16 @@
         .divider
       %br
       %br
-      - if @user.resume.idioms.count > 0
+      - if @candidate.resume.languages.count > 0
         %h4
           List of languages
         .divider-headline
         %ul
-          - @user.resume.idioms.each do |idiom|
+          - @candidate.resume.languages.each do |language|
             %li
-              = idiom.name
+              = language.name
               = raw ' - '
-              = idiom.level
+              = language.level
         %br
         %br
       - else

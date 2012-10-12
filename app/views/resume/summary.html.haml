@@ -6,7 +6,7 @@
       = link_to 'Home', root_path 
       = raw '&raquo;'
     %li
-      = link_to_resume("Resume", @user.id, :action => "resume")
+      = link_to_resume("Resume", @candidate.id, :action => "resume")
       = raw '&raquo;'
     %li= raw('<em>Summary</em>')
     .clear
@@ -20,13 +20,13 @@
     - flash.each do |key, value|
       .flash{:class => key}= value
   %br
-  = link_to_resume('Back to Resume', @user.id, :action => 'resume')
+  = link_to_resume('Back to Resume', @candidate.id, :action => 'resume')
   %br
   %br
-  - if @user.resume.resume_details.count > 0
+  - if @candidate.resume.resume_details.count > 0
     .experience_details_wrapper
       %ul
-        - @user.resume.resume_details.each do |detail|
+        - @candidate.resume.resume_details.each do |detail|
           .experience_details_left
             %li= detail.summary
           .experience_details_right

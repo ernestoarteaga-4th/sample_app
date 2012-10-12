@@ -1,44 +1,44 @@
 class ResumeController < ApplicationController
 
   def index
-    @user = User.find(params[:id])
-    if @user.resume.nil?
-      @user.build_resume.save
+    @candidate = Candidate.find(params[:id])
+    if @candidate.resume.nil?
+      @candidate.build_resume.save
     end
   end
   
   def summary
     if request.post?
-      @user = User.find(params[:id])
-      if @user.resume.resume_details.new(params[:resume_details]).save
+      @candidate = Candidate.find(params[:id])
+      if @candidate.resume.resume_details.new(params[:resume_details]).save
         flash.now[:success] = "Summary was saved successfully."
       else
         flash.now[:notice] = "An error occurred while the system save the summary. Please try again."
       end
     else
-      @user = User.find(params[:id])
-      if @user.resume.nil?
-        @resume = @user.build_resume
+      @candidate = Candidate.find(params[:id])
+      if @candidate.resume.nil?
+        @resume = @candidate.build_resume
         @resume.save
       end
     end
   end
   
   def experience
-    @user = User.find(params[:id])
-    if @user.resume.nil?
-      @resume = @user.build_resume
+    @candidate = Candidate.find(params[:id])
+    if @candidate.resume.nil?
+      @resume = @candidate.build_resume
       @resume.save
     end
-    @experience_items = @user.resume.experiences
+    @experience_items = @candidate.resume.experiences
   end
    
   def photo
-    @user = User.find(params[:id])
-    @error = @user.errors
+    @candidate = Candidate.find(params[:id])
+    @error = @candidate.errors
     
     if request.post?
-      if @user.update_attributes(params[:user])
+      if @candidate.update_attributes(params[:candidate])
         flash[:success] = "Photo updated."
       else
         flash[:notice] = "An error occurred while the system save the photo. Please try again."
@@ -48,17 +48,17 @@ class ResumeController < ApplicationController
   
   def education
     if request.post?
-      @user = User.find(params[:id])
-      @total_educations = @user.resume.educations
-      @education =  @user.resume.educations.new(params[:education])
+      @candidate = Candidate.find(params[:id])
+      @total_educations = @candidate.resume.educations
+      @education =  @candidate.resume.educations.new(params[:education])
       @error = @education.errors
       if @education.save
         flash[:success] = "Education was saved successfully."      
       end
     else
-      @user = User.find(params[:id])
-      @error = @user.errors
-      @total_educations = @user.resume.educations
+      @candidate = Candidate.find(params[:id])
+      @error = @candidate.errors
+      @total_educations = @candidate.resume.educations
     end
   end
 end

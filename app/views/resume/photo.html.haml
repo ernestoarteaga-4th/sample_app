@@ -6,7 +6,7 @@
       = link_to 'Home', root_path
       = raw '&raquo;' 
     %li
-      = link_to_resume('Resume', @user.id, :action => 'resume')
+      = link_to_resume('Resume', @candidate.id, :action => 'resume')
       = raw '&raquo;'
     %li
       = raw '<em>'
@@ -26,13 +26,13 @@
   %br
   .photo_wrapper
     .photo_left
-      = image_tag @user.avatar.url(:thumb)
+      = image_tag @candidate.avatar.url(:thumb)
     .photo_right
-      = @user.name
-      = @user.last_name
+      = @candidate.first_name
+      = @candidate.first_last_name
       %br
       %br
-      = @user.email
+      = @candidate.email
   %br
   %br
   %br
@@ -44,7 +44,7 @@
       %h4
         Please select an image to upload in your profile
       .divider
-      = form_for(:user, @user, :html => { :multipart => true }) do |f| 
+      = form_for(:candidate, @candidate, :html => { :multipart => true }) do |f| 
         = render 'shared/error_messages', :object => f.object
         .field
           = f.label "Image"

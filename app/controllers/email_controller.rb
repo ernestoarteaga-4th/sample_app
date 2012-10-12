@@ -1,12 +1,12 @@
 class EmailController < ApplicationController
   def remind
-    if param_posted?(:user)
-      email = params[:user][:email]
-      user  = User.find_by_email(email)
-      if user
-        user.password = user.password_confirmation = user.change_password_flag = new_hash(25)
-        user.save!
-        UserMailer.deliver_reminder(user)
+    if param_posted?(:candidate)
+      email = params[:candidate][:email]
+      candidate  = Candidate.find_by_email(email)
+      if candidate
+        candidate.password = candidate.password_confirmation = candidate.change_password_flag = new_hash(25)
+        candidate.save!
+        CandidateMailer.deliver_reminder(candidate)
         flash[:notice] = "Login information was sent successfully."
       end 
     end

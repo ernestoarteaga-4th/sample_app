@@ -5,12 +5,12 @@
   <ul id="breadcrumbs">
     <li><a href="http://www.4thsource.com/en/index.php">Home</a> &raquo;</li>
     <% if signed_in? %>
-    <li><em><%= current_user.name %></em></li>
+    <li><em><%= current_candidate.name %></em></li>
     <% end %>						
 	<div class="clear"></div>
   </ul>
   	 <% if signed_in? %>
-      <table class="front" summary="For signed-in users">
+      <table class="front" summary="For signed-in candidates">
         <tr>
           <td class="main">
             <div id="content-margin">
@@ -63,11 +63,11 @@
   <% if signed_in? %>
   <div id="sidebar-profile">
     <div id="sidebar-gravatar">
-	  <a href="#"><%= gravatar_for current_user, :size => 40 %></a>
+	  <a href="#"><%= gravatar_for current_candidate, :size => 40 %></a>
     </div>
-    <div id="sidebar-user">
-	  <%= current_user.name %><br/>
-	  <%= current_user.microposts.count %> microposts
+    <div id="sidebar-candidate">
+	  <%= current_candidate.name %><br/>
+	  <%= current_candidate.microposts.count %> microposts
 	</div>
   </div>
   <br/>

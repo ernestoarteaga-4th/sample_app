@@ -6,7 +6,7 @@
       = link_to 'Home', home_path 
       = raw '&raquo;'
     %li
-      = link_to_resume('Resume', @user.id, :action => 'resume')
+      = link_to_resume('Resume', @candidate.id, :action => 'resume')
       = raw '&raquo;'
     %li= raw('<em>Idioms</em>')
     .clear
@@ -20,7 +20,7 @@
     - flash.each do |key, value|
       .flash{:class => key}= value
     %br
-    = link_to_resume('Back to Resume', @user.id, :action => 'resume')
+    = link_to_resume('Back to Resume', @candidate.id, :action => 'resume')
     %br
     %br
     %br

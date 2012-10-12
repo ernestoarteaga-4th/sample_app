@@ -1,13 +1,13 @@
 class ExperiencesController < ApplicationController
   before_filter :authenticate
-  before_filter :correct_user
+  before_filter :correct_candidate
   
   def show
   end
   
   def skill
-    @user = User.find(params[:id])  
-    @experience = @user.resume.experiences.find(params[:experience_id])
+    @candidate = Candidate.find(params[:id])  
+    @experience = @candidate.resume.experiences.find(params[:experience_id])
     if request.post?
        @flag = params[:skill_id][:id]
        if @experience.skills.find_by_id(@flag).nil? && !@flag.empty?
@@ -23,14 +23,14 @@ class ExperiencesController < ApplicationController
   end
   
   def new
-    @user = current_user
+    @candidate = current_candidate
     if request.post?
-      @user = User.find(params[:id])
-      if @user.resume.nil?
-        @resume = @user.build_resume
+      @candidate = Candidate.find(params[:id])
+      if @candidate.resume.nil?
+        @resume = @candidate.build_resume
         @resume.save
       else
-        @resume = @user.resume
+        @resume = @candidate.resume
       end
       @experience = @resume.experiences.build(params[:experience])
       if @experience.save
@@ -47,9 +47,9 @@ class ExperiencesController < ApplicationController
   end
   
   private 
-    def correct_user
-      @user = User.find(params[:id])
-      redirect_to(root_path) unless current_user?(@user)
+    def correct_candidate
+      @candidate = Candidate.find(params[:id])
+      redirect_to(root_path) unless current_candidate?(@candidate)
     end
   
 end

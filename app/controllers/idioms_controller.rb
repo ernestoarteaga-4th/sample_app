@@ -1,18 +1,18 @@
 class IdiomsController < ApplicationController
   
   def index
-    @user = current_user
-    @error = @user.errors
+    @candidate = current_candidate
+    @error = @candidate.errors
     
-    if @user.resume.nil?
-      @user.build_resume.save
+    if @candidate.resume.nil?
+      @candidate.build_resume.save
     end
-    @total_idioms = @user.resume.idioms
+    @total_idioms = @candidate.resume.idioms
   end
   
   def new
-    @user = current_user
-    @idiom = @user.resume.idioms.new(params[:idiom])
+    @candidate = current_candidate
+    @idiom = @candidate.resume.idioms.new(params[:idiom])
     @error = @idiom.errors
     
     if @idiom.save

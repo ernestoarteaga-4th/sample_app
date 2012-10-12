@@ -10,9 +10,12 @@ gem 'haml'
 gem "hoe", '= 2.8.0'
 gem "recaptcha", :require => "recaptcha/rails"
 gem "paperclip", "~> 3.0"
+#Added July/2012
 gem 'activerecord-sqlserver-adapter', '~> 3.0.0'
 gem 'sql_server'
 gem 'tiny_tds'
+#Added August/2012
+gem 'rails3-jquery-autocomplete'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

@@ -1,6 +1,6 @@
 class SkillsController < ApplicationController
   def index
-    @user = current_user
+    @candidate = current_candidate
     if params[:letter].nil?
       @page_results = Skill.find(:all, :order => "name ASC")
     else
@@ -10,8 +10,8 @@ class SkillsController < ApplicationController
   end
   
   def new
-    @user = current_user
-    @error = @user.errors
+    @candidate = current_candidate
+    @error = @candidate.errors
     if request.post?
       @skill = Skill.new(params[:skill])
       @error = @skill.errors

@@ -1,9 +1,9 @@
 class MicropostsController < ApplicationController 
   before_filter :authenticate,    :only => [:create, :destroy]
-  before_filter :authorized_user, :only => :destroy
+  before_filter :authorized_candidate, :only => :destroy
 
   def create
-    @micropost = current_user.microposts.build(params[:micropost])
+    @micropost = current_candidate.microposts.build(params[:micropost])
     @error = @micropost.errors
     if @micropost.save
       flash[:success] = "Micropost created!"
@@ -20,7 +20,7 @@ class MicropostsController < ApplicationController
   end 
 
   private
-    def authorized_user
+    def authorized_candidate
       @micropost = Micropost.find(params[:id])
       redirect_to root_path unless current_user?(@micropost.user)
     end

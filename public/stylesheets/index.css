@@ -425,7 +425,7 @@ background: url(http://www.4thsource.com/public/images/read_more_brown.jpg) no-r
     padding-left: 5px;
 }
 
-#sidebar-user {
+#sidebar-candidate {
   float: left;
   padding-left: 60px;
   padding-top: 7px;
@@ -888,6 +888,35 @@ table.microposts tr td.micropost-delete {
 	margin-top: 0px;
 }
 
+.iconCertification, .iconCertificationHeadLine {
+	background: url(/images/certification.png);
+	background-position: 0px 0px;
+	background-repeat: no-repeat;
+	display: inline-block;
+	position: absolute;
+	margin-top: 8px;
+	width: 16px; 
+	height: 17px;
+}
+
+.iconTraining, .iconTrainingHeadLine {
+	background: url(/images/training.png);
+	background-position: 0px 0px;
+	background-repeat: no-repeat;
+	display: inline-block;
+	position: absolute;
+	margin-top: 8px;
+	width: 16px; 
+	height: 16px;
+}
+
+.iconCertificationHeadLine {;
+	margin-top: 2px;
+}
+
+.iconTrainingHeadLine {
+	margin-top: 2px;
+}
 .profile-sub_navigation {
 	margin-left: 20px;
 }
@@ -945,6 +974,58 @@ table.microposts tr td.micropost-delete {
 	padding-bottom: 3px;
 }
 
+.wrapper-level_2 {
+	width: 400px;
+}
+
+.header-left-level_2, .content-left_level_2 {
+	float:left;
+	padding-left:1px;
+	padding-bottom: 2px;
+	width:300px;
+}
+
+.header-right-level_2, .content-right_level_2 {
+	float:right;
+	width: 50px;
+	padding-bottom: 3px;
+}
+
+.divider-level_2 {
+	float:left;
+	padding-left:1px;
+	padding-bottom: 2px;
+	width:400px;
+}
+
+li#level_2 {
+	list-style-type: none;
+}
+
+.wrapper-level_3 {
+	width: 300px;
+}
+
+.header-left-level_3, .content-left_level_3 {
+	float:left;
+	padding-left:1px;
+	padding-bottom: 2px;
+	width:200px;
+}
+
+.header-right-level_3, .content-right_level_3 {
+	float:right;
+	width: 50px;
+	padding-bottom: 3px;
+}
+
+.divider-level_3 {
+	float:left;
+	padding-left:1px;
+	padding-bottom: 2px;
+	width:300px;
+}
+
 .abc, .row_center {
 	margin:auto;
 	text-align:center;
@@ -969,4 +1050,21 @@ table.microposts tr td.micropost-delete {
 	float:right;
 	width: 470px;
 	padding-bottom: 3px;
+}
+
+.accordion_level_2 div {
+	border: 0px;
+	background: none;
+}
+
+.accordion_level_2 h6.ui-accordion-header.ui-helper-reset.ui-state-active.ui-corner-top {
+	border: 0px;
+	background: none;
+	font-weight: normal;
+}
+
+.accordion_level_2 h6.ui-accordion-header.ui-helper-reset.ui-state-default.ui-corner-all {
+	border: 0px;
+	background: none;
+	font-weight: normal;
 }

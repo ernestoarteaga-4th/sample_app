@@ -11,9 +11,9 @@
     <div id="main-nav">
       <%= link_to "Home", root_path %>
         <% if signed_in? %>
-          | <%= link_to "Users", users_path %>
-          | <%= link_to "Profile", current_user %>
-          | <%= link_to "Settings", edit_user_path(current_user) %>
+          | <%= link_to "candidates", candidates_path %>
+          | <%= link_to "Profile", current_candidate %>
+          | <%= link_to "Settings", edit_candidate_path(current_candidate) %>
           | <%= link_to "Sign out", signout_path, :method => :delete %>
         <% else %>
           | <%= link_to "Sign in", signin_path %>
