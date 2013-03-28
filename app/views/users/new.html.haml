@@ -13,24 +13,28 @@
   %h3.page_headline
     Candidate registration
   .divider
-  = form_for(@user, :html => { :multipart => true }) do |f| 
+  = form_for(@candidate, :html => { :multipart => true }) do |f| 
     = render 'shared/error_messages', :object => f.object
     .field
       = f.label "Image"
       %br
-      = f.file_field :avatar
-    .field
+      = f.file_field :avatar_file_name
+      .field
       = f.label :name
       %br
       = f.text_field :name
-    .field
-      = f.label :last_name
-      %br
-      = f.text_field :last_name
-    .field
-      = f.label :second_last_name
-      %br
-      = f.text_field :second_last_name
+      -#.field
+      -#= f.label :first_name
+      -#%br
+      -#= f.text_field :first_name
+      -#.field
+      -#= f.label :first_last_name
+      -#%br
+      -#= f.text_field :first_last_name
+      -#.field
+      -#= f.label :second_last_name
+      -#%br
+      -#= f.text_field :second_last_name-->
     .field
       = f.label :gender
       %br

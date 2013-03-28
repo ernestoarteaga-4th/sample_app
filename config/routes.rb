@@ -4,7 +4,7 @@ SampleApp::Application.routes.draw do
 
   post "email/remind"
 
-  resources :users do
+  resources :candidates do
     member do
       get :following, :followers, :change
       post :change
@@ -20,7 +20,7 @@ SampleApp::Application.routes.draw do
     end
   end
 
-  resources :users
+  resources :candidates
 
   resources :sessions,   :only => [:new, :create, :destroy]
   resources :microposts, :only => [:create, :destroy]

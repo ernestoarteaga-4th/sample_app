@@ -4,21 +4,21 @@ class UsersController < ApplicationController
   before_filter :admin_user,   :only => [:destroy]
 
   def index
-    @users = User.all
+    @candidate = Candidate.all
     @title = "All users"
-    paginate(@users, 10)
-    flash[:success] = "About #{@users.count} results."
+    paginate(@candidate, 10)
+    flash[:success] = "About #{@candidate.count} results."
   end
 
   def show
-    @user  = User.find(params[:id])
-    @microposts = @user.microposts.paginate(:page => params[:page])
-    @title = @user.name
+    @candidate  = Candidate.find(params[:id])
+    @microposts = @candidate.microposts.paginate(:page => params[:page])
+    @title = @candidate.name
   end
 
   def new
-    @user  = User.new
-    @error = @user.errors
+    @candidate  = Candidate.new
+    @error = @candidate.errors
     @title = "Sign up"
   end
 
@@ -50,16 +50,16 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params[:user])
-    @error = @user.errors
-    if @user.save && verify_recaptcha()
+    @candidate = Candidate.new(params[:user])
+    @error = @candidate.errors
+    if @candidate.save && verify_recaptcha()
       sign_in @user
       #UserMailer.welcome_email(@user).deliver
       flash[:success] = "Welcome to the Sample App!"
       redirect_to root_path
     else
       if verify_recaptcha() == false
-        @user.errors[:recaptcha] = "is invalid"
+        @candidate.errors[:recaptcha] = "is invalid"
       end
       @title = "Sign up"
       render :new
