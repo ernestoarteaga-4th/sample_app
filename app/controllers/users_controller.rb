@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     @microposts = @user.microposts.paginate(:page => params[:page])
     @title = @user.name
   end
-  
+
   def new
     @user  = User.new
     @error = @user.errors
@@ -25,8 +25,8 @@ class UsersController < ApplicationController
   def edit
    @title  = "Edit user"
    @error  = current_user.errors
-  end 
-  
+  end
+
   def change
     if param_posted?(:user)
       @user = User.find(params[:id])
@@ -54,7 +54,7 @@ class UsersController < ApplicationController
     @error = @user.errors
     if @user.save && verify_recaptcha()
       sign_in @user
-      UserMailer.welcome_email(@user).deliver
+      #UserMailer.welcome_email(@user).deliver
       flash[:success] = "Welcome to the Sample App!"
       redirect_to root_path
     else
@@ -77,13 +77,13 @@ class UsersController < ApplicationController
       render :edit
     end
   end
- 
+
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "User destroyed."
     redirect_to users_path
   end
-  
+
   def following
     @title = "Following"
     @user = User.find(params[:id])
@@ -91,7 +91,7 @@ class UsersController < ApplicationController
     @users = User.where("id IN (#{users_id})").paginate(:page => params[:page])
     render 'show_follow'
   end
-  
+
   def followers
     @title = "Followers"
     @user = User.find(params[:id])
@@ -99,7 +99,7 @@ class UsersController < ApplicationController
     @users = User.where("id IN (#{users_id})").paginate(:page => params[:page])
     render 'show_follow'
   end
-  
+
   def search
     if params[:q]
       query = params[:q]
@@ -110,14 +110,14 @@ class UsersController < ApplicationController
       render 'index'
     end
   end
-  
+
   private
     def param_posted?(sym)
       request.post? and params[sym]
     end
 
     def admin_user
-      redirect_to(root_path) unless current_user.admin? 
+      redirect_to(root_path) unless current_user.admin?
     end
 
     def correct_user

@@ -2,15 +2,15 @@
 #   gem install sqlite3
 
 
-development: 
- adapter: sqlserver 
- driver: SQLServerDriver
+development:
+ adapter: mysql2
+ #driver: SQLServerDriver
  database: 4thsourcejobs
- host: thunderbird
- username: 4thjob
- password: 4tth$j0b
- port: 1433
- dsn: connect
+ host: localhost
+ username: root
+ password: admin
+ #port: 1433
+ #dsn: connect
 
 #development:
 #  adapter: sqlite3

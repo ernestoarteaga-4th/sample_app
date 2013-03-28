@@ -27,14 +27,14 @@ module SessionsHelper
   end
 
   def followed_in? (candidate)
-    current_candidate != candidate 
+    current_candidate != candidate
   end
 
   def is_follow? (candidate)
     @follow = current_candidate.followings.find_by_followed_id(candidate)
     !@follow.nil?
   end
-  
+
   def current_candidate
     @current_candidate ||= candidate_from_remember_token
   end
@@ -50,7 +50,7 @@ module SessionsHelper
 
   private
     def candidate_from_remember_token
-      Candidate.authenticate_with_salt(*remember_token)
+      User.authenticate_with_salt(*remember_token)
     end
 
     def remember_token
@@ -76,17 +76,17 @@ module SessionsHelper
 
     def validateEmail4thSource(email)
       email_regex = %r{
-	       ^               
-         [0-9a-z]+   
-         [\.]            
-         [0-9a-z]+   
-         @              
-         4thsource   
-         [\.]            
+	       ^
+         [0-9a-z]+
+         [\.]
+         [0-9a-z]+
+         @
+         4thsource
+         [\.]
          com
-		     $               
-      }xi                    
+		     $
+      }xi
 	    return true if email =~ email_regex
-      return false	
+      return false
     end
 end

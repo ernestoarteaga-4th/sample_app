@@ -1,17 +1,17 @@
 SampleApp::Application.routes.draw do
 
   get "email/remind"
-  
+
   post "email/remind"
 
-  resources :candidates do
+  resources :users do
     member do
       get :following, :followers, :change
       post :change
     end
     collection do
       get 'search'
-    end 
+    end
   end
 
   resources :pages do
@@ -20,14 +20,14 @@ SampleApp::Application.routes.draw do
     end
   end
 
-  resources :candidates
+  resources :users
 
   resources :sessions,   :only => [:new, :create, :destroy]
   resources :microposts, :only => [:create, :destroy]
   resources :followings, :only => [:create, :destroy]
   resources :resume
 
-  match '/signup',  :to => 'candidates#new'
+  match '/signup',  :to => 'users#new'
   match '/signin',  :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
 
@@ -35,7 +35,7 @@ SampleApp::Application.routes.draw do
   match '/about',   :to => 'pages#about'
   match '/help',    :to => 'pages#help'
   match '/home',    :to => 'pages#home'
-  
+
   match "/candidates/:id/resume" => 'resume#index'
   match "/candidates/:id/resume/photo" => 'resume#photo'
   match "/candidates/:id/resume/summary" => 'resume#summary'
@@ -99,7 +99,7 @@ SampleApp::Application.routes.draw do
 
   match '/skills', :to => 'skills#index'
   match '/skills/new', :to => 'skills#new'
-  
-   
+
+
   root :to => 'pages#home'
 end

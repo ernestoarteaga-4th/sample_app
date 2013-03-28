@@ -34,19 +34,19 @@
 		    </div> <!-- end top_bar -->
 		    <div id="container">
 		      <!-- Logo, Branding -->
-		      <h1><a href="http://www.4thsource.com/en/">4th Source - Proximity Matters</a></h1>				
-		      <div id="site_url" class="http://www.4thsource.com/"></div>		
+		      <h1><a href="http://www.4thsource.com/en/">4th Source - Proximity Matters</a></h1>
+		      <div id="site_url" class="http://www.4thsource.com/"></div>
 
 		      <!-- Primary Navigation -->
-			  <ul id="nav_full"> 
+			  <ul id="nav_full">
 		        <li><%= link_to "Home", root_path %></li>
 		        <% if signed_in? %>
-		        <li><%= link_to "Candidates", candidates_path %></li>
+		        <li><%= link_to "Candidates", users_path %></li>
 		        <li class="parent_here"><%=link_to_resume('My Profile', current_candidate.id, :action => 'resume')%></li>
 		        </li>
 		        <li><%= link_to "Sign out", signout_path, :method => :delete %></li>
 		        <% else %>
-		          <li><%= link_to "Sign in", signin_path %></li>		          
+		          <li><%= link_to "Sign in", signin_path %></li>
 			    <% end %>
 		      </ul>
 			  <!-- page -->
@@ -57,11 +57,11 @@
 		      <div class="clear"></div>
 		    </div> <!-- end container -->
 		    <div id="footer">
-		      <div id="footer_contents">	
-			    <div class="column two_thirds">			
+		      <div id="footer_contents">
+			    <div class="column two_thirds">
 			      <p class="copyright" style="text-align: center;">Copyright &copy; 2012 4th Source Inc. All rights reserved.</p>
 		        </div> <!-- end left_column -->
-		      </div> <!-- end footer_contents -->	
+		      </div> <!-- end footer_contents -->
 		    </div> <!-- end footer -->
 		  </body>
 		</html>

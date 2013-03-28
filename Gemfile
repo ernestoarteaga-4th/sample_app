@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.12'
+gem 'rails', '>= 3.2'
 gem 'will_paginate'
 gem 'taps'
 gem 'ferret'
@@ -11,9 +11,10 @@ gem "hoe", '= 2.8.0'
 gem "recaptcha", :require => "recaptcha/rails"
 gem "paperclip", "~> 3.0"
 #Added July/2012
-gem 'activerecord-sqlserver-adapter', '~> 3.0.0'
-gem 'sql_server'
-gem 'tiny_tds'
+#gem 'activerecord-sqlserver-adapter'
+#gem 'sql_server'
+#gem 'tiny_tds'
+gem 'mysql2'
 #Added August/2012
 gem 'rails3-jquery-autocomplete'
 
