@@ -27,10 +27,10 @@ class CreateCandidates < ActiveRecord::Migration
       t.integer :salary_expectancy
       t.integer :current_salary
       t.string :comments
-      #t.string :first_name
-      #t.string :middle_name
-      #t.string :first_last_name
-      #t.string :second_last_name
+      t.string :first_name
+      t.string :middle_name
+      t.string :first_last_name
+      t.string :second_last_name
       t.string :address1
       t.string :neighborhood
       t.string :city
@@ -40,11 +40,14 @@ class CreateCandidates < ActiveRecord::Migration
       t.string :cell_phone
       t.string :office_phone
       t.boolean :change_password_flag
-      t.string :avatar_file_name
+      t.string :encrypted_password
+      t.string :salt
+      #t.string :avatar_file_name
       t.datetime :created_at
       t.integer :resume_id
       t.datetime :updated_at
       t.integer :updated_by
+      t.has_attached_file :avatar
 
       t.timestamps
     end

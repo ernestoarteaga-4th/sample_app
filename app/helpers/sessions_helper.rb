@@ -24,6 +24,7 @@ module SessionsHelper
   def sign_in(candidate)
     cookies.permanent.signed[:remember_token] = [candidate.id, candidate.salt]
     current_candidate = candidate
+    logger.debug "\033[0;31mCANDIDATE ID: #{current_candidate.id}\033[0;37m"
   end
 
   def followed_in? (candidate)
@@ -50,7 +51,7 @@ module SessionsHelper
 
   private
     def candidate_from_remember_token
-      User.authenticate_with_salt(*remember_token)
+      Candidate.authenticate_with_salt(*remember_token)
     end
 
     def remember_token

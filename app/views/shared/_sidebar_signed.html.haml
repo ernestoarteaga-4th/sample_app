@@ -6,13 +6,13 @@
     - if signed_in?
       #sidebar-profile
         #sidebar-gravatar
-          =link_to("#") do 
+          =link_to("#") do
             = image_tag current_candidate.avatar.url(:thumb)
         #sidebar-candidate
           = current_candidate.first_name
           = current_candidate.first_last_name
           %br
-          = current_candidate.microposts.count 
+          -#= current_candidate.microposts.count
           microposts
       %br
     %br
@@ -21,7 +21,7 @@
         %i.iconContact-info
         = link_to 'Contact Information', edit_candidate_path(current_candidate), :class => "profile-sub_navigation"
       %li
-        %i.iconPhoto 
+        %i.iconPhoto
         = link_to_resume('Photo', current_candidate.id, :action => 'photo', :class => 'profile-sub_navigation')
       %li
         %i.iconResume

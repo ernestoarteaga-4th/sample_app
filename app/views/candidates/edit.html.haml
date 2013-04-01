@@ -1,34 +1,38 @@
-<!-- Content -->			
+<!-- Content -->
 #content
   %img(src="http://www.4thsource.com//public/images/subheader_services.jpg" alt="Sub Header" class="subheader")
   %ul#breadcrumbs
     %li
-      = link_to 'Home', root_path 
+      = link_to 'Home', root_path
       = raw '&raquo;'
     %li
-      = link_to_resume('My Profile', @user.id, :action => 'resume')
+      = link_to_resume('My Profile', @candidate.id, :action => 'resume')
       = raw '&raquo;'
     %li
       = raw '<em>'
       Edit
       = raw '</em>'
     .clear
-  %h3.page_headline 
+  %h3.page_headline
     %i.iconContact-infoHeadLine
     .h3-page-headline
       Contact Information
   .divider-headline
   %br
-  - form_for(@user) do |f|
+  = form_for(@candidate) do |f|
     = render 'shared/error_messages', :object => f.object
+    .field
+      = f.label "Image"
+      %br
+      = f.file_field :avatar_file_name
     .field
       = f.label :name
       %br
       = f.text_field :name
     .field
-      = f.label :last_name
+      = f.label :first_last_name
       %br
-      = f.text_field :last_name
+      = f.text_field :first_last_name
     .field
       = f.label :second_last_name
       %br
@@ -38,9 +42,9 @@
       %br
       = f.select :gender, gender_list
     .field
-      = f.label :birthday
+      = f.label :birthdate
       %br
-      = date_select(:user, :birthday, :start_year => 1950, :order => [:month, :day, :year])
+      = date_select(:candidate, :birthdate, :start_year => 1950, :order => [:month, :day, :year])
     %br
     .divider
     .field
@@ -89,6 +93,6 @@
       = f.text_field :office_phone
     .actions
       %br
-      = f.submit "Update" 
+      = f.submit "Update"
 <!-- Sidebar -->
 = render 'shared/sidebar_signed'

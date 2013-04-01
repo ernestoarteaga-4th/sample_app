@@ -1,33 +1,35 @@
-<!-- Content -->			
+<!-- Content -->
 #content
   %img(src='http://www.4thsource.com//public/images/subheader_services.jpg' class='subheader' alt='Sub Header')
   %ul#breadcrumbs
     %li
-      = link_to 'Home', root_path 
+      = link_to 'Home', root_path
       = raw '&raquo;'
     %li= link_to raw('<em>Login</em>'), signin_path
     .clear
   %h3.page_headline Login credentials
+  %strong
+    = debug current_candidate
   .divider
-  - form_for(:session, :url => sessions_path) do |f|  
-    - flash.each do |key, value| 
+  = form_for(:session, :url => sessions_path) do |f|
+    - flash.each do |key, value|
       .flash{:class => key}= value
     .field
       = f.label :email
       %br
-      = f.text_field :email 
+      = f.text_field :email
     .field
       = f.label :password
-      %br 
+      %br
       = f.password_field :password
     .actions
-      = f.submit "Sign in"   
-  %p 
+      = f.submit "Sign in"
+  %p
     New candidate?
     = link_to "Register now!", signup_path
-  %p 
-    Forgot your email or password? 
+  %p
+    Forgot your email or password?
     = link_to "Forgot password", :controller => "email", :action => "remind"
-  .clear	
+  .clear
 <!-- Sidebar -->
 = render 'shared/sidebar'
