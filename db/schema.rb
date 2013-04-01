@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(:version => 20130330044752) do
     t.string   "degree"
     t.string   "university"
     t.integer  "graduation_year"
+    t.string   "certifications"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
   end
