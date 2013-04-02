@@ -1,13 +1,13 @@
 class Education < ActiveRecord::Base
-  attr_accessible :name,
-                  :start_date,
-                  :end_date,
-                  :degree_level
+  attr_accessible :university,
+                  :degree,
+                  :graduation_year,
+                  :certifications
 
-  belongs_to :resume
+  belongs_to :candidate
   
-  validates :name,         :presence => true
-  validates :start_date,   :presence => true
-  validates :end_date,     :presence => true
-  validates :degree_level, :presence => true
+  validates :university,         :presence => true
+  validates :degree,   :presence => true
+  validates :graduation_year,     :presence => true
+  validates :certifications, :presence => true
 end

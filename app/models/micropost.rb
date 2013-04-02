@@ -1,3 +1,4 @@
+require 'ferret'
 require 'acts_as_ferret'
 
 class Micropost < ActiveRecord::Base

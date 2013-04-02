@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130328183527) do
+ActiveRecord::Schema.define(:version => 20130330044752) do
+
+  create_table "candidate_contact_sources", :force => true do |t|
+    t.integer  "candidate_id"
+    t.string   "sources"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
 
   create_table "candidates", :force => true do |t|
     t.integer  "status_id"
@@ -53,14 +60,29 @@ ActiveRecord::Schema.define(:version => 20130328183527) do
     t.integer  "updated_by"
   end
 
+  create_table "candidates_interviews", :force => true do |t|
+    t.integer  "candidate_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "candidates_states", :force => true do |t|
+    t.integer  "candidate_id"
+    t.string   "description"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
   create_table "educations", :force => true do |t|
-    t.integer  "resume_id"
+    t.integer  "candidate_id"
     t.string   "name"
     t.date     "start_date"
     t.date     "end_date"
-    t.string   "degree_level"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.string   "degree"
+    t.string   "university"
+    t.integer  "graduation_year"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "experience_details", :force => true do |t|
@@ -77,6 +99,13 @@ ActiveRecord::Schema.define(:version => 20130328183527) do
     t.date     "start_date"
     t.date     "end_date"
     t.string   "description"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "expertise_levels", :force => true do |t|
+    t.integer  "candidate_id"
+    t.string   "name"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
@@ -123,9 +152,9 @@ ActiveRecord::Schema.define(:version => 20130328183527) do
   end
 
   create_table "resumes", :force => true do |t|
-    t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "candidate_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "skills", :force => true do |t|

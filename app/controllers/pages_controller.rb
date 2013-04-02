@@ -2,12 +2,12 @@ class PagesController < ApplicationController
   def home
     @title = "Home"
     @micropost = Micropost.new if signed_in?
-    @error = current_candidate.errors if signed_in?
-    @page_results = current_candidate.feed.paginate(:page => params[:page]) if signed_in?
-    @candidate = current_candidate
-    if @page_results != nil
-      flash.now[:success] =  "About #{@page_results.count} results."
-    end
+   # @error = current_candidate.errors if signed_in?
+   # @page_results = current_candidate.feed.paginate(:page => params[:page]) if signed_in?
+   # @candidate = current_candidate
+   # if @page_results != nil
+   #   flash.now[:success] =  "About #{@page_results.count} results."
+   # end
   end
 
   def contact
