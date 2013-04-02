@@ -2,7 +2,7 @@ class CreateResumes < ActiveRecord::Migration
   def self.up
     create_table :resumes do |t|
       t.integer  :candidate_id
-      t.string     :summary
+      t.string     :updated_by
       t.timestamps
     end
   end

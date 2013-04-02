@@ -43,7 +43,7 @@
           - @candidate.resume.resume_details.each do |summary|
             %li= summary.summary
       %br
-      - if @candidate.resume.educations.empty?
+      - if @candidate.resume.education.empty?
         %h4 Please specify at least one education in your resume.
         .divider
       - else

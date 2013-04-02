@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130401044854) do
+ActiveRecord::Schema.define(:version => 20130402051912) do
 
   create_table "candidate_contact_sources", :force => true do |t|
     t.integer  "candidate_id"
@@ -71,8 +71,12 @@ ActiveRecord::Schema.define(:version => 20130401044854) do
 
   create_table "candidates_interviews", :force => true do |t|
     t.integer  "candidate_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.string   "result"
+    t.integer  "interviewer_id"
+    t.integer  "interview_type_id"
+    t.string   "comments"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "candidates_states", :force => true do |t|
@@ -82,7 +86,16 @@ ActiveRecord::Schema.define(:version => 20130401044854) do
     t.datetime "updated_at",   :null => false
   end
 
-  create_table "educations", :force => true do |t|
+  create_table "certifications", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.boolean  "approved_flag"
+    t.string   "approved_by"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "education", :force => true do |t|
     t.integer  "candidate_id"
     t.string   "name"
     t.date     "start_date"
@@ -93,6 +106,15 @@ ActiveRecord::Schema.define(:version => 20130401044854) do
     t.string   "certifications"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+  end
+
+  create_table "education_degrees", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.boolean  "approved_flag"
+    t.string   "approved_by"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "experience_details", :force => true do |t|
@@ -130,14 +152,6 @@ ActiveRecord::Schema.define(:version => 20130401044854) do
   add_index "followings", ["followed_id"], :name => "index_followings_on_followed_id"
   add_index "followings", ["follower_id"], :name => "index_followings_on_follower_id"
 
-  create_table "idioms", :force => true do |t|
-    t.string   "name"
-    t.string   "level"
-    t.integer  "resume_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "interviewers", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
@@ -148,6 +162,23 @@ ActiveRecord::Schema.define(:version => 20130401044854) do
     t.string   "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "language_levels", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.boolean  "approved_flag"
+    t.string   "approved_by"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "languages", :force => true do |t|
+    t.string   "name"
+    t.string   "level"
+    t.integer  "resume_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "microposts", :force => true do |t|
@@ -175,6 +206,7 @@ ActiveRecord::Schema.define(:version => 20130401044854) do
 
   create_table "resumes", :force => true do |t|
     t.integer  "candidate_id"
+    t.string   "updated_by"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end

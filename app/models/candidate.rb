@@ -62,7 +62,8 @@ class Candidate < ActiveRecord::Base
   has_many        :following,          :through => :followings, 
                                        :source => :followed
   has_one         :resume,             :dependent => :destroy 
-  
+
+
   has_attached_file :avatar, :styles => { :medium => "300x300#", :thumb => "40x40#" },
                              :default_url => "/images/4thsource_avatar.jpg"
   
