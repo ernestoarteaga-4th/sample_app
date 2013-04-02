@@ -152,23 +152,6 @@ ActiveRecord::Schema.define(:version => 20130402051912) do
   add_index "followings", ["followed_id"], :name => "index_followings_on_followed_id"
   add_index "followings", ["follower_id"], :name => "index_followings_on_follower_id"
 
-  create_table "idiom_levels", :force => true do |t|
-    t.string   "name"
-    t.string   "description"
-    t.boolean  "approved_flag"
-    t.string   "approved_by"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-  end
-
-  create_table "idioms", :force => true do |t|
-    t.string   "name"
-    t.string   "level"
-    t.integer  "resume_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "interviewers", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
@@ -179,6 +162,23 @@ ActiveRecord::Schema.define(:version => 20130402051912) do
     t.string   "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "language_levels", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.boolean  "approved_flag"
+    t.string   "approved_by"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "languages", :force => true do |t|
+    t.string   "name"
+    t.string   "level"
+    t.integer  "resume_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "microposts", :force => true do |t|
@@ -206,6 +206,7 @@ ActiveRecord::Schema.define(:version => 20130402051912) do
 
   create_table "resumes", :force => true do |t|
     t.integer  "candidate_id"
+    t.string   "updated_by"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
