@@ -26,9 +26,13 @@
       %br
       = f.file_field :avatar_file_name
     .field
-      = f.label :name
+      = f.label :first_name
       %br
-      = f.text_field :name
+      = f.text_field :first_name
+    .field
+      = f.label :middle_name
+      %br
+      = f.text_field :middle_name
     .field
       = f.label :first_last_name
       %br
@@ -91,8 +95,34 @@
       = f.label :office_phone
       %br
       = f.text_field :office_phone
-    .actions
+    %br
+    .divider
+    .field
+      = f.label :has_visa
       %br
+      = f.check_box :has_visa
+    .field
+      = f.label :visa_expiration_year
+      %br
+      = f.text_field :visa_expiration_year
+    .field
+      = f.label :has_passport
+      %br
+      = f.check_box :has_passport
+    .field
+      = f.label :passport_expiration_year
+      %br
+      = f.text_field :passport_expiration_year
+    .field
+      = f.label :is_willing_to_travel
+      %br
+      = f.check_box :is_willing_to_travel
+    .field
+      = f.label :is_willing_to_relocate
+      %br
+      = f.check_box :is_willing_to_relocate
+    .actions
+      %br      
       = f.submit "Update"
 <!-- Sidebar -->
 = render 'shared/sidebar_signed'
