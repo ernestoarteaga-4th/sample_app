@@ -71,12 +71,8 @@ ActiveRecord::Schema.define(:version => 20130401044854) do
 
   create_table "candidates_interviews", :force => true do |t|
     t.integer  "candidate_id"
-    t.string   "result"
-    t.integer  "interviewer_id"
-    t.integer  "interview_type_id"
-    t.string   "comments"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "candidates_states", :force => true do |t|
@@ -86,7 +82,7 @@ ActiveRecord::Schema.define(:version => 20130401044854) do
     t.datetime "updated_at",   :null => false
   end
 
-  create_table "education", :force => true do |t|
+  create_table "educations", :force => true do |t|
     t.integer  "candidate_id"
     t.string   "name"
     t.date     "start_date"

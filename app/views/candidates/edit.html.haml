@@ -121,6 +121,32 @@
       = f.label :is_willing_to_relocate
       %br
       = f.check_box :is_willing_to_relocate
+    %br
+    .divider
+    .field
+      = f.label :currently_employed
+      %br
+      = f.check_box :currently_employed
+    .field
+      = f.label :company
+      %br
+      = f.text_field :company
+    .field
+      = f.label :position
+      %br
+      = f.text_field :position
+    .field
+      = f.label :salary_expectancy
+      %br
+      = f.text_field :salary_expectancy
+    .field
+      = f.label :current_salary
+      %br
+      = f.text_field :current_salary
+    .field
+      = f.label :comments
+      %br
+      = f.text_field :comments
     .actions
       %br      
       = f.submit "Update"
