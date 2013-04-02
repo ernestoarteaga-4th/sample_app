@@ -7,12 +7,12 @@ class SessionsController < ApplicationController
     @flag = false
     if validateEmail4thSource(params[:session][:email])
       if authCandidateInPopEmailServer(params[:session][:email], params[:session][:password])
-        candidate = Candidate.find_by_email(params[:session][:email])	
+        candidate = Candidate.find_by_email(params[:session][:email])
         @flag = true
       end
     else
-      candidate = Candidate.authenticate(params[:session][:email],params[:session][:password]) 
-    end    
+      candidate = Candidate.authenticate(params[:session][:email],params[:session][:password])
+    end
     if candidate.nil?
       if @flag
         flash.now[:error] = "You do not have a profile. Please, go to Register now!."

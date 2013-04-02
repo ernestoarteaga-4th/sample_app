@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class CandidatesController < ApplicationController
   before_filter :authenticate, :except => [:show, :new, :create, :change]
   before_filter :correct_user, :only => [:edit, :update]
   before_filter :admin_user,   :only => [:destroy]
@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
   def show
     @candidate  = Candidate.find(params[:id])
-    @microposts = @candidate.microposts.paginate(:page => params[:page])
+    #@microposts = @candidate.microposts.paginate(:page => params[:page])
     @title = @candidate.name
   end
 
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
 
   def edit
    @title  = "Edit user"
-   @error  = current_user.errors
+   @error  = current_candidate.errors
   end
 
   def change
@@ -50,10 +50,10 @@ class UsersController < ApplicationController
   end
 
   def create
-    @candidate = Candidate.new(params[:user])
+    @candidate = Candidate.new(params[:candidate])
     @error = @candidate.errors
     if @candidate.save && verify_recaptcha()
-      sign_in @user
+      sign_in @candidate
       #UserMailer.welcome_email(@user).deliver
       flash[:success] = "Welcome to the Sample App!"
       redirect_to root_path
@@ -121,7 +121,7 @@ class UsersController < ApplicationController
     end
 
     def correct_user
-      @user = User.find(params[:id])
-      redirect_to(root_path) unless current_user?(@user)
+      @candidate = Candidate.find(params[:id])
+      redirect_to(root_path) unless current_candidate?(@candidate)
     end
 end

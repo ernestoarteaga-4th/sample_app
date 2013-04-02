@@ -27,7 +27,7 @@ SampleApp::Application.routes.draw do
   resources :followings, :only => [:create, :destroy]
   resources :resume
 
-  match '/signup',  :to => 'users#new'
+  match '/signup',  :to => 'candidates#new'
   match '/signin',  :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
 

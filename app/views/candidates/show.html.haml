@@ -1,4 +1,4 @@
-<!-- Content -->			
+<!-- Content -->
 #content
   %img(src="http://www.4thsource.com//public/images/subheader_services.jpg" alt="Sub Header" class="subheader")
   %ul#breadcrumbs
@@ -7,20 +7,20 @@
       = raw '&raquo;'
     %li
       = raw '<em>'
-      = @user.name
+      = @candidate.name
       = raw '</em>'
     .clear
   %h3.page_headline
-    = gravatar_for @user, :size => 30
-    = @user.name
+    = gravatar_for @candidate, :size => 30
+    = @candidate.name
   .divider
   #content-show
     %br
     #flash
       - flash.each do |key, value|
         .flash{:class => key}= value
-    - if followed_in? @user  
-      - if is_follow? @user
+    - if followed_in? @candidate
+      - if is_follow? @candidate
         = render 'unfollow'
       - else
         = render 'follow'
@@ -28,9 +28,9 @@
       %h2.page_headline
         My current posts:
   %br
-  - unless @user.microposts.empty?
+  -# unless @candidate.microposts.empty?
     %table{:class => "microposts"}
-      = render @microposts 
+      = render @microposts
     #feed-pagination
       = will_paginate @microposts
   .clear
@@ -40,25 +40,25 @@
   #if_subnav.divider
   %strong
     Name
-  = @user.name
+  = @candidate.name
   %br
   %strong
     URL
-  = link_to user_path(@user), @user
+  = link_to candidates_path(@candidate), @candidate
   %br
   %strong
     Microposts
-  = @user.microposts.count
+  -#= @candidate.microposts.count
   %br
   %br
   %br
   %strong
     Following
-  = link_to @user.following.count, following_user_path(@user)
+  -#= link_to @candidate.following.count, following_user_path(@candidate)
   %br
   %strong
     Followers
-  = link_to @user.followers.count, followers_user_path(@user)
+  -#= link_to @candidate.followers.count, followers_user_path(@candidate)
   %br
   %br
   %ul#nav_sub.sub_navigation

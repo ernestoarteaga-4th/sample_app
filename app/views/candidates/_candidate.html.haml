@@ -1,0 +1,8 @@
+#left
+  = link_to candidate.id, :controller => "candidates", :action => "show", :id => candidate.id
+#middle
+  = gravatar_for candidate, :size => 30
+  = candidate.name
+#right
+  -# if current_candidate.admin?
+    = link_to "delete", candidate, :method => :delete, :confirm => "You sure?", :title => "Delete #{candidate.name}"
