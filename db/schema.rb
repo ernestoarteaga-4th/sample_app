@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130330044752) do
+ActiveRecord::Schema.define(:version => 20130401044854) do
 
   create_table "candidate_contact_sources", :force => true do |t|
     t.integer  "candidate_id"
@@ -71,8 +71,12 @@ ActiveRecord::Schema.define(:version => 20130330044752) do
 
   create_table "candidates_interviews", :force => true do |t|
     t.integer  "candidate_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.string   "result"
+    t.integer  "interviewer_id"
+    t.integer  "interview_type_id"
+    t.string   "comments"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "candidates_states", :force => true do |t|
@@ -82,7 +86,7 @@ ActiveRecord::Schema.define(:version => 20130330044752) do
     t.datetime "updated_at",   :null => false
   end
 
-  create_table "educations", :force => true do |t|
+  create_table "education", :force => true do |t|
     t.integer  "candidate_id"
     t.string   "name"
     t.date     "start_date"
@@ -136,6 +140,18 @@ ActiveRecord::Schema.define(:version => 20130330044752) do
     t.integer  "resume_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "interviewers", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "interviews_types", :force => true do |t|
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "microposts", :force => true do |t|
