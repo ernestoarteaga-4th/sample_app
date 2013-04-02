@@ -67,9 +67,9 @@ class CandidatesController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
-    @error = @user.errors
-    if @user.update_attributes(params[:user])
+    @candidate = Candidate.find(params[:id])
+    @error = @candidate.errors
+    if @candidate.update_attributes(params[:candidate])
       flash[:success] = "Profile updated."
       redirect_to root_path
     else

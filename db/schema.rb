@@ -44,6 +44,10 @@ ActiveRecord::Schema.define(:version => 20130330044752) do
     t.integer  "salary_expectancy"
     t.integer  "current_salary"
     t.string   "comments"
+    t.string   "first_name"
+    t.string   "middle_name"
+    t.string   "first_last_name"
+    t.string   "second_last_name"
     t.string   "address1"
     t.string   "neighborhood"
     t.string   "city"
@@ -53,11 +57,16 @@ ActiveRecord::Schema.define(:version => 20130330044752) do
     t.string   "cell_phone"
     t.string   "office_phone"
     t.boolean  "change_password_flag"
-    t.string   "avatar_file_name"
+    t.string   "encrypted_password"
+    t.string   "salt"
     t.datetime "created_at",               :null => false
     t.integer  "resume_id"
     t.datetime "updated_at",               :null => false
     t.integer  "updated_by"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   create_table "candidates_interviews", :force => true do |t|
