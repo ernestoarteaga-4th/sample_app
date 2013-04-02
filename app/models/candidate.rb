@@ -73,33 +73,36 @@ class Candidate < ActiveRecord::Base
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   phone_regex = /\A[0-9]{10}\Z/
 
-  validates :name,            :presence => true,
+  #validates :name,            :presence => true,
+  #                            :length   => { :maximum => 50 }
+  validates :first_name,       :presence => true,
                               :length   => { :maximum => 50 }
-  validates :last_name,       :presence => true,
+
+  validates :first_last_name,       :presence => true,
                               :length   => { :maximum => 50 }
-  validates :second_last_name,:presence => true,
-                              :length   => { :maximum => 50 }
+  #validates :second_last_name,:presence => true,
+  #                            :length   => { :maximum => 50 }
   validates :email,           :presence => true,
                               :format   => { :with => email_regex },
                               :uniqueness => { :case_sensitive => false }
   validates :password,        :confirmation => true
-  validates :address,         :presence => true
-  validates :city,            :presence => true
+  #validates :address,         :presence => true
+  #validates :city,            :presence => true
   
-  validates :gender,          :inclusion => { :in => %w(M F),
-                              :message => "is invalid" }
+  #validates :gender,          :inclusion => { :in => %w(M F),
+  #                            :message => "is invalid" }
       
-  validates :zip_code,        :length => { :minimum => 5 },
-                              :numericality => { :only_integer => true }
-  validates :home_phone,      :format => { :with => phone_regex },
-                              :allow_blank => true,
-                              :allow_nil => true
-  validates :cell_phone,      :format => { :with => phone_regex },
-                              :allow_blank => true,
-                              :allow_nil => true
-  validates :office_phone,    :format => { :with => phone_regex },
-                              :allow_blank => true,
-                              :allow_nil => true
+  #validates :zip_code,        :length => { :minimum => 5 },
+  #                            :numericality => { :only_integer => true }
+  #validates :home_phone,      :format => { :with => phone_regex },
+  #                            :allow_blank => true,
+  #                            :allow_nil => true
+  #validates :cell_phone,      :format => { :with => phone_regex },
+  #                            :allow_blank => true,
+  #                            :allow_nil => true
+  #validates :office_phone,    :format => { :with => phone_regex },
+  #                            :allow_blank => true,
+  #                            :allow_nil => true
 
   before_save :encrypt_password
 
