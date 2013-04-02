@@ -1,12 +1,12 @@
 class CreateEducation < ActiveRecord::Migration
   def up
-   create_table :educations do |t|
+   create_table :education do |t|
       t.integer :candidate_id
       t.string :name
       t.date :start_date
       t.date :end_date
       t.string :degree
-      t.string:university
+      t.string :university
       t.integer :graduation_year
       t.string :certifications
       t.timestamps
@@ -15,6 +15,6 @@ class CreateEducation < ActiveRecord::Migration
   end
 
   def down
-    drop_table :educations
+    drop_table :education
   end
 end
