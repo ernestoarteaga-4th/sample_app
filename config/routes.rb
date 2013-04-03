@@ -86,8 +86,9 @@ SampleApp::Application.routes.draw do
   match "/project/:project_id/project-roles/:project_role_id/responsibility/add" => 'project_responsibility_tag#add'
   # Education
   match "/candidates/:id/resume/education" => 'resume_education#index'
-  match "/candidates/:id/resume/education/new" => 'resume_education#new'
   match "/education/destroy" => 'resume_education#destroy'
+  match "/education/:id" => 'education#index', :as => :education
+  match "/candidates/:id/resume/education/new" => 'resume_education#new', :as => :education_index
   # Certification
   match "/candidates/:id/resume/certification" => 'resume_certification#index'
   match "/candidates/:id/resume/certification/new" => 'resume_certification#new'

@@ -1,0 +1,35 @@
+- @new_education = Education.new
+%h3.page_headline
+  New Register
+= form_for(@new_education) do |f|
+  = render 'shared/error_messages', :object => f.object
+  .field
+    = f.label :name
+    %br
+    = f.text_field :name
+  .field
+    = f.label :university
+    %br
+    = f.text_field :university
+  .field
+    = f.label :degree
+    %br
+    = f.text_field :degree
+  .field
+    = f.label :start_date
+    %br
+    = f.text_field :start_date
+  .field
+    = f.label :end_date
+    %br
+    = f.text_field :end_date
+  .field
+    = f.label :graduation_year
+    %br
+    = f.text_field :graduation_year
+  .field
+    = f.label :certifications
+    %br
+    = f.text_field :certifications
+  .actions
+    = f.submit "Sign up"

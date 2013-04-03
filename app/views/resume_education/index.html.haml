@@ -1,0 +1,58 @@
+<!-- Content -->
+#content
+  %img(src="http://www.4thsource.com//public/images/subheader_services.jpg" alt="Sub Header" class="subheader")
+  %ul#breadcrumbs
+    %li
+      = link_to 'Home', root_path
+      = raw '&raquo;'
+    %li
+      = link_to_resume('My Profile', current_candidate.id, :action => 'resume')
+      = raw '&raquo;'
+    %li
+      = raw '<em>'
+      Education
+      = raw '</em>'
+    .clear
+  %h3.page_headline
+    %i.iconEducation
+    .h3-page-headline
+      Education
+  .divider-headline
+  %br
+  -@education.each do |e|
+    = form_for(e) do |f|
+      %h3.page_headline
+        = e.name
+      .field
+        = f.label :name
+        %br
+        = f.text_field :name
+      .field
+        = f.label :university
+        %br
+        = f.text_field :university
+      .field
+        = f.label :degree
+        %br
+        = f.text_field :degree
+      .field
+        = f.label :start_date
+        %br
+        = f.text_field :start_date
+      .field
+        = f.label :end_date
+        %br
+        = f.text_field :end_date
+      .field
+        = f.label :graduation_year
+        %br
+        = f.text_field :graduation_year
+      .field
+        = f.label :certifications
+        %br
+        = f.text_field :certifications
+    %br
+    %br
+  = render 'resume_education/new'
+<!-- Sidebar -->
+= render 'shared/sidebar_signed'
