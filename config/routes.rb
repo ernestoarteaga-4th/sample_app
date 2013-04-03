@@ -12,6 +12,7 @@ SampleApp::Application.routes.draw do
     collection do
       get 'search'
     end
+
   end
 
   resources :pages do
@@ -26,6 +27,12 @@ SampleApp::Application.routes.draw do
   resources :microposts, :only => [:create, :destroy]
   resources :followings, :only => [:create, :destroy]
   resources :resume
+  resources :resume_details do
+    collection do
+      get 'destro'
+      post 'destro'
+    end
+  end
 
   match '/signup',  :to => 'candidates#new'
   match '/signin',  :to => 'sessions#new'
@@ -44,7 +51,9 @@ SampleApp::Application.routes.draw do
   match "/candidates/:id/resume/experience/:experience_id/skills/new" => 'experiences#skill'
   match "/experiences/:id/destroy" => 'experiences#destroy'
   match "/candidates/:id/resume/experience/:experience_id/details/new" => 'experience_details#new'
-  match "/resume_details/:id/destroy" => 'resume_details#destroy'
+  #match "/resume_details/:id/destro" => 'resume_details#destro'
+  match "/resume_details/destro" => 'resume_details#destro'
+  #match "/resume_details/:id/destroy" => resume_details_destroy_path
 #  match "/candidates/:id/resume/education" => 'resume#education'
 #  match "/education/destroy" => 'educations#destroy'
   # Projects

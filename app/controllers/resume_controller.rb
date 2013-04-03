@@ -9,7 +9,14 @@ class ResumeController < ApplicationController
   
   def summary
     if request.post?
+
       @candidate = Candidate.find(params[:id])
+      #resume_details = ResumeDetail.new
+      #details = params[:resume_detail]
+      #logger.debug "********* #{details} ************"
+      #resume_details.summary = details[:summary]
+      #resume_details.resume_id = @candidate.resume.id
+      #if resume_details.save
       if @candidate.resume.resume_details.new(params[:resume_details]).save
         flash.now[:success] = "Summary was saved successfully."
       else
@@ -21,6 +28,7 @@ class ResumeController < ApplicationController
         @resume = @candidate.build_resume
         @resume.save
       end
+      #@resume_details = ResumeDetail.new
     end
   end
   
