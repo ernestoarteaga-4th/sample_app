@@ -6,7 +6,7 @@ SampleApp::Application.routes.draw do
 
   resources :candidates do
     member do
-      get :following, :followers, :change
+      get :following, :followers, :change, :index
       post :change
     end
     collection do
