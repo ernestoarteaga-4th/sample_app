@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130402051912) do
+ActiveRecord::Schema.define(:version => 20130403162249) do
 
   create_table "candidate_contact_sources", :force => true do |t|
     t.integer  "candidate_id"
@@ -108,16 +108,6 @@ ActiveRecord::Schema.define(:version => 20130402051912) do
     t.datetime "updated_at",      :null => false
   end
 
-<<<<<<< HEAD
-  create_table "educations", :force => true do |t|
-    t.integer  "resume_id"
-    t.string   "name"
-    t.date     "start_date"
-    t.date     "end_date"
-    t.string   "degree_level"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-=======
   create_table "education_degrees", :force => true do |t|
     t.string   "name"
     t.string   "description"
@@ -125,7 +115,6 @@ ActiveRecord::Schema.define(:version => 20130402051912) do
     t.string   "approved_by"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
->>>>>>> cf699fc5c7019df72ab178bb89d68cd6860808fe
   end
 
   create_table "experience_details", :force => true do |t|
@@ -210,6 +199,17 @@ ActiveRecord::Schema.define(:version => 20130402051912) do
 
   add_index "microposts", ["user_id"], :name => "index_microposts_on_user_id"
 
+  create_table "projects", :force => true do |t|
+    t.integer  "resume_id"
+    t.string   "company_name"
+    t.string   "job_position"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.string   "description"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
   create_table "resume_details", :force => true do |t|
     t.string   "summary"
     t.integer  "resume_id"
@@ -225,16 +225,10 @@ ActiveRecord::Schema.define(:version => 20130402051912) do
   end
 
   create_table "resumes", :force => true do |t|
-<<<<<<< HEAD
-    t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-=======
     t.integer  "candidate_id"
     t.string   "updated_by"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
->>>>>>> cf699fc5c7019df72ab178bb89d68cd6860808fe
   end
 
   create_table "skills", :force => true do |t|

@@ -24,13 +24,13 @@ class ResumeController < ApplicationController
     end
   end
   
-  def experience
+  def project
     @candidate = Candidate.find(params[:id])
     if @candidate.resume.nil?
       @resume = @candidate.build_resume
       @resume.save
     end
-    @experience_items = @candidate.resume.experiences
+    @project_items = @candidate.resume.projects
   end
    
   def photo

@@ -21,7 +21,7 @@ SampleApp::Application.routes.draw do
   end
 
   resources :candidates
-
+  
   resources :sessions,   :only => [:new, :create, :destroy]
   resources :microposts, :only => [:create, :destroy]
   resources :followings, :only => [:create, :destroy]
