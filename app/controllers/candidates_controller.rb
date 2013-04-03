@@ -71,7 +71,8 @@ class CandidatesController < ApplicationController
     @error = @candidate.errors
     if @candidate.update_attributes(params[:candidate])
       flash[:success] = "Profile updated."
-      redirect_to root_path
+      #redirect_to root_path
+      render :edit
     else
       @title = "Edit user"
       render :edit
