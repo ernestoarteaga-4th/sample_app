@@ -1,4 +1,4 @@
-<!-- Content -->			
+<!-- Content -->		
 #content
   %img(src='http://www.4thsource.com//public/images/subheader_services.jpg' class='subheader' alt='Sub Header')
   %ul#breadcrumbs
@@ -30,7 +30,8 @@
           .experience_details_left
             %li= detail.summary
           .experience_details_right
-            = link_to "Delete", :controller => "resume_details", :action => "destroy", :id => detail.id
+          = link_to 'Delete', resume_details_destro_path(:id => detail.id)
+            
   - else
     %br
     %br
@@ -46,7 +47,7 @@
       %h4
         Please enter the following information
       .divider-headline
-      - form_for(:resume_details, @resume_details) do |f|     
+      = form_for(:resume_details, :controller => "resume", :action => "summary") do |f|     
         .field
           = f.label "Summary"
           %br
@@ -55,6 +56,6 @@
         .actions
           %br
           = f.submit "Sign in"
-  .clear	
+  .clear  
 <!-- Sidebar -->
 = render 'shared/sidebar_signed'
