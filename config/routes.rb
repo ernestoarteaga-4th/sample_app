@@ -29,7 +29,7 @@ SampleApp::Application.routes.draw do
   resources :microposts, :only => [:create, :destroy]
   resources :followings, :only => [:create, :destroy]
   resources :resume
-  resources :resume_details do
+  resources :candidate_prof_summaries do
     collection do
       get 'destro'
       post 'destro'
@@ -61,7 +61,7 @@ SampleApp::Application.routes.draw do
   match "/experiences/:id/destroy" => 'experiences#destroy'
   match "/candidates/:id/resume/experience/:experience_id/details/new" => 'experience_details#new'
   #match "/resume_details/:id/destro" => 'resume_details#destro'
-  match "/resume_details/destro" => 'resume_details#destro'
+  match "/candidate_prof_summaries/destro" => 'candidate_prof_summaries#destro'
   #match "/resume_details/:id/destroy" => resume_details_destroy_path
 #  match "/candidates/:id/resume/education" => 'resume#education'
 #  match "/education/destroy" => 'educations#destroy'
