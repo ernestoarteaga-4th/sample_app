@@ -21,7 +21,9 @@ SampleApp::Application.routes.draw do
     end
   end
 
-  resources :candidates
+  resources :candidates do
+    resources :candidate_certifications
+  end
   
   resources :sessions,   :only => [:new, :create, :destroy]
   resources :microposts, :only => [:create, :destroy]
@@ -89,9 +91,10 @@ SampleApp::Application.routes.draw do
   match "/candidates/:id/resume/education/new" => 'resume_education#new'
   match "/education/destroy" => 'resume_education#destroy'
   # Certification
-  match "/candidates/:id/resume/certification" => 'resume_certification#index'
-  match "/candidates/:id/resume/certification/new" => 'resume_certification#new'
-  match "/certification/destroy" => 'resume_certification#destroy'
+  #match "/candidates/:id/resume/certification" => 'candidate_certification#index'
+  #match "/candidates/:id/resume/certification/new" => 'candidate_certification#new'
+  match "/candidates/:id/certification/destroy" => 'candidate_certifications#destroy'
+  #match "/resume_details/destro" => 'resume_details#destro'
   # Trainings
   match "/candidates/:id/resume/training" => 'resume_training#index'
   match "/candidates/:id/resume/training/new" => 'resume_training#new'

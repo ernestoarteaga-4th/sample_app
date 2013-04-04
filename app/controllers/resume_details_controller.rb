@@ -1,5 +1,5 @@
 class ResumeDetailsController < ApplicationController 
-  before_filter :authenticate
+  before_filter :authenticate, only: [:destroy]
 
   def destro
     ResumeDetail.find(params[:id]).destroy

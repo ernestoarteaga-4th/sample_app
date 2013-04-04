@@ -30,7 +30,7 @@
     %br
     %br
     .experience_left
-      - if @candidate.resume.resume_details.empty?
+      - if @candidate.candidate_prof_summary.empty?
         %h4 Please write a summary in your resume.
         .divider
         %br
@@ -40,7 +40,7 @@
           Professional Summary
         .divider-headline
         %ul
-          - @candidate.resume.resume_details.each do |summary|
+          - @candidate.candidate_prof_summary.each do |summary|
             %li= summary.summary
       %br
       - if @candidate.resume.education.empty?
@@ -64,37 +64,37 @@
               #experience-description
                 = education.degree_level
             %br
-      - if @candidate.resume.experiences.count > 0
+      - if @candidate.resume.projects.count > 0
         #list
-          - @candidate.resume.experiences.each do |experience|
+          - @candidate.resume.projects.each do |projects|
             %br
             #row
               .experience_wrapper
                 .experience_left
                   %h6
-                    = experience.company_name
+                    = projects.company_name
                   %h6
-                    = experience.job_position
+                    = projects.job_position
                   #experience-date
-                    = Date::MONTHNAMES[experience.start_date.month]
-                    = experience.start_date.year
+                    = Date::MONTHNAMES[projects.start_date.month]
+                    = projects.start_date.year
                     = raw(' - ')
-                    = Date::MONTHNAMES[experience.end_date.month]
-                    = experience.end_date.year
+                    = Date::MONTHNAMES[projects.end_date.month]
+                    = projects.end_date.year
                     %br
                   %br
                   #experience-description
-                    = experience.description
+                    = projects.description
                   %br
                   %ul
-                    - experience.experience_details.each do |detail|
+                    - projects.experience_details.each do |detail|
                       %li 
                         = detail.content
                   %br
                   %h6
                     Tools used
                   %ul
-                    - experience.skills.each do |skill|
+                    - projects.skills.each do |skill|
                       %li
                         = skill.name
                         = skill.version
@@ -103,7 +103,7 @@
       - else
         %br
         %br
-        %h4 Please create at least one labor experience.
+        %h4 Please create at least one labor project.
         .divider
       %br
       %br
