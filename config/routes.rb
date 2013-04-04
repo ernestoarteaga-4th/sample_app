@@ -36,6 +36,13 @@ SampleApp::Application.routes.draw do
     end
   end
 
+  resources :candidate_certifications do
+    collection do
+      get 'destro'
+      post 'destro'
+    end
+  end
+
   match '/signup',  :to => 'candidates#new'
   match '/signin',  :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
@@ -93,7 +100,7 @@ SampleApp::Application.routes.draw do
   # Certification
   #match "/candidates/:id/resume/certification" => 'candidate_certification#index'
   #match "/candidates/:id/resume/certification/new" => 'candidate_certification#new'
-  match "/candidates/:id/certification/destroy" => 'candidate_certifications#destroy'
+  match "/candidate_certifications/destro" => 'candidate_certifications#destro'
   #match "/resume_details/destro" => 'resume_details#destro'
   # Trainings
   match "/candidates/:id/resume/training" => 'resume_training#index'

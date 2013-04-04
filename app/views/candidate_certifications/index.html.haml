@@ -41,7 +41,7 @@
                   
                 %br
               .experience_details_right
-                = link_to "Delete", :controller => "candidate_certifications", :action => "destroy", :id=> candidate_certification.certification.id
+                = link_to "Delete", candidate_certifications_destro_path(:id=> candidate_certification.certification.id)
     - else
       %h4 Please create at least one certification in your resume.
       .divider

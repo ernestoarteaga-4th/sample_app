@@ -124,6 +124,20 @@
         %h4 Please create at least one language in your resume.
         .divider 
       %br
+      %br
+      - if @candidate.candidate_certifications.count > 0
+        %h4
+          List of certifications
+        .divider-headline
+        %ul
+          - @candidate.candidate_certifications.each do |certification|
+            %li
+              = certification.certification.name
+        %br
+        %br
+      - else
+        %br
+        %h4 Please create at least one certification in your resume.
   .clear	
 <!-- Sidebar -->
 = render 'shared/sidebar_signed'

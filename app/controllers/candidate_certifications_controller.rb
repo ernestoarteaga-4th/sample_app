@@ -19,7 +19,7 @@ class CandidateCertificationsController < ApplicationController
     @title = "New Certification"
   end
 
-  def destroy
+  def destro
 	CandidateCertification.find(params[:id]).destroy
     redirect_to request.referer
   end
