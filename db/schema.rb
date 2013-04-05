@@ -69,6 +69,18 @@ ActiveRecord::Schema.define(:version => 20130403162249) do
     t.datetime "avatar_updated_at"
   end
 
+  create_table "candidates_education", :force => true do |t|
+    t.integer  "educ_degrees_id"
+    t.integer  "candidate_id"
+    t.string   "title"
+    t.string   "degree"
+    t.datetime "date_in"
+    t.datetime "date_out"
+    t.string   "university"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
   create_table "candidates_interviews", :force => true do |t|
     t.integer  "candidate_id"
     t.string   "result"
@@ -95,17 +107,13 @@ ActiveRecord::Schema.define(:version => 20130403162249) do
     t.datetime "updated_at",    :null => false
   end
 
-  create_table "education", :force => true do |t|
-    t.integer  "candidate_id"
+  create_table "educ_degrees", :force => true do |t|
     t.string   "name"
-    t.date     "start_date"
-    t.date     "end_date"
-    t.string   "degree"
-    t.string   "university"
-    t.integer  "graduation_year"
-    t.string   "certifications"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.string   "description"
+    t.boolean  "approved_flag"
+    t.string   "approved_by"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "education_degrees", :force => true do |t|
