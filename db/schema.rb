@@ -167,6 +167,15 @@ ActiveRecord::Schema.define(:version => 20130404170140) do
   add_index "followings", ["followed_id"], :name => "index_followings_on_followed_id"
   add_index "followings", ["follower_id"], :name => "index_followings_on_follower_id"
 
+  create_table "idiom_levels", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.boolean  "approved_flag"
+    t.string   "approved_by"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
   create_table "interviewers", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
@@ -228,6 +237,15 @@ ActiveRecord::Schema.define(:version => 20130404170140) do
     t.string   "summary"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "resume_trainings", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "year"
+    t.integer  "resume_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "resumes", :force => true do |t|

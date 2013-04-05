@@ -1,13 +1,15 @@
-var $j = jQuery.noConflict()
+//= require jquery
+//= require jquery_ujs
+//= require_tree .
 
-$j(function() {
-  $j("#user_birthday").datepicker();
+$(function() {
+  $("#user_birthday").datepicker();
 });
 
-$j(function() {
-  $j("#experience_start_date").datepicker();
+$(function() {
+  $("#experience_start_date").datepicker();
 });
 
-$j(function() {
-  $j("#experience_end_date").datepicker();
+$(function() {
+  $("#experience_end_date").datepicker();
 });

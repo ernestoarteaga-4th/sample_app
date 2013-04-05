@@ -17,7 +17,7 @@ gem "paperclip", "~> 3.0"
 gem 'mysql2'
 #Added August/2012
 gem 'rails3-jquery-autocomplete'
-
+gem 'jquery-rails'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
