@@ -1,0 +1,26 @@
+%h3.page_headline
+  Fill Your Data Correctly:
+= form_for(:educations, :url=>{:action=>'new'}, :html => {:multipart => true}) do |f|
+  // = render 'shared/error_messages', :object => f.object
+  .field
+    = f.label :title
+    %br
+    = f.text_field :title
+  .field
+    = f.label :educ_degrees_id
+    %br
+    = f.select :educ_degrees_id, options_from_collection_for_select(EducDegrees.where({:approved_flag => [true]}).all, "id", "name")
+  .field
+    = f.label :university
+    %br
+    = f.text_field :university
+  .field
+    = f.label :date_in
+    %br
+    = f.date_select :date_in, :start_year => 1950, :order => [:month, :day, :year]
+  .field
+    = f.label :date_out
+    %br
+    = f.date_select :date_out, :start_year => 1950, :order => [:month, :day, :year]
+  .actions
+    = f.submit "Accept"
