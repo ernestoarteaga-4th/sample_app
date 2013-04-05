@@ -17,17 +17,17 @@ class ResumeController < ApplicationController
       #resume_details.summary = details[:summary]
       #resume_details.resume_id = @candidate.resume.id
       #if resume_details.save
-      if @candidate.resume.resume_details.new(params[:resume_details]).save
+      if @candidate.candidate_prof_summary.new(params[:candidate_prof_summary]).save
         flash.now[:success] = "Summary was saved successfully."
       else
         flash.now[:notice] = "An error occurred while the system save the summary. Please try again."
       end
     else
       @candidate = Candidate.find(params[:id])
-      if @candidate.resume.nil?
-        @resume = @candidate.build_resume
-        @resume.save
-      end
+      #if @candidate.resume.nil?
+        #@resume = @candidate.build_resume
+        #@resume.save
+      #end
       #@resume_details = ResumeDetail.new
     end
   end

@@ -23,14 +23,14 @@
   = link_to_resume('Back to Resume', @candidate.id, :action => 'resume')
   %br
   %br
-  - if @candidate.resume.resume_details.count > 0
+  - if @candidate.candidate_prof_summary.count > 0
     .experience_details_wrapper
       %ul
-        - @candidate.resume.resume_details.each do |detail|
+        - @candidate.candidate_prof_summary.each do |detail|
           .experience_details_left
             %li= detail.summary
           .experience_details_right
-          = link_to 'Delete', resume_details_destro_path(:id => detail.id)
+          = link_to 'Delete', candidate_prof_summaries_destro_path(:id => detail.id)
             
   - else
     %br
@@ -47,7 +47,7 @@
       %h4
         Please enter the following information
       .divider-headline
-      = form_for(:resume_details, :controller => "resume", :action => "summary") do |f|     
+      = form_for(:candidate_prof_summary, :controller => "resume", :action => "summary") do |f|     
         .field
           = f.label "Summary"
           %br

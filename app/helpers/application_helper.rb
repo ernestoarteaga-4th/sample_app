@@ -43,9 +43,9 @@ module ApplicationHelper
               when 'education-new'
                 "/candidates/#{candidateId}/resume/education/new"
               when 'certification'
-                "/candidates/#{candidateId}/resume/certification"
+                "/candidates/#{candidateId}/candidate_certifications"
               when 'certification-new'
-                "/candidates/#{candidateId}/resume/certification/new"
+                "/candidates/#{candidateId}/candidate_certifications/new"
               when 'training'
                 "/candidates/#{candidateId}/resume/training"
               when 'training-new'

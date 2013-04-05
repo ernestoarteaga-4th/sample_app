@@ -21,13 +21,22 @@ SampleApp::Application.routes.draw do
     end
   end
 
-  resources :candidates
+  resources :candidates do
+    resources :candidate_certifications
+  end
   
   resources :sessions,   :only => [:new, :create, :destroy]
   resources :microposts, :only => [:create, :destroy]
   resources :followings, :only => [:create, :destroy]
   resources :resume
-  resources :resume_details do
+  resources :candidate_prof_summaries do
+    collection do
+      get 'destro'
+      post 'destro'
+    end
+  end
+
+  resources :candidate_certifications do
     collection do
       get 'destro'
       post 'destro'
@@ -52,7 +61,7 @@ SampleApp::Application.routes.draw do
   match "/experiences/:id/destroy" => 'experiences#destroy'
   match "/candidates/:id/resume/experience/:experience_id/details/new" => 'experience_details#new'
   #match "/resume_details/:id/destro" => 'resume_details#destro'
-  match "/resume_details/destro" => 'resume_details#destro'
+  match "/candidate_prof_summaries/destro" => 'candidate_prof_summaries#destro'
   #match "/resume_details/:id/destroy" => resume_details_destroy_path
 #  match "/candidates/:id/resume/education" => 'resume#education'
 #  match "/education/destroy" => 'educations#destroy'
@@ -92,9 +101,10 @@ SampleApp::Application.routes.draw do
   match "/candidates/:id/resume/education/update_delete" => 'candidates_education#update_delete'
 
   # Certification
-  match "/candidates/:id/resume/certification" => 'resume_certification#index'
-  match "/candidates/:id/resume/certification/new" => 'resume_certification#new'
-  match "/certification/destroy" => 'resume_certification#destroy'
+  #match "/candidates/:id/resume/certification" => 'candidate_certification#index'
+  #match "/candidates/:id/resume/certification/new" => 'candidate_certification#new'
+  match "/candidate_certifications/destro" => 'candidate_certifications#destro'
+  #match "/resume_details/destro" => 'resume_details#destro'
   # Trainings
   match "/candidates/:id/resume/training" => 'resume_training#index'
   match "/candidates/:id/resume/training/new" => 'resume_training#new'
