@@ -1,6 +1,6 @@
-class CandidatesEducation < ActiveRecord::Base
+class CandidateEducation < ActiveRecord::Base
   attr_accessible :id,
-                  :educ_degrees_id,
+                  :educ_degree_id,
                   :candidate_id,
                   :title,
                   :degree,
@@ -8,10 +8,10 @@ class CandidatesEducation < ActiveRecord::Base
                   :date_out,
                   :university
 
-  belongs_to :educ_degrees
-  has_many :candidate
+  belongs_to :candidate
+  belongs_to :educ_degree
   
-  validates :educ_degrees_id, :presence => true
+  validates :educ_degree_id, :presence => true
   validates :candidate_id, :presence => true
   validates :title, :presence => true
 end

@@ -1,7 +1,7 @@
-class CreateCandidatesEducation < ActiveRecord::Migration
+class CreateCandidateEducation < ActiveRecord::Migration
   def up
-   create_table :candidates_education do |t|
-      t.integer :educ_degrees_id
+   create_table :candidate_education do |t|
+      t.integer :educ_degree_id
       t.integer :candidate_id
       t.string :title
       t.string :degree
@@ -14,6 +14,6 @@ class CreateCandidatesEducation < ActiveRecord::Migration
   end
 
   def down
-    drop_table :candidates_education
+    drop_table :candidate_education
   end
 end

@@ -28,6 +28,18 @@ ActiveRecord::Schema.define(:version => 20130404170140) do
     t.datetime "updated_at",   :null => false
   end
 
+  create_table "candidate_education", :force => true do |t|
+    t.integer  "educ_degree_id"
+    t.integer  "candidate_id"
+    t.string   "title"
+    t.string   "degree"
+    t.datetime "date_in"
+    t.datetime "date_out"
+    t.string   "university"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
   create_table "candidate_prof_summaries", :force => true do |t|
     t.string   "summary"
     t.integer  "candidate_id"
@@ -84,18 +96,6 @@ ActiveRecord::Schema.define(:version => 20130404170140) do
     t.datetime "avatar_updated_at"
   end
 
-  create_table "candidates_education", :force => true do |t|
-    t.integer  "educ_degrees_id"
-    t.integer  "candidate_id"
-    t.string   "title"
-    t.string   "degree"
-    t.datetime "date_in"
-    t.datetime "date_out"
-    t.string   "university"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-  end
-
   create_table "candidates_interviews", :force => true do |t|
     t.integer  "candidate_id"
     t.string   "result"
@@ -123,15 +123,6 @@ ActiveRecord::Schema.define(:version => 20130404170140) do
   end
 
   create_table "educ_degrees", :force => true do |t|
-    t.string   "name"
-    t.string   "description"
-    t.boolean  "approved_flag"
-    t.string   "approved_by"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-  end
-
-  create_table "education_degrees", :force => true do |t|
     t.string   "name"
     t.string   "description"
     t.boolean  "approved_flag"
@@ -174,15 +165,6 @@ ActiveRecord::Schema.define(:version => 20130404170140) do
 
   add_index "followings", ["followed_id"], :name => "index_followings_on_followed_id"
   add_index "followings", ["follower_id"], :name => "index_followings_on_follower_id"
-
-  create_table "idiom_levels", :force => true do |t|
-    t.string   "name"
-    t.string   "description"
-    t.boolean  "approved_flag"
-    t.string   "approved_by"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-  end
 
   create_table "interviewers", :force => true do |t|
     t.string   "name"

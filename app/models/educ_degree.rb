@@ -1,10 +1,10 @@
-class EducDegrees < ActiveRecord::Base
+class EducDegree < ActiveRecord::Base
   attr_accessible :name,
                   :description,
                   :approved_flag,
                   :approved_by
 
-  has_many :candidates_education
+  has_many :candidate_educations
   
   validates :name, :presence => true
 end

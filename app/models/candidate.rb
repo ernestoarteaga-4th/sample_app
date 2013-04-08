@@ -65,6 +65,8 @@ class Candidate < ActiveRecord::Base
 
   has_many        :candidate_certifications,      :dependent => :destroy
 
+  has_many        :candidate_education,      :dependent => :destroy
+
   has_many        :candidate_prof_summary,      :dependent => :destroy
 
   has_attached_file :avatar, :styles => { :medium => "300x300#", :thumb => "40x40#" },
