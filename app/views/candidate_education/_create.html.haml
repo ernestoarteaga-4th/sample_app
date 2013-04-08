@@ -1,6 +1,6 @@
 %h3.page_headline
   Fill Your Data Correctly:
-= form_for(:educations, :url=>{:action=>'new'}, :html => {:multipart => true, :id => "newEducationForm"}) do |f|
+= form_for(:educations, :url=>{:action=>'create'}, :html => {:multipart => true, :id => "newEducationForm"}) do |f|
   // = render 'shared/error_messages', :object => f.object
   .field
     = f.label :title

@@ -4,7 +4,7 @@ class EducDegree < ActiveRecord::Base
                   :approved_flag,
                   :approved_by
 
-  has_many :candidate_educations
+  has_many :candidate_education
   
   validates :name, :presence => true
 end
