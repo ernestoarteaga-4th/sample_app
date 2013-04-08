@@ -36,7 +36,6 @@ class Candidate < ActiveRecord::Base
   #:office_telephone, 
   :passport_expiration_year, 
   :position, 
-  :resume_id, 
   :salary_expectancy, 
   :second_last_name, 
   :status_id, 
@@ -61,16 +60,16 @@ class Candidate < ActiveRecord::Base
                                        :source => :follower
   has_many        :following,          :through => :followings, 
                                        :source => :followed
-  has_one         :resume,             :dependent => :destroy 
 
   has_many        :candidate_certifications,      :dependent => :destroy
+
+  has_many        :candidate_languages, :dependent => :destroy
 
   has_many        :candidate_prof_summary,      :dependent => :destroy
 
   has_attached_file :avatar, :styles => { :medium => "300x300#", :thumb => "40x40#" },
                              :default_url => "/images/4thsource_avatar.jpg"
   
-  accepts_nested_attributes_for :resume
   
   acts_as_ferret :fields => ['name', 'email']
 

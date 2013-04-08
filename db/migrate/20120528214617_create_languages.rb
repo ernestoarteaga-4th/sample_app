@@ -2,8 +2,9 @@ class CreateLanguages < ActiveRecord::Migration
   def self.up
     create_table :languages do |t|
       t.string :name
-      t.string :level
-      t.integer :resume_id
+      t.string :description
+      t.boolean :approved_flag
+      t.string :approved_by
 
       t.timestamps
     end

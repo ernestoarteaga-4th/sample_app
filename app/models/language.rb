@@ -1,8 +1,14 @@
 class Language < ActiveRecord::Base
-  
-  belongs_to :resume
-  
+  attr_accessible :name,
+		  :description,
+                  :approved_flag,
+		  :approved_by
   validates :name, :presence => true, :length => { :maximum => 50 }
-  validates :level, :presence => true
+  
+  before_save :default_values
+
+  def default_values
+    self.approved_flag ||= false
+  end
   
 end

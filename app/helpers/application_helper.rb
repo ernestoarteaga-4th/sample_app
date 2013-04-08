@@ -94,15 +94,16 @@ module ApplicationHelper
     ]
   end
   
-  def language_level_list
+   def language_level_list
     [
       ['- Select one -', ''],
-      ['Elementary', 'Elementary'],
-      ['Pre-Intermediate','Pre-Intermediate'],
-      ['Intermediate','Intermediate'],
-      ['Upper-Intermediate','Upper-Intermediate'],
-      ['Advance','Advance'],
-      ['Native','Native']
+      ['Advanced',1],
+      ['Upper intermediate',2],
+      ['Intermediate',3],
+      ['PreIntermediate',4],
+      ['Elementary',5],
+      ['PreElementary',6]
+
     ]
   end
 
@@ -110,7 +111,7 @@ module ApplicationHelper
     [
       ['- Select one -', 'Select one'],
       ['Male', 'M'],
-      ['Female','Female']
+      ['Female','F']
     ]
   end
 
