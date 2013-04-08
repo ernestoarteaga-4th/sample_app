@@ -9,7 +9,9 @@
   .field
     = f.label :educ_degrees_id
     %br
-    = f.select :educ_degrees_id, options_from_collection_for_select(EducDegrees.where({:approved_flag => [true]}).all, "id", "name")
+    = f.select :educ_degrees_id, options_from_collection_for_select(EducDegrees.where({:approved_flag => [true, false]}).all, "id", "name")
+    = text_field_tag "educations_educ_degrees_id_new"
+    = button_tag "+", :id => "addButton", :class => "addButton", :type => "button" 
   .field
     = f.label :university
     %br

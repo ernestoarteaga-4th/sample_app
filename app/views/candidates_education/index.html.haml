@@ -30,9 +30,9 @@
         %br
         = f.text_field :title, :value => e.title
       .field
-        = f.label :degree
+        = f.label :educ_degrees_id
         %br
-        = f.text_field :degree, :value => e.degree
+        = f.select :educ_degrees_id, options_from_collection_for_select(EducDegrees.where({:approved_flag => [true, false]}).all, "id", "name", :selected => e.educ_degrees_id)
       .field
         = f.label :university
         %br
