@@ -98,7 +98,10 @@ SampleApp::Application.routes.draw do
   match "/education/destroy" => 'candidate_education#destroy'
   match "/education/:id" => 'education#index', :as => :candidate_education
   match "/candidates/:id/resume/education/create" => 'candidate_education#create', :as => :candidate_education_index
-  match "/candidates/:id/resume/education/update_delete" => 'candidate_education#update_delete'
+  match "/candidates/:id/resume/education/new" => 'candidate_education#new'
+  match "/candidates/:id/resume/education/update" => 'candidate_education#update'
+  match "/candidates/:id/resume/education/destroy" => 'candidate_education#destroy'
+  match "/candidates/:id/resume/education/edit" => 'candidate_education#edit'
 
   # Certification
   #match "/candidates/:id/resume/certification" => 'candidate_certification#index'

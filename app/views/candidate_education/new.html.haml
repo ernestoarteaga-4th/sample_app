@@ -1,0 +1,55 @@
+<!-- Content -->
+#content
+  %img(src="http://www.4thsource.com//public/images/subheader_services.jpg" alt="Sub Header" class="subheader")
+  %ul#breadcrumbs
+    %li
+      = link_to 'Home', root_path
+      = raw '&raquo;'
+    %li
+      = link_to_resume('My Profile', current_candidate.id, :action => 'resume')
+      = raw '&raquo;'
+    %li
+      = raw '<em>'
+      Education
+      = raw '</em>'
+    .clear
+  %h3.page_headline
+    %i.iconEducation
+    .h3-page-headline
+      Education
+  .divider-headline
+  %br
+    %strong
+      = link_to "Back", :controller => "candidate_education", :action => "index"
+  %br
+  %br
+  %h3.page_headline
+    New:
+  = form_for(:education, :url=>{:action=>'create'}, :html => {:multipart => true, :id => "newEducationForm"}) do |f|
+    //= render 'shared/error_messages', :object => f.object
+    .field
+      = f.label :title
+      %br
+      = f.text_field :title
+    .field
+      = f.label :educ_degree_id
+      %br
+      = f.select :educ_degree_id, options_from_collection_for_select(EducDegree.where({:approved_flag => [true, false]}).all, "id", "name")
+      = text_field_tag "education_educ_degree_id_new"
+      = button_tag "+", :id => "addButton", :class => "addButton", :type => "button" 
+    .field
+      = f.label :university
+      %br
+      = f.text_field :university
+    .field
+      = f.label :date_in
+      %br
+      = f.date_select :date_in, :start_year => 1950, :order => [:month, :day, :year]
+    .field
+      = f.label :date_out
+      %br
+      = f.date_select :date_out, :start_year => 1950, :order => [:month, :day, :year]
+    .actions
+      = f.submit "Accept"
+<!-- Sidebar -->
+= render 'shared/sidebar_signed'

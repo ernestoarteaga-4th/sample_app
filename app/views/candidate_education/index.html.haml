@@ -19,37 +19,45 @@
       Education
   .divider-headline
   %br
+    %strong
+      = link_to "New", :controller => "candidate_education", :action => "new"
+  %br
+  %br
   -@education.each do |e|
-    = form_for(:e, :url=>{:action=>'update_delete'}) do |f|
+    = form_for(:e, :url=>{:action=>'index'}) do |f|
       %h3.page_headline
         = e.university
+      %topLink
+        = link_to "Edit", url_options={:controller => "candidate_education", :action => "edit", id:e.id, title:e.title, educ_degree_id:e.educ_degree_id, university:e.university, date_in:e.date_in, date_out:e.date_out}
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        = link_to "Delete", url_options = {:controller => "candidate_education", :action => "destroy", id:e.id}, html_options = { :confirm => "Are you Sure?" }
       .field
         = f.hidden_field :id, :value => e.id
       .field
         = f.label :title
         %br
-        = f.text_field :title, :value => e.title
+        = f.text_field :title, :value => e.title, :disabled => true
       .field
         = f.label :educ_degree_id
         %br
-        = f.select :educ_degree_id, options_from_collection_for_select(EducDegree.where({:approved_flag => [true, false]}).all, "id", "name", :selected => e.educ_degree_id)
+        = f.text_field :educ_degree_id, :value => e.educ_degree.name, :disabled => true
       .field
         = f.label :university
         %br
-        = f.text_field :university, :value => e.university
+        = f.text_field :university, :value => e.university, :disabled => true
       .field 
         = f.label :date_in
         %br
-        = f.date_select :date_in, :default => e.date_in, :start_year => 1950, :order => [:month, :day, :year]
+        = f.date_select :date_in, :default => e.date_in, :start_year => 1950, :order => [:month, :day, :year], :disabled => true
       .field
         = f.label :date_out
         %br
-        = f.date_select :date_out, :default => e.date_out, :start_year => 1950, :order => [:month, :day, :year]
+        = f.date_select :date_out, :default => e.date_out, :start_year => 1950, :order => [:month, :day, :year], :disabled => true
       %br
-      = submit_tag "Update", :name => 'update_button'
-      = submit_tag "Delete", :name => 'delete_button'
+      //= submit_tag "Update", :name => 'update_button'
+      //= submit_tag "Delete", :name => 'delete_button'
     %br
     %br
-  = render 'candidate_education/create'
+    //= render 'candidate_education/create'
 <!-- Sidebar -->
 = render 'shared/sidebar_signed'
