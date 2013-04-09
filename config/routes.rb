@@ -31,15 +31,15 @@ SampleApp::Application.routes.draw do
   resources :resume
   resources :candidate_prof_summaries do
     collection do
-      get 'destro'
-      post 'destro'
+      get 'destroy'
+      post 'destroy'
     end
   end
 
   resources :candidate_certifications do
     collection do
-      get 'destro'
-      post 'destro'
+      get 'destroy'
+      post 'destroy'
     end
   end
 

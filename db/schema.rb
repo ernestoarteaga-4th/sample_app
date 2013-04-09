@@ -11,12 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130404170140) do
+ActiveRecord::Schema.define(:version => 20130408152845) do
 
   create_table "candidate_certifications", :force => true do |t|
-    t.integer  "certification_id"
     t.integer  "candidate_id"
-    t.date     "year"
+    t.integer  "certification_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
   end
@@ -44,7 +43,6 @@ ActiveRecord::Schema.define(:version => 20130404170140) do
     t.string   "university"
     t.string   "degree"
     t.integer  "graduation_year"
-    t.string   "certifcations"
     t.string   "address"
     t.string   "email"
     t.boolean  "has_visa"
@@ -174,15 +172,6 @@ ActiveRecord::Schema.define(:version => 20130404170140) do
 
   add_index "followings", ["followed_id"], :name => "index_followings_on_followed_id"
   add_index "followings", ["follower_id"], :name => "index_followings_on_follower_id"
-
-  create_table "idiom_levels", :force => true do |t|
-    t.string   "name"
-    t.string   "description"
-    t.boolean  "approved_flag"
-    t.string   "approved_by"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-  end
 
   create_table "interviewers", :force => true do |t|
     t.string   "name"
