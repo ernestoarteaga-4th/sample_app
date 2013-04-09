@@ -8,7 +8,6 @@ class Candidate < ActiveRecord::Base
   :avatar_file_name, 
   :birthdate, 
   :cell_phone, 
-  :certifcations, 
   :change_password_flag, 
   :city,
   :comments, 
@@ -66,6 +65,8 @@ class Candidate < ActiveRecord::Base
   has_one         :resume,             :dependent => :destroy 
 
   has_many        :candidate_certifications,      :dependent => :destroy
+
+  has_many        :candidate_education,      :dependent => :destroy
 
   has_many        :candidate_prof_summary,      :dependent => :destroy
 

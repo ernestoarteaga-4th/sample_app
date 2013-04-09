@@ -31,15 +31,15 @@ SampleApp::Application.routes.draw do
   resources :resume
   resources :candidate_prof_summaries do
     collection do
-      get 'destro'
-      post 'destro'
+      get 'destroy'
+      post 'destroy'
     end
   end
 
   resources :candidate_certifications do
     collection do
-      get 'destro'
-      post 'destro'
+      get 'destroy'
+      post 'destroy'
     end
   end
 
@@ -78,11 +78,14 @@ SampleApp::Application.routes.draw do
   match "/candidates/:id/project/:project_id/projrole/:projrole_id/show" => 'projroles#show'
   match "/candidates/:id/project/:project_id/projrole/:projrole_id/destroy" => 'projroles#destroy'
   # Education
-  match "/candidates/:id/resume/education" => 'candidates_education#index'
-  match "/education/destroy" => 'candidates_education#destroy'
-  match "/education/:id" => 'education#index', :as => :candidates_education
-  match "/candidates/:id/resume/education/new" => 'candidates_education#new', :as => :candidates_education_index
-  match "/candidates/:id/resume/education/update_delete" => 'candidates_education#update_delete'
+  match "/candidates/:id/resume/education" => 'candidate_education#index'
+  match "/education/destroy" => 'candidate_education#destroy'
+  match "/education/:id" => 'education#index', :as => :candidate_education
+  match "/candidates/:id/resume/education/create" => 'candidate_education#create', :as => :candidate_education_index
+  match "/candidates/:id/resume/education/new" => 'candidate_education#new'
+  match "/candidates/:id/resume/education/update" => 'candidate_education#update'
+  match "/candidates/:id/resume/education/destroy" => 'candidate_education#destroy'
+  match "/candidates/:id/resume/education/edit" => 'candidate_education#edit'
 
   # Certification
   #match "/candidates/:id/resume/certification" => 'candidate_certification#index'

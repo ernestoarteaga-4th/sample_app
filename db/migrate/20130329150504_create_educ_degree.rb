@@ -1,6 +1,6 @@
-class CreateEducDegrees < ActiveRecord::Migration
+class CreateEducDegree < ActiveRecord::Migration
   def up
-   create_table :educ_degrees do |t|
+    create_table :educ_degrees do |t|
       t.string :name
       t.string :description
       t.boolean :approved_flag
