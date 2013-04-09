@@ -1,8 +1,7 @@
 class Certification < ActiveRecord::Base
   
 
-  attr_accessible :id,
-  :name,
+  attr_accessible :name,
   :description,
   :approved_flag,
   :approved_by

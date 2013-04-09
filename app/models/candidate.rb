@@ -8,7 +8,6 @@ class Candidate < ActiveRecord::Base
   :avatar_file_name, 
   :birthdate, 
   :cell_phone, 
-  :certifcations, 
   :change_password_flag, 
   :city,
   :comments, 
