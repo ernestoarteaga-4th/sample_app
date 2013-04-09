@@ -67,7 +67,7 @@
           %br
           = select_tag 'language_id', options_from_collection_for_select(Language.where({:approved_flag => [true]}).order("name").all, "id", "name")
           %br
-          = f.label "language_notinlist", "My language is not in the list", :style=>'cursor:pointer;'
+          = label_tag "language_notinlist", "My language is not in the list", :style=>'cursor:pointer;'
           = check_box_tag 'language_notinlist'
           = text_field_tag 'lang_name'
         .field
