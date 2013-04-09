@@ -8,7 +8,6 @@ class Candidate < ActiveRecord::Base
   :avatar_file_name, 
   :birthdate, 
   :cell_phone, 
-  :certifcations, 
   :change_password_flag, 
   :city,
   :comments, 
@@ -60,6 +59,9 @@ class Candidate < ActiveRecord::Base
                                        :source => :follower
   has_many        :following,          :through => :followings, 
                                        :source => :followed
+  has_many        :projects,           :foreign_key => "candidate_id",
+                                       :dependent => :destroy 
+  has_one         :resume,             :dependent => :destroy 
 
   has_many        :candidate_certifications,      :dependent => :destroy
 

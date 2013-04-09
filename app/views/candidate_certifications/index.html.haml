@@ -60,6 +60,10 @@
         .field
           = f.label "Certification"
           %br
+          =  f.select :selectName, options_from_collection_for_select(Certification.where({:approved_flag => [true]}).order("name").all, "id", "name")
+          %br
+          = f.label :chBNotInList, "The certification is not in the list."
+          %input{:type=>"checkbox", :id=>"certification_chBNotInList", :name=>"certification_chBNotInList", :value=>"1", :checked=>false}
           = f.text_field :name
         .actions
           %br
