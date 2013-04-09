@@ -30,9 +30,9 @@
         %br
         = f.text_field :title, :value => e.title
       .field
-        = f.label :educ_degrees_id
+        = f.label :educ_degree_id
         %br
-        = f.select :educ_degrees_id, options_from_collection_for_select(EducDegrees.where({:approved_flag => [true, false]}).all, "id", "name", :selected => e.educ_degrees_id)
+        = f.select :educ_degree_id, options_from_collection_for_select(EducDegree.where({:approved_flag => [true, false]}).all, "id", "name", :selected => e.educ_degree_id)
       .field
         = f.label :university
         %br
@@ -50,6 +50,6 @@
       = submit_tag "Delete", :name => 'delete_button'
     %br
     %br
-  = render 'candidates_education/new'
+  = render 'candidate_education/create'
 <!-- Sidebar -->
 = render 'shared/sidebar_signed'
