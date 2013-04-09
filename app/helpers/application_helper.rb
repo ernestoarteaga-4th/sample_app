@@ -50,36 +50,36 @@ module ApplicationHelper
                 "/candidates/#{candidateId}/resume/training"
               when 'training-new'
                 "/candidates/#{candidateId}/resume/training/new"
-              when 'project'
-                "/candidates/#{candidateId}/resume/projects"
-              when 'project-new'
-                "/candidates/#{candidateId}/resume/projects/new"
-              when 'project_role-new'
-                projectId = options[:projectId]
-                "/candidates/#{candidateId}/resume/#{projectId}/project-roles/new"
-              when 'project_role-edit'
-                projectId = options[:projectId]
-                "/candidates/#{candidateId}/resume/#{projectId}/project-roles/edit"
-              when 'project_tool_tag-new'
-                projectId = options[:projectId]
-                projectRoleId = options[:projectRoleId]
-                "/candidates/#{candidateId}/resume/#{projectId}/project-roles/#{projectRoleId}/tools/new"
-              when 'project_technology_tag-new'
-                projectId = options[:projectId]
-                projectRoleId = options[:projectRoleId]
-                "/candidates/#{candidateId}/resume/#{projectId}/project-roles/#{projectRoleId}/tech/new"
-              when 'project_knowledge_tag-new'
-                projectId = options[:projectId]
-                projectRoleId = options[:projectRoleId]
-                "/candidates/#{candidateId}/resume/#{projectId}/project-roles/#{projectRoleId}/knowledge/new"
-              when 'project_responsibility_tag-new'
-                projectId = options[:projectId]
-                projectRoleId = options[:projectRoleId]
-                "/candidates/#{candidateId}/resume/#{projectId}/project-roles/#{projectRoleId}/responsibility/new"
             end
       link_to( name, url, options, html_options )
   end
   
+  def link_to_project(name, candidateId, options = {}, html_options = {})
+      options.reverse_merge! :action     => 'show',
+                             :method     => :get
+
+      url = case options[:action]
+              when 'index'
+                "/candidates/#{candidateId}/projects"
+              when 'new'
+                "/candidates/#{candidateId}/projects/new"
+            end
+      link_to( name, url, options, html_options )
+  end
+  
+  def link_to_projrole(name, candidateId, projectId, projroleId, options = {}, html_options = {})
+      options.reverse_merge! :action     => 'show',
+                             :method     => :get
+
+      url = case options[:action]
+              when 'index'
+                "/candidates/#{candidateId}/projects/#{projectId}/projroles"
+              when 'new'
+                "/candidates/#{candidateId}/projects/#{projectId}/projroles/new"
+            end
+      link_to( name, url, options, html_options )
+  end
+
   def degree_level_list
     [
       ['- Select one -', ''],

@@ -66,33 +66,17 @@ SampleApp::Application.routes.draw do
 #  match "/candidates/:id/resume/education" => 'resume#education'
 #  match "/education/destroy" => 'educations#destroy'
   # Projects
-  match "/candidates/:id/resume/projects" => 'project#index'
-  match "/candidates/:id/resume/projects/new" => 'project#new'
-  match "/project/:id/destroy" => 'project#destroy'
+  match "/candidates/:id/projects" => 'projects#index'
+  match "/candidates/:id/projects/new" => 'projects#new'
+  match "/candidates/:id/project/:project_id/update" => 'projects#update'
+  match "/candidates/:id/project/:project_id/show" => 'projects#show'
+  match "/candidates/:id/project/:project_id/destroy" => 'projects#destroy'
   ## Project Roles
-  match "/candidates/:id/resume/:project_id/project-roles/new" => 'project_role#new'
-  match "/candidates/:id/resume/:project_id/project-roles/edit" => 'project_role#edit'
-  match "/project-roles/:id/destroy" => 'project_role#destroy'
-  ### Tools
-  match "/candidates/:id/resume/:project_id/project-roles/:project_role_id/tools/new" => 'project_tool_tag#new'
-  match "/tools/:id/destroy" => 'project_tool_tag#destroy'
-  match "/tools/:id/remove" => 'project_tool_tag#remove'
-  match "/project/:project_id/project-roles/:project_role_id/tool/add" => 'project_tool_tag#add'
-  ### Technologies
-  match "/candidates/:id/resume/:project_id/project-roles/:project_role_id/tech/new" => 'project_technology_tag#new'
-  match "/tech/:id/destroy" => 'project_technology_tag#destroy'
-  match "/tech/:id/remove" => 'project_technology_tag#remove'
-  match "/project/:project_id/project-roles/:project_role_id/technology/add" => 'project_technology_tag#add'
-  ### Knowledges
-  match "/candidates/:id/resume/:project_id/project-roles/:project_role_id/knowledge/new" => 'project_knowledge_tag#new'
-  match "/knowledge/:id/destroy" => 'project_knowledge_tag#destroy'
-  match "/knowledge/:id/remove" => 'project_knowledge_tag#remove'
-  match "/project/:project_id/project-roles/:project_role_id/knowledge/add" => 'project_knowledge_tag#add'
-  ### Responsabilities
-  match "/candidates/:id/resume/:project_id/project-roles/:project_role_id/responsibility/new" => 'project_responsibility_tag#new'
-  match "/responsibility/:id/destroy" => 'project_responsibility_tag#destroy'
-  match "/responsibility/:id/remove" => 'project_responsibility_tag#remove'
-  match "/project/:project_id/project-roles/:project_role_id/responsibility/add" => 'project_responsibility_tag#add'
+  match "/candidates/:id/projects/:project_id/projroles/new" => 'projroles#new'
+  match "/candidates/:id/resume/:project_id/project-roles/edit" => 'projroles#edit'
+  match "/candidates/:id/project/:project_id/projrole/:projrole_id/update" => 'projroles#update'
+  match "/candidates/:id/project/:project_id/projrole/:projrole_id/show" => 'projroles#show'
+  match "/candidates/:id/project/:project_id/projrole/:projrole_id/destroy" => 'projroles#destroy'
   # Education
   match "/candidates/:id/resume/education" => 'candidates_education#index'
   match "/education/destroy" => 'candidates_education#destroy'

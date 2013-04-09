@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130404170140) do
+ActiveRecord::Schema.define(:version => 20130408224339) do
 
   create_table "candidate_certifications", :force => true do |t|
     t.integer  "certification_id"
@@ -175,15 +175,6 @@ ActiveRecord::Schema.define(:version => 20130404170140) do
   add_index "followings", ["followed_id"], :name => "index_followings_on_followed_id"
   add_index "followings", ["follower_id"], :name => "index_followings_on_follower_id"
 
-  create_table "idiom_levels", :force => true do |t|
-    t.string   "name"
-    t.string   "description"
-    t.boolean  "approved_flag"
-    t.string   "approved_by"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-  end
-
   create_table "interviewers", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
@@ -223,14 +214,21 @@ ActiveRecord::Schema.define(:version => 20130404170140) do
   add_index "microposts", ["user_id"], :name => "index_microposts_on_user_id"
 
   create_table "projects", :force => true do |t|
-    t.integer  "resume_id"
+    t.integer  "candidate_id"
+    t.string   "name"
+    t.string   "summary"
     t.string   "company_name"
-    t.string   "job_position"
-    t.date     "start_date"
-    t.date     "end_date"
-    t.string   "description"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+  end
+
+  create_table "projroles", :force => true do |t|
+    t.integer  "projects_id"
+    t.integer  "roles_id"
+    t.date     "date_in"
+    t.date     "date_out"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "resume_details", :force => true do |t|
@@ -261,6 +259,15 @@ ActiveRecord::Schema.define(:version => 20130404170140) do
     t.string   "updated_by"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+  end
+
+  create_table "roles", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "approved_flag"
+    t.string   "approved_by"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "skills", :force => true do |t|
