@@ -23,6 +23,9 @@
       = link_to "New", :controller => "candidate_education", :action => "new"
   %br
   %br
+  -if @education.length == 0
+    .educationEmptyTitle
+      Please Insert at Least one Education
   -@education.each do |e|
     = form_for(:e, :url=>{:action=>'index'}) do |f|
       %h3.page_headline
@@ -46,12 +49,8 @@
       .field
         = f.label "University: ", class: "educationLabelTitle"
         = f.label e.university, class: "educationLabel"
-      
       %br
-      //= submit_tag "Update", :name => 'update_button'
-      //= submit_tag "Delete", :name => 'delete_button'
-    %br
-    %br
-    //= render 'candidate_education/create'
+      %br
+      //= render 'candidate_education/create'
 <!-- Sidebar -->
 = render 'shared/sidebar_signed'
