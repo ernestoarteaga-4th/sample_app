@@ -101,9 +101,9 @@ SampleApp::Application.routes.draw do
   match "/candidates/:id/resume/training/new" => 'resume_training#new'
   match "/training/destroy" => 'resume_training#destroy'
   # Languages
-  match "/candidates/:id/resume/languages" => 'resume_language#index'
-  match "/candidates/:id/resume/languages/new" => 'resume_language#new'
-  match "/languages/destroy" => 'resume_language#destroy'
+  match "/candidates/:id/resume/languages" => 'candidate_languages#index'
+  match "/candidates/resume/languages/new" => 'candidate_languages#new'
+  match "/languages/destroy" => 'candidate_languages#destroy'
 
   # Autocomplete
   match "/tool/autocomplete" => 'tool_tag#autocomplete'
