@@ -19,10 +19,7 @@
     %ul#nav_sub.sub_navigation
       %li
         %i.iconContact-info
-        = link_to 'Contact Information', edit_candidate_path(current_candidate), :class => "profile-sub_navigation"
-      %li
-        %i.iconPhoto
-        = link_to_resume('Photo', current_candidate.id, :action => 'photo', :class => 'profile-sub_navigation')
+        = link_to 'Profile', edit_candidate_path(current_candidate), :class => "profile-sub_navigation"
       %li
         %i.iconResume
         = link_to_resume('Resume', current_candidate.id, :action => 'resume', :class => 'profile-sub_navigation')
