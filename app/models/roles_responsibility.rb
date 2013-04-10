@@ -1,4 +1,4 @@
-class RolesResponsibilitie < ActiveRecord::Base
+class RolesResponsibility < ActiveRecord::Base
   self.per_page = 10
 
   attr_accessible :description, :projroles_id
