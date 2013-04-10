@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130408224339) do
+ActiveRecord::Schema.define(:version => 20130409215649) do
 
   create_table "candidate_certifications", :force => true do |t|
     t.integer  "certification_id"
@@ -44,7 +44,6 @@ ActiveRecord::Schema.define(:version => 20130408224339) do
     t.string   "university"
     t.string   "degree"
     t.integer  "graduation_year"
-    t.string   "certifcations"
     t.string   "address"
     t.string   "email"
     t.boolean  "has_visa"
@@ -123,15 +122,6 @@ ActiveRecord::Schema.define(:version => 20130408224339) do
   end
 
   create_table "educ_degrees", :force => true do |t|
-    t.string   "name"
-    t.string   "description"
-    t.boolean  "approved_flag"
-    t.string   "approved_by"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-  end
-
-  create_table "education_degrees", :force => true do |t|
     t.string   "name"
     t.string   "description"
     t.boolean  "approved_flag"
@@ -268,6 +258,13 @@ ActiveRecord::Schema.define(:version => 20130408224339) do
     t.string   "approved_by"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+  end
+
+  create_table "roles_responsibilities", :force => true do |t|
+    t.integer  "projroles_id"
+    t.string   "description"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "skills", :force => true do |t|
