@@ -43,7 +43,7 @@
           - @candidate.candidate_prof_summary.each do |summary|
             %li= summary.summary
       %br
-      - if @candidate.resume.education.empty?
+      - if @candidate.candidate_education.empty?
         %h4 Please specify at least one education in your resume.
         .divider
       - else
@@ -51,72 +51,32 @@
           Education
         .divider-headline
         %ul
-          - @candidate.resume.educations.each do |education|
+          - @candidate.candidate_education.each do |education|
             %li
               %h6
-                = education.name
+                = education.educ_degree.name
               #experience-date
-                = Date::MONTHNAMES[education.start_date.month]
-                = education.start_date.year
+                = Date::MONTHNAMES[education.date_in.month]
+                = education.date_in.year
                 = raw ' - '
-                = Date::MONTHNAMES[education.end_date.month]
-                = education.end_date.year
+                = Date::MONTHNAMES[education.date_out.month]
+                = education.date_out.year
               #experience-description
-                = education.degree_level
+                = education.educ_degree.description
             %br
-      - if @candidate.resume.projects.count > 0
-        #list
-          - @candidate.resume.projects.each do |projects|
-            %br
-            #row
-              .experience_wrapper
-                .experience_left
-                  %h6
-                    = projects.company_name
-                  %h6
-                    = projects.job_position
-                  #experience-date
-                    = Date::MONTHNAMES[projects.start_date.month]
-                    = projects.start_date.year
-                    = raw(' - ')
-                    = Date::MONTHNAMES[projects.end_date.month]
-                    = projects.end_date.year
-                    %br
-                  %br
-                  #experience-description
-                    = projects.description
-                  %br
-                  %ul
-                    - projects.experience_details.each do |detail|
-                      %li 
-                        = detail.content
-                  %br
-                  %h6
-                    Tools used
-                  %ul
-                    - projects.skills.each do |skill|
-                      %li
-                        = skill.name
-                        = skill.version
-                .experience_right
-
-      - else
-        %br
-        %br
-        %h4 Please create at least one labor project.
-        .divider
+      
       %br
       %br
-      - if @candidate.resume.languages.count > 0
+      - if @candidate.candidate_languages.count > 0
         %h4
           List of languages
         .divider-headline
         %ul
-          - @candidate.resume.languages.each do |language|
+          - @candidate.candidate_languages.each do |candidate_language|
             %li
-              = language.name
+              = candidate_language.language.name
               = raw ' - '
-              = language.level
+              =language_level_list[candidate_language.level_id][0]
         %br
         %br
       - else

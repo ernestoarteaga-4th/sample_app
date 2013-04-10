@@ -11,11 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130408152845) do
+ActiveRecord::Schema.define(:version => 20130409215649) do
 
   create_table "candidate_certifications", :force => true do |t|
-    t.integer  "candidate_id"
     t.integer  "certification_id"
+    t.integer  "candidate_id"
+    t.date     "year"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
   end
@@ -25,18 +26,6 @@ ActiveRecord::Schema.define(:version => 20130408152845) do
     t.string   "sources"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
-  end
-
-  create_table "candidate_education", :force => true do |t|
-    t.integer  "educ_degree_id"
-    t.integer  "candidate_id"
-    t.string   "title"
-    t.string   "degree"
-    t.datetime "date_in"
-    t.datetime "date_out"
-    t.string   "university"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
   end
 
   create_table "candidate_prof_summaries", :force => true do |t|
@@ -92,6 +81,18 @@ ActiveRecord::Schema.define(:version => 20130408152845) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+  end
+
+  create_table "candidates_education", :force => true do |t|
+    t.integer  "educ_degrees_id"
+    t.integer  "candidate_id"
+    t.string   "title"
+    t.string   "degree"
+    t.datetime "date_in"
+    t.datetime "date_out"
+    t.string   "university"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "candidates_interviews", :force => true do |t|
@@ -203,14 +204,21 @@ ActiveRecord::Schema.define(:version => 20130408152845) do
   add_index "microposts", ["user_id"], :name => "index_microposts_on_user_id"
 
   create_table "projects", :force => true do |t|
-    t.integer  "resume_id"
+    t.integer  "candidate_id"
+    t.string   "name"
+    t.string   "summary"
     t.string   "company_name"
-    t.string   "job_position"
-    t.date     "start_date"
-    t.date     "end_date"
-    t.string   "description"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+  end
+
+  create_table "projroles", :force => true do |t|
+    t.integer  "projects_id"
+    t.integer  "roles_id"
+    t.date     "date_in"
+    t.date     "date_out"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "resume_details", :force => true do |t|
@@ -239,6 +247,22 @@ ActiveRecord::Schema.define(:version => 20130408152845) do
   create_table "resumes", :force => true do |t|
     t.integer  "candidate_id"
     t.string   "updated_by"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "roles", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "approved_flag"
+    t.string   "approved_by"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "roles_responsibilities", :force => true do |t|
+    t.integer  "projroles_id"
+    t.string   "description"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
