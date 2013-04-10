@@ -22,82 +22,85 @@
         = @candidate.first_last_name
       = @candidate.email
   %br
-  %br
-  %br
-  %br
   .experience_wrapper
+    - if @candidate.candidate_prof_summary.empty?
+      %h4 Please write a summary in your resume.
+      .divider
+      %br
+      %br
+    - else
+      %h4 Professional Summary
+      .divider-headline
+      %ul
+        - @candidate.candidate_prof_summary.each do |summary|
+          %li= summary.summary
+    - if @candidate.candidate_education.empty?
+      %h4 Please specify at least one education in your resume.
+      .divider
+    - else
+      %h4 Education
+      .divider-headline
+      %ul
+        - @candidate.candidate_education.each do |education|
+          %li
+            .experience_left
+              %h6.educationTitleAndUniversity= education.educ_degree.name + " in " + education.title + ","
+              %p.educationTitleAndUniversity= education.university
+            .experience_right= Date::MONTHNAMES[education.date_in.month] + " " + education.date_in.year.to_s + " - " + Date::MONTHNAMES[education.date_out.month] + " " + education.date_out.year.to_s
+    %h4 Projects
+    .divider-headline     
+    - if @candidate.projects.count > 0
+      - @candidate.projects.each do |projects|
+        .experience_left
+          %h6= projects.company_name
+          %h6= projects.name
+        .experience_right
+          - projects.projroles.each do |role|
+            = Date::MONTHNAMES[role.date_in.month]
+            = role.date_in.year
+            = raw(' - ')
+            = Date::MONTHNAMES[role.date_out.month]
+            = role.date_out.year
+                    
+          %br
+        #experience-description
+          = projects.summary
+    - else
+      %br
+      %br
+      %h4 Please create at least one labor project.
+
+      .divider
     %br
     %br
+    - if @candidate.candidate_languages.count > 0
+      %h4
+        List of languages
+      .divider-headline
+      %ul
+        - @candidate.candidate_languages.each do |candidate_language|
+          %li
+            = candidate_language.language.name
+            = raw ' - '
+            =language_level_list[candidate_language.level_id][0]
+    - else
+      %br
+      %h4 Please create at least one language in your resume.
+      .divider 
     %br
-    .experience_left
-      - if @candidate.candidate_prof_summary.empty?
-        %h4 Please write a summary in your resume.
-        .divider
-        %br
-        %br
-      - else
-        %h4
-          Professional Summary
-        .divider-headline
-        %ul
-          - @candidate.candidate_prof_summary.each do |summary|
-            %li= summary.summary
-      %br
-      - if @candidate.candidate_education.empty?
-        %h4 Please specify at least one education in your resume.
-        .divider
-      - else
-        %h4
-          Education
-        .divider-headline
-        %ul
-          - @candidate.candidate_education.each do |education|
-            %li
-              %h6
-                = education.educ_degree.name
-              #experience-date
-                = Date::MONTHNAMES[education.date_in.month]
-                = education.date_in.year
-                = raw ' - '
-                = Date::MONTHNAMES[education.date_out.month]
-                = education.date_out.year
-              #experience-description
-                = education.educ_degree.description
-            %br
-      
+    - if @candidate.candidate_certifications.count > 0
+      %h4
+        List of certifications
+      .divider-headline
+      %ul
+        - @candidate.candidate_certifications.each do |certification|
+          %li
+            = certification.certification.name
       %br
       %br
-      - if @candidate.candidate_languages.count > 0
-        %h4
-          List of languages
-        .divider-headline
-        %ul
-          - @candidate.candidate_languages.each do |candidate_language|
-            %li
-              = candidate_language.language.name
-              = raw ' - '
-              =language_level_list[candidate_language.level_id][0]
-        %br
-        %br
-      - else
-        %br
-        %h4 Please create at least one language in your resume.
-        .divider 
+    - else
       %br
-      %br
-      - if @candidate.candidate_certifications.count > 0
-        %h4
-          List of certifications
-        .divider-headline
-        %ul
-          - @candidate.candidate_certifications.each do |certification|
-            %li
-              = certification.certification.name
-        %br
-        %br
-      - else
-        %br
-        %h4 Please create at least one certification in your resume.
+      %h4 Please create at least one certification in your resume.
   .clear	
 <!-- Sidebar -->
 = render 'shared/sidebar_signed'

@@ -992,20 +992,23 @@ table.microposts tr td.micropost-delete {
 }
 
 .experience_wrapper {
-	width: 550px;
+	width: 100%;
 	height: inherit;
 }
 
 .experience_left {
-	float:left;
-	padding: 10px;
-	width:450px;
+	/*padding: 10px;*/
+	width: 70%;
+	padding-top: 0;
+	display: inline-block;
 }
 
 .experience_right {
-	float:right;
-	padding: 10px;
-	width: 50px;
+	padding: 0 10px;
+	width: 25%;
+	text-align: right;
+	display: inline-block;
+	/*padding-top: 0;*/
 }
 
 .experience_details_wrapper {
@@ -1150,3 +1153,10 @@ topLink {
     color: black;
     font-weight: bold;
 }
+
+.educationTitleAndUniversity{
+	display: inline-block;
+	margin-bottom: 0;
+}
+
+.experience_left h6{line-height: 19px;}
