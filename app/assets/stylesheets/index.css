@@ -1,4 +1,4 @@
-/* Reset
+ /* Reset
 ----------------------------------------- */
 @import url(reset.css);
 
@@ -1143,6 +1143,8 @@ topLink {
     font-weight: bold;
 }
 
-.educationLabel {
-
+.educationEmptyTitle {
+    font-size: 14px;
+    color: black;
+    font-weight: bold;
 }
