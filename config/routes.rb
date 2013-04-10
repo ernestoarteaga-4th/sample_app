@@ -94,14 +94,20 @@ SampleApp::Application.routes.draw do
   match "/responsibility/:id/remove" => 'project_responsibility_tag#remove'
   match "/project/:project_id/project-roles/:project_role_id/responsibility/add" => 'project_responsibility_tag#add'
   # Education
-  match "/education/destroy" => 'candidate_education#destroy'
   match "/education/:id" => 'education#index', :as => :candidate_education
+  match "/education/destroy" => 'candidate_education#destroy'
   match "/candidates/:id/resume/education" => 'candidate_education#index'
-  match "/candidates/:id/resume/education/create" => 'candidate_education#create', :as => :candidate_education_index
   match "/candidates/:id/resume/education/new" => 'candidate_education#new'
+  match "/candidates/:id/resume/education/create" => 'candidate_education#create', :as => :candidate_education_index
+  match "/candidates/:id/resume/education/edit" => 'candidate_education#edit'
   match "/candidates/:id/resume/education/update" => 'candidate_education#update'
   match "/candidates/:id/resume/education/destroy" => 'candidate_education#destroy'
-  match "/candidates/:id/resume/education/edit" => 'candidate_education#edit'
+  match "/candidates/:id/education_degree" => 'educ_degree#index'
+  match "/candidates/:id/education_degree/new" => 'educ_degree#new'
+  match "/candidates/:id/education_degree/create" => 'educ_degree#create'
+  match "/candidates/:id/education_degree/edit" => 'educ_degree#edit'
+  match "/candidates/:id/education_degree/update" => 'educ_degree#update'
+  match "/candidates/:id/education_degree/destroy" => 'educ_degree#destroy'
 
   # Certification
   #match "/candidates/:id/resume/certification" => 'candidate_certification#index'

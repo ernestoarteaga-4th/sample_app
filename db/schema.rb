@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(:version => 20130408152845) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.boolean  "admin_flag"
   end
 
   create_table "candidates_interviews", :force => true do |t|
