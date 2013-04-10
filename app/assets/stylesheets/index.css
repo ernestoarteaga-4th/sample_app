@@ -647,6 +647,21 @@ p.copyright { font-size: 11px; font-style: italic; }
 	width:240px;
 	color:#000000;
 	margin-bottom: -10px;
+	margin-top: 5px;
+	height:120px;
+	-webkit-box-shadow: 0px 0px 0px #222;
+	-moz-box-shadow: 0px 0px 0px #222;
+	box-shadow: 0px 0px 0px #222;
+}
+
+#content form textarea#rolerespon_description { 
+	border:#ccc solid 1px;
+	background: none;
+	padding:6px 5px;
+	width:240px;
+	color:#000000;
+	margin-bottom: -10px;
+	margin-top: 5px;
 	height:120px;
 	-webkit-box-shadow: 0px 0px 0px #222;
 	-moz-box-shadow: 0px 0px 0px #222;
