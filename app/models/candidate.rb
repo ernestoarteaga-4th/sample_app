@@ -48,6 +48,7 @@ class Candidate < ActiveRecord::Base
   :password,
   :password_confirmation,
   :change_password_flag
+  :admin_flag
 
   has_many        :microposts,         :dependent => :destroy   
   has_many        :followings,         :foreign_key => "follower_id",

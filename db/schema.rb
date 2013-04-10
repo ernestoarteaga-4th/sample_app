@@ -14,9 +14,8 @@
 ActiveRecord::Schema.define(:version => 20130409215649) do
 
   create_table "candidate_certifications", :force => true do |t|
-    t.integer  "certification_id"
     t.integer  "candidate_id"
-    t.date     "year"
+    t.integer  "certification_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
   end
@@ -24,6 +23,25 @@ ActiveRecord::Schema.define(:version => 20130409215649) do
   create_table "candidate_contact_sources", :force => true do |t|
     t.integer  "candidate_id"
     t.string   "sources"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "candidate_education", :force => true do |t|
+    t.integer  "educ_degree_id"
+    t.integer  "candidate_id"
+    t.string   "title"
+    t.string   "degree"
+    t.datetime "date_in"
+    t.datetime "date_out"
+    t.string   "university"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  create_table "candidate_languages", :force => true do |t|
+    t.integer  "level_id"
+    t.integer  "candidate_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
@@ -81,6 +99,7 @@ ActiveRecord::Schema.define(:version => 20130409215649) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.boolean  "admin_flag"
   end
 
   create_table "candidates_education", :force => true do |t|
@@ -155,6 +174,13 @@ ActiveRecord::Schema.define(:version => 20130409215649) do
     t.datetime "updated_at",   :null => false
   end
 
+  create_table "filter_languages", :force => true do |t|
+    t.integer  "candidate_language_id"
+    t.integer  "language_id"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+  end
+
   create_table "followings", :force => true do |t|
     t.integer  "follower_id"
     t.integer  "followed_id"
@@ -177,21 +203,13 @@ ActiveRecord::Schema.define(:version => 20130409215649) do
     t.datetime "updated_at",  :null => false
   end
 
-  create_table "language_levels", :force => true do |t|
+  create_table "languages", :force => true do |t|
     t.string   "name"
     t.string   "description"
     t.boolean  "approved_flag"
     t.string   "approved_by"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
-  end
-
-  create_table "languages", :force => true do |t|
-    t.string   "name"
-    t.string   "level"
-    t.integer  "resume_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
   create_table "microposts", :force => true do |t|
