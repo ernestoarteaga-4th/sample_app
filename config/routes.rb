@@ -79,7 +79,7 @@ SampleApp::Application.routes.draw do
   match "/candidates/:id/projects/:project_id/projroles/:projrole_id/roles_responsibilities/new" => 'roles_responsibilities#new'
   match "/candidates/:id/project/:project_id/projrole/:projrole_id/update" => 'projroles#update'
   match "/candidates/:id/project/:project_id/projrole/:projrole_id/show" => 'projroles#show'
-  match "/candidates/:id/project/:project_id/projrole/:projrole_id/destroy" => 'projroles#destroy'
+  match "/candidates/:id/project/:project_id/projrole/:projrole_id/roles_responsibilities/:rolerespon_id/destroy" => 'roles_responsibilities#destroy'
   # Education
   match "/education/:id" => 'education#index', :as => :candidate_education
   match "/education/destroy" => 'candidate_education#destroy'

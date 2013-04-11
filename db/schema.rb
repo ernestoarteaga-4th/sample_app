@@ -260,7 +260,7 @@ ActiveRecord::Schema.define(:version => 20130409215649) do
   create_table "roles", :force => true do |t|
     t.string   "name"
     t.string   "description"
-    t.string   "approved_flag"
+    t.boolean  "approved_flag"
     t.string   "approved_by"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
