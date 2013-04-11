@@ -47,7 +47,7 @@ class Candidate < ActiveRecord::Base
   :zip_code,
   :password,
   :password_confirmation,
-  :change_password_flag
+  :change_password_flag,
   :admin_flag
 
   has_many        :microposts,         :dependent => :destroy   
