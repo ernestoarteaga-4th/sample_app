@@ -13,3 +13,21 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+(function($){
+	window.Application = {
+		setSideBarHeight: function(){
+			//alert("asd");
+			var content = $("#content"), sidebar = $("#sidebar"), height, breadcrumbs = $("#breadcrumbs"), 
+			subheader = $("img.subheader");
+			height = breadcrumbs.height() +content.height() + 119;
+			//alert("content.height"+content.height()+" sidebar.height" + subheader.height());
+			sidebar.height(content.height());
+			//alert("breadcrumbs"+breadcrumbs.height() + " content" + content.height());
+			//alert("sidebar.height"+sidebar.height() + "height" + height);
+		}
+	}
+})(jQuery);
+
+jQuery(document).ready(function(){
+	Application.setSideBarHeight();
+});
