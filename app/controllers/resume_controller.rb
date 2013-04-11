@@ -1,7 +1,8 @@
 class ResumeController < ApplicationController
-
+  
   def index
     @candidate = Candidate.find(params[:id])
+
     if @candidate.resume.nil?
       @candidate.build_resume.save
     end
