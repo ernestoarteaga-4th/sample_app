@@ -48,9 +48,7 @@
             %li
               %i.iconTraining
               = link_to_resume('Training', current_candidate.id, :action => 'training', :class => 'profile-sub_navigation')
-            %li
-              %i.iconSkills
-              = link_to 'Skills', skills_path, :class => "profile-sub_navigation"
+          
             %li.last
               %i.iconInterests
               = link_to_resume('Languages', current_candidate.id, :action => 'languages', :class => 'profile-sub_navigation')

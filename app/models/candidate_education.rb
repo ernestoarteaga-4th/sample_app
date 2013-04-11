@@ -11,7 +11,6 @@ class CandidateEducation < ActiveRecord::Base
   belongs_to :candidate
   belongs_to :educ_degree
   
-  validates :educ_degree_id, :presence => true
   validates :candidate_id, :presence => true
   validates :title, :presence => true
 end
