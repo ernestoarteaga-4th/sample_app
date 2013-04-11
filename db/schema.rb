@@ -102,18 +102,6 @@ ActiveRecord::Schema.define(:version => 20130409215649) do
     t.boolean  "admin_flag"
   end
 
-  create_table "candidates_education", :force => true do |t|
-    t.integer  "educ_degrees_id"
-    t.integer  "candidate_id"
-    t.string   "title"
-    t.string   "degree"
-    t.datetime "date_in"
-    t.datetime "date_out"
-    t.string   "university"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-  end
-
   create_table "candidates_interviews", :force => true do |t|
     t.integer  "candidate_id"
     t.string   "result"
