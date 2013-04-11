@@ -17,34 +17,99 @@ $(document).ready(function() {
   });
 });
 
+$(document).ready(function() {
+  $('#newEducationForm').submit(function(e) { 
+    var $inputs = $('#newEducationForm :input');
+    var flag = true;
+    
+    for(var i = 0; i < $inputs.length; i++) {
+      if($inputs[i].id === 'education_title') {
+        if($inputs[i].value === '') {
+          $('#requiredTitle').text('* Este Campo es Obligatorio');
+          flag = false;
+        }
+
+        else {
+          $('#requiredTitle').text('');
+        }
+      }
+
+      if($("#education_educ_degree_id").is(":visible")) {
+        if ($inputs[i].id === 'education_educ_degree_id') {
+          if($inputs[i].value === '') {
+            $('#requiredEducationD').text('* Este Campo es Obligatorio');
+            flag = false;
+          }
+
+          else {
+            $('#requiredEducationD').text('');
+          }
+        }
+      }
+
+      else {
+        if($inputs[i].id === 'education_educ_degree_id_new') {
+          if($inputs[i].value === '') {
+            $('#requiredEducationD').text('* Este Campo es Obligatorio');
+            flag = false;
+          }
+
+          else {
+            $('#requiredEducationD').text('');
+          }
+        }
+      }
+
+      if($inputs[i].id === 'education_university') {
+        if($inputs[i].value === '') {
+          $('#requiredUniversity').text('* Este Campo es Obligatorio');
+          flag = false;
+        }
+
+        else {
+          $('#requiredUniversity').text('');
+        }
+      }
+    }
+
+    if(flag) {
+      e.submit();
+    }
+
+    else {
+      e.preventDefault();
+    }
+    
+    return false;
+  });
+});
 
 $(document).ready(function() {
-$('#newEducationForm').submit(function(e) { 
-     //se traen todos los inputs del formulario
-     var $inputs = $('#newEducationForm :input');
-
- var obj = array.filter(function (inputs) {
-        return inputs.id === 'education_date_out_3i';
-    });
-    //filter returns an array, and we just want the matching item
-
-
-
-alert(obj[0]);
-
-e.preventDefault(); // Cancel the submit
-
-            return false; // Exit the .each loop
-
-/*
-     $inputs.each(function() {
-        var encontro_error = validar($(this)); //uses dependence ok
-        if (encontro_error){
-            $.scrollTo( 'input#'+$(this).attr('id'), 800 ); //go to error
-            e.preventDefault(); // Cancel the submit
-            return false; // Exit the .each loop
+  $('#EducationDegreeForm').submit(function(e) { 
+    var $inputs = $('#EducationDegreeForm :input');
+    var flag = true;
+    
+    for(var i = 0; i < $inputs.length; i++) {
+      if($inputs[i].id === 'degree_name') {
+        if($inputs[i].value === '') {
+          $('#requiredName').text('* Este Campo es Obligatorio');
+          flag = false;
         }
-     });
-*/
-});
+
+        else {
+          $('#requiredName').text('');
+        }
+      }
+    }
+
+    if(flag) {
+      e.submit();
+    }
+
+    else {
+      e.preventDefault();
+    }
+    
+    return false;
+  });
 });
