@@ -1,11 +1,6 @@
 class CandidateLanguagesController < ApplicationController
-   before_filter :verifylogin
-   def verifylogin
-       if(current_candidate == nil)
-        redirect_to root_url#, {:status=>403} todo make this status work :-/
-      end
-   end
-
+  before_filter :authenticate
+  
    def index
     @candidate = current_candidate
     @error = @candidate.errors
