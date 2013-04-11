@@ -65,17 +65,19 @@
           %br
         #experience-description
           = projects.summary
+        %ul
+          - projects.projroles.each do |roles|
+            - roles.roles_responsibilities.each do |role_responsibility|
+              %li= role_responsibility.description
+
     - else
-      %br
       %br
       %h4 Please create at least one labor project.
 
       .divider
     %br
-    %br
     - if @candidate.candidate_languages.count > 0
-      %h4
-        List of languages
+      %h4 List of languages
       .divider-headline
       %ul
         - @candidate.candidate_languages.each do |candidate_language|
