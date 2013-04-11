@@ -21,134 +21,140 @@
   %br
   = form_for(@candidate) do |f|
     = render 'shared/error_messages', :object => f.object
-    .field
-      = f.label "Image"
-      %br
-      = f.file_field :avatar_file_name
-    .field
-      = f.label :first_name
-      %br
-      = f.text_field :first_name
-    .field
-      = f.label :middle_name
-      %br
-      = f.text_field :middle_name
-    .field
-      = f.label :first_last_name
-      %br
-      = f.text_field :first_last_name
-    .field
-      = f.label :second_last_name
-      %br
-      = f.text_field :second_last_name
-    .field
-      = f.label :gender
-      %br
-      = f.select :gender, gender_list
-    .field
-      = f.label :birthdate
-      %br
-      = date_select(:candidate, :birthdate, :start_year => 1950, :order => [:month, :day, :year])
+    .row-fluid
+      .field
+        = f.label "Image"
+        %br
+        = f.file_field :avatar_file_name
+    .row-fluid
+      .span5
+        .field
+          = f.label :first_name
+        = f.text_field :first_name
+        .field
+          = f.label :first_last_name
+        = f.text_field :first_last_name
+      .span5
+        .field
+          = f.label :middle_name
+        = f.text_field :middle_name
+        .field
+          = f.label :second_last_name
+        = f.text_field :second_last_name
+    .row-fluid
+      .span5
+        .field
+          = f.label :gender
+          %br
+        = f.select :gender, gender_list
+      .span7
+        .field
+          = f.label :birthdate
+          %br
+        .birthdate= date_select(:candidate, :birthdate, :start_year => 1950, :order => [:month, :day, :year])
+        %br
+    .divider
+    .row-fluid
+      .span5
+        .field
+          = f.label :email
+        = f.text_field :email
+      .span3
+        .field
+          = f.label :password
+        = f.password_field :password
+      .span3
+        .field
+          = f.label :password_confirmation
+        = f.password_field :password_confirmation
+    .row-fluid
     %br
     .divider
-    .field
-      = f.label :email
-      %br
-      = f.text_field :email
-    .field
-      = f.label :password
-      %br
-      = f.password_field :password
-    .field
-      = f.label :password_confirmation
-      %br
-      = f.password_field :password_confirmation
+    .row-fluid
+      .span5
+        .field
+          = f.label :address
+        = f.text_field :address
+      .span3
+        .field
+          = f.label :city
+        = f.text_field :city
+      .span3
+        .field
+          = f.label :zip_code
+        = f.text_field :zip_code
+    .row-fluid
+      .span5
+        .field
+          = f.label :country
+        = f.select :country, country_list
     %br
     .divider
-    .field
-      = f.label :address
-      %br
-      = f.text_field :address
-    .field
-      = f.label :city
-      %br
-      = f.text_field :city
-    .field
-      = f.label :zip_code
-      %br
-      = f.text_field :zip_code
-    .field
-      = f.label :country
-      %br
-      = f.select :country, country_list
+    .row-fluid
+      .span5
+        .field
+          = f.label :home_phone
+        = f.text_field :home_phone
+        .field
+          = f.label :office_phone
+        = f.text_field :office_phone
+      .span5
+        .field
+          = f.label :cell_phone
+        = f.text_field :cell_phone
+    .divider
+    .row-fluid
+      .span3
+        = f.check_box :has_visa
+        .field
+          = f.label :has_visa
+      .span3
+        .field
+          = f.label :visa_expiration_year
+        = f.text_field :visa_expiration_year
+        = f.check_box :is_willing_to_travel
+        .field
+          = f.label :is_willing_to_travel       
+      .span3
+        = f.check_box :has_passport
+        .field
+          = f.label :has_passport
+      .span3
+        .field
+          = f.label :passport_expiration_year
+        = f.text_field :passport_expiration_year
+        = f.check_box :is_willing_to_relocate
+        .field
+          = f.label :is_willing_to_relocate
+        
     %br
     .divider
-    .field
-      = f.label :home_phone
-      %br
-      = f.text_field :home_phone
-    .field
-      = f.label :cell_phone
-      %br
-      = f.text_field :cell_phone
-    .field
-      = f.label :office_phone
-      %br
-      = f.text_field :office_phone
-    %br
-    .divider
-    .field
-      = f.label :has_visa
-      %br
-      = f.check_box :has_visa
-    .field
-      = f.label :visa_expiration_year
-      %br
-      = f.text_field :visa_expiration_year
-    .field
-      = f.label :has_passport
-      %br
-      = f.check_box :has_passport
-    .field
-      = f.label :passport_expiration_year
-      %br
-      = f.text_field :passport_expiration_year
-    .field
-      = f.label :is_willing_to_travel
-      %br
-      = f.check_box :is_willing_to_travel
-    .field
-      = f.label :is_willing_to_relocate
-      %br
-      = f.check_box :is_willing_to_relocate
-    %br
-    .divider
-    .field
-      = f.label :currently_employed
-      %br
-      = f.check_box :currently_employed
-    .field
-      = f.label :company
-      %br
-      = f.text_field :company
-    .field
-      = f.label :position
-      %br
-      = f.text_field :position
-    .field
-      = f.label :salary_expectancy
-      %br
-      = f.text_field :salary_expectancy
-    .field
-      = f.label :current_salary
-      %br
-      = f.text_field :current_salary
-    .field
-      = f.label :comments
-      %br
+    .row-fluid
+      .span3
+        = f.check_box :currently_employed
+        .field
+          = f.label :currently_employed
+    .row-fluid
+      .span5
+        .field
+          = f.label :company
+        = f.text_field :company
+        .field
+          = f.label :salary_expectancy
+        = f.text_field :salary_expectancy
+      .span5
+        .field
+          = f.label :position
+        = f.text_field :position
+        .field
+          = f.label :current_salary
+        = f.text_field :current_salary
+    .row-fluid
+      .field
+        = f.label :comments
       = f.text_field :comments
     .actions
       %br      
-      = f.submit "Update"
+      = f.submit "Update",{"class"=>"btn btn-primary"}
 <!-- Sidebar -->
 = render 'shared/sidebar_signed'

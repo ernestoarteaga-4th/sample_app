@@ -36,10 +36,14 @@
         = render 'shared/error_messages', :object => f.object
         %h3.page_headline
           = e.name
-        %topLink
-          = link_to "Edit", url_options={:controller => "educ_degree", :action => "edit", id:e.id, name:e.name, description:e.description, approved_flag:e.approved_flag}
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          = link_to "Delete", url_options = {:controller => "educ_degree", :action => "destroy", id:e.id}, html_options = { :confirm => "Are you Sure?" }
+        .btn-group
+          %button.btn.btn-primary
+            = link_to "Edit", url_options={:controller => "educ_degree", :action => "edit", id:e.id, name:e.name, description:e.description, approved_flag:e.approved_flag}
+          %button.btn.btn-primary.dropdown-toggle
+            %span.caret
+          %ul.dropdown-menu
+            %li
+              = link_to "Delete", url_options = {:controller => "educ_degree", :action => "destroy", id:e.id}, html_options = { :confirm => "Are you Sure?" }
         .field
           = f.hidden_field :id, :value => e.id
         .field

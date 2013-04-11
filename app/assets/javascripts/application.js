@@ -30,4 +30,5 @@
 
 jQuery(document).ready(function(){
 	Application.setSideBarHeight();
+	$('.dropdown-toggle').dropdown();
 });

@@ -37,10 +37,14 @@
         -date_out = DateTime.parse(e.date_out.to_s())
         -formatted_date_out = date_out.strftime('%b %d, %Y')
         = e.university + " (" + formatted_date_in + " - " + formatted_date_out + ")"
-      %topLink
-        = link_to "Edit", url_options={:controller => "candidate_education", :action => "edit", id:e.id, title:e.title, educ_degree_id:e.educ_degree_id, university:e.university, date_in:e.date_in, date_out:e.date_out}
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        = link_to "Delete", url_options = {:controller => "candidate_education", :action => "destroy", id:e.id}, html_options = { :confirm => "Are you Sure?" }
+      .btn-group
+        %button.btn.btn-primary
+          = link_to "Edit", url_options={:controller => "candidate_education", :action => "edit", id:e.id, title:e.title, educ_degree_id:e.educ_degree_id, university:e.university, date_in:e.date_in, date_out:e.date_out}
+        %button.btn.btn-primary.dropdown-toggle
+          %span.caret
+        %ul.dropdown-menu
+          %li
+            = link_to "Delete", url_options = {:controller => "candidate_education", :action => "destroy", id:e.id}, html_options = { :confirm => "Are you Sure?" }
       .field
         = f.hidden_field :id, :value => e.id
       .field
