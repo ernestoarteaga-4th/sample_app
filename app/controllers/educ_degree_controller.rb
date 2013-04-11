@@ -9,11 +9,19 @@ class EducDegreeController < ApplicationController
 
   def create
     @degree = EducDegree.new(params[:degree])
-    @degree.approved_by = current_candidate.first_name + " " + 
-                          current_candidate.middle_name + " " + 
-                          current_candidate.first_last_name + " " + 
-                          current_candidate.second_last_name
-    @degree.save
+
+    @cat_degree_rows = EducDegree.where("name = ?", @degree.name)
+
+    if @cat_degree_rows.length > 0
+      flash[:notice] = "The Education Degree Already Exists"
+
+    else
+      @degree.approved_by = current_candidate.first_name + " " + 
+                            current_candidate.middle_name + " " + 
+                            current_candidate.first_last_name + " " + 
+                            current_candidate.second_last_name
+      @degree.save
+    end
 
     redirect_to File.join('/candidates/', current_candidate.id.to_s(), '/education_degree')
   end
@@ -45,13 +53,20 @@ class EducDegreeController < ApplicationController
                           current_candidate.middle_name + " " + 
                           current_candidate.first_last_name + " " + 
                           current_candidate.second_last_name
-
-    EducDegree.update(@degree.id, 
-                      :name => @degree.name, 
-                      :description => @degree.description,
-                      :approved_flag => @degree.approved_flag,
-                      :approved_by => @degree.approved_by)
     
+    @cat_degree_rows = EducDegree.where("name = ?", @degree.name)
+
+    if @cat_degree_rows.length > 0
+      flash[:notice] = "The Education Degree Already Exists"
+
+    else
+      EducDegree.update(@degree.id, 
+                        :name => @degree.name, 
+                        :description => @degree.description,
+                        :approved_flag => @degree.approved_flag,
+                        :approved_by => @degree.approved_by)
+    end
+
     redirect_to File.join('/candidates/', current_candidate.id.to_s(), '/education_degree')
   end
 end

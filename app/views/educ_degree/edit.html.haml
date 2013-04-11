@@ -25,7 +25,7 @@
   %br
   %h3.page_headline
     = @d.name
-  = form_for(:degree, :url => {:action=>'update'}, :html => {:multipart => true}) do |f|
+  = form_for(:degree, :url => {:action=>'update'}, :html => {:multipart => true, :id => "EducationDegreeForm"}) do |f|
     //= render 'shared/error_messages', :object => f.object
     .field
       = f.hidden_field :id, :value => @d.id
@@ -33,6 +33,7 @@
       = f.label :name
       %br
       = f.text_field :name, :value => @d.name
+      = label_tag "requiredName", "", :id =>"requiredName", :class => "educationValidatorText"
     .field
       = f.label :description
       %br
