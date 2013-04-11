@@ -1218,6 +1218,12 @@ topLink {
     font-weight: bold;
 }
 
+.educationValidatorText {
+    font-size: 10px;
+    color: red;
+    font-weight: bold;
+}
+
 .educationTitleAndUniversity{
 	display: inline-block;
 	margin-bottom: 0;

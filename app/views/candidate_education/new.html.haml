@@ -31,16 +31,19 @@
       = f.label :title
       %br
       = f.text_field :title
+      = label_tag "requiredTitle", "", :id =>"requiredTitle", :class => "educationValidatorText"
     .field
       = f.label :educ_degree_id
       %br
       = f.select :educ_degree_id, options_from_collection_for_select(EducDegree.where({:approved_flag => [true]}).all, "id", "name")
       = text_field_tag "education_educ_degree_id_new"
-      = button_tag "+", :id => "addButton", :class => "addButton", :type => "button" 
+      = button_tag "+", :id => "addButton", :class => "addButton", :type => "button"
+      = label_tag "requiredEducationD", "", :id =>"requiredEducationD", :class => "educationValidatorText"
     .field
       = f.label :university
       %br
       = f.text_field :university
+      = label_tag "requiredUniversity", "", :id =>"requiredUniversity", :class => "educationValidatorText"
     .field
       = f.label :date_in
       %br
