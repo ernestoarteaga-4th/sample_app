@@ -9,10 +9,107 @@ $(document).ready(function() {
     }
 
     else {
-	  $("#education_educ_degree_id").show();
+	    $("#education_educ_degree_id").show();
       $("#education_educ_degree_id_new").hide();
       $("#addButton").text('+');
       $("#education_educ_degree_id_new").val('');
     }
+  });
+});
+
+$(document).ready(function() {
+  $('#newEducationForm').submit(function(e) { 
+    var $inputs = $('#newEducationForm :input');
+    var flag = true;
+    
+    for(var i = 0; i < $inputs.length; i++) {
+      if($inputs[i].id === 'education_title') {
+        if($inputs[i].value === '') {
+          $('#requiredTitle').text('* Este Campo es Obligatorio');
+          flag = false;
+        }
+
+        else {
+          $('#requiredTitle').text('');
+        }
+      }
+
+      if($("#education_educ_degree_id").is(":visible")) {
+        if ($inputs[i].id === 'education_educ_degree_id') {
+          if($inputs[i].value === '') {
+            $('#requiredEducationD').text('* Este Campo es Obligatorio');
+            flag = false;
+          }
+
+          else {
+            $('#requiredEducationD').text('');
+          }
+        }
+      }
+
+      else {
+        if($inputs[i].id === 'education_educ_degree_id_new') {
+          if($inputs[i].value === '') {
+            $('#requiredEducationD').text('* Este Campo es Obligatorio');
+            flag = false;
+          }
+
+          else {
+            $('#requiredEducationD').text('');
+          }
+        }
+      }
+
+      if($inputs[i].id === 'education_university') {
+        if($inputs[i].value === '') {
+          $('#requiredUniversity').text('* Este Campo es Obligatorio');
+          flag = false;
+        }
+
+        else {
+          $('#requiredUniversity').text('');
+        }
+      }
+    }
+
+    if(flag) {
+      e.submit();
+    }
+
+    else {
+      e.preventDefault();
+    }
+    
+    return false;
+  });
+});
+
+$(document).ready(function() {
+  $('#EducationDegreeForm').submit(function(e) { 
+    var $inputs = $('#EducationDegreeForm :input');
+    var flag = true;
+    
+    for(var i = 0; i < $inputs.length; i++) {
+      if($inputs[i].id === 'degree_name') {
+        if($inputs[i].value === '') {
+          $('#requiredName').text('* Este Campo es Obligatorio');
+          flag = false;
+        }
+
+        else {
+          $('#requiredName').text('');
+        }
+      }
+    }
+
+    if(flag) {
+      e.submit();
+    }
+
+    else {
+      e.preventDefault();
+    }
+    
+    return false;
   });
 });

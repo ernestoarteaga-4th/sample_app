@@ -31,12 +31,22 @@ h5 { color: #fff; font-weight: normal; }
 }
 .divider-headline { 
 	height: 0px; 
-	width: 300px;
+	width: 100%;
 	border-top: #bcbcbc solid 1px; 
 	border-bottom: #fff solid 1px;	
 	margin:0px 0px 10px; 
 	background: none;
 }
+
+.divider-headline-mini { 
+	height: 0px; 
+	width: 150px;
+	border-top: #bcbcbc solid 1px; 
+	border-bottom: #fff solid 1px;	
+	margin:0px 0px 10px; 
+	background: none;
+}
+
 .divider_light, hr { border-top :1px solid #ccc; border-bottom: none; clear: both; }
 .hide { display:none; } 
 a.blue, #content a, #content p strong { color: #2268ae; }
@@ -273,6 +283,7 @@ a.nivo-prevNav {
 .column ul#nav_sub li a { color: #2268ae; }
 
 /* Page Headline Colors */
+#content h5.page_headline { font-weight: normal; font-size: 12px; color: #333; }
 #content h3.page_headline { font-weight: normal; font-size: 20px; color: #333; }
 #content h2.page_headline { font-weight: normal; font-size: 16px; color: #333; }
 
@@ -834,7 +845,12 @@ table.microposts tr td.micropost-delete {
 	margin-top: 7px;
 }
 
-.iconSummaryHeadLine, .iconSummary, .iconContact-info, .iconContact-infoHeadLine, .iconCoinsHeadLine, .iconResume, .iconResumeHeadLine, .iconPhoto, .iconPhotoHeadLine, .iconSummary, .iconExperience, .iconExperienceHeadLine, .iconEducation, .iconEducationHeadLine, .iconSkills, .iconSkillsHeadLine, .iconMembershipAwards, .iconInterests, .iconInterestsHeadLine {
+.iconSummaryHeadLine, .iconSummary, .iconContact-info, .iconContact-infoHeadLine, 
+  .iconCoinsHeadLine, .iconResume, .iconResumeHeadLine, .iconPhoto, .iconPhotoHeadLine, 
+  .iconSummary, .iconExperience, .iconExperienceHeadLine, .iconEducation, .iconEducationHeadLine, 
+  .iconSkills, .iconSkillsHeadLine, .iconMembershipAwards, .iconInterests, .iconInterestsHeadLine, 
+  .iconResponsibilitiesHeadLine, .iconRolesHeadLine, 
+  .iconKnowledgeHeadLine, .iconToolsHeadLine, .iconTechnologyHeadLine {
 	background: url(/images/probook_icons_img.axd);
 	background-repeat: no-repeat;
 	display: inline-block;
@@ -894,6 +910,45 @@ table.microposts tr td.micropost-delete {
 
 .iconExperienceHeadLine {
 	margin-top: 0px;
+}
+
+.iconResponsibilitiesHeadLine {
+	margin-top: 0px;
+	margin-left: 6px;
+	background-position: -312px 0px;
+	width: 11px; 
+	height: 16px;
+}
+
+.iconRolesHeadLine {
+	margin-top: 3px;
+	background-position: -90px 0px;
+	width: 16px; 
+	height: 16px;
+}
+
+.iconKnowledgeHeadLine{
+	margin-top: 3px;
+	margin-left: 6px;
+	background-position: -96px -56px;
+	width: 8px; 
+	height: 8px;
+}
+
+.iconToolsHeadLine{
+	margin-top: 3px;
+	margin-left: 6px;
+	background-position: -9px -56px;
+	width: 11px; 
+	height: 10px;
+}
+
+.iconTechnologyHeadLine{
+	margin-top: 0px;
+	margin-left: 6px;
+	background-position: -190px -39px;
+	width: 14px; 
+	height: 12px;
 }
 
 .iconExperience, .iconExperienceHeadLine {
@@ -980,6 +1035,12 @@ table.microposts tr td.micropost-delete {
 	margin-top: 15px;
 }
 
+.h5-page-headline {
+	margin-left: 25px;
+	margin-top: 15px;
+	margin-bottom: 5px;
+}
+
 #experience-date {
 	margin-top: 4px;
 	font-size: 10px; 
@@ -992,19 +1053,23 @@ table.microposts tr td.micropost-delete {
 }
 
 .experience_wrapper {
-	width: 550px;
+	width: 100%;
+	height: inherit;
 }
 
 .experience_left {
-	float:left;
-	padding: 10px;
-	width:450px;
+	/*padding: 10px;*/
+	width: 70%;
+	padding-top: 0;
+	display: inline-block;
 }
 
 .experience_right {
-	float:right;
-	padding: 10px;
-	width: 50px;
+	padding: 0 10px;
+	width: 25%;
+	text-align: right;
+	display: inline-block;
+	/*padding-top: 0;*/
 }
 
 .experience_details_wrapper {
@@ -1098,6 +1163,7 @@ li#level_2 {
 
 .photo_wrapper {
 	width: 550px;
+	height: 50px;
 }
 
 .photo_left {
@@ -1148,3 +1214,16 @@ topLink {
     color: black;
     font-weight: bold;
 }
+
+.educationValidatorText {
+    font-size: 10px;
+    color: red;
+    font-weight: bold;
+}
+
+.educationTitleAndUniversity{
+	display: inline-block;
+	margin-bottom: 0;
+}
+
+.experience_left h6{line-height: 19px;}

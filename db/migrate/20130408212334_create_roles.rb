@@ -3,7 +3,7 @@ class CreateRoles < ActiveRecord::Migration
     create_table :roles do |t|
       t.string :name
       t.string :description
-      t.string :approved_flag
+      t.boolean :approved_flag
       t.string :approved_by
 
       t.timestamps

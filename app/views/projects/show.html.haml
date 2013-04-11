@@ -40,6 +40,7 @@
       = f.text_area :summary
   %br
   %h3.page_headline 
+    %i.iconRolesHeadLine
     .h3-page-headline
       Roles
   .divider-headline
@@ -61,9 +62,6 @@
             = link_to "Edit", :controller => "projroles", :action => "update", id:@candidate.id, :project_id=> @project.id, :projrole_id=> role.id
             &nbsp;&nbsp;&nbsp;
             = link_to "Delete", url_options = { :controller => "projroles", :action => "destroy", id:@candidate.id, :project_id=> @project.id, :projrole_id=> role.id }, html_options = { :confirm => "Are you sure?" }
-            %br
-            %br
-            =link_to_projrole("Add responsibility", @candidate.id, @project.id, role.id, :action => "respon-new")
           %br
           .experience_details_wrapper
           .experience_details_left
@@ -71,30 +69,141 @@
             = role.date_in
             &nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;
             = role.date_out
-            
-            - if role.roles_responsibilities.nil? && role.roles_responsibilities.count > 0
-              %list
-                - role.roles_responsibilities.each do |respon|
-                  %br
-                  #row
-                    .experience_details_wrapper
-                    .experience_details_left
-                      = respon.description
-                    .experience_details_right
-                      = link_to "Delete", url_options = { :controller => "roles_responsibilities", :action => "destroy", id:@candidate.id, :project_id=> @project.id, :projrole_id=> @role.id, :rolerespon_id=> respon.id }, html_options = { :confirm => "Are you sure?" }
-                    %br 
-                  %br
-            - else
-              %br
+          .experience_details_wrapper
+          .experience_details_left
+            %h5.page_headline 
+              %i.iconResponsibilitiesHeadLine
+              .h5-page-headline
+                Responsibilities&nbsp;&nbsp;&nbsp;
+                =link_to_projrole("Add new", @candidate.id, @project.id, role.id, :action => "respon-new")
+              .divider-headline-mini
+          - if role.roles_responsibilities.count > 0
+            %list
+              - role.roles_responsibilities.each do |respon|
+                %br
+                #row
+                  .experience_details_wrapper
+                  .experience_details_left
+                    &nbsp;&nbsp;&nbsp;&nbsp;&bull;
+                    = respon.description
+                  .experience_details_right
+                    = link_to "Delete", url_options = { :controller => "roles_responsibilities", :action => "destroy", id:@candidate.id, :project_id=> @project.id, :projrole_id=> role.id, :rolerespon_id=> respon.id }, html_options = { :confirm => "Are you sure?" }
+          - else
+            .experience_details_wrapper
+            .experience_details_left
               Please create at least one responsibility.
-        %br
-        %br
+          %br
+          %br
+          %br
+          %br
+          
+          
+          .experience_details_wrapper
+          .experience_details_left
+            %h5.page_headline 
+              %i.iconTechnologyHeadLine
+              .h5-page-headline
+                Technologies&nbsp;&nbsp;&nbsp;
+                =link_to_projrole("Add new", @candidate.id, @project.id, role.id, :action => "respon-new")
+              .divider-headline-mini
+          - if role.roles_responsibilities.count > 0
+            %list
+              - role.roles_responsibilities.each do |respon|
+                %br
+                #row
+                  .experience_details_wrapper
+                  .experience_details_left
+                    &nbsp;&nbsp;&nbsp;&nbsp;&bull;
+                    = respon.description
+                  .experience_details_right
+                    = link_to "Delete", url_options = { :controller => "roles_responsibilities", :action => "destroy", id:@candidate.id, :project_id=> @project.id, :projrole_id=> role.id, :rolerespon_id=> respon.id }, html_options = { :confirm => "Are you sure?" }
+          - else
+            .experience_details_wrapper
+            .experience_details_left
+              Please create at least one technology.
+          %br
+          %br
+          %br
+          %br
+          
+          
+          
+          
+          .experience_details_wrapper
+          .experience_details_left
+            %h5.page_headline 
+              %i.iconKnowledgeHeadLine
+              .h5-page-headline
+                Knowledges&nbsp;&nbsp;&nbsp;
+                =link_to_projrole("Add new", @candidate.id, @project.id, role.id, :action => "respon-new")
+              .divider-headline-mini
+          - if role.roles_responsibilities.count > 0
+            %list
+              - role.roles_responsibilities.each do |respon|
+                %br
+                #row
+                  .experience_details_wrapper
+                  .experience_details_left
+                    &nbsp;&nbsp;&nbsp;&nbsp;&bull;
+                    = respon.description
+                  .experience_details_right
+                    = link_to "Delete", url_options = { :controller => "roles_responsibilities", :action => "destroy", id:@candidate.id, :project_id=> @project.id, :projrole_id=> role.id, :rolerespon_id=> respon.id }, html_options = { :confirm => "Are you sure?" }
+          - else
+            .experience_details_wrapper
+            .experience_details_left
+              Please create at least one knowledge.
+          %br
+          %br
+          %br
+          %br
+          
+          
+          
+          
+          .experience_details_wrapper
+          .experience_details_left
+            %h5.page_headline 
+              %i.iconToolsHeadLine
+              .h5-page-headline
+                Tools&nbsp;&nbsp;&nbsp;
+                =link_to_projrole("Add new", @candidate.id, @project.id, role.id, :action => "respon-new")
+              .divider-headline-mini
+          - if role.roles_responsibilities.count > 0
+            %list
+              - role.roles_responsibilities.each do |respon|
+                %br
+                #row
+                  .experience_details_wrapper
+                  .experience_details_left
+                    &nbsp;&nbsp;&nbsp;&nbsp;&bull;
+                    = respon.description
+                  .experience_details_right
+                    = link_to "Delete", url_options = { :controller => "roles_responsibilities", :action => "destroy", id:@candidate.id, :project_id=> @project.id, :projrole_id=> role.id, :rolerespon_id=> respon.id }, html_options = { :confirm => "Are you sure?" }
+          - else
+            .experience_details_wrapper
+            .experience_details_left
+              Please create at least one tool.
+          %br
+          %br
+          %br
+          %br
+          
+          
+          
         %br
         %br 
+        %br
+        %br
   - else
-    %br
-    %h4 Please create at least one role.
+    .experience_details_wrapper
+    .experience_details_left
+      Please create at least one role.
   %br
+  %br
+  %br
+  %br
+  %br 
+
   .clear 
 <!-- Sidebar -->
 = render 'shared/sidebar_signed'

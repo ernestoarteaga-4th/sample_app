@@ -18,6 +18,9 @@
     .h3-page-headline
       Education
   .divider-headline
+  #flash
+    - flash.each do |key, value|
+      .flash{:class => key}= value
   %br
     %strong
       = link_to "New", :controller => "candidate_education", :action => "new"
