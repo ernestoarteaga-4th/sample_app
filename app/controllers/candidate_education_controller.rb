@@ -13,12 +13,19 @@ class CandidateEducationController < ApplicationController
       @education.save
     else
       degree = params[:education_educ_degree_id_new]
-      cat_degree = EducDegree.new(:name => degree, :description => degree, :approved_flag => false)
-      cat_degree.save!
+      @cat_degree_rows = EducDegree.where("name = ?", degree)
+
+      if @cat_degree_rows.length > 0
+        flash[:notice] = "The Education Degree Already Exists"
       
-      @education = current_candidate.candidate_education.build(params[:education])
-      @education.educ_degree_id = cat_degree.id
-      @education.save
+      else
+        cat_degree = EducDegree.new(:name => degree, :description => degree, :approved_flag => false)
+        cat_degree.save!
+      
+        @education = current_candidate.candidate_education.build(params[:education])
+        @education.educ_degree_id = cat_degree.id
+        @education.save
+      end
     end
 
     redirect_to File.join('/candidates/', current_candidate.id.to_s(), '/resume/education')
@@ -50,15 +57,22 @@ class CandidateEducationController < ApplicationController
                                 :date_out => @education.date_out)
     else
       degree = params[:education_educ_degree_id_new]
-      cat_degree = EducDegree.new(:name => degree, :description => degree, :approved_flag => false)
-      cat_degree.save!
+      @cat_degree_rows = EducDegree.where("name = ?", degree)
+
+      if @cat_degree_rows.length > 0
+        flash[:notice] = "The Education Degree Already Exists"
+
+      else
+        cat_degree = EducDegree.new(:name => degree, :description => degree, :approved_flag => false)
+        cat_degree.save!
       
-      CandidateEducation.update(@education.id, 
-                                :title => @education.title, 
-                                :educ_degree_id => cat_degree.id,
-                                :university => @education.university,
-                                :date_in => @education.date_in,
-                                :date_out => @education.date_out)
+        CandidateEducation.update(@education.id, 
+                                  :title => @education.title, 
+                                  :educ_degree_id => cat_degree.id,
+                                  :university => @education.university,
+                                  :date_in => @education.date_in,
+                                  :date_out => @education.date_out)
+      end
     end
 
     redirect_to File.join('/candidates/', current_candidate.id.to_s(), '/resume/education')
