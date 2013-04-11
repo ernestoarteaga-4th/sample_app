@@ -2,7 +2,7 @@ require 'ferret'
 require 'acts_as_ferret'
 
 class Micropost < ActiveRecord::Base
-  acts_as_ferret
+  #acts_as_ferret
   self.per_page = 5
   attr_accessible :content
   belongs_to :candidate
