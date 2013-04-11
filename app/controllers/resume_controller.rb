@@ -41,18 +41,7 @@ class ResumeController < ApplicationController
     @project_items = @candidate.resume.projects
   end
    
-  def photo
-    @candidate = Candidate.find(params[:id])
-    @error = @candidate.errors
-    
-    if request.post?
-      if @candidate.update_attributes(params[:candidate])
-        flash[:success] = "Photo updated."
-      else
-        flash[:notice] = "An error occurred while the system save the photo. Please try again."
-      end
-    end
-  end
+
   
   def education
     if request.post?

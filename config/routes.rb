@@ -53,7 +53,6 @@ SampleApp::Application.routes.draw do
   match '/home',    :to => 'pages#home'
 
   match "/candidates/:id/resume" => 'resume#index'
-  match "/candidates/:id/resume/photo" => 'resume#photo'
   match "/candidates/:id/resume/summary" => 'resume#summary'
   match "/candidates/:id/resume/experience" => 'resume#experience'
   match "/candidates/:id/resume/experience/new" => 'experiences#new'
