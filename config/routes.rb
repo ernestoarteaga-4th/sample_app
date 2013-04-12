@@ -98,6 +98,7 @@ SampleApp::Application.routes.draw do
   match "/candidates/:id/education_degree/edit" => 'educ_degree#edit'
   match "/candidates/:id/education_degree/update" => 'educ_degree#update'
   match "/candidates/:id/education_degree/destroy" => 'educ_degree#destroy'
+  match "/candidates/:id/education_degree/action" => 'educ_degree#action'
 
   # Certification
   #match "/candidates/:id/resume/certification" => 'candidate_certification#index'
