@@ -104,19 +104,27 @@
               %i.iconTechnologyHeadLine
               .h5-page-headline
                 Technologies&nbsp;&nbsp;&nbsp;
-                =link_to_projrole("Add new", @candidate.id, @project.id, role.id, :action => "respon-new")
+                = link_to "Add new", :controller => "projects_tags", :action => "new", :id=> @candidate.id, :project_id=> @project.id, :projrole_id=> role.id, :type_id=>"3" 
               .divider-headline-mini
-          - if role.roles_responsibilities.count > 0
+          - if role.tags3.count > 0
             %list
-              - role.roles_responsibilities.each do |respon|
+              - role.tags3.each do |pt|
                 %br
                 #row
                   .experience_details_wrapper
                   .experience_details_left
                     &nbsp;&nbsp;&nbsp;&nbsp;&bull;
-                    = respon.description
+                    = Tag.find(pt.tags_id).name 
+                    &nbsp---&nbsp                     
+                    = pt.description
                   .experience_details_right
-                    = link_to "Delete", url_options = { :controller => "roles_responsibilities", :action => "destroy", id:@candidate.id, :project_id=> @project.id, :projrole_id=> role.id, :rolerespon_id=> respon.id }, html_options = { :confirm => "Are you sure?" }
+                    = link_to "Delete", url_options = { :controller => "projects_tags", :action => "destroy", id:@candidate.id, :project_id=> @project.id, :projrole_id=> role.id, :projtag_id=> pt.id }, html_options = { :confirm => "Are you sure?" }
+                  .experience_details_wrapper
+                  .experience_details_left
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    = pt.date_in
+                    &nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;
+                    = pt.date_out
           - else
             .experience_details_wrapper
             .experience_details_left
@@ -135,19 +143,27 @@
               %i.iconKnowledgeHeadLine
               .h5-page-headline
                 Knowledges&nbsp;&nbsp;&nbsp;
-                =link_to_projrole("Add new", @candidate.id, @project.id, role.id, :action => "respon-new")
+                = link_to "Add new", :controller => "projects_tags", :action => "new", :id=> @candidate.id, :project_id=> @project.id, :projrole_id=> role.id, :type_id=>"2"
               .divider-headline-mini
-          - if role.roles_responsibilities.count > 0
+          - if role.tags2.count > 0
             %list
-              - role.roles_responsibilities.each do |respon|
+              - role.tags2.each do |pt|
                 %br
                 #row
                   .experience_details_wrapper
                   .experience_details_left
                     &nbsp;&nbsp;&nbsp;&nbsp;&bull;
-                    = respon.description
+                    = Tag.find(pt.tags_id).name 
+                    &nbsp---&nbsp                     
+                    = pt.description
                   .experience_details_right
-                    = link_to "Delete", url_options = { :controller => "roles_responsibilities", :action => "destroy", id:@candidate.id, :project_id=> @project.id, :projrole_id=> role.id, :rolerespon_id=> respon.id }, html_options = { :confirm => "Are you sure?" }
+                    = link_to "Delete", url_options = { :controller => "projects_tags", :action => "destroy", id:@candidate.id, :project_id=> @project.id, :projrole_id=> role.id, :projtag_id=> pt.id }, html_options = { :confirm => "Are you sure?" }
+                  .experience_details_wrapper
+                  .experience_details_left
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    = pt.date_in
+                    &nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;
+                    = pt.date_out
           - else
             .experience_details_wrapper
             .experience_details_left
@@ -166,19 +182,27 @@
               %i.iconToolsHeadLine
               .h5-page-headline
                 Tools&nbsp;&nbsp;&nbsp;
-                =link_to_projrole("Add new", @candidate.id, @project.id, role.id, :action => "respon-new")
+                = link_to "Add new", :controller => "projects_tags", :action => "new", :id=> @candidate.id, :project_id=> @project.id, :projrole_id=> role.id, :type_id=>"1"
               .divider-headline-mini
-          - if role.roles_responsibilities.count > 0
+          - if role.tags1.count > 0
             %list
-              - role.roles_responsibilities.each do |respon|
+              - role.tags1.each do |pt|
                 %br
                 #row
                   .experience_details_wrapper
                   .experience_details_left
                     &nbsp;&nbsp;&nbsp;&nbsp;&bull;
-                    = respon.description
+                    = Tag.find(pt.tags_id).name 
+                    &nbsp---&nbsp                     
+                    = pt.description
                   .experience_details_right
-                    = link_to "Delete", url_options = { :controller => "roles_responsibilities", :action => "destroy", id:@candidate.id, :project_id=> @project.id, :projrole_id=> role.id, :rolerespon_id=> respon.id }, html_options = { :confirm => "Are you sure?" }
+                    = link_to "Delete", url_options = { :controller => "projects_tags", :action => "destroy", id:@candidate.id, :project_id=> @project.id, :projrole_id=> role.id, :projtag_id=> pt.id }, html_options = { :confirm => "Are you sure?" }
+                  .experience_details_wrapper
+                  .experience_details_left
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    = pt.date_in
+                    &nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;
+                    = pt.date_out
           - else
             .experience_details_wrapper
             .experience_details_left

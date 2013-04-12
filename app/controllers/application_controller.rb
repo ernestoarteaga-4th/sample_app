@@ -4,13 +4,7 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
 
   helper :date
-  before_filter :verify_login
 
- def verify_login
-  # if  (current_candidate == nil && request.fullpath != '/signin' && request.fullpath !='/' && request.fullpath !='/')
-   #   redirect_to root_url 
-  #  end
- end
   def paginate(results, per_page)
     if(params[:page].to_i>0)
       current_page = params[:page].to_i

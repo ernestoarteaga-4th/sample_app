@@ -8,6 +8,7 @@
         <%= csrf_meta_tags %>
 
 		    <!-- Stylesheets -->
+		    <%= stylesheet_link_tag "bootstrap.min.css" %>
 		    <%= stylesheet_link_tag "slider" %>
 		    <%= stylesheet_link_tag "index" %>
 		    <%= stylesheet_link_tag "jquery-ui-1.8.23.custom" %>
@@ -23,6 +24,7 @@
 		    <!-- Scripts -->
 			<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js" type="text/javascript"></script>
 			<%= javascript_include_tag "jquery.slides.min" %>
+			<%= javascript_include_tag "bootstrap.min" %>
 			<%= yield :scripts %>
 			<script>
 
