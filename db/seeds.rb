@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
+
+#Languages Catalog
+Language.destroy_all
+languages = Language.create([{:name=>'English',:approved_flag=>true},{:name=>'Spanish',:approved_flag=>true}])
+languages.each do |language| language.save end
