@@ -434,14 +434,14 @@ background: url(http://www.4thsource.com/public/images/read_more_brown.jpg) no-r
 #sidebar-gravatar {
  	display: inline-block;
  	vertical-align: top;
-    width: 5px;
+    width: auto;
     padding-left: 5px;
 }
 
 #sidebar-candidate {
   display: inline-block;
   vertical-align: top;
-  padding-left: 60px;
+  padding-left: 10px;
   padding-top: 7px;
 }
 
@@ -1239,4 +1239,15 @@ select, input{width: 230px;}
 #candidate_password, #candidate_password_confirmation, 
 #candidate_city, #candidate_zip_code, 
 #candidate_visa_expiration_year,
-#candidate_passport_expiration_year{width: 140px;}
+#candidate_passport_expiration_year,
+#candidate_home_phone, #candidate_office_phone,
+#candidate_cell_phone,#candidate_company,#candidate_position,
+#candidate_current_salary, #candidate_salary_expectancy{width: 140px;}
+
+#candidate_has_visa, #candidate_has_passport, #candidate_is_willing_to_relocate{display: inline-block;}
+.field label, .field{display: inline-block;}
+.alignCheckBox{margin-top:22px; display: inline-block;}
+.currentlyEmployed{margin-bottom: 22px;}
+.alignCheckBox input[type=checkbox]{vertical-align: bottom;}
+#visaShowHide,#passportShowHide,.employedShowHide{display: none;}
+img{max-width: auto !important;}
