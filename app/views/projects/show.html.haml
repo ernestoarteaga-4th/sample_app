@@ -26,26 +26,30 @@
   %br
   %br
   = form_for(:project, :action => "update", :html => {:class => "proj"}) do |f|
-    .field
-      = f.label "Employer"
-      %br
-      = f.text_field :company_name
-    .field
-      = f.label "Project name"
-      %br
-      = f.text_field :name 
-    .field
-      = f.label "Summary"
-      %br 
-      = f.text_area :summary
+    .row-fluid
+      .span6
+        .field
+          = f.label "Employer"
+        = f.text_field :company_name
+        .field
+          = f.label "Project name"
+        = f.text_field :name
+        = f.submit "Update",{"class"=>"btn btn-primary"}
+      .span6           
+        .field
+          = f.label "Summary"
+        = f.text_area :summary
   %br
-  %h3.page_headline 
-    %i.iconRolesHeadLine
-    .h3-page-headline
+  %br
+  %br
+  %i.iconRolesHeadLine
+  .project_role_left
+    %h6
       Roles
-  .divider-headline
+  .divider-headline-middle
   %br
   =link_to_projrole("Add Role", @candidate.id, @project.id, @projrole.id, :action => "new")
+  %br
   %br
   - if @projroles_items.count > 0
     %list
@@ -71,9 +75,10 @@
             = role.date_out
           .experience_details_wrapper
           .experience_details_left
+            %br
             %h5.page_headline 
               %i.iconResponsibilitiesHeadLine
-              .h5-page-headline
+              .tag_left
                 Responsibilities&nbsp;&nbsp;&nbsp;
                 =link_to_projrole("Add new", @candidate.id, @project.id, role.id, :action => "respon-new")
               .divider-headline-mini
@@ -100,9 +105,10 @@
           
           .experience_details_wrapper
           .experience_details_left
+            %br
             %h5.page_headline 
               %i.iconTechnologyHeadLine
-              .h5-page-headline
+              .tag_left
                 Technologies&nbsp;&nbsp;&nbsp;
                 = link_to "Add new", :controller => "projects_tags", :action => "new", :id=> @candidate.id, :project_id=> @project.id, :projrole_id=> role.id, :type_id=>"3" 
               .divider-headline-mini
@@ -139,9 +145,10 @@
           
           .experience_details_wrapper
           .experience_details_left
+            %br
             %h5.page_headline 
               %i.iconKnowledgeHeadLine
-              .h5-page-headline
+              .tag_left
                 Knowledges&nbsp;&nbsp;&nbsp;
                 = link_to "Add new", :controller => "projects_tags", :action => "new", :id=> @candidate.id, :project_id=> @project.id, :projrole_id=> role.id, :type_id=>"2"
               .divider-headline-mini
@@ -178,9 +185,10 @@
           
           .experience_details_wrapper
           .experience_details_left
+            %br
             %h5.page_headline 
               %i.iconToolsHeadLine
-              .h5-page-headline
+              .tag_left
                 Tools&nbsp;&nbsp;&nbsp;
                 = link_to "Add new", :controller => "projects_tags", :action => "new", :id=> @candidate.id, :project_id=> @project.id, :projrole_id=> role.id, :type_id=>"1"
               .divider-headline-mini

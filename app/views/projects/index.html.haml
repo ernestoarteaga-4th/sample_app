@@ -24,33 +24,137 @@
   %br
   %br
   - if @projects_items.count > 0
-    #list
+    %br
+    - @projects_items.each do |project|
       %br
-      - @projects_items.each do |project|
+      .project_left
+        %h6= project.company_name
+        %h6= project.name
+      .project_right
+        = link_to "Edit", :controller => "projects", :action => "show", id:@candidate.id, :project_id=> project.id
+        &nbsp;&nbsp;&nbsp;
+        
+        = link_to "Delete", url_options = { :controller => "projects", :action => "destroy", id:@candidate.id, :project_id=> project.id }, html_options = { :confirm => "Are you sure?" }
+      %br
+      #project-description
+        = project.summary
+      - if project.projroles.count > 0
+        %list
+          - project.projroles.each do |role|
+            %br
+            %br
+            #row
+              %i.iconRolesHeadLine
+              .project_role_left
+                %h6
+                  = Role.find_by_id(role.roles_id).name
+                .divider-headline-middle
+              .project_role_right
+                = Date::MONTHNAMES[role.date_in.month]
+                = role.date_in.year
+                = raw(' - ')
+                = Date::MONTHNAMES[role.date_out.month]
+                = role.date_out.year
+              %br
+              %i.iconResponsibilitiesHeadLine
+              .responsibility_left
+                %h6
+                  Responsibilities
+              - if role.roles_responsibilities.count > 0
+                - role.roles_responsibilities.each do |respon|
+                  .responsibility_left
+                    %il
+                      = respon.description
+              - else
+                &nbsp;----
+              %br
+              %br
+              %i.iconTechnologyHeadLine
+              .tag_left
+                %h6
+                  Technologies
+              %br 
+              - if role.tags3.count > 0
+                - role.tags3.each do |pt|
+                  %il
+                    .tag_left
+                      %strong
+                        = Tag.find(pt.tags_id).name
+                      &nbsp;&bull;
+                      = pt.description
+                    .tag_right
+                      = Date::MONTHNAMES[pt.date_in.month]
+                      = pt.date_in.year
+                      = raw(' - ')
+                      = Date::MONTHNAMES[pt.date_out.month]
+                      = pt.date_out.year 
+              - else
+                .tag_left
+                  &nbsp;----
+              %br
+              %br
+              %i.iconKnowledgeHeadLine
+              .tag_left
+                %h6
+                  Knowledges
+              %br 
+              - if role.tags2.count > 0
+                - role.tags2.each do |pt|
+                  %il
+                    .tag_left
+                      %strong
+                        = Tag.find(pt.tags_id).name
+                      &nbsp;&bull;
+                      = pt.description
+                    .tag_right
+                      = Date::MONTHNAMES[pt.date_in.month]
+                      = pt.date_in.year
+                      = raw(' - ')
+                      = Date::MONTHNAMES[pt.date_out.month]
+                      = pt.date_out.year
+              - else
+                .tag_left
+                  &nbsp;----
+              %br
+              %br
+              %i.iconToolHeadLine
+              .tag_left
+                %h6
+                  Tools
+              %br 
+              - if role.tags1.count > 0
+                - role.tags1.each do |pt|
+                  %il
+                    .tag_left
+                      %h6
+                        = Tag.find(pt.tags_id).name
+                    .tag_right
+                      = Date::MONTHNAMES[pt.date_in.month]
+                      = pt.date_in.year
+                      = raw(' - ')
+                      = Date::MONTHNAMES[pt.date_out.month]
+                      = pt.date_out.year 
+                    .tag_left
+                      = pt.description
+              - else
+                .tag_left
+                  &nbsp;----
+              %br
+              %br
+          
+          
+          
         %br
-        #row
-          .experience_details_wrapper
-          .experience_details_left
-            %strong
-              = project.company_name
-          .experience_details_right
-            = link_to "View", :controller => "projects", :action => "show", id:@candidate.id, :project_id=> project.id
-            &nbsp;&nbsp;&nbsp;
-            = link_to "Edit", :controller => "projects", :action => "update", id:@candidate.id, :project_id=> project.id
-            &nbsp;&nbsp;&nbsp;
-            = link_to "Delete", url_options = { :controller => "projects", :action => "destroy", id:@candidate.id, :project_id=> project.id }, html_options = { :confirm => "Are you sure?" }
-          %br
-          .experience_details_wrapper
-          .experience_details_left
-            &nbsp;&nbsp;&nbsp;&nbsp;&bull;
-            = project.name
-          %br
-          .experience_details_area
-            = project.summary
-          %br 
+        %br 
         %br
         %br
-        %br
+      - else
+        .experience_details_wrapper
+        .experience_details_left
+          Please create at least one role.
+      
+      %br
+      %br
   - else
     %h4 Please create at least one project.
     .divider
