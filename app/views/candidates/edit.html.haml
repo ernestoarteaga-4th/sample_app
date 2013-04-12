@@ -107,27 +107,25 @@
     .row-fluid
       .span3
         .field
+          .alignCheckBox= f.check_box :is_willing_to_relocate
+          .alignCheckBox= f.label :is_willing_to_relocate
+        .field
+          .alignCheckBox= f.check_box :is_willing_to_travel
+          .alignCheckBox= f.label :is_willing_to_travel 
+      .span3
+        .field
           .alignCheckBox= f.check_box :has_visa
           .alignCheckBox= f.label :has_visa
         .field
-          .alignCheckBox= f.check_box :is_willing_to_travel
-          .alignCheckBox= f.label :is_willing_to_travel  
+          .alignCheckBox= f.check_box :has_passport
+          .alignCheckBox= f.label :has_passport
       .span3
         .field#visaShowHide
           = f.label :visa_expiration_year
           = f.text_field :visa_expiration_year
-             
-      .span3
-        .field
-          .alignCheckBox= f.check_box :has_passport
-          .alignCheckBox= f.label :has_passport
-        .field
-          .alignCheckBox= f.check_box :is_willing_to_relocate
-          .alignCheckBox= f.label :is_willing_to_relocate
-      .span3
         .field#passportShowHide
           = f.label :passport_expiration_year
-          = f.text_field :passport_expiration_year       
+          = f.text_field :passport_expiration_year   
     %br
     .divider
     .row-fluid
