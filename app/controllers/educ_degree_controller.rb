@@ -16,6 +16,7 @@ class EducDegreeController < ApplicationController
       flash[:notice] = "The Education Degree Already Exists"
 
     else
+      @degree.approved_flag = true
       @degree.approved_by = current_candidate.first_name + " " + 
                             current_candidate.middle_name + " " + 
                             current_candidate.first_last_name + " " + 
@@ -65,6 +66,41 @@ class EducDegreeController < ApplicationController
                         :description => @degree.description,
                         :approved_flag => @degree.approved_flag,
                         :approved_by => @degree.approved_by)
+    end
+
+    redirect_to File.join('/candidates/', current_candidate.id.to_s(), '/education_degree')
+  end
+
+  def action
+    @degrees = EducDegree.all
+
+    if(params[:update_button] != nil)
+      @degrees.each do |row|
+        @degree = params["approved_flag_" + row.id.to_s()]
+        row.approved_by = current_candidate.first_name + " " + 
+                          current_candidate.middle_name + " " + 
+                          current_candidate.first_last_name + " " + 
+                          current_candidate.second_last_name
+
+        if(@degree == nil)
+          EducDegree.update(row.id, 
+                            :approved_flag => false,
+                            :approved_by => row.approved_by)
+        else
+          EducDegree.update(row.id, 
+                            :approved_flag => true,
+                            :approved_by => row.approved_by)
+        end
+      end
+    else
+      @degrees.each do |row|
+        @degree = params["approved_flag_" + row.id.to_s()]
+
+        if(@degree != nil)
+          EducDegree.delete(row.id)
+          CandidateEducation.where("educ_degree_id = ?", row.id).update_all(:educ_degree_id => '')
+        end
+      end
     end
 
     redirect_to File.join('/candidates/', current_candidate.id.to_s(), '/education_degree')
