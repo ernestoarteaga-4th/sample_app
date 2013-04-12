@@ -31,35 +31,30 @@
     -if @degrees.length == 0
       .educationEmptyTitle
         Please Insert at Least one Education Degree
-    -@degrees.each do |e|
-      = form_for(:e, :url=>{:action=>'index'}) do |f|
-        = render 'shared/error_messages', :object => f.object
-        %h3.page_headline
-          = e.name
-        %topLink
-          = link_to "Edit", url_options={:controller => "educ_degree", :action => "edit", id:e.id, name:e.name, description:e.description, approved_flag:e.approved_flag}
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          = link_to "Delete", url_options = {:controller => "educ_degree", :action => "destroy", id:e.id}, html_options = { :confirm => "Are you Sure?" }
-        .field
-          = f.hidden_field :id, :value => e.id
-        .field
-          = f.label "Name: ", class: "educationLabelTitle"
-          = f.label e.name, class: "educationLabel"
-        .field
-          = f.label "Description: ", class: "educationLabelTitle"
-          = f.label e.description, class: "educationLabel"
-        .field
-          = f.label "Approved By: ", class: "educationLabelTitle"
-          = f.label e.approved_by, class: "educationLabel"
-        .field
-          = f.check_box "approved_flag", :checked => e.approved_flag, :disabled => "true"
-          = f.label "Approved", class: "educationLabelTitle"
-        %br
-        //= submit_tag "Update", :name => 'update_button'
-        //= submit_tag "Delete", :name => 'delete_button'
-      %br
-      %br
-      //= render 'candidate_education/create'
+    -else
+      %table#education_degree_table.display
+        %thead
+          %tr
+            %th
+              = check_box_tag "approved_flag_all"
+            %th
+              Name
+            %th
+              Description
+            %th
+              Approved By
+        %tbody
+          -@degrees.each do |row|
+            %tr
+              %td
+                = check_box_tag "approved_flag", "approved_flag", row.approved_flag, :disabled => "true"
+              %td
+                = row.name
+              %td
+                = row.description
+              %td 
+                = row.approved_by
+    //= render 'candidate_education/create'
   -else
     .educationEmptyTitle
       This User Have not Permission in this Catalog
