@@ -14,12 +14,11 @@
     %li
       = link_to "Roles", :controller => "projects", :action => "show", id:@candidate.id, :project_id=> @project.id
       = raw '&raquo;'
-    %li= raw('<em>new</em>')
+    %li= raw('<em>update</em>')
     .clear
   %h3.page_headline 
     %i.iconExperienceHeadLine
     .h3-page-headline
-      Role for
       = @title
   .divider-headline
   %br
@@ -29,7 +28,7 @@
   = link_to "Back", :controller => "projects", :action => "show", id:@candidate.id, :project_id=> @project.id
   %br
   %br
-  = form_for(:projrole, :html => {:class => "experience", :method => "post"}) do |f|
+  = form_for(:projectsrole, :html => {:class => "experience", :method => "post"}) do |f|
     %h4
       Please enter the following information
     .divider
@@ -37,15 +36,15 @@
     .field
       = f.label "Role type"
       %br
-      = f.select :roles_id, options_from_collection_for_select(Role.where({:approved_flag => [true]}).order("name").all, "id", "name")
+      = f.select :roles_id, options_from_collection_for_select(Role.where({:approved_flag => [true]}).order("name").all, "id", "name", @projectsrole.roles_id)
     .field
       = f.label "Date In"
       %br
-      = date_select(:projrole, :date_in, :start_year => 1950, :order => [:month, :day, :year])
+      = date_select(:projectsrole, :date_in, :start_year => 1950, :order => [:month, :day, :year])
     .field
       = f.label "Date Out"
       %br 
-      = date_select(:projrole, :date_out, :start_year => 1950, :order => [:month, :day, :year])
+      = date_select(:projectsrole, :date_out, :start_year => 1950, :order => [:month, :day, :year])
     .actions
       %br
       = f.submit "Update"

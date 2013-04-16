@@ -1,0 +1,55 @@
+<!-- Content -->      
+#content
+  %img(src='http://www.4thsource.com//public/images/subheader_services.jpg' class='subheader' alt='Sub Header')
+  %ul#breadcrumbs
+    %li
+      = link_to 'Home', root_path 
+      = raw '&raquo;'
+    %li
+      = link_to_resume("Administration", @candidate.id, :action => "resume")
+      = raw '&raquo;'
+    %li= raw('<em>Interviews</em>')
+    .clear
+  %h3.page_headline 
+    %i.iconExperienceHeadLine
+    .h3-page-headline
+      Interviews
+  .divider-headline
+  %br
+  #flash
+    - flash.each do |key, value|
+      .flash{:class => key}= value
+  %br
+  = link_to "Add interview", :controller => "candidates_interviews", :action => "new", id:@candidate.id
+  %br
+  %br
+  %br
+  - if @candidate.candidates_interviews.count > 0
+    %table{:width => "650px"}
+      %tr{:height => "20px"}
+        %th{:style => 'font-weight: bold'}
+          Type
+        %th{:style => 'font-weight: bold'}
+          Interviewer
+        %th{:style => 'font-weight: bold'}
+          Result
+        %th{:style => 'font-weight: bold'}
+          Comments
+      - @candidate.candidates_interviews.each do |cand_inter|
+        %tr
+          %td= InterviewsType.find(cand_inter.interview_type_id).description 
+          %td= Interviewer.find(cand_inter.interviewer_id).name
+          %td= cand_inter.result
+          %td= cand_inter.comments
+          %td
+            = link_to "Edit", :controller => "candidates_interviews", :action => "edit", id:@candidate.id, :cand_inter_id=> cand_inter.id
+            &nbsp;&nbsp;&nbsp;
+            = link_to "Delete", url_options = { :controller => "candidates_interviews", :action => "delete", id:@candidate.id, :cand_inter_id=> cand_inter.id }, html_options = { :confirm => "Are you sure?" }
+    %br
+  - else
+    %h4 Please create at least one interview.
+    .divider
+  %br
+  .clear
+<!-- Sidebar -->
+= render 'shared/sidebar_signed'

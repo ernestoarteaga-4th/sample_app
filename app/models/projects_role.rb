@@ -1,14 +1,14 @@
-class Projrole < ActiveRecord::Base
+class ProjectsRole < ActiveRecord::Base
   self.per_page = 10
 
   attr_accessible :date_in, :date_out, :projects_id, :roles_id
   
   belongs_to :projects
   
-  has_many   :roles_responsibilities,   :foreign_key => "projroles_id",
+  has_many   :roles_responsibilities,   :foreign_key => "projects_roles_id",
                                         :dependent => :destroy
                                         
-  has_many   :projects_tags,            :foreign_key => "projroles_id",
+  has_many   :projects_tags,            :foreign_key => "projects_roles_id",
                                         :dependent => :destroy
   
   validates :projects_id, presence: true

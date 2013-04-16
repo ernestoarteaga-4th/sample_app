@@ -67,21 +67,6 @@ module ApplicationHelper
       link_to( name, url, options, html_options )
   end
   
-  def link_to_projrole(name, candidateId, projectId, projroleId, options = {}, html_options = {})
-      options.reverse_merge! :action     => 'show',
-                             :method     => :get
-
-      url = case options[:action]
-              when 'index'
-                "/candidates/#{candidateId}/projects/#{projectId}/projroles"
-              when 'new'
-                "/candidates/#{candidateId}/projects/#{projectId}/projroles/new"
-              when 'respon-new'
-                "/candidates/#{candidateId}/projects/#{projectId}/projroles/#{projroleId}/roles_responsibilities/new"
-            end
-      link_to( name, url, options, html_options )
-  end
-
   def degree_level_list
     [
       ['- Select one -', ''],

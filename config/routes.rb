@@ -71,18 +71,16 @@ SampleApp::Application.routes.draw do
   match "/candidates/:id/project/:project_id/show" => 'projects#show'
   match "/candidates/:id/project/:project_id/destroy" => 'projects#destroy'
   ## Project Roles
-  match "/candidates/:id/projects/:project_id/projroles/new" => 'projroles#new'
-  match "/candidates/:id/project/:project_id/projrole/:projrole_id/update" => 'projroles#update'
-  match "/candidates/:id/project/:project_id/projrole/:projrole_id/show" => 'projroles#show'
-  match "/candidates/:id/project/:project_id/projrole/:projrole_id/destroy" => 'projroles#destroy'
+  match "/candidates/:id/project/:project_id/projects_roles/new" => 'projects_roles#new'
+  match "/candidates/:id/project/:project_id/projects_role/:projects_role_id/update" => 'projects_roles#update'
+  match "/candidates/:id/project/:project_id/projects_role/:projects_role_id/show" => 'projects_roles#show'
+  match "/candidates/:id/project/:project_id/projects_role/:projects_role_id/destroy" => 'projects_roles#destroy'
   ## Project Responsibilities
-  match "/candidates/:id/projects/:project_id/projroles/:projrole_id/roles_responsibilities/new" => 'roles_responsibilities#new'
-  match "/candidates/:id/project/:project_id/projrole/:projrole_id/update" => 'projroles#update'
-  match "/candidates/:id/project/:project_id/projrole/:projrole_id/roles_responsibilities/:rolerespon_id/destroy" => 'roles_responsibilities#destroy'
+  match "/candidates/:id/projects/:project_id/projects_roles/:projects_role_id/roles_responsibilities/new" => 'roles_responsibilities#new'
+  match "/candidates/:id/project/:project_id/projects_role/:projects_role_id/roles_responsibilities/:rolerespon_id/destroy" => 'roles_responsibilities#destroy'
   ## Project Tags
-  match "/candidates/:id/projects/:project_id/projroles/:projrole_id/projects_tags/:type_id/new" => 'projects_tags#new'
-  match "/candidates/:id/project/:project_id/projrole/:projrole_id/update" => 'projroles#update'
-  match "/candidates/:id/project/:project_id/projrole/:projrole_id/projects_tags/:projtag_id/destroy" => 'projects_tags#destroy'
+  match "/candidates/:id/projects/:project_id/projects_roles/:projects_role_id/projects_tags/:type_id/new" => 'projects_tags#new'
+  match "/candidates/:id/project/:project_id/projects_role/:projects_role_id/projects_tags/:projtag_id/destroy" => 'projects_tags#destroy'
   # Education
   match "/education/:id" => 'education#index', :as => :candidate_education
   match "/education/destroy" => 'candidate_education#destroy'
@@ -120,6 +118,12 @@ SampleApp::Application.routes.draw do
 
   match '/skills', :to => 'skills#index'
   match '/skills/new', :to => 'skills#new'
+  
+  # Candidates Interviews
+  match "/candidates/:id/candidates_interviews" => 'candidates_interviews#index'
+  match "/candidates/:id/candidates_interviews/:cand_inter_id/edit" => 'candidates_interviews#edit'
+  match "/candidates/:id/candidates_interviews/new" => 'candidates_interviews#new'
+  match "/candidates/:id/candidates_interviews/:cand_inter_id/delete" => 'candidates_interviews#delete'
 
 
   root :to => 'pages#home'

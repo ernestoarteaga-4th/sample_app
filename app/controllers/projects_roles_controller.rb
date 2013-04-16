@@ -1,4 +1,4 @@
-class ProjrolesController < ApplicationController
+class ProjectsRolesController < ApplicationController
 
   def new
     @candidate = current_candidate
@@ -6,10 +6,9 @@ class ProjrolesController < ApplicationController
     if request.post?
       @candidate = Candidate.find(params[:id])
       @project = @candidate.projects.find(params[:project_id])
-      @projrole = @project.projroles.build(params[:projrole])
-      if @projrole.save
+      @projectsrole = @project.projects_roles.build(params[:projectsrole])
+      if @projectsrole.save
         flash[:success] = "Project was saved successfully."
-        @projroles_items = @project.projroles
         render 'projects/show'
       else
         flash[:notice] = "An error occurred while the system save the project."
@@ -18,8 +17,8 @@ class ProjrolesController < ApplicationController
       @candidate = Candidate.find(params[:id])
       @project = @candidate.projects.find(params[:project_id])
       @title = @project.name
-      @projrole  = Projrole.new
-      @error = @projrole.errors
+      @projectsrole  = ProjectsRole.new
+      @error = @projectsrole.errors
     end
   end
 
@@ -33,11 +32,10 @@ class ProjrolesController < ApplicationController
     if request.post?
       @candidate = Candidate.find(params[:id])
       @project = @candidate.projects.find(params[:project_id])
-      @projrole = @project.projroles.find(params[:projrole_id])
-      @projrole.update_attributes(params[:projrole])
-      if @projrole.save
+      @projectsrole = @project.projects_roles.find(params[:projects_role_id])
+      @projectsrole.update_attributes(params[:projectsrole])
+      if @projectsrole.save
         flash[:success] = "Project was saved successfully."
-        @projroles_items = @project.projroles
         render 'projects/show'
       else
         flash[:notice] = "An error occurred while the system save the project."
@@ -45,7 +43,7 @@ class ProjrolesController < ApplicationController
     else
       @candidate = Candidate.find(params[:id])
       @project = @candidate.projects.find(params[:project_id])
-      @projrole = @project.projroles.find(params[:projrole_id])
+      @projectsrole = @project.projects_roles.find(params[:projects_role_id])
       @error = @project.errors
       @roles_items = Role.all
     end
@@ -54,9 +52,8 @@ class ProjrolesController < ApplicationController
   def destroy
     @candidate = Candidate.find(params[:id])
     @project = @candidate.projects.find(params[:project_id])
-    @projrole = @project.projroles.find(params[:projrole_id])
-    Projrole.find(params[:projrole_id]).destroy
-    @projroles_items = @project.projroles
+    @projectsrole = @project.projects_roles.find(params[:projects_role_id])
+    ProjectsRoles.find(params[:projects_role_id]).destroy
     render 'projects/show'
   end
   

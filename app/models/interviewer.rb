@@ -1,4 +1,4 @@
-class Interviewers < ActiveRecord::Base
+class Interviewer < ActiveRecord::Base
   belongs_to :candidates_interviews
 
   attr_accessible :id, 

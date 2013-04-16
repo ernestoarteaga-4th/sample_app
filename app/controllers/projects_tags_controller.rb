@@ -19,11 +19,10 @@ class ProjectsTagsController < ApplicationController
     if request.post?
       @candidate = Candidate.find(params[:id])
       @project = @candidate.projects.find(params[:project_id])
-      @projrole = @project.projroles.find(params[:projrole_id])
-      @projtag = @projrole.projects_tags.build(params[:projtag])
+      @projectsrole = @project.projects_roles.find(params[:projects_role_id])
+      @projtag = @projectsrole.projects_tags.build(params[:projtag])
       if @projtag.save
         flash[:success] = @tag_title + " was saved successfully."
-        @projroles_items = @project.projroles
         render 'projects/show'
       else
         flash[:notice] = "An error occurred while the system save the "+@tag_title + "."
@@ -32,12 +31,12 @@ class ProjectsTagsController < ApplicationController
     else
       @candidate = Candidate.find(params[:id])
       @project = @candidate.projects.find(params[:project_id])
-      @projrole  = @project.projroles.find(params[:projrole_id])
-      @title = @tag_title + " for " + Role.find(@projrole.roles_id).name + " in " + @project.name
+      @projectsrole  = @project.projects_roles.find(params[:projects_role_id])
+      @title = @tag_title + " for " + Role.find(@projectsrole.roles_id).name + " in " + @project.name
       @projtag = ProjectsTag.new
-      @projtag.date_in = @projrole.date_in
-      @projtag.date_out = @projrole.date_out
-      @error = @projrole.errors
+      @projtag.date_in = @projectsrole.date_in
+      @projtag.date_out = @projectsrole.date_out
+      @error = @projtag.errors
       render @new_page
     end
   end
@@ -45,10 +44,9 @@ class ProjectsTagsController < ApplicationController
   def destroy
     @candidate = Candidate.find(params[:id])
     @project = @candidate.projects.find(params[:project_id])
-    @projrole = @project.projroles.find(params[:projrole_id])
+    @projectsrole = @project.projects_roles.find(params[:projects_role_id])
     
     ProjectsTag.find(params[:projtag_id]).destroy
-    @projroles_items = @project.projroles
     render 'projects/show'
   end
 end

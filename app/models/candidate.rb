@@ -70,6 +70,8 @@ class Candidate < ActiveRecord::Base
   has_many        :candidate_education,      :dependent => :destroy
 
   has_many        :candidate_prof_summary,      :dependent => :destroy
+  has_many        :candidates_interviews,   :foreign_key => "candidate_id",
+                                            :dependent => :destroy
 
   has_attached_file :avatar, :styles => { :medium => "300x300#", :thumb => "40x40#" },
                              :default_url => "/images/4thsource_avatar.jpg"

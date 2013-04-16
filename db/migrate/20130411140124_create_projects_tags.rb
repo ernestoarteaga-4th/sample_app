@@ -1,7 +1,7 @@
 class CreateProjectsTags < ActiveRecord::Migration
   def change
     create_table :projects_tags do |t|
-      t.integer :projroles_id
+      t.integer :projects_roles_id
       t.integer :tags_id
       t.string :description
       t.date :date_in

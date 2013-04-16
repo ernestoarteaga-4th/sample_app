@@ -1,6 +1,6 @@
-class CreateProjroles < ActiveRecord::Migration
+class CreateProjectsRoles < ActiveRecord::Migration
   def change
-    create_table :projroles do |t|
+    create_table :projects_roles do |t|
       t.integer :projects_id
       t.integer :roles_id
       t.date :date_in

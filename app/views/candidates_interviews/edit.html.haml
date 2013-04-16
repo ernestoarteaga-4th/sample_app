@@ -1,0 +1,49 @@
+<!-- Content -->      
+#content
+  %img(src='http://www.4thsource.com//public/images/subheader_services.jpg' class='subheader' alt='Sub Header')
+  %ul#breadcrumbs
+    %li
+      = link_to 'Home', root_path 
+      = raw '&raquo;'
+    %li
+      = link_to_resume("Administration", @candidate.id, :action => "resume")
+      = raw '&raquo;'
+    %li
+      = link_to "Interviews", :controller => "candidates_interviews", :action => "index", id:@candidate.id
+      = raw '&raquo;'
+    %li= raw('<em>edit</em>')
+    .clear
+  %h3.page_headline 
+    %i.iconExperienceHeadLine
+    .h3-page-headline
+      Edit interview
+  .divider-headline
+  %br
+  #flash
+    - flash.each do |key, value|
+      .flash{:class => key}= value
+  = link_to "Back", :controller => "candidates_interviews", :action => "index", id:@candidate.id
+  %br
+  %br
+  = form_for(:cand_inter, :html => {:class => "experience", :method => "post"}) do |f|
+    %h4
+      Please enter the following information
+    .divider
+    %br  
+    .field
+      = f.label "Interview type"
+      = f.select :interview_type_id, options_from_collection_for_select(InterviewsType.order("id").all, "id", "description")
+    .field
+      = f.label "Interviewer"
+      = f.select :interviewer_id, options_from_collection_for_select(Interviewer.order("name").all, "id", "name")
+    .field
+      = f.label "Result"
+      = f.text_field :result
+    .field
+      = f.label "Comments"
+      = f.text_area :comments
+    .actions
+      %br
+      = f.submit "Update"
+<!-- Sidebar -->
+= render 'shared/sidebar_signed'

@@ -48,12 +48,12 @@
       Roles
   .divider-headline-middle
   %br
-  =link_to_projrole("Add Role", @candidate.id, @project.id, @projrole.id, :action => "new")
+  = link_to "Add Role", :controller => "projects_roles", :action => "new", id:@candidate.id, :project_id=> @project.id
   %br
   %br
-  - if @projroles_items.count > 0
+  - if @project.projects_roles.count > 0
     %list
-      - @projroles_items.each do |role|
+      - @project.projects_roles.each do |role|
         %br
         #row
           .experience_details_wrapper
@@ -61,11 +61,11 @@
             %strong
               = Role.find_by_id(role.roles_id).name
           .experience_details_right
-            /= link_to "View", :controller => "projroles", :action => "show", id:@candidate.id, :project_id=> @project.id, :projrole_id=> role.id
+            /= link_to "View", :controller => "projectsRoles", :action => "show", id:@candidate.id, :project_id=> @project.id, :projrole_id=> role.id
             /&nbsp;&nbsp;&nbsp;
-            = link_to "Edit", :controller => "projroles", :action => "update", id:@candidate.id, :project_id=> @project.id, :projrole_id=> role.id
+            = link_to "Edit", :controller => "projects_roles", :action => "update", id:@candidate.id, :project_id=> @project.id, :projects_role_id=> role.id
             &nbsp;&nbsp;&nbsp;
-            = link_to "Delete", url_options = { :controller => "projroles", :action => "destroy", id:@candidate.id, :project_id=> @project.id, :projrole_id=> role.id }, html_options = { :confirm => "Are you sure?" }
+            = link_to "Delete", url_options = { :controller => "projects_roles", :action => "destroy", id:@candidate.id, :project_id=> @project.id, :projects_role_id=> role.id }, html_options = { :confirm => "Are you sure?" }
           %br
           .experience_details_wrapper
           .experience_details_left
@@ -80,7 +80,7 @@
               %i.iconResponsibilitiesHeadLine
               .tag_left
                 Responsibilities&nbsp;&nbsp;&nbsp;
-                =link_to_projrole("Add new", @candidate.id, @project.id, role.id, :action => "respon-new")
+                = link_to "Add Role", :controller => "roles_responsibilities", :action => "new", id:@candidate.id, :project_id=> @project.id, :projects_role_id=> role.id
               .divider-headline-mini
           - if role.roles_responsibilities.count > 0
             %list
@@ -92,7 +92,7 @@
                     &nbsp;&nbsp;&nbsp;&nbsp;&bull;
                     = respon.description
                   .experience_details_right
-                    = link_to "Delete", url_options = { :controller => "roles_responsibilities", :action => "destroy", id:@candidate.id, :project_id=> @project.id, :projrole_id=> role.id, :rolerespon_id=> respon.id }, html_options = { :confirm => "Are you sure?" }
+                    = link_to "Delete", url_options = { :controller => "roles_responsibilities", :action => "destroy", id:@candidate.id, :project_id=> @project.id, :projects_role_id=> role.id, :rolerespon_id=> respon.id }, html_options = { :confirm => "Are you sure?" }
           - else
             .experience_details_wrapper
             .experience_details_left
@@ -110,7 +110,7 @@
               %i.iconTechnologyHeadLine
               .tag_left
                 Technologies&nbsp;&nbsp;&nbsp;
-                = link_to "Add new", :controller => "projects_tags", :action => "new", :id=> @candidate.id, :project_id=> @project.id, :projrole_id=> role.id, :type_id=>"3" 
+                = link_to "Add new", :controller => "projects_tags", :action => "new", :id=> @candidate.id, :project_id=> @project.id, :projects_role_id=> role.id, :type_id=>"3" 
               .divider-headline-mini
           - if role.tags3.count > 0
             %list
@@ -124,7 +124,7 @@
                     &nbsp---&nbsp                     
                     = pt.description
                   .experience_details_right
-                    = link_to "Delete", url_options = { :controller => "projects_tags", :action => "destroy", id:@candidate.id, :project_id=> @project.id, :projrole_id=> role.id, :projtag_id=> pt.id }, html_options = { :confirm => "Are you sure?" }
+                    = link_to "Delete", url_options = { :controller => "projects_tags", :action => "destroy", id:@candidate.id, :project_id=> @project.id, :projects_role_id=> role.id, :projtag_id=> pt.id }, html_options = { :confirm => "Are you sure?" }
                   .experience_details_wrapper
                   .experience_details_left
                     &nbsp;&nbsp;&nbsp;&nbsp;
@@ -150,7 +150,7 @@
               %i.iconKnowledgeHeadLine
               .tag_left
                 Knowledges&nbsp;&nbsp;&nbsp;
-                = link_to "Add new", :controller => "projects_tags", :action => "new", :id=> @candidate.id, :project_id=> @project.id, :projrole_id=> role.id, :type_id=>"2"
+                = link_to "Add new", :controller => "projects_tags", :action => "new", :id=> @candidate.id, :project_id=> @project.id, :projects_role_id=> role.id, :type_id=>"2"
               .divider-headline-mini
           - if role.tags2.count > 0
             %list
@@ -164,7 +164,7 @@
                     &nbsp---&nbsp                     
                     = pt.description
                   .experience_details_right
-                    = link_to "Delete", url_options = { :controller => "projects_tags", :action => "destroy", id:@candidate.id, :project_id=> @project.id, :projrole_id=> role.id, :projtag_id=> pt.id }, html_options = { :confirm => "Are you sure?" }
+                    = link_to "Delete", url_options = { :controller => "projects_tags", :action => "destroy", id:@candidate.id, :project_id=> @project.id, :projects_role_id=> role.id, :projtag_id=> pt.id }, html_options = { :confirm => "Are you sure?" }
                   .experience_details_wrapper
                   .experience_details_left
                     &nbsp;&nbsp;&nbsp;&nbsp;
@@ -190,7 +190,7 @@
               %i.iconToolsHeadLine
               .tag_left
                 Tools&nbsp;&nbsp;&nbsp;
-                = link_to "Add new", :controller => "projects_tags", :action => "new", :id=> @candidate.id, :project_id=> @project.id, :projrole_id=> role.id, :type_id=>"1"
+                = link_to "Add new", :controller => "projects_tags", :action => "new", :id=> @candidate.id, :project_id=> @project.id, :projects_role_id=> role.id, :type_id=>"1"
               .divider-headline-mini
           - if role.tags1.count > 0
             %list
@@ -204,7 +204,7 @@
                     &nbsp---&nbsp                     
                     = pt.description
                   .experience_details_right
-                    = link_to "Delete", url_options = { :controller => "projects_tags", :action => "destroy", id:@candidate.id, :project_id=> @project.id, :projrole_id=> role.id, :projtag_id=> pt.id }, html_options = { :confirm => "Are you sure?" }
+                    = link_to "Delete", url_options = { :controller => "projects_tags", :action => "destroy", id:@candidate.id, :project_id=> @project.id, :projects_role_id=> role.id, :projtag_id=> pt.id }, html_options = { :confirm => "Are you sure?" }
                   .experience_details_wrapper
                   .experience_details_left
                     &nbsp;&nbsp;&nbsp;&nbsp;
