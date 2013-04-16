@@ -110,9 +110,9 @@ SampleApp::Application.routes.draw do
   match "/candidate_certifications/destro" => 'candidate_certifications#destro'
   #match "/resume_details/destro" => 'resume_details#destro'
   # Trainings
-  match "/candidates/:id/resume/training" => 'resume_training#index'
-  match "/candidates/:id/resume/training/new" => 'resume_training#new'
-  match "/training/destroy" => 'resume_training#destroy'
+  match "/candidates/:id/resume/training" => 'candidate_training#index'
+  match "/candidates/resume/training/new" => 'candidate_training#new'
+  match "/training/destroy" => 'candidate_training#destroy'
   # Languages
   match "/candidates/:id/resume/languages" => 'candidate_languages#index'
   match "/candidates/resume/languages/new" => 'candidate_languages#new'
