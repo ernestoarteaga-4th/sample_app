@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130415200708) do
+ActiveRecord::Schema.define(:version => 20130416161422) do
 
   create_table "candidate_certifications", :force => true do |t|
     t.integer  "candidate_id"
@@ -121,6 +121,14 @@ ActiveRecord::Schema.define(:version => 20130415200708) do
     t.datetime "updated_at",        :null => false
   end
 
+  create_table "candidates_profiles", :force => true do |t|
+    t.integer  "candidate_id"
+    t.integer  "profile_id"
+    t.text     "summary"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
   create_table "candidates_states", :force => true do |t|
     t.integer  "candidate_id"
     t.string   "description"
@@ -218,6 +226,15 @@ ActiveRecord::Schema.define(:version => 20130415200708) do
 
   add_index "microposts", ["user_id"], :name => "index_microposts_on_user_id"
 
+  create_table "profiles", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.boolean  "approved_flag"
+    t.string   "approved_by"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
   create_table "projects", :force => true do |t|
     t.integer  "candidate_id"
     t.string   "name"
@@ -258,6 +275,15 @@ ActiveRecord::Schema.define(:version => 20130415200708) do
     t.string   "summary"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "resume_trainings", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "year"
+    t.integer  "resume_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "resumes", :force => true do |t|

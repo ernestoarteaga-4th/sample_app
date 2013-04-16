@@ -1,5 +1,5 @@
-class Certification < ActiveRecord::Base
-  belongs_to :resume
+class Certifications < ActiveRecord::Base
+  belongs_to :resume_certification
 
   attr_accessible :id,
   :name,
