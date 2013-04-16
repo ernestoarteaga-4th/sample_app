@@ -120,9 +120,10 @@
           .alignCheckBox= f.check_box :has_passport
           .alignCheckBox= f.label :has_passport
       .span3
-        .field#visaShowHide
-          = f.label :visa_expiration_year
-          = f.text_field :visa_expiration_year
+        .visaContent
+          .field#visaShowHide
+            = f.label :visa_expiration_year
+            = f.text_field :visa_expiration_year
         .field#passportShowHide
           = f.label :passport_expiration_year
           = f.text_field :passport_expiration_year   
@@ -141,11 +142,11 @@
         .field.employedShowHide
           = f.label :position
           = f.text_field :position
-    .row-fluid
       .span3
-        .field
+        .field.employedShowHide
           = f.label :current_salary
           = f.text_field :current_salary
+    .row-fluid
       .span3
         .field
           = f.label :salary_expectancy

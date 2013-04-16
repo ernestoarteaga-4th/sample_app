@@ -42,13 +42,13 @@
     %br
     %br
   .experience_wrapper
-    .experience_left
+    .experience_left.width100percent
       %br
       %h4
         Please enter the following information
       .divider-headline
       = form_for(:candidate_prof_summary, :controller => "resume", :action => "summary") do |f|     
-        .field
+        .field.width100percent
           = f.label "Summary"
           %br
           %br

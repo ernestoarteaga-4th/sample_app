@@ -2,38 +2,32 @@
 	window.Profile = {
 		start: function(){
 			var chBHasVisa = $("#candidate_has_visa"), chBHasPassport = $("#candidate_has_passport"),
-			    chBCurrentlyEmployed = $("#candidate_currently_employed");
+			    chBCurrentlyEmployed = $("#candidate_currently_employed"), _this = this; //This is for the whole object
+		    
+		    _this.checkBoxes(chBHasVisa,"#visaShowHide");
+		    _this.checkBoxes(chBHasPassport,"#passportShowHide");
+		    _this.checkBoxes(chBCurrentlyEmployed,".employedShowHide");
+
 			chBHasVisa.click(function(){
-				if(chBHasVisa.attr("checked")){
-					chBHasVisa.attr("checked",false);
-					$("#visaShowHide").fadeOut();
-				}
-				else{
-					chBHasVisa.attr("checked",true);
-					$("#visaShowHide").fadeIn();
-				}
+				_this.checkBoxes($(this),"#visaShowHide");
 			});
 			chBHasPassport.click(function(){
-				if(chBHasPassport.attr("checked")){
-					chBHasPassport.attr("checked",false);
-					$("#passportShowHide").fadeOut();
-				}
-				else{
-					chBHasPassport.attr("checked",true);
-					$("#passportShowHide").fadeIn();
-				}
+				_this.checkBoxes($(this),"#passportShowHide");
 			});
 			chBCurrentlyEmployed.click(function(){
-				if(chBCurrentlyEmployed.attr("checked")){
-					chBCurrentlyEmployed.attr("checked",false);
-					$(".employedShowHide").fadeOut();
-				}
-				else{
-					chBCurrentlyEmployed.attr("checked",true);
-					$(".employedShowHide").fadeIn();
-				}
+				_this.checkBoxes($(this),".employedShowHide");
 			});
 			
+		},
+
+		checkBoxes: function(checkBox, itemShowHide){
+			if(checkBox.is(":checked")){
+				$(itemShowHide).fadeIn();
+
+			}
+			else{
+				$(itemShowHide).fadeOut();
+			}
 		}
 	}
 })(jQuery);

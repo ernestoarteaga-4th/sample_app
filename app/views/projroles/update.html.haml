@@ -32,21 +32,24 @@
     %h4
       Please enter the following information
     .divider
-    %br  
-    .field
-      = f.label "Role type"
-      %br
-      = f.select :roles_id, options_from_collection_for_select(Role.where({:approved_flag => [true]}).order("name").all, "id", "name", @projrole.roles_id)
-    .field
-      = f.label "Date In"
-      %br
-      = date_select(:projrole, :date_in, :start_year => 1950, :order => [:month, :day, :year])
-    .field
-      = f.label "Date Out"
-      %br 
-      = date_select(:projrole, :date_out, :start_year => 1950, :order => [:month, :day, :year])
+    .row-fluid
+      .field
+        = f.label "Role type"
+        %br
+        = f.select :roles_id, options_from_collection_for_select(Role.where({:approved_flag => [true]}).order("name").all, "id", "name", @projrole.roles_id)
+    .row-fluid
+      .span6
+        .field
+          = f.label "Date In"
+          %br
+          .birthdate= date_select(:projrole, :date_in, :start_year => 1950, :order => [:month, :day, :year])
+      .span6
+        .field
+          = f.label "Date Out"
+          %br 
+          .birthdate= date_select(:projrole, :date_out, :start_year => 1950, :order => [:month, :day, :year])
     .actions
       %br
-      = f.submit "Update"
+      = f.submit "Add Role",{"class"=>"btn btn-primary"}
 <!-- Sidebar -->
 = render 'shared/sidebar_signed'
