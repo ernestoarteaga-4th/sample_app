@@ -25,7 +25,7 @@ $(document).ready(function() {
     for(var i = 0; i < $inputs.length; i++) {
       if($inputs[i].id === 'education_title') {
         if($inputs[i].value === '') {
-          $('#requiredTitle').text('* Este Campo es Obligatorio');
+          $('#requiredTitle').text('* This Field is Mandatory');
           flag = false;
         }
 
@@ -37,7 +37,7 @@ $(document).ready(function() {
       if($("#education_educ_degree_id").is(":visible")) {
         if ($inputs[i].id === 'education_educ_degree_id') {
           if($inputs[i].value === '') {
-            $('#requiredEducationD').text('* Este Campo es Obligatorio');
+            $('#requiredEducationD').text('* This Field is Mandatory');
             flag = false;
           }
 
@@ -50,7 +50,7 @@ $(document).ready(function() {
       else {
         if($inputs[i].id === 'education_educ_degree_id_new') {
           if($inputs[i].value === '') {
-            $('#requiredEducationD').text('* Este Campo es Obligatorio');
+            $('#requiredEducationD').text('* This Field is Mandatory');
             flag = false;
           }
 
@@ -62,7 +62,7 @@ $(document).ready(function() {
 
       if($inputs[i].id === 'education_university') {
         if($inputs[i].value === '') {
-          $('#requiredUniversity').text('* Este Campo es Obligatorio');
+          $('#requiredUniversity').text('* This Field is Mandatory');
           flag = false;
         }
 
@@ -92,7 +92,7 @@ $(document).ready(function() {
     for(var i = 0; i < $inputs.length; i++) {
       if($inputs[i].id === 'degree_name') {
         if($inputs[i].value === '') {
-          $('#requiredName').text('* Este Campo es Obligatorio');
+          $('#requiredName').text('* This Field is Mandatory');
           flag = false;
         }
 
@@ -115,5 +115,30 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
-    $('#education_degree_table').dataTable();
+  $('#education_degree_table').dataTable({
+      "bPaginate": false,
+      "bLengthChange": false,
+      "bFilter": true,
+      "bInfo": false
+    });
+} );
+
+$(document).ready(function() {
+  $("#approved_flag_all").click(function() {
+    var $inputs = $('#education_degree_table :input');
+    var checked_status = this.checked;
+    
+    for(var i = 0; i < $inputs.length; i++) {
+      $inputs[i].checked = checked_status;
+    }
+  });         
+});
+
+$(document).ready(function() {
+  $('#candidates_table').dataTable({
+      "bPaginate": true,
+      "bLengthChange": false,
+      "bFilter": true,
+      "bInfo": false
+    });
 } );

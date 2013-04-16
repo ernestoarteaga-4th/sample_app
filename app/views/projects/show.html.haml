@@ -30,15 +30,19 @@
       .span6
         .field
           = f.label "Employer"
-        = f.text_field :company_name
+          %br
+          = f.text_field :company_name
+      .span6
         .field
           = f.label "Project name"
-        = f.text_field :name
-        = f.submit "Update",{"class"=>"btn btn-primary"}
-      .span6           
-        .field
-          = f.label "Summary"
+          = f.text_field :name
+    .row-fluid
+      = f.label "Summary"
+    .row-fluid
+      .span9
         = f.text_area :summary
+      .span3
+        = f.submit "Update Project", {"class"=>"btn btn-primary"}
   %br
   %br
   %br

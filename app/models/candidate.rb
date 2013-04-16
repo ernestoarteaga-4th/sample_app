@@ -65,6 +65,7 @@ class Candidate < ActiveRecord::Base
   has_one         :resume,             :dependent => :destroy 
 
   has_many        :candidate_certifications,      :dependent => :destroy
+  has_many        :candidate_trainings,      :dependent => :destroy
 
   has_many        :candidate_languages, :dependent => :destroy
   has_many        :candidate_education,      :dependent => :destroy

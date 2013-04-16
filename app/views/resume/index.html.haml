@@ -44,7 +44,10 @@
         - @candidate.candidate_education.each do |education|
           %li
             .experience_left
-              %h6.educationTitleAndUniversity= education.educ_degree.name + " in " + education.title + ","
+              -if education.educ_degree == nil
+                %h6.educationTitleAndUniversity= "Education Degree not Approved (" + education.title + "),"
+              -else
+                %h6.educationTitleAndUniversity= education.educ_degree.name + " in " + education.title + ","
               %p.educationTitleAndUniversity= education.university
             .experience_right= Date::MONTHNAMES[education.date_in.month] + " " + education.date_in.year.to_s + " - " + Date::MONTHNAMES[education.date_out.month] + " " + education.date_out.year.to_s
     %h4 Projects
