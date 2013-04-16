@@ -91,70 +91,73 @@
     %br
     .divider
     .row-fluid
-      .span5
+      .span3
         .field
           = f.label :home_phone
         = f.text_field :home_phone
+      .span3
         .field
           = f.label :office_phone
         = f.text_field :office_phone
-      .span5
+      .span3
         .field
           = f.label :cell_phone
         = f.text_field :cell_phone
     .divider
     .row-fluid
       .span3
-        = f.check_box :has_visa
         .field
-          = f.label :has_visa
+          .alignCheckBox= f.check_box :has_visa
+          .alignCheckBox= f.label :has_visa
+        .field
+          .alignCheckBox= f.check_box :is_willing_to_travel
+          .alignCheckBox= f.label :is_willing_to_travel  
       .span3
-        .field
+        .field#visaShowHide
           = f.label :visa_expiration_year
-        = f.text_field :visa_expiration_year
-        = f.check_box :is_willing_to_travel
-        .field
-          = f.label :is_willing_to_travel       
-      .span3
-        = f.check_box :has_passport
-        .field
-          = f.label :has_passport
+          = f.text_field :visa_expiration_year
+             
       .span3
         .field
+          .alignCheckBox= f.check_box :has_passport
+          .alignCheckBox= f.label :has_passport
+        .field
+          .alignCheckBox= f.check_box :is_willing_to_relocate
+          .alignCheckBox= f.label :is_willing_to_relocate
+      .span3
+        .field#passportShowHide
           = f.label :passport_expiration_year
-        = f.text_field :passport_expiration_year
-        = f.check_box :is_willing_to_relocate
-        .field
-          = f.label :is_willing_to_relocate
-        
+          = f.text_field :passport_expiration_year       
     %br
     .divider
     .row-fluid
       .span3
-        = f.check_box :currently_employed
-        .field
-          = f.label :currently_employed
-    .row-fluid
-      .span5
-        .field
+        .field.currentlyEmployed
+          .alignCheckBox= f.check_box :currently_employed
+          .alignCheckBox= f.label :currently_employed
+      .span3
+        .field.employedShowHide
           = f.label :company
-        = f.text_field :company
-        .field
-          = f.label :salary_expectancy
-        = f.text_field :salary_expectancy
-      .span5
-        .field
+          = f.text_field :company
+      .span3
+        .field.employedShowHide
           = f.label :position
-        = f.text_field :position
+          = f.text_field :position
+    .row-fluid
+      .span3
         .field
           = f.label :current_salary
-        = f.text_field :current_salary
+          = f.text_field :current_salary
+      .span3
+        .field
+          = f.label :salary_expectancy
+          = f.text_field :salary_expectancy
     .row-fluid
-      .field
-        = f.label :comments
-      = f.text_field :comments
+      = f.label :comments
+      = f.text_area :comments
     .actions
       %br      
       = f.submit "Update",{"class"=>"btn btn-primary"}
+      %script jQuery(document).ready(function(){Profile.start();});
 <!-- Sidebar -->
 = render 'shared/sidebar_signed'

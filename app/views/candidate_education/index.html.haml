@@ -52,7 +52,10 @@
         = f.label e.title, class: "educationLabel"
       .field
         = f.label "Education Degree: ", class: "educationLabelTitle"
-        = f.label e.educ_degree.name, class: "educationLabel"
+        -if e.educ_degree == nil
+          = f.label "Not Approved", class: "educationLabel"
+        -else
+          = f.label e.educ_degree.name, class: "educationLabel"
       .field
         = f.label "University: ", class: "educationLabelTitle"
         = f.label e.university, class: "educationLabel"

@@ -54,6 +54,6 @@
       %br
       = f.date_select :date_out, :default => @e.date_out, :start_year => 1950, :order => [:month, :day, :year]
     .actions
-      = f.submit "Update"
+      = f.submit "Update", :class => "btn-primary"
 <!-- Sidebar -->
 = render 'shared/sidebar_signed'
