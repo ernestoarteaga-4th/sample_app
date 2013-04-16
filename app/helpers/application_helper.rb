@@ -55,6 +55,17 @@ module ApplicationHelper
             end
       link_to( name, url, options, html_options )
   end
+
+  def link_to_candidates(name, candidateId, options = {}, html_options = {})
+      options.reverse_merge! :action     => 'show',
+                             :method     => :get
+
+      url = case options[:action]
+              when 'candidates'
+                "/staff/#{candidateId}/candidates"
+              end
+      link_to(name, url, options, html_options)
+  end
   
   def link_to_project(name, candidateId, options = {}, html_options = {})
       options.reverse_merge! :action     => 'show',

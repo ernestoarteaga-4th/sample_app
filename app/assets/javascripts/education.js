@@ -133,3 +133,12 @@ $(document).ready(function() {
     }
   });         
 });
+
+$(document).ready(function() {
+  $('#candidates_table').dataTable({
+      "bPaginate": true,
+      "bLengthChange": false,
+      "bFilter": true,
+      "bInfo": false
+    });
+} );
