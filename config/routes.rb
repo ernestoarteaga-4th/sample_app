@@ -100,6 +100,10 @@ SampleApp::Application.routes.draw do
   match "/candidates/:id/education_degree/destroy" => 'educ_degree#destroy'
   match "/candidates/:id/education_degree/action" => 'educ_degree#action'
 
+  # Candidate
+  match "/staff/:id/candidates" => 'staff_candidates#index'
+  match "/staff/:id/candidates/detail" => 'staff_candidates#search'
+  
   # Certification
   #match "/candidates/:id/resume/certification" => 'candidate_certification#index'
   #match "/candidates/:id/resume/certification/new" => 'candidate_certification#new'

@@ -24,6 +24,9 @@
         %li
           %i.iconEducation
           = link_to_resume('Education Degrees', current_candidate.id, :action => 'educ_degree', :class => 'profile-sub_navigation')
+        %li
+          %i.iconResume
+          = link_to_candidates('Candidates', current_candidate.id, :action => 'candidates', :class => 'profile-sub_navigation')
     -else
       %ul#nav_sub.sub_navigation
         %li
