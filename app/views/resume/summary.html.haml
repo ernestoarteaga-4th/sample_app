@@ -42,20 +42,20 @@
     %br
     %br
   .experience_wrapper
-    .experience_left
+    .experience_left.width100percent
       %br
       %h4
         Please enter the following information
       .divider-headline
       = form_for(:candidate_prof_summary, :controller => "resume", :action => "summary") do |f|     
-        .field
+        .field.width100percent
           = f.label "Summary"
           %br
           %br
           = f.text_area :summary
         .actions
           %br
-          = f.submit "Sign in"
+          = f.submit "Add",{"class"=>"btn btn-primary"}
   .clear  
 <!-- Sidebar -->
 = render 'shared/sidebar_signed'
