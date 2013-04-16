@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130412224340) do
+ActiveRecord::Schema.define(:version => 20130416161422) do
 
   create_table "candidate_certifications", :force => true do |t|
     t.integer  "candidate_id"
@@ -49,6 +49,15 @@ ActiveRecord::Schema.define(:version => 20130412224340) do
   create_table "candidate_prof_summaries", :force => true do |t|
     t.string   "summary"
     t.integer  "candidate_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "candidate_trainings", :force => true do |t|
+    t.integer  "candidate_id"
+    t.string   "name"
+    t.text     "description"
+    t.date     "year"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
@@ -110,6 +119,14 @@ ActiveRecord::Schema.define(:version => 20130412224340) do
     t.string   "comments"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+  end
+
+  create_table "candidates_profiles", :force => true do |t|
+    t.integer  "candidate_id"
+    t.integer  "profile_id"
+    t.text     "summary"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "candidates_states", :force => true do |t|
@@ -186,9 +203,9 @@ ActiveRecord::Schema.define(:version => 20130412224340) do
   end
 
   create_table "interviews_types", :force => true do |t|
-    t.string   "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "languages", :force => true do |t|
@@ -208,6 +225,15 @@ ActiveRecord::Schema.define(:version => 20130412224340) do
   end
 
   add_index "microposts", ["user_id"], :name => "index_microposts_on_user_id"
+
+  create_table "profiles", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.boolean  "approved_flag"
+    t.string   "approved_by"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
 
   create_table "projects", :force => true do |t|
     t.integer  "candidate_id"
@@ -249,15 +275,6 @@ ActiveRecord::Schema.define(:version => 20130412224340) do
     t.string   "summary"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-  end
-
-  create_table "resume_trainings", :force => true do |t|
-    t.string   "name"
-    t.string   "description"
-    t.string   "year"
-    t.integer  "resume_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
   end
 
   create_table "resumes", :force => true do |t|

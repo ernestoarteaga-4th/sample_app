@@ -24,6 +24,8 @@
             E-Mail
           %th
             Roles
+          %th
+            Interview
       %tbody 
         -i = 0
         -@candidate.each do |row|
@@ -35,10 +37,12 @@
             %td
               - if row.projects.count > 0
                 - row.projects.each do |projects|
-                  - if projects.projroles.count > 0
-                    - projects.projroles.each do |roles|
+                  - if projects.projects_roles.count > 0
+                    - projects.projects_roles.each do |roles|
                       - roles.roles_responsibilities.each do |role_responsibility|
                         = role_responsibility.description + ". "
+            %td
+              = link_to "Start", "/candidates/#{row.id}/candidates_interviews"
           -i = i + 1
   %br
   %br
