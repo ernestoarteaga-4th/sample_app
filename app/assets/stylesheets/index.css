@@ -1,4 +1,4 @@
- /* Reset
+/* Reset
 ----------------------------------------- */
 @import url(reset.css);
 
@@ -1094,6 +1094,12 @@ table.microposts tr td.micropost-delete {
 	padding-left:1px;
 	padding-bottom: 2px;
 	width:400px;
+}
+.experience_details_left_100_percent {
+	float:left;
+	padding-left:1px;
+	padding-bottom: 2px;
+	width:100%;
 }
 
 .experience_details_area {
