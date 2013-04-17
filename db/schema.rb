@@ -53,6 +53,14 @@ ActiveRecord::Schema.define(:version => 20130416161422) do
     t.datetime "updated_at",   :null => false
   end
 
+  create_table "candidate_profiles", :force => true do |t|
+    t.integer  "candidate_id"
+    t.integer  "profile_id"
+    t.text     "summary"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
   create_table "candidate_trainings", :force => true do |t|
     t.integer  "candidate_id"
     t.string   "name"
@@ -119,14 +127,6 @@ ActiveRecord::Schema.define(:version => 20130416161422) do
     t.string   "comments"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
-  end
-
-  create_table "candidates_profiles", :force => true do |t|
-    t.integer  "candidate_id"
-    t.integer  "profile_id"
-    t.text     "summary"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
   end
 
   create_table "candidates_states", :force => true do |t|

@@ -5,7 +5,7 @@ class Profile < ActiveRecord::Base
 
   attr_accessible :name, :description, :approved_flag, :approved_by
   
-  belongs_to :candidates_profile
+  belongs_to :candidate_profile
   
   validates :name,      presence: true
   
