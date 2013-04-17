@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130416161422) do
+ActiveRecord::Schema.define(:version => 20130417245801) do
 
   create_table "candidate_certifications", :force => true do |t|
     t.integer  "candidate_id"
@@ -303,6 +303,13 @@ ActiveRecord::Schema.define(:version => 20130416161422) do
   create_table "skills", :force => true do |t|
     t.string   "name"
     t.string   "version"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "statuses", :force => true do |t|
+    t.string   "name"
+    t.string   "updated_by"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

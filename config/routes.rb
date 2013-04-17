@@ -101,7 +101,12 @@ SampleApp::Application.routes.draw do
   # Candidate
   match "/staff/:id/candidates" => 'staff_candidates#index'
   match "/staff/:id/candidates/detail" => 'staff_candidates#search'
-  
+
+  # Candidate Status
+  match "/staff/:id/candidate_status" => 'status#index'
+  match "/staff/:id/candidate_status/create" => 'status#create'
+  match "/staff/:id/candidate_status/destroy" => 'status#destroy'
+    
   # Certification
   #match "/candidates/:id/resume/certification" => 'candidate_certification#index'
   #match "/candidates/:id/resume/certification/new" => 'candidate_certification#new'

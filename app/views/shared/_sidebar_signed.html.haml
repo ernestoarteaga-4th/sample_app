@@ -30,7 +30,7 @@
           %ul#nav_sub.sub_navigation
             %li
               %i.iconSummary
-              = link_to_resume('Candidate Status', current_candidate.id, :action => 'educ_degree', :class => 'profile-sub_navigation')
+              = link_to 'Candidate Status', '/staff/' + current_candidate.id.to_s() + '/candidate_status', :class => 'profile-sub_navigation'
             %li
               %i.iconSummary
               = link_to_resume('Technologies', current_candidate.id, :action => 'educ_degree', :class => 'profile-sub_navigation')
