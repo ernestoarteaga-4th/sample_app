@@ -29,21 +29,32 @@
     %h4
       Please enter the following information
     .divider
-    %br  
-    .field
-      = f.label "Interview type"
-      = f.select :interview_type_id, options_from_collection_for_select(InterviewsType.order("id").all, "id", "description")
-    .field
-      = f.label "Interviewer"
-      = f.select :interviewer_id, options_from_collection_for_select(Interviewer.order("name").all, "id", "name")
-    .field
-      = f.label "Result"
-      = f.text_field :result
-    .field
-      = f.label "Comments"
-      = f.text_area :comments
-    .actions
-      %br
-      = f.submit "Update"
+    %br
+    .row-fluid
+      .span6
+        .field
+          = f.label "Interview type"
+          %br
+          = f.select :interview_type_id, options_from_collection_for_select(InterviewsType.order("id").all, "id", "description")
+      .span6 
+        .field
+          = f.label "Interviewer"
+          %br
+          = f.select :interviewer_id, options_from_collection_for_select(Interviewer.order("name").all, "id", "name")
+    .row-fluid
+      .span6
+        .field
+          = f.label "Result"
+          %br
+          = f.text_field :result
+        .actions
+          %br
+          = f.submit "Update"
+      .span6
+        .field
+          = f.label "Comments"
+          %br
+          = f.text_area :comments, {"class"=>"width100percent"}
+    
 <!-- Sidebar -->
 = render 'shared/sidebar_signed'
