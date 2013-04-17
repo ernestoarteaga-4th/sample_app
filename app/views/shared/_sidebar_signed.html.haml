@@ -39,13 +39,13 @@
               = link_to_resume('Interview Types', current_candidate.id, :action => 'educ_degree', :class => 'profile-sub_navigation')
             %li
               %i.iconSummary
-              = link_to_resume('Interviewers', current_candidate.id, :action => 'educ_degree', :class => 'profile-sub_navigation')
+              = link_to 'Interviewers', '/staff/' + current_candidate.id.to_s() + '/interviewers', :class => 'profile-sub_navigation'
             %li
               %i.iconEducation
               = link_to_resume('Education Degrees', current_candidate.id, :action => 'educ_degree', :class => 'profile-sub_navigation')
             %li
               %i.iconInterests
-              = link_to_resume('Languages', current_candidate.id, :action => 'educ_degree', :class => 'profile-sub_navigation')
+              = link_to 'Languages', '/staff/' + current_candidate.id.to_s() + '/languages', :class => 'profile-sub_navigation'
             %li
               %i.iconCertification
               = link_to_resume('Certifications', current_candidate.id, :action => 'educ_degree', :class => 'profile-sub_navigation')

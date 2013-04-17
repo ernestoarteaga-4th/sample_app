@@ -198,6 +198,7 @@ ActiveRecord::Schema.define(:version => 20130417245801) do
 
   create_table "interviewers", :force => true do |t|
     t.string   "name"
+    t.string   "updated_by"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

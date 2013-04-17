@@ -106,6 +106,11 @@ SampleApp::Application.routes.draw do
   match "/staff/:id/candidate_status" => 'status#index'
   match "/staff/:id/candidate_status/create" => 'status#create'
   match "/staff/:id/candidate_status/destroy" => 'status#destroy'
+
+  # Interviewers
+  match "/staff/:id/interviewers" => 'interviewers#index'
+  match "/staff/:id/interviewers/create" => 'interviewers#create'
+  match "/staff/:id/interviewers/destroy" => 'interviewers#destroy'
     
   # Certification
   #match "/candidates/:id/resume/certification" => 'candidate_certification#index'
@@ -120,6 +125,10 @@ SampleApp::Application.routes.draw do
   match "/candidates/:id/resume/languages" => 'candidate_languages#index'
   match "/candidates/resume/languages/new" => 'candidate_languages#new'
   match "/languages/destroy" => 'candidate_languages#destroy'
+  match "/staff/:id/languages" => 'languages#index'
+  match "/staff/:id/languages/new" => 'languages#new'
+  match "/staff/:id/languages/create" => 'languages#create'
+  match "/staff/:id/languages/action" => 'languages#action'
 
   # Autocomplete
   match "/tool/autocomplete" => 'tool_tag#autocomplete'
