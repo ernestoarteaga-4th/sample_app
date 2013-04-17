@@ -1,5 +1,6 @@
 SampleApp::Application.routes.draw do
 
+
   get "email/remind"
 
   post "email/remind"
@@ -23,6 +24,7 @@ SampleApp::Application.routes.draw do
 
   resources :candidates do
     resources :candidate_certifications
+    resources :candidate_profiles
   end
   
   resources :sessions,   :only => [:new, :create, :destroy]

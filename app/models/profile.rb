@@ -11,8 +11,8 @@ class Profile < ActiveRecord::Base
   
   validates :description,   		presence: true
 
-  validates :approved_flag,       	presence: true
+  #validates :approved_flag,       	presence: true
   
-  validates :approved_by,       	presence: true
+  #validates :approved_by,       	presence: true
 
 end
