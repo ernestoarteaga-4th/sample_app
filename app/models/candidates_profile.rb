@@ -1,4 +1,4 @@
-class CandidatesProfile < ActiveRecord::Base
+class CandidateProfile < ActiveRecord::Base
   # attr_accessible :title, :body
 
   self.per_page = 10

@@ -1,6 +1,6 @@
-class CreateCandidatesProfiles < ActiveRecord::Migration
+class CreateCandidateProfiles < ActiveRecord::Migration
   def change
-    create_table :candidates_profiles do |t|
+    create_table :candidate_profiles do |t|
 	  t.integer :candidate_id
 	  t.integer :profile_id
 	  t.text :summary
