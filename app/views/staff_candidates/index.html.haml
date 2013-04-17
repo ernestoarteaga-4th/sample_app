@@ -42,7 +42,7 @@
                       - roles.roles_responsibilities.each do |role_responsibility|
                         = role_responsibility.description + ". "
             %td
-              = link_to "Start", "/candidates/#{row.id}/candidates_interviews"
+              = link_to "Interview", "/candidates/#{row.id}/candidates_interviews"
           -i = i + 1
   %br
   %br
