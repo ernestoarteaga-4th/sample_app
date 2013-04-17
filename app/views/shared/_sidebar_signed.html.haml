@@ -22,11 +22,15 @@
           %i.iconContact-info
           = link_to 'Profile', edit_candidate_path(current_candidate), :class => "profile-sub_navigation"
         %li
-          %i.iconEducation
-          = link_to_resume('Education Degrees', current_candidate.id, :action => 'educ_degree', :class => 'profile-sub_navigation')
-        %li
           %i.iconResume
           = link_to_candidates('Candidates', current_candidate.id, :action => 'candidates', :class => 'profile-sub_navigation')
+        %li
+          %i.iconSummary
+          = link_to_resume('Catalogs', current_candidate.id, :action => 'educ_degree', :class => 'profile-sub_navigation')
+          %ul#nav_sub.sub_navigation
+            %li
+              %i.iconEducation
+              = link_to_resume('Education Degrees', current_candidate.id, :action => 'educ_degree', :class => 'profile-sub_navigation')
     -else
       %ul#nav_sub.sub_navigation
         %li
