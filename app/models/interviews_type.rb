@@ -3,5 +3,5 @@ class InterviewsType < ActiveRecord::Base
 
   attr_accessible :id, :description
 
-  validates :id, :presence => true
+  validates :description, :presence => true
 end

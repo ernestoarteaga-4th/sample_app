@@ -129,7 +129,11 @@ SampleApp::Application.routes.draw do
   match "/candidates/:id/candidates_interviews/:cand_inter_id/edit" => 'candidates_interviews#edit'
   match "/candidates/:id/candidates_interviews/new" => 'candidates_interviews#new'
   match "/candidates/:id/candidates_interviews/:cand_inter_id/delete" => 'candidates_interviews#delete'
-
-
+  ## Interviews Type
+  match "/interviews_types" => 'interviews_types#index'
+  match "/interviews_types/new" => 'interviews_types#new'
+  match "/interviews_types/:interview_type_id/edit" => 'interviews_types#edit'
+  match "/interviews_types/:interview_type_id/delete" => 'interviews_types#delete'
+  
   root :to => 'pages#home'
 end
