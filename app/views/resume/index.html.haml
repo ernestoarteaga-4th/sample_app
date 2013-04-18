@@ -49,7 +49,8 @@
               -else
                 %h6.educationTitleAndUniversity= education.educ_degree.name + " in " + education.title + ","
               %p.educationTitleAndUniversity= education.university
-            .experience_right= Date::MONTHNAMES[education.date_in.month] + " " + education.date_in.year.to_s + " - " + Date::MONTHNAMES[education.date_out.month] + " " + education.date_out.year.to_s
+            -if education.date_in != nil && education.date_out != nil
+              .experience_right= Date::MONTHNAMES[education.date_in.month] + " " + education.date_in.year.to_s + " - " + Date::MONTHNAMES[education.date_out.month] + " " + education.date_out.year.to_s
     %h4 Projects
     .divider-headline     
     - if @candidate.projects.count > 0

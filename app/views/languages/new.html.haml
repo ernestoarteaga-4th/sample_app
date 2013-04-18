@@ -1,0 +1,42 @@
+<!-- Content -->
+#content
+  %img(src="http://www.4thsource.com//public/images/subheader_services.jpg" alt="Sub Header" class="subheader")
+  %ul#breadcrumbs
+    %li
+      = link_to 'Home', root_path
+      = raw '&raquo;'
+    %li
+      = link_to_resume('My Profile', current_candidate.id, :action => 'resume')
+      = raw '&raquo;'
+    %li
+      = raw '<em>'
+      Languages
+      = raw '</em>'
+    .clear
+  %h3.page_headline
+    %i.iconEducation
+    .h3-page-headline
+      Languages
+  .divider-headline
+  %br
+    %strong
+      = link_to "Back", :controller => "languages", :action => "index"
+  %br
+  %br
+  %h3.page_headline
+    New:
+  = form_for(:language, :url=>{:action=>'create'}, :html => {:multipart => true, :id => "EducationDegreeForm"}) do |f|
+    //= render 'shared/error_messages', :object => f.object
+    .field
+      = f.label :name
+      %br
+      = f.text_field :name
+      = label_tag "requiredName", "", :id =>"requiredName", :class => "educationValidatorText"
+    .field
+      = f.label :description
+      %br
+      = f.text_field :description
+    .actions
+      = f.submit "Accept"
+<!-- Sidebar -->
+= render 'shared/sidebar_signed'

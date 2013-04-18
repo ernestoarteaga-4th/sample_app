@@ -1,0 +1,65 @@
+<!-- Content -->
+#content
+  %img(src="http://www.4thsource.com//public/images/subheader_services.jpg" alt="Sub Header" class="subheader")
+  %ul#breadcrumbs
+    %li
+      = link_to 'Home', root_path
+      = raw '&raquo;'
+    %li
+      = link_to_resume('My Profile', current_candidate.id, :action => 'resume')
+      = raw '&raquo;'
+    %li
+      = raw '<em>'
+      Interviewers
+      = raw '</em>'
+    .clear
+  %h3.page_headline
+    %i.iconEducation
+    .h3-page-headline
+      Interviewers
+  .divider-headline
+  #flash
+    - flash.each do |key, value|
+      .flash{:class => key}= value
+  %br
+  -if current_candidate.admin_flag
+    %br
+    %br
+    -if @interviewers.length == 0
+      .educationEmptyTitle
+        Please Insert at Least one Interviewer
+    -else
+      %table{:width => "100%"}
+        %thead
+          %tr
+            %th{:height => "20px", :class => "educationLabelTitle"}
+              Name
+            %th{:class => "educationLabelTitle"}
+              Updated By
+            %th{:class => "educationLabelTitle"}
+               
+        %tbody
+          -@interviewers.each do |row|
+            %tr
+              %td
+                = row.name
+              %td
+                = row.updated_by
+              %td
+                .btn-group
+                  %button.btn.btn-primary
+                    = link_to "Delete", url_options={:controller => "status", :action => "destroy", id:row.id}, html_options = {:confirm => "Are you Sure?"}
+    %br
+    %br
+    = form_for(:i, :url=>{:action=>'create'}) do |f|
+      .field
+        = f.label :name
+        %br
+        = f.text_field :name
+      .actions
+        = f.submit "Accept"
+  -else
+    .educationEmptyTitle
+      This User Have not Permission in this Catalog
+<!-- Sidebar -->
+= render 'shared/sidebar_signed'
