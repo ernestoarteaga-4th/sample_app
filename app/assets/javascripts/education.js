@@ -136,7 +136,7 @@ $(document).ready(function() {
 
 $(document).ready(function() {
   $('#candidates_table').dataTable({
-      "bPaginate": true,
+      "bPaginate": false,
       "bLengthChange": false,
       "bFilter": true,
       "bInfo": false
