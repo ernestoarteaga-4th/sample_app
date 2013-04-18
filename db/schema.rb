@@ -53,14 +53,6 @@ ActiveRecord::Schema.define(:version => 20130416161422) do
     t.datetime "updated_at",   :null => false
   end
 
-  create_table "candidate_profiles", :force => true do |t|
-    t.integer  "candidate_id"
-    t.integer  "profile_id"
-    t.text     "summary"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-  end
-
   create_table "candidate_trainings", :force => true do |t|
     t.integer  "candidate_id"
     t.string   "name"
@@ -127,6 +119,14 @@ ActiveRecord::Schema.define(:version => 20130416161422) do
     t.string   "comments"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+  end
+
+  create_table "candidates_profiles", :force => true do |t|
+    t.integer  "candidate_id"
+    t.integer  "profile_id"
+    t.text     "summary"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "candidates_states", :force => true do |t|
@@ -220,8 +220,9 @@ ActiveRecord::Schema.define(:version => 20130416161422) do
   create_table "microposts", :force => true do |t|
     t.string   "content"
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "candidate_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   add_index "microposts", ["user_id"], :name => "index_microposts_on_user_id"

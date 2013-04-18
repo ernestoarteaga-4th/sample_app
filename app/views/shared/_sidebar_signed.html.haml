@@ -12,8 +12,7 @@
           = current_candidate.first_name
           = current_candidate.first_last_name
           %br
-          -#= current_candidate.microposts.count
-          microposts
+          = text_field_tag'post',nil,:placeholder=>'what\'s new?'
       %br
     %br
     -if current_candidate.admin_flag
