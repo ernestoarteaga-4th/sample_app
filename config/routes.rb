@@ -1,5 +1,6 @@
 SampleApp::Application.routes.draw do
 
+
   get "email/remind"
 
   post "email/remind"
@@ -23,6 +24,7 @@ SampleApp::Application.routes.draw do
 
   resources :candidates do
     resources :candidate_certifications
+    resources :candidate_profiles
   end
   
   resources :sessions,   :only => [:new, :create, :destroy]
@@ -101,7 +103,17 @@ SampleApp::Application.routes.draw do
   # Candidate
   match "/staff/:id/candidates" => 'staff_candidates#index'
   match "/staff/:id/candidates/detail" => 'staff_candidates#search'
-  
+
+  # Candidate Status
+  match "/staff/:id/candidate_status" => 'status#index'
+  match "/staff/:id/candidate_status/create" => 'status#create'
+  match "/staff/:id/candidate_status/destroy" => 'status#destroy'
+
+  # Interviewers
+  match "/staff/:id/interviewers" => 'interviewers#index'
+  match "/staff/:id/interviewers/create" => 'interviewers#create'
+  match "/staff/:id/interviewers/destroy" => 'interviewers#destroy'
+    
   # Certification
   #match "/candidates/:id/resume/certification" => 'candidate_certification#index'
   #match "/candidates/:id/resume/certification/new" => 'candidate_certification#new'
@@ -115,6 +127,10 @@ SampleApp::Application.routes.draw do
   match "/candidates/:id/resume/languages" => 'candidate_languages#index'
   match "/candidates/resume/languages/new" => 'candidate_languages#new'
   match "/languages/destroy" => 'candidate_languages#destroy'
+  match "/staff/:id/languages" => 'languages#index'
+  match "/staff/:id/languages/new" => 'languages#new'
+  match "/staff/:id/languages/create" => 'languages#create'
+  match "/staff/:id/languages/action" => 'languages#action'
 
   # Autocomplete
   match "/tool/autocomplete" => 'tool_tag#autocomplete'

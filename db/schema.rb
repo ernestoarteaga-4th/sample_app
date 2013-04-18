@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130416161422) do
+ActiveRecord::Schema.define(:version => 20130417245802) do
 
   create_table "candidate_certifications", :force => true do |t|
     t.integer  "candidate_id"
@@ -51,6 +51,14 @@ ActiveRecord::Schema.define(:version => 20130416161422) do
     t.integer  "candidate_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+  end
+
+  create_table "candidate_profile_tags", :force => true do |t|
+    t.integer  "candidate_profiles_id"
+    t.integer  "projects_roles_id"
+    t.integer  "tags_id"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
   end
 
   create_table "candidate_profiles", :force => true do |t|
@@ -198,6 +206,7 @@ ActiveRecord::Schema.define(:version => 20130416161422) do
 
   create_table "interviewers", :force => true do |t|
     t.string   "name"
+    t.string   "updated_by"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -303,6 +312,13 @@ ActiveRecord::Schema.define(:version => 20130416161422) do
   create_table "skills", :force => true do |t|
     t.string   "name"
     t.string   "version"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "statuses", :force => true do |t|
+    t.string   "name"
+    t.string   "updated_by"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
