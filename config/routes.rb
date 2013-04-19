@@ -29,7 +29,13 @@ SampleApp::Application.routes.draw do
   
   resources :sessions,   :only => [:new, :create, :destroy]
   resources :microposts, :only => [:create, :destroy]
-  resources :followings, :only => [:create, :destroy]
+  
+  resources :followings do
+    collection do 
+       post  'follow'
+    end
+  end
+
   resources :resume
   resources :candidate_prof_summaries do
     collection do
@@ -147,6 +153,15 @@ SampleApp::Application.routes.draw do
   match "/staff/:id/languages/new" => 'languages#new'
   match "/staff/:id/languages/create" => 'languages#create'
   match "/staff/:id/languages/action" => 'languages#action'
+
+  # Tags
+  match "/staff/:id/tags" => 'tags#index'
+  match "/staff/:id/tags/new" => 'tags#new'
+  match "/staff/:id/tags/create" => 'tags#create'
+  match "/staff/:id/tags/edit" => 'tags#edit'
+  match "/staff/:id/tags/update" => 'tags#update'
+  match "/staff/:id/tags/destroy" => 'tags#destroy'
+  match "/staff/:id/tags/action" => 'tags#action'
 
   # Autocomplete
   match "/tool/autocomplete" => 'tool_tag#autocomplete'

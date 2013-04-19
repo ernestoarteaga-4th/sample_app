@@ -1,6 +1,16 @@
 class EducDegreeController < ApplicationController
   def index
-    @degrees = EducDegree.all
+    @objects = current_objects(1)
+    @total_objects = total_objects(1)
+    render :layout => false
+  end
+
+  def current_objects(params={})
+    @current_objects = EducDegree.all
+  end
+
+  def total_objects(params={})
+    @total_objects = EducDegree.count
   end
 
   def new
@@ -72,30 +82,37 @@ class EducDegreeController < ApplicationController
   end
 
   def action
-    @degree = params["Selected_ID"]
+    @degrees = EducDegree.all
 
     if(params[:update_button] != nil)
-        @approved_by = current_candidate.first_name + " " + 
-                       current_candidate.middle_name + " " + 
-                       current_candidate.first_last_name + " " + 
-                       current_candidate.second_last_name
+      @degrees.each do |row|
+        @degree = params["approved_flag_" + row.id.to_s()]
+        row.approved_by = current_candidate.first_name + " " + 
+                          current_candidate.middle_name + " " + 
+                          current_candidate.first_last_name + " " + 
+                          current_candidate.second_last_name
 
-      for str in @degree.split(":")
-        EducDegree.update(str.split(",")[0], 
-                          :approved_flag => str.split(",")[1],
-                          :approved_by => @approved_by)
+        if(@degree == nil)
+          EducDegree.update(row.id, 
+                            :approved_flag => false,
+                            :approved_by => row.approved_by)
+        else
+          EducDegree.update(row.id, 
+                            :approved_flag => true,
+                            :approved_by => row.approved_by)
+        end
       end
     else
+      @degrees.each do |row|
+        @degree = params["approved_flag_" + row.id.to_s()]
 
-      for str in @degree.split(":")
-        if(str.split(",")[1] == 'true')
-          EducDegree.delete(str.split(",")[0])
-          CandidateEducation.where("educ_degree_id = ?", str.split(",")[0]).update_all(:educ_degree_id => '')
+        if(@degree != nil)
+          EducDegree.delete(row.id)
+          CandidateEducation.where("educ_degree_id = ?", row.id).update_all(:educ_degree_id => '')
         end
       end
     end
 
     redirect_to File.join('/candidates/', current_candidate.id.to_s(), '/education_degree')
   end
-
 end

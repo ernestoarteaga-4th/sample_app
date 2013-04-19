@@ -1,8 +1,8 @@
 class StaffCandidatesController < ApplicationController
   def index
-    @candidate = Candidate.where("admin_flag IS NOT TRUE")
-    @title = "All Candidates"
-    flash[:success] = "About #{@candidate.count} Results."
+    @candidates = Candidate.paginate(:page => params[:page], 
+                                     :conditions => ["admin_flag IS NOT TRUE"],
+                                     :per_page => 20)
   end
 
   def search
