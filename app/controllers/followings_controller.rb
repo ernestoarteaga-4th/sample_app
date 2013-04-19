@@ -1,7 +1,7 @@
 class FollowingsController < ApplicationController
   before_filter :authenticate
 
-  def create
+  def follow
       @candidate = Candidate.find(params[:following][:followed_id])
       @follow = current_candidate.followings.build(:followed_id => @candidate.id)
       if @follow.save

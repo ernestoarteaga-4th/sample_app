@@ -29,7 +29,13 @@ SampleApp::Application.routes.draw do
   
   resources :sessions,   :only => [:new, :create, :destroy]
   resources :microposts, :only => [:create, :destroy]
-  resources :followings, :only => [:create, :destroy]
+  
+  resources :followings do
+    collection do 
+       post  'follow'
+    end
+  end
+
   resources :resume
   resources :candidate_prof_summaries do
     collection do
