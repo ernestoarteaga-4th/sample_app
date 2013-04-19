@@ -31,38 +31,23 @@
     -if @degrees.length == 0
       .educationEmptyTitle
         Please Insert at Least one Education Degree
-    -@degrees.each do |e|
-      = form_for(:e, :url=>{:action=>'index'}) do |f|
-        = render 'shared/error_messages', :object => f.object
-        %h3.page_headline
-          = e.name
-        .btn-group
-          %button.btn.btn-primary
-            = link_to "Edit", url_options={:controller => "educ_degree", :action => "edit", id:e.id, name:e.name, description:e.description, approved_flag:e.approved_flag}
-          %button.btn.btn-primary.dropdown-toggle
-            %span.caret
-          %ul.dropdown-menu
-            %li
-              = link_to "Delete", url_options = {:controller => "educ_degree", :action => "destroy", id:e.id}, html_options = { :confirm => "Are you Sure?" }
-        .field
-          = f.hidden_field :id, :value => e.id
-        .field
-          = f.label "Name: ", class: "educationLabelTitle"
-          = f.label e.name, class: "educationLabel"
-        .field
-          = f.label "Description: ", class: "educationLabelTitle"
-          = f.label e.description, class: "educationLabel"
-        .field
-          = f.label "Approved By: ", class: "educationLabelTitle"
-          = f.label e.approved_by, class: "educationLabel"
-        .field
-          = f.check_box "approved_flag", :checked => e.approved_flag, :disabled => "true"
-          = f.label "Approved", class: "educationLabelTitle"
+    -else
+      = form_for(:table, :url=>{:action=>'action'}) do |f|
+        %table#education_degree_table.display(data-source="<%= products_url(format: "json") %>")
+          %thead
+            %tr
+              %th
+                Approved
+              %th
+                Name
+              %th
+                Description
+              %th
+                Approved By
         %br
-        //= submit_tag "Update", :name => 'update_button'
-        //= submit_tag "Delete", :name => 'delete_button'
-      %br
-      %br
+        = submit_tag "Update", :name => 'update_button', :class => 'btn-primary'
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        = submit_tag "Delete", :name => 'delete_button', :class => 'btn-primary', :confirm => "Do you want to delete the selected elements?"
   -else
     .educationEmptyTitle
       This User Have not Permission in this Catalog
