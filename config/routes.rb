@@ -142,9 +142,10 @@ SampleApp::Application.routes.draw do
   match "/staff/:id/tags" => 'tags#index'
   match "/staff/:id/tags/new" => 'tags#new'
   match "/staff/:id/tags/create" => 'tags#create'
-  match "/staff/:id/tags/edit/:idTag" => 'tags#edit'
+  match "/staff/:id/tags/edit" => 'tags#edit'
   match "/staff/:id/tags/update" => 'tags#update'
   match "/staff/:id/tags/destroy" => 'tags#destroy'
+  match "/staff/:id/tags/action" => 'tags#action'
 
   # Autocomplete
   match "/tool/autocomplete" => 'tool_tag#autocomplete'
