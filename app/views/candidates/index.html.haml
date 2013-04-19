@@ -24,9 +24,13 @@
         - flash.each do |key, value|
           .flash{:class => key}= value
   #list
-    - @page_results.each do |user|
+    - @page_results.each do |candidate|
       #row
-        = render user
+
+        = candidate.first_name 
+        = candidate.first_last_name
+        .follow
+          =link_to "Follow",followings_follow_path(candidate)
   %br
   %br
   #feed-pagination
