@@ -21,7 +21,7 @@
   #flash
     - flash.each do |key, value|
       .flash{:class => key}= value
-  = link_to "Back", :controller => "interviews_types", :action => "index"
+  = link_to "Back", :controller => "interviews_types", :action => "index", :id => current_candidate.id
   %br
   %br
   = form_for(:interview_type, :html => {:class => "experience", :method => "post"}) do |f|

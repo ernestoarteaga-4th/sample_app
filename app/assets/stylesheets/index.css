@@ -863,7 +863,8 @@ table.microposts tr td.micropost-delete {
   .iconSummary, .iconExperience, .iconExperienceHeadLine, .iconEducation, .iconEducationHeadLine, 
   .iconSkills, .iconSkillsHeadLine, .iconMembershipAwards, .iconInterests, .iconInterestsHeadLine, 
   .iconResponsibilitiesHeadLine, .iconRolesHeadLine, 
-  .iconKnowledgeHeadLine, .iconToolsHeadLine, .iconTechnologyHeadLine {
+  .iconKnowledgeHeadLine, .iconToolsHeadLine, .iconTechnologyHeadLine, 
+  .iconInterviewer, .iconIntervieweType, .iconStatus, .iconTags {
 	background: url(/images/probook_icons_img.axd);
 	background-repeat: no-repeat;
 	display: inline-block;
@@ -963,6 +964,38 @@ table.microposts tr td.micropost-delete {
 	background-position: -190px -39px;
 	width: 14px; 
 	height: 12px;
+}
+
+.iconInterviewer {
+	margin-top: 4px;
+	margin-left: 0px;
+	background-position: -160px 0px;
+	width: 16px; 
+	height: 16px;
+}
+
+.iconIntervieweType {
+	margin-top: 6px;
+	margin-left: 0px;
+	background-position: -176px 0px;
+	width: 13px; 
+	height: 16px;
+}
+
+.iconStatus {
+	margin-top: 6px;
+	margin-left: 0px;
+	background-position: -294px -18px;
+	width: 15px; 
+	height: 16px;
+}
+
+.iconTags {
+	margin-top: 8px;
+	margin-left: 8px;
+	background-position: -120px 0px;
+	width: 11px; 
+	height: 16px;
 }
 
 .iconExperience, .iconExperienceHeadLine {

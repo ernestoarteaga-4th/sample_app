@@ -20,7 +20,3 @@ window.CandidateCertification = {
 };
 
 })(jQuery);
-
-$(document).ready(function(){
-	CandidateCertification.start();
-});	

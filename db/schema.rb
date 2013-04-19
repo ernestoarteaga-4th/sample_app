@@ -206,15 +206,14 @@ ActiveRecord::Schema.define(:version => 20130417245802) do
 
   create_table "interviewers", :force => true do |t|
     t.string   "name"
-    t.string   "updated_by"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "interviews_types", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "languages", :force => true do |t|
@@ -284,6 +283,15 @@ ActiveRecord::Schema.define(:version => 20130417245802) do
     t.string   "summary"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "resume_trainings", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "year"
+    t.integer  "resume_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "resumes", :force => true do |t|

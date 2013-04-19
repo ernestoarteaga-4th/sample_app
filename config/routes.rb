@@ -111,14 +111,30 @@ SampleApp::Application.routes.draw do
 
   # Interviewers
   match "/staff/:id/interviewers" => 'interviewers#index'
-  match "/staff/:id/interviewers/create" => 'interviewers#create'
-  match "/staff/:id/interviewers/destroy" => 'interviewers#destroy'
+  match "/staff/:id/interviewers/new" => 'interviewers#new'
+  match "/staff/:id/interviewers/:interviewer_id/edit" => 'interviewers#edit'
+  match "/staff/:id/interviewers/:interviewer_id/delete" => 'interviewers#delete'
     
-  # Certification
+  # Candidate Certification
   #match "/candidates/:id/resume/certification" => 'candidate_certification#index'
   #match "/candidates/:id/resume/certification/new" => 'candidate_certification#new'
   match "/candidate_certifications/destro" => 'candidate_certifications#destro'
   #match "/resume_details/destro" => 'resume_details#destro'
+  
+  # Certifications
+  match "/staff/:id/certifications" => 'certifications#index'
+  match "/staff/:id/certifications/action" => 'certifications#action'
+  match "/staff/:id/certifications/new" => 'certifications#new'
+  match "/staff/:id/certifications/:certification_id/edit" => 'certifications#edit'
+  match "/staff/:id/certifications/:certification_id/delete" => 'certifications#delete'
+  
+  # Roles
+  match "/staff/:id/roles" => 'roles#index'
+  match "/staff/:id/roles/action" => 'roles#action'
+  match "/staff/:id/roles/new" => 'roles#new'
+  match "/staff/:id/roles/:role_id/edit" => 'roles#edit'
+  match "/staff/:id/roles/:role_id/delete" => 'roles#delete'
+  
   # Trainings
   match "/candidates/:id/resume/training" => 'candidate_training#index'
   match "/candidates/resume/training/new" => 'candidate_training#new'
@@ -146,10 +162,10 @@ SampleApp::Application.routes.draw do
   match "/candidates/:id/candidates_interviews/new" => 'candidates_interviews#new'
   match "/candidates/:id/candidates_interviews/:cand_inter_id/delete" => 'candidates_interviews#delete'
   ## Interviews Type
-  match "/interviews_types" => 'interviews_types#index'
-  match "/interviews_types/new" => 'interviews_types#new'
-  match "/interviews_types/:interview_type_id/edit" => 'interviews_types#edit'
-  match "/interviews_types/:interview_type_id/delete" => 'interviews_types#delete'
+  match "/staff/:id/interviews_types" => 'interviews_types#index'
+  match "/staff/:id/interviews_types/new" => 'interviews_types#new'
+  match "/staff/:id/interviews_types/:interview_type_id/edit" => 'interviews_types#edit'
+  match "/staff/:id/interviews_types/:interview_type_id/delete" => 'interviews_types#delete'
   
   root :to => 'pages#home'
 end

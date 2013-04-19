@@ -29,17 +29,14 @@
           = link_to_resume('Catalogs', current_candidate.id, :action => 'educ_degree', :class => 'profile-sub_navigation')
           %ul#nav_sub.sub_navigation
             %li
-              %i.iconSummary
+              %i.iconStatus
               = link_to 'Candidate Status', '/staff/' + current_candidate.id.to_s() + '/candidate_status', :class => 'profile-sub_navigation'
             %li
-              %i.iconSummary
-              = link_to_resume('Technologies', current_candidate.id, :action => 'educ_degree', :class => 'profile-sub_navigation')
+              %i.iconIntervieweType
+              = link_to "Interview Types", url_options = { :controller => "interviews_types", :action => "index", :id => current_candidate.id}, html_options = { :class => 'profile-sub_navigation' }
             %li
-              %i.iconSummary
-              = link_to_resume('Interview Types', current_candidate.id, :action => 'educ_degree', :class => 'profile-sub_navigation')
-            %li
-              %i.iconSummary
-              = link_to 'Interviewers', '/staff/' + current_candidate.id.to_s() + '/interviewers', :class => 'profile-sub_navigation'
+              %i.iconInterviewer
+              = link_to "Interviewers", url_options = { :controller => "interviewers", :action => "index", :id => current_candidate.id}, html_options = { :class => 'profile-sub_navigation' }
             %li
               %i.iconEducation
               = link_to_resume('Education Degrees', current_candidate.id, :action => 'educ_degree', :class => 'profile-sub_navigation')
@@ -48,15 +45,12 @@
               = link_to 'Languages', '/staff/' + current_candidate.id.to_s() + '/languages', :class => 'profile-sub_navigation'
             %li
               %i.iconCertification
-              = link_to_resume('Certifications', current_candidate.id, :action => 'educ_degree', :class => 'profile-sub_navigation')
+              = link_to "Certifications", url_options = { :controller => "certifications", :action => "index", :id => current_candidate.id}, html_options = { :class => 'profile-sub_navigation' }
             %li
-              %i.iconSummary
-              = link_to_resume('Profiles', current_candidate.id, :action => 'educ_degree', :class => 'profile-sub_navigation')
+              %i.iconRolesHeadLine{:style => 'margin-top: 8px;'}
+              = link_to "Roles", url_options = { :controller => "roles", :action => "index", :id => current_candidate.id}, html_options = { :class => 'profile-sub_navigation' }
             %li
-              %i.iconSummary
-              = link_to_resume('Roles', current_candidate.id, :action => 'educ_degree', :class => 'profile-sub_navigation')
-            %li
-              %i.iconSummary
+              %i.iconTags
               = link_to_resume('Tags', current_candidate.id, :action => 'educ_degree', :class => 'profile-sub_navigation')
     -else
       %ul#nav_sub.sub_navigation
