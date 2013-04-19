@@ -8,9 +8,7 @@ class PagesController < ApplicationController
     @page_results = []
     @page_results = current_candidate.feed.paginate(:page => params[:page]) if signed_in? and current_candidate.feed != nil
     @candidate = current_candidate
-    if @page_results != nil
-      flash.now[:success] =  "About #{@page_results.count} results."
-    end
+  
   end
 
   def contact

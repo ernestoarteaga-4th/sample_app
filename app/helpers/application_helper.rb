@@ -115,6 +115,15 @@ module ApplicationHelper
     ]
   end
 
+  def tag_type_list
+    [
+      ['- Select one -', '0'],
+      ['Tool','1'],
+      ['Knowledge', '2'],
+      ['Technology', '3']
+    ]
+  end
+
   def yes_or_no_list
     [
       ['- Select one -', '0'],

@@ -4,6 +4,7 @@ class ProjectsTag < ActiveRecord::Base
   attr_accessible :date_in, :date_out, :description, :tags_id, :projects_roles_id
   
   belongs_to :projects_roles
+  belongs_to :tags
   
   validates :tags_id,       presence: true
   

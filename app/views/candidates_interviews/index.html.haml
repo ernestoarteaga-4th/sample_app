@@ -36,7 +36,7 @@
         %th{:style => 'font-weight: bold'}
           Comments
       - @candidate.candidates_interviews.each do |cand_inter|
-        %tr
+        %tr{:height => "20px"}
           %td= InterviewsType.find(cand_inter.interview_type_id).description 
           %td= Interviewer.find(cand_inter.interviewer_id).name
           %td= cand_inter.result
