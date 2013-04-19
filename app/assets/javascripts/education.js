@@ -141,4 +141,23 @@ $(document).ready(function() {
       "bFilter": true,
       "bInfo": false
     });
-} );
+});
+
+$(document).ready(function() {
+  $('#EducationDegreeTableForm').submit(function(e) { 
+    var $inputs = $('#EducationDegreeTableForm :input');
+    var boxes = "";
+    
+    for(var i = 0; i < $inputs.length; i++) {
+      if($inputs[i].name==='approved_flag') {
+        boxes = boxes + $inputs[i].value + "," + $inputs[i].checked + ":";
+      }
+    }
+
+    $('#EducationDegreeTableForm :input:last').append('<input type="text" id="Selected_ID" name="Selected_ID" value="' + boxes + '" />');
+
+    e.submit();
+    
+    return false;
+  });
+});
