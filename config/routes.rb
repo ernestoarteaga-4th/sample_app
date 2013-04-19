@@ -1,5 +1,4 @@
-SampleApp::Application.routes.draw do
-
+SampleApp::Application.routes.draw do  
 
   get "email/remind"
 
@@ -25,6 +24,7 @@ SampleApp::Application.routes.draw do
   resources :candidates do
     resources :candidate_certifications
     resources :candidate_profiles
+    resources :candidate_profile_tags
   end
   
   resources :sessions,   :only => [:new, :create, :destroy]
