@@ -1,0 +1,55 @@
+<!-- Content -->			
+#content
+  %img(src="http://www.4thsource.com//public/images/subheader_services.jpg" alt="Sub Header" class="subheader")
+  %ul#breadcrumbs
+    %li
+      = link_to 'Home', root_path
+      = raw '&raquo;'
+    %li= raw('<em>Tags</em>')
+    .clear
+  %h3.page_headline
+    Tags
+  .divider
+  %br
+  #flash
+    - flash.each do |key, value|
+      .flash{:class => key}= value
+  -if current_candidate.admin_flag
+    %br
+      %strong
+        = link_to "New", :controller => "tags", :action => "new"
+    %br
+    %br
+    -if @tags.length == 0
+      .educationEmptyTitle
+        Please Insert at Least one Tag
+    -else
+      = form_for(:table, :url=>{:action=>'index'}) do |f|
+        %table#candidates_table.display
+          %thead
+            %tr
+              %th
+                Name
+              %th
+                Tag Type
+              %th
+                Description
+          %tbody 
+            -@tags.each do |row|
+              %tr
+                %td
+                  = link_to row.name, url_options={:controller => "tags", :action => "edit", id:row.id, name:row.name, type_tag:row.type_tag, description:row.description}
+                %td
+                  = tag_type_list[row.type_tag][0]
+                %td
+                  = row.description
+      %br
+      = will_paginate @candidates, :class => "digg_pagination"
+  -else
+    .educationEmptyTitle
+      This User Have not Permission in this Catalog
+  %br
+  %br
+  .clear
+<!-- Sidebar -->
+= render 'shared/sidebar_signed'
