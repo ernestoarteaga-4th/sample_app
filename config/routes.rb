@@ -132,6 +132,14 @@ SampleApp::Application.routes.draw do
   match "/staff/:id/languages/create" => 'languages#create'
   match "/staff/:id/languages/action" => 'languages#action'
 
+  # Tags
+  match "/staff/:id/tags" => 'tags#index'
+  match "/staff/:id/tags/new" => 'tags#new'
+  match "/staff/:id/tags/create" => 'tags#create'
+  match "/staff/:id/tags/edit/:idTag" => 'tags#edit'
+  match "/staff/:id/tags/update" => 'tags#update'
+  match "/staff/:id/tags/destroy" => 'tags#destroy'
+
   # Autocomplete
   match "/tool/autocomplete" => 'tool_tag#autocomplete'
   match "/tech/autocomplete" => 'technology_tag#autocomplete'

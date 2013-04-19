@@ -57,7 +57,7 @@
               = link_to_resume('Roles', current_candidate.id, :action => 'educ_degree', :class => 'profile-sub_navigation')
             %li
               %i.iconSummary
-              = link_to_resume('Tags', current_candidate.id, :action => 'educ_degree', :class => 'profile-sub_navigation')
+              = link_to 'Tags', '/staff/' + current_candidate.id.to_s() + '/tags', :class => 'profile-sub_navigation'
     -else
       %ul#nav_sub.sub_navigation
         %li

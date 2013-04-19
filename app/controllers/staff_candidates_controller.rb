@@ -2,7 +2,7 @@ class StaffCandidatesController < ApplicationController
   def index
     @candidates = Candidate.paginate(:page => params[:page], 
                                      :conditions => ["admin_flag IS NOT TRUE"],
-                                     :per_page => 10)
+                                     :per_page => 20)
   end
 
   def search
