@@ -26,7 +26,7 @@ SampleApp::Application.routes.draw do
     resources :candidate_profiles
     resources :candidate_profile_tags
   end
-  
+
   resources :sessions,   :only => [:new, :create, :destroy]
   resources :microposts, :only => [:create, :destroy]
   
