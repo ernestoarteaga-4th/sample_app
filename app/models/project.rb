@@ -5,7 +5,7 @@ class Project < ActiveRecord::Base
   
   belongs_to :candidates
   
-  has_many   :projroles,    :foreign_key => "projects_id",
+  has_many   :projects_roles,    :foreign_key => "projects_id",
                             :dependent => :destroy
   
   validates :candidate_id, presence: true

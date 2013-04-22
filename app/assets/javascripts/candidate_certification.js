@@ -8,13 +8,11 @@ window.CandidateCertification = {
 		chBoxNotInList = $("#certification_chBNotInList");
 		txtCertificationName.attr("disabled",true);
 		chBoxNotInList.click(function(){
-			if(chBoxNotInList.attr("checked")){
-				chBoxNotInList.attr("checked",false);
-				txtCertificationName.attr("disabled",true);
+			if(chBoxNotInList.is(":checked")){
+				txtCertificationName.attr("disabled",false);
 			}
 			else{
-				chBoxNotInList.attr("checked",true);
-				txtCertificationName.attr("disabled",false);
+				txtCertificationName.attr("disabled",true);
 			}
 		});
 	}
@@ -22,7 +20,3 @@ window.CandidateCertification = {
 };
 
 })(jQuery);
-
-$(document).ready(function(){
-	CandidateCertification.start();
-});	

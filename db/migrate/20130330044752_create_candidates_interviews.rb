@@ -1,7 +1,6 @@
 class CreateCandidatesInterviews < ActiveRecord::Migration
-  def up
+  def change
     create_table :candidates_interviews do |t|
-      t.integer :id
       t.integer :candidate_id
       t.string :result
       t.integer :interviewer_id
@@ -12,7 +11,4 @@ class CreateCandidatesInterviews < ActiveRecord::Migration
     end
   end
 
-  def down
-    drop_table :candidates_interviews
-  end
 end

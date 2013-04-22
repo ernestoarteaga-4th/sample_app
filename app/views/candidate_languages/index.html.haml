@@ -40,7 +40,10 @@
             .experience_details_wrapper
               .experience_details_left
                 %h6
-                  = candidate_language.language.name
+                  -if candidate_language.language != nil
+                    = candidate_language.language.name
+                  -else
+                    Language not Approved
                 #experience-date
                   =language_level_list[candidate_language.level_id][0]
                 %br

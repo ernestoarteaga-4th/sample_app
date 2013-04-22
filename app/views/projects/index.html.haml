@@ -38,9 +38,9 @@
       %br
       #project-description
         = project.summary
-      - if project.projroles.count > 0
+      - if project.projects_roles.count > 0
         %list
-          - project.projroles.each do |role|
+          - project.projects_roles.each do |role|
             %br
             %br
             #row

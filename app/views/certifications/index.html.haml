@@ -1,70 +1,69 @@
-<!-- Content -->			
+<!-- Content -->
 #content
-  %img(src='http://www.4thsource.com//public/images/subheader_services.jpg' class='subheader' alt='Sub Header')
+  %img(src="http://www.4thsource.com//public/images/subheader_services.jpg" alt="Sub Header" class="subheader")
   %ul#breadcrumbs
     %li
-      = link_to 'Home', home_path 
+      = link_to 'Home', root_path
       = raw '&raquo;'
     %li
-      = link_to_resume('Resume', @candidate.id, :action => 'resume')
+      = link_to_resume('My Profile', current_candidate.id, :action => 'resume')
       = raw '&raquo;'
-    %li= raw('<em>Certifications</em>')
+    %li
+      = raw '<em>'
+      Certifications
+      = raw '</em>'
     .clear
-  %h3.page_headline 
-    %i.iconInterestsHeadLine
+  %h3.page_headline
+    %i.iconCertification
     .h3-page-headline
       Certifications
   .divider-headline
-  %br
   #flash
     - flash.each do |key, value|
       .flash{:class => key}= value
+  %br
+  -if current_candidate.admin_flag
     %br
-    = link_to_resume('Back to Resume', @candidate.id, :action => 'resume')
+      %strong
+        = link_to "New", :controller => "certifications", :action => "new"
     %br
     %br
-    %br
-    %h4
-      List of certifications
-    .divider
-    %br
-    - if @total_certifications.count > 0
-      #list
-        - @total_certifications.each do |certification|
-          %br
-          #row
-            .experience_details_wrapper
-              .experience_details_left
-                %h6
-                  = certification.name
-                #experience-date
-                  
-                %br
-              .experience_details_right
-                = link_to "Delete", :controller => "certifications", :action => "destroy", :id=> certification.id
-    - else
-      %h4 Please create at least one certification in your resume.
-      .divider
-    %br 
-  %br 
-  %br 
-  .experience_details_wrapper
-    .experience_details_left
-      = form_for(:certification, :controller=>"resume_certification", :action => "create") do |f|
-        = render 'shared/error_messages', :object => f.object
+    -if Certification.all.length == 0
+      .educationEmptyTitle
+        Please Insert at Least one Certification
+    -else
+      = form_for(:table, :url=>{:action=>'action'}) do |f|
+        %table#education_degree_table.display
+          %thead
+            %tr
+              %th
+                Approved&nbsp;&nbsp;&nbsp;&nbsp;
+                = check_box_tag "approved_flag_all", @certifications.count.to_s()
+              %th
+                Name
+              %th
+                Description
+              %th
+                Approved By
+          %tbody
+            -i = 0
+            -@certifications.each do |row|
+              %tr
+                %td
+                  = check_box_tag "id" + i.to_s(), row.id.to_s(), false, :name => "approved_flag_" + row.id.to_s(), :class => "id" + i.to_s()
+                %td
+                  = row.name
+                %td
+                  = row.description
+                %td 
+                  = row.approved_by
+              -i = i + 1
         %br
-        %h4
-          Add a certification in your resume
-        .divider
-        %br
-        .field
-          = f.label "Certification"
-          %br
-          = f.text_field :name
-        .actions
-          %br
-          = f.submit "Submit"
-        .clear	
-    .experience_details_right
+        = submit_tag "Update", :name => 'update_button', :class => 'btn-primary'
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        = submit_tag "Delete", :name => 'delete_button', :class => 'btn-primary', :confirm => "Do you want to delete the selected elements?"
+  -else
+    .educationEmptyTitle
+      This User Have not Permission in this Catalog
 <!-- Sidebar -->
 = render 'shared/sidebar_signed'

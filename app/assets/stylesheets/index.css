@@ -1,4 +1,4 @@
- /* Reset
+/* Reset
 ----------------------------------------- */
 @import url(reset.css);
 
@@ -667,11 +667,12 @@ p.copyright { font-size: 11px; font-style: italic; }
 	border:#ccc solid 1px;
 	background: none;
 	padding:6px 5px;
-	width:240px;
+	/*width:240px;*/
 	color:#000000;
 	margin-bottom: -10px;
 	margin-top: 5px;
-	height:120px;
+	width: 98%;
+	/*height:120px;*/
 	-webkit-box-shadow: 0px 0px 0px #222;
 	-moz-box-shadow: 0px 0px 0px #222;
 	box-shadow: 0px 0px 0px #222;
@@ -862,7 +863,8 @@ table.microposts tr td.micropost-delete {
   .iconSummary, .iconExperience, .iconExperienceHeadLine, .iconEducation, .iconEducationHeadLine, 
   .iconSkills, .iconSkillsHeadLine, .iconMembershipAwards, .iconInterests, .iconInterestsHeadLine, 
   .iconResponsibilitiesHeadLine, .iconRolesHeadLine, 
-  .iconKnowledgeHeadLine, .iconToolsHeadLine, .iconTechnologyHeadLine {
+  .iconKnowledgeHeadLine, .iconToolsHeadLine, .iconTechnologyHeadLine, 
+  .iconInterviewer, .iconIntervieweType, .iconStatus, .iconTags {
 	background: url(/images/probook_icons_img.axd);
 	background-repeat: no-repeat;
 	display: inline-block;
@@ -926,7 +928,7 @@ table.microposts tr td.micropost-delete {
 
 .iconResponsibilitiesHeadLine {
 	margin-top: 0px;
-	margin-left: 46px;
+	margin-left: 6px;
 	background-position: -312px 0px;
 	width: 11px; 
 	height: 16px;
@@ -934,7 +936,7 @@ table.microposts tr td.micropost-delete {
 
 .iconRolesHeadLine {
 	margin-top: 3px;
-	margin-left: 20px;
+	margin-left: 2px;
 	background-position: -90px 0px;
 	width: 16px; 
 	height: 16px;
@@ -942,7 +944,7 @@ table.microposts tr td.micropost-delete {
 
 .iconKnowledgeHeadLine{
 	margin-top: 3px;
-	margin-left: 46px;
+	margin-left: 6px;
 	background-position: -96px -56px;
 	width: 8px; 
 	height: 8px;
@@ -950,18 +952,50 @@ table.microposts tr td.micropost-delete {
 
 .iconToolsHeadLine{
 	margin-top: 3px;
-	margin-left: 46px;
+	margin-left: 6px;
 	background-position: -9px -56px;
 	width: 11px; 
 	height: 10px;
 }
 
 .iconTechnologyHeadLine{
-	margin-top: 0px;
-	margin-left: 46px;
+	margin-top: 4px;
+	margin-left: 6px;
 	background-position: -190px -39px;
 	width: 14px; 
 	height: 12px;
+}
+
+.iconInterviewer {
+	margin-top: 4px;
+	margin-left: 0px;
+	background-position: -160px 0px;
+	width: 16px; 
+	height: 16px;
+}
+
+.iconIntervieweType {
+	margin-top: 6px;
+	margin-left: 0px;
+	background-position: -176px 0px;
+	width: 13px; 
+	height: 16px;
+}
+
+.iconStatus {
+	margin-top: 6px;
+	margin-left: 0px;
+	background-position: -294px -18px;
+	width: 15px; 
+	height: 16px;
+}
+
+.iconTags {
+	margin-top: 8px;
+	margin-left: 8px;
+	background-position: -120px 0px;
+	width: 11px; 
+	height: 16px;
 }
 
 .iconExperience, .iconExperienceHeadLine {
@@ -1094,6 +1128,12 @@ table.microposts tr td.micropost-delete {
 	padding-left:1px;
 	padding-bottom: 2px;
 	width:400px;
+}
+.experience_details_left_100_percent {
+	float:left;
+	padding-left:1px;
+	padding-bottom: 2px;
+	width:100%;
 }
 
 .experience_details_area {
@@ -1282,31 +1322,29 @@ select, input{width: 230px;}
 	/*padding-top: 0;*/
 }
 
-.project_role_left {
-	/*padding: 10px;*/
+/*.project_role_left {
 	padding-left: 40px;	
 	padding-top: 0;
 	display: inline-block;
-}
+}*/
 
 .project_role_right {
 	float:right;
 	padding: 0 10px;
 	text-align: right;
 	display: inline-block;
-	/*padding-top: 0;*/
 }
 
-.responsibility_left {
-	/*padding: 10px;*/
+/*.responsibility_left {
 	padding-left: 60px;	
 	padding-top: 0;
 	display: inline-block;
-}
+	width: 60%;
+}*/
 
-.tag_left {
+.tag_left, .responsibility_left, .project_role_left {
 	/*padding: 10px;*/
-	padding-left: 60px;	
+	padding-left: 22px;
 	padding-top: 0;
 	display: inline-block;
 	width: 60%;
@@ -1354,3 +1392,53 @@ select, input{width: 230px;}
   padding-left: 10px;
   padding-top: 7px;
 }
+.visaContent{
+	height: 55px;
+}
+
+.digg_pagination {
+  background: white;
+  cursor: default;
+  /* self-clearing method: */ }
+  .digg_pagination a, .digg_pagination span, .digg_pagination em {
+    padding: 0.2em 0.5em;
+    display: block;
+    float: left;
+    margin-right: 1px; }
+  .digg_pagination .disabled {
+    color: #999999;
+    border: 1px solid #dddddd; }
+  .digg_pagination .current {
+    font-style: normal;
+    font-weight: bold;
+    background: #2e6ab1;
+    color: white;
+    border: 1px solid #2e6ab1; }
+  .digg_pagination a {
+    text-decoration: none;
+    color: #105cb6;
+    border: 1px solid #9aafe5; }
+    .digg_pagination a:hover, .digg_pagination a:focus {
+      color: #000033;
+      border-color: #000033; }
+  .digg_pagination .page_info {
+    background: #2e6ab1;
+    color: white;
+    padding: 0.4em 0.6em;
+    width: 22em;
+    margin-bottom: 0.3em;
+    text-align: center; }
+    .digg_pagination .page_info b {
+      color: #000033;
+      background: #6aa6ed;
+      padding: 0.1em 0.25em; }
+  .digg_pagination:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  * html .digg_pagination {
+    height: 1%; }
+  *:first-child + html .digg_pagination {
+    overflow: hidden; }

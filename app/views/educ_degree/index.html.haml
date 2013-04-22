@@ -32,7 +32,7 @@
       .educationEmptyTitle
         Please Insert at Least one Education Degree
     -else
-      = form_for(:table, :url=>{:action=>'action'}) do |f|
+      = form_for(:table, :url=>{:action=>'action'}, :html => {:multipart => true, :id => "EducationDegreeTableForm"}) do |f|
         %table#education_degree_table.display
           %thead
             %tr
@@ -50,7 +50,7 @@
             -@degrees.each do |row|
               %tr
                 %td
-                  = check_box_tag "id" + i.to_s(), row.id.to_s(), row.approved_flag, :name => "approved_flag_" + row.id.to_s(), :class => "id" + i.to_s()
+                  = check_box_tag "id" + i.to_s(), row.id.to_s(), row.approved_flag, :name => "approved_flag", :class => "id" + i.to_s()
                 %td
                   = row.name
                 %td

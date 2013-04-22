@@ -1,9 +1,10 @@
 class ProjectsTag < ActiveRecord::Base
   self.per_page = 10
 
-  attr_accessible :date_in, :date_out, :description, :tags_id, :projroles_id
+  attr_accessible :date_in, :date_out, :description, :tags_id, :projects_roles_id
   
-  belongs_to :projroles
+  belongs_to :projects_roles
+  belongs_to :tags
   
   validates :tags_id,       presence: true
   

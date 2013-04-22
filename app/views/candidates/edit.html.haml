@@ -107,27 +107,26 @@
     .row-fluid
       .span3
         .field
+          .alignCheckBox= f.check_box :is_willing_to_relocate
+          .alignCheckBox= f.label :is_willing_to_relocate
+        .field
+          .alignCheckBox= f.check_box :is_willing_to_travel
+          .alignCheckBox= f.label :is_willing_to_travel 
+      .span3
+        .field
           .alignCheckBox= f.check_box :has_visa
           .alignCheckBox= f.label :has_visa
         .field
-          .alignCheckBox= f.check_box :is_willing_to_travel
-          .alignCheckBox= f.label :is_willing_to_travel  
-      .span3
-        .field#visaShowHide
-          = f.label :visa_expiration_year
-          = f.text_field :visa_expiration_year
-             
-      .span3
-        .field
           .alignCheckBox= f.check_box :has_passport
           .alignCheckBox= f.label :has_passport
-        .field
-          .alignCheckBox= f.check_box :is_willing_to_relocate
-          .alignCheckBox= f.label :is_willing_to_relocate
       .span3
+        .visaContent
+          .field#visaShowHide
+            = f.label :visa_expiration_year
+            = f.text_field :visa_expiration_year
         .field#passportShowHide
           = f.label :passport_expiration_year
-          = f.text_field :passport_expiration_year       
+          = f.text_field :passport_expiration_year   
     %br
     .divider
     .row-fluid
@@ -143,11 +142,11 @@
         .field.employedShowHide
           = f.label :position
           = f.text_field :position
-    .row-fluid
       .span3
-        .field
+        .field.employedShowHide
           = f.label :current_salary
           = f.text_field :current_salary
+    .row-fluid
       .span3
         .field
           = f.label :salary_expectancy

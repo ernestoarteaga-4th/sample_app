@@ -22,8 +22,7 @@ class ProjectsController < ApplicationController
 
     @project = Project.find_by_id(params[:project_id])
     @title = @project.name
-    @projroles_items = @project.projroles
-    @projrole  = Projrole.new
+    @projects_role  = ProjectsRole.new
   end
   
   def prepare_project_form

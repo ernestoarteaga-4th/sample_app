@@ -1,0 +1,48 @@
+<!-- Content -->      
+#content
+  %img(src='http://www.4thsource.com//public/images/subheader_services.jpg' class='subheader' alt='Sub Header')
+  %ul#breadcrumbs
+    %li
+      = link_to 'Home', root_path 
+      = raw '&raquo;'
+    %li
+      = raw('<em>Catalogues</em>')
+      = raw '&raquo;'
+    %li
+      = raw('<em>Interviewer</em>')
+    .clear
+  %h3.page_headline 
+    %i.iconExperienceHeadLine
+    .h3-page-headline
+      Interviewers
+  .divider-headline
+  %br
+  #flash
+    - flash.each do |key, value|
+      .flash{:class => key}= value
+  %br
+  = link_to "New", :controller => "interviewers", :action => "new"
+  %br
+  %br
+  - if Interviewer.all.count > 0 
+    #list
+      %br
+      - Interviewer.all.each do |interviewer|
+        %br
+        #row
+          .experience_details_wrapper
+          .experience_details_left
+            %strong
+              = interviewer.name
+          .experience_details_right
+            = link_to "Edit", :controller => "interviewers", :action => "edit", :id => current_candidate.id, :interviewer_id => interviewer.id
+            &nbsp;&nbsp;&nbsp;
+            = link_to "Delete", url_options = { :controller => "interviewers", :action => "delete", :id => current_candidate.id, :interviewer_id => interviewer.id }, html_options = { :confirm => "Are you sure?" }
+          %br 
+  - else
+    %h4 Please create at least one interview type.
+    .divider
+  %br
+  .clear
+<!-- Sidebar -->
+= render 'shared/sidebar_signed'

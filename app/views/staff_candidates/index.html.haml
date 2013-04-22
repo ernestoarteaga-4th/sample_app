@@ -8,7 +8,7 @@
     %li= raw('<em>Candidates</em>')
     .clear
   %h3.page_headline
-    All users
+    All Candidates
   .divider
   %br
   #flash
@@ -24,9 +24,10 @@
             E-Mail
           %th
             Roles
+          %th
+            Interview
       %tbody 
-        -i = 0
-        -@candidate.each do |row|
+        -@candidates.each do |row|
           %tr
             %td
               = link_to row.first_name + " " + row.middle_name + " " + row.first_last_name + " " + row.second_last_name, "/candidates/#{row.id}/resume"
@@ -35,11 +36,14 @@
             %td
               - if row.projects.count > 0
                 - row.projects.each do |projects|
-                  - if projects.projroles.count > 0
-                    - projects.projroles.each do |roles|
+                  - if projects.projects_roles.count > 0
+                    - projects.projects_roles.each do |roles|
                       - roles.roles_responsibilities.each do |role_responsibility|
                         = role_responsibility.description + ". "
-          -i = i + 1
+            %td
+              = link_to "Interview", "/candidates/#{row.id}/candidates_interviews"
+  %br
+  = will_paginate @candidates, :class => "digg_pagination"
   %br
   %br
   .clear
