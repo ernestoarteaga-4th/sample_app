@@ -84,7 +84,7 @@
               %i.iconResponsibilitiesHeadLine
               .tag_left
                 Responsibilities&nbsp;&nbsp;&nbsp;
-                = link_to "Add Role", :controller => "roles_responsibilities", :action => "new", id:@candidate.id, :project_id=> @project.id, :projects_role_id=> role.id
+                = link_to "Add new", :controller => "roles_responsibilities", :action => "new", id:@candidate.id, :project_id=> @project.id, :projects_role_id=> role.id
               .divider-headline-mini
           - if role.roles_responsibilities.count > 0
             %list

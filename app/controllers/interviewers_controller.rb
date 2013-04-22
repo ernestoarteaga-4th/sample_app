@@ -1,23 +1,46 @@
 class InterviewersController < ApplicationController
   def index
-    @interviewers = Interviewer.all
+    @candidate = current_candidate
+  end
+  
+  def new
+    if request.post?
+      @interviewer = Interviewer.new(params[:interviewer])
+      if @interviewer.save
+        flash[:success] = "Interviewer was saved successfully."
+        render 'index'
+      else
+        flash[:notice] = "An error occurred while the system save the interviewer."
+      end
+    else
+      @interviewer  = Interviewer.new
+      @error = @interviewer.errors
+    end    
   end
 
-  def create
-    @interviewer = Interviewer.new(params[:i])
-
-    @interviewer.updated_by = current_candidate.first_name + " " + 
-                              current_candidate.middle_name + " " + 
-                              current_candidate.first_last_name + " " + 
-                              current_candidate.second_last_name
-    @interviewer.save
-
-    redirect_to File.join('/staff/', current_candidate.id.to_s(), '/interviewers')
+  def edit
+    if request.post?
+      @interviewer = Interviewer.find(params[:interviewer_id])
+      @interviewer.update_attributes(params[:interviewer])
+      if @interviewer.save
+        flash[:success] = "Interviewer was saved successfully."
+        render 'index'
+      else
+        flash[:notice] = "An error occurred while the system save the interviewer."
+      end
+    else
+      @interviewer  = Interviewer.find(params[:interviewer_id])
+      @error = @interviewer.errors
+    end
   end
-
-  def destroy
-    Interviewer.delete(params[:id])
-
-    redirect_to File.join('/staff/', current_candidate.id.to_s(), '/interviewers')
+  
+  def delete
+    @candidateInterview = CandidatesInterview.where("interviewer_id = ?", params[:interviewer_id])
+    if @candidateInterview.length > 0
+      flash[:notice] = "This Interviewer is associated to an Interview, cannot be Deleted"
+    else
+      Interviewer.find(params[:interviewer_id]).destroy
+    end
+    render :index
   end
 end

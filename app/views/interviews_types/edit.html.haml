@@ -1,0 +1,40 @@
+<!-- Content -->			
+#content
+  %img(src='http://www.4thsource.com//public/images/subheader_services.jpg' class='subheader' alt='Sub Header')
+  %ul#breadcrumbs
+    %li
+      = link_to 'Home', root_path 
+      = raw '&raquo;'
+    %li
+      = raw('<em>Catalogues</em>')
+      = raw '&raquo;'
+    %li
+      = raw('<em>Interview Type</em>')
+    %li= raw('<em>Edit</em>')
+    .clear
+  %h3.page_headline 
+    %i.iconExperienceHeadLine
+    .h3-page-headline
+      = @title
+  .divider-headline
+  %br
+  #flash
+    - flash.each do |key, value|
+      .flash{:class => key}= value
+  = link_to "Back", :controller => "interviews_types", :action => "index", :id => current_candidate.id
+  %br
+  %br
+  = form_for(:interview_type, :html => {:class => "experience", :method => "post"}) do |f|
+    %h4
+      Please enter the following information
+    .divider
+    %br  
+    .field
+      = f.label "Description"
+      %br
+      = f.text_field :description
+    .actions
+      %br
+      = f.submit "Update"
+<!-- Sidebar -->
+= render 'shared/sidebar_signed'

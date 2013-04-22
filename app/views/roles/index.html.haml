@@ -10,13 +10,13 @@
       = raw '&raquo;'
     %li
       = raw '<em>'
-      Certifications
+      Roles
       = raw '</em>'
     .clear
   %h3.page_headline
     %i.iconCertification
     .h3-page-headline
-      Certifications
+      Roles
   .divider-headline
   #flash
     - flash.each do |key, value|
@@ -25,12 +25,12 @@
   -if current_candidate.admin_flag
     %br
       %strong
-        = link_to "New", :controller => "certifications", :action => "new"
+        = link_to "New", :controller => "roles", :action => "new"
     %br
     %br
-    -if Certification.all.length == 0
+    -if @roles.length == 0
       .educationEmptyTitle
-        Please Insert at Least one Certification
+        Please Insert at Least one Role
     -else
       = form_for(:table, :url=>{:action=>'action'}) do |f|
         %table#education_degree_table.display
@@ -38,7 +38,7 @@
             %tr
               %th
                 Approved&nbsp;&nbsp;&nbsp;&nbsp;
-                = check_box_tag "approved_flag_all", @certifications.count.to_s()
+                = check_box_tag "approved_flag_all", @roles.count.to_s()
               %th
                 Name
               %th
@@ -47,7 +47,7 @@
                 Approved By
           %tbody
             -i = 0
-            -@certifications.each do |row|
+            -@roles.each do |row|
               %tr
                 %td
                   = check_box_tag "id" + i.to_s(), row.id.to_s(), false, :name => "approved_flag_" + row.id.to_s(), :class => "id" + i.to_s()

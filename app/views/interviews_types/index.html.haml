@@ -9,35 +9,35 @@
       = raw('<em>Catalogues</em>')
       = raw '&raquo;'
     %li
-      = raw('<em>Interviewer</em>')
+      = raw('<em>Interview Type</em>')
     .clear
   %h3.page_headline 
     %i.iconExperienceHeadLine
     .h3-page-headline
-      Interviewers
+      Interviews type
   .divider-headline
   %br
   #flash
     - flash.each do |key, value|
       .flash{:class => key}= value
   %br
-  = link_to "New", :controller => "interviewers", :action => "new"
+  = link_to "New", :controller => "interviews_types", :action => "new"
   %br
   %br
-  - if Interviewer.all.count > 0 
+  - if InterviewsType.all.count > 0 
     #list
       %br
-      - Interviewer.all.each do |interviewer|
+      - InterviewsType.all.each do |interview_type|
         %br
         #row
           .experience_details_wrapper
           .experience_details_left
             %strong
-              = interviewer.name
+              = interview_type.description
           .experience_details_right
-            = link_to "Edit", :controller => "interviewers", :action => "edit", :id => current_candidate.id, :interviewer_id => interviewer.id
+            = link_to "Edit", :controller => "interviews_types", :action => "edit", :id => current_candidate.id, :interview_type_id => interview_type.id
             &nbsp;&nbsp;&nbsp;
-            = link_to "Delete", url_options = { :controller => "interviewers", :action => "delete", :id => current_candidate.id, :interviewer_id => interviewer.id }, html_options = { :confirm => "Are you sure?" }
+            = link_to "Delete", url_options = { :controller => "interviews_types", :action => "delete", :id => current_candidate.id, :interview_type_id => interview_type.id }, html_options = { :confirm => "Are you sure?" }
           %br 
   - else
     %h4 Please create at least one interview type.
