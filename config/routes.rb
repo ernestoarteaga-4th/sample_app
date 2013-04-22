@@ -1,5 +1,4 @@
-SampleApp::Application.routes.draw do
-
+SampleApp::Application.routes.draw do  
 
   get "email/remind"
 
@@ -25,8 +24,9 @@ SampleApp::Application.routes.draw do
   resources :candidates do
     resources :candidate_certifications
     resources :candidate_profiles
+    resources :candidate_profile_tags
   end
-  
+
   resources :sessions,   :only => [:new, :create, :destroy]
   resources :microposts, :only => [:create, :destroy]
   
@@ -162,6 +162,10 @@ SampleApp::Application.routes.draw do
   match "/staff/:id/tags/update" => 'tags#update'
   match "/staff/:id/tags/destroy" => 'tags#destroy'
   match "/staff/:id/tags/action" => 'tags#action'
+
+  # Report
+  match "/staff/:id/report" => 'report#index'
+  match "/staff/:id/report/search" => 'report#search'
 
   # Autocomplete
   match "/tool/autocomplete" => 'tool_tag#autocomplete'

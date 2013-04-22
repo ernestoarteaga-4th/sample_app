@@ -25,6 +25,9 @@
           %i.iconResume
           = link_to_candidates('Candidates', current_candidate.id, :action => 'candidates', :class => 'profile-sub_navigation')
         %li
+          %i.iconResume
+          = link_to 'Reports', '/staff/' + current_candidate.id.to_s() + '/report', :class => 'profile-sub_navigation'
+        %li
           %i.iconSummary
           = link_to_resume('Catalogs', current_candidate.id, :action => 'educ_degree', :class => 'profile-sub_navigation')
           %ul#nav_sub.sub_navigation
