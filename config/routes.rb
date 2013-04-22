@@ -147,6 +147,10 @@ SampleApp::Application.routes.draw do
   match "/staff/:id/tags/destroy" => 'tags#destroy'
   match "/staff/:id/tags/action" => 'tags#action'
 
+  # Report
+  match "/staff/:id/report" => 'report#index'
+  match "/staff/:id/report/search" => 'report#search'
+
   # Autocomplete
   match "/tool/autocomplete" => 'tool_tag#autocomplete'
   match "/tech/autocomplete" => 'technology_tag#autocomplete'
