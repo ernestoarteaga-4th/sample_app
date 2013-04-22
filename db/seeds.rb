@@ -12,7 +12,7 @@ path_to_file = directory + "/CSV_Files/" + file_name + ".csv"
 first = true
 
 if File.exist?(path_to_file)
-	CSV.foreach(path_to_file) do |row|
+	CSV.parse File.read(path_to_file).force_encoding('BINARY').encode('UTF-8', :invalid => :replace, :undef => :replace, :replace => '?') do |row|
 	  if first
 	    first = false
 	  else
@@ -63,7 +63,6 @@ else
 	puts "File does not exist: " + path_to_file
 end
 
-=begin
 #---------------------------------------------------------
 # Resume Trainings
 #---------------------------------------------------------
@@ -74,7 +73,7 @@ path_to_file = directory + "/CSV_Files/" + file_name + ".csv"
 first = true
 
 if File.exist?(path_to_file)
-	CSV.foreach(path_to_file) do |row|
+	CSV.parse File.read(path_to_file).force_encoding('BINARY').encode('UTF-8', :invalid => :replace, :undef => :replace, :replace => '?') do |row|
 	  if first
 	    first = false
 	  else
@@ -87,15 +86,15 @@ if File.exist?(path_to_file)
 			else
 				@candidate = Candidate.find_by_id(row[0])
 
-				msg1 = "Candidate: " + @candidate.id.to_s + " - " + @candidate.name + " -- Project Name:  " + row[2]
+				msg1 = "Candidate: " + @candidate.id.to_s + " - " + @candidate.name + " -- Training:  " + row[2]
 
-				@project = Project.new
-				@project.candidate_id = @candidate.id
-				@project.name = row[2]
-				@project.summary = row[3]
-				@project.company_name = row[4]
+				@candidate_training = CandidateTraining.new
+				@candidate_training.candidate_id = @candidate.id
+				@candidate_training.name = row[2]
+				@candidate_training.description = row[3]
+				@candidate_training.year = row[4]
 
-		      if @project.save
+		      if @candidate_training.save
 		        puts msg1 + " - was saved successfully."
 		      else
 			    puts msg1 +  " - An error occurred while the system save"
@@ -107,7 +106,6 @@ if File.exist?(path_to_file)
 else
 	puts "File does not exist: " + path_to_file
 end
-=end
 
 #---------------------------------------------------------
 # Resume Idioms
@@ -119,7 +117,7 @@ path_to_file = directory + "/CSV_Files/" + file_name + ".csv"
 first = true
 
 if File.exist?(path_to_file)
-	CSV.foreach(path_to_file) do |row|
+	CSV.parse File.read(path_to_file).force_encoding('BINARY').encode('UTF-8', :invalid => :replace, :undef => :replace, :replace => '?') do |row|
 	  if first
 	    first = false
 	  else
@@ -167,7 +165,7 @@ path_to_file = directory + "/CSV_Files/" + file_name + ".csv"
 first = true
 
 if File.exist?(path_to_file)
-	CSV.foreach(path_to_file) do |row|
+	CSV.parse File.read(path_to_file).force_encoding('BINARY').encode('UTF-8', :invalid => :replace, :undef => :replace, :replace => '?') do |row|
 	  if first
 	    first = false
 	  else
@@ -218,7 +216,7 @@ first = true
 
 if File.exist?(path_to_file) and File.exist?(path_to_file2)   
 #PROJECTS		
-	CSV.foreach(path_to_file) do |row|
+	CSV.parse File.read(path_to_file).force_encoding('BINARY').encode('UTF-8', :invalid => :replace, :undef => :replace, :replace => '?') do |row|
 	  if first
 	    first = false
 	  else
@@ -244,7 +242,7 @@ if File.exist?(path_to_file) and File.exist?(path_to_file2)
 
 #ROLES
 				#Looking if the candidate & project have roles
-				CSV.foreach(path_to_file2) do |row2|
+				CSV.parse File.read(path_to_file2).force_encoding('BINARY').encode('UTF-8', :invalid => :replace, :undef => :replace, :replace => '?') do |row2|
 					if row2[0].blank? and row2[1].blank? and row2[2].blank? and row2[3].blank? and row2[4].blank? and row2[5].blank?
 #Empty Row						
 					else
