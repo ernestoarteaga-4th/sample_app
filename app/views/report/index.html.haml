@@ -1,4 +1,4 @@
-<!-- Content -->			
+<!-- Content -->      
 #content
   %img(src="http://www.4thsource.com//public/images/subheader_services.jpg" alt="Sub Header" class="subheader")
   %ul#breadcrumbs
@@ -14,7 +14,7 @@
   #flash
     - flash.each do |key, value|
       .flash{:class => key}= value
-  = form_for(:search, :url=>{:action=>'search'}, :html => {:id => "reportSearchForm", :method => 'get'}) do |f|
+  = form_for(:search, :url=>{:action=>'search'}, :html => {:id => "reportSearchForm"}) do |f|
     %table.reportTable
       %tbody
         %tr
@@ -30,7 +30,7 @@
                   %td{:width => "120px"}
                     = f.label "From: "
                   %td
-                    = f.date_select :date_processing_from, {:start_year => 1950, :order => [:month, :day, :year]}, {:class => "dateFormStyle", :disabled => true}
+                    = date_select "search", "date_processing_from", {:start_year => 1950, :order => [:month, :day, :year]}, {:class => "dateFormStyle", :disabled => true}
                 %tr
                   %td
                     = f.label "To: "
@@ -64,11 +64,11 @@
           %td{:width => "30%"}
             .field
               = f.label "All Technologies"
-            %br
-            -Tag.where("type_tag = 3").each do |row|
-              = check_box_tag row.id.to_s(), row.id.to_s(), false, :name => "technology[]"
-              = row.name
               %br
+              -@technologies.each do |row|
+                = check_box_tag "technologies_id[]", row.id
+                = row.name
+                %br
           %td{:width => "30%"}
             .field
               = f.label "Interview Results"
@@ -76,10 +76,14 @@
             %table
               -@interview_types.each do |row|
                 %tr
-                  %td{:width => "80px"}
-                    = row.description + ": "
+                  %td{:width => "20px"}
+                    = radio_button("interviewTypesOption", "id", row.id, :checked => true)
                   %td
-                    = f.text_field row.id, :name => "interview_text[]", :class => "percentageFormStyle"
+                    = row.name
+              %tr
+                %td{:colspan => 2}
+                  = "Points: "
+                  = f.text_field "points", :class => "percentageFormStyle"
             %br
           %td{:width => "40%"}
             = f.label "Aditional Options"
@@ -90,15 +94,9 @@
                 %td
                   = f.text_field "placeOrigin", :class => "textFormStyle"
     %br
-    = submit_tag "Search"
+    .actions
+      = submit_tag "Search"
   %br
-  - if !@candidates.nil?
-    - @candidates.each do |cand|
-      Email: 
-      = cand.email
-      Name:
-      = cand.first_name
-      %br 
   .clear
 <!-- Sidebar -->
 = render 'shared/sidebar_signed'
