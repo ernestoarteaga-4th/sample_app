@@ -67,21 +67,4 @@ class CandidateCertificationsController < ApplicationController
   end
 end
 
-/logger.debug "*************************************************"
-      logger.debug params[:certification][:name]/
-      /logger.debug "------------------------------------------------"
-      logger.debug params[:certification][:selectName]/
-      /if Certification.find_by_name(params[:certification][:name]).nil?
-      @certification = Certification.new
-      @certification.name = params[:certification][:name]
-      @certification.approved_flag = false
-      @certification.save
-      @candidate_certification = @candidate.candidate_certifications.build
-      @candidate_certification.certification = @certification
-      logger.debug @candidate_certification.certification.name
-      @candidate_certification.save
-    else
-      @candidate_certification = @candidate.candidate_certifications.build
-      @candidate_certification.certification = Certification.find_by_name(params[:certification][:name])
-      @candidate_certification.save
-    end/
+
