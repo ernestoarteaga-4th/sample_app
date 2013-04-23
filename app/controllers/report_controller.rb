@@ -16,11 +16,6 @@ class ReportController < ApplicationController
 
     formt = params["search"]["points"]
 rrrrr = params["interview_text"]
-aa
-puts "AAAAAAAAAAAAAAAAAAAAAAAAA"
-puts formt
-    puts formt
-    puts rrrrr
 
     flash[:notice] = rrrrr
   end
