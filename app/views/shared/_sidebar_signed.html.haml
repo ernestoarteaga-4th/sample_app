@@ -54,7 +54,7 @@
               = link_to "Roles", url_options = { :controller => "roles", :action => "index", :id => current_candidate.id}, html_options = { :class => 'profile-sub_navigation' }
             %li
               %i.iconTags
-              = link_to_resume('Tags', current_candidate.id, :action => 'educ_degree', :class => 'profile-sub_navigation')
+              = link_to "Tags", url_options = { :controller => "tags", :action => "index", :id => current_candidate.id}, html_options = { :class => 'profile-sub_navigation' }
     -else
       %ul#nav_sub.sub_navigation
         %li

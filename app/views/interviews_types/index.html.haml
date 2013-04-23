@@ -33,7 +33,7 @@
           .experience_details_wrapper
           .experience_details_left
             %strong
-              = interview_type.description
+              = interview_type.name
           .experience_details_right
             = link_to "Edit", :controller => "interviews_types", :action => "edit", :id => current_candidate.id, :interview_type_id => interview_type.id
             &nbsp;&nbsp;&nbsp;

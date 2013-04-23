@@ -1,7 +1,7 @@
 class InterviewsType < ActiveRecord::Base
   belongs_to :candidates_interviews
 
-  attr_accessible :id, :description
+  attr_accessible :id, :name
 
-  validates :description, :presence => true
+  validates :name, :presence => true
 end
