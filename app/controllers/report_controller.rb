@@ -5,11 +5,23 @@ class ReportController < ApplicationController
   end
 
   def search
-    @msg = { "success" => "true", "message" => "hello", "state" => params[:state]}
+
+    #@msg = { "success" => "true", "message" => "hello", "state" => params[:state]}
  
-    respond_to do |format|
-      format.html
-      format.json { render json: @msg }
-    end
+    #respond_to do |format|
+      #format.html
+      #format.json { render json: @msg }
+    #end
+
+
+    formt = params["search"]["points"]
+rrrrr = params["interview_text"]
+aa
+puts "AAAAAAAAAAAAAAAAAAAAAAAAA"
+puts formt
+    puts formt
+    puts rrrrr
+
+    flash[:notice] = rrrrr
   end
 end

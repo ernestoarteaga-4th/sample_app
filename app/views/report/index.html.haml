@@ -30,7 +30,7 @@
                   %td{:width => "120px"}
                     = f.label "From: "
                   %td
-                    = f.date_select :date_processing_from, {:start_year => 1950, :order => [:month, :day, :year]}, {:class => "dateFormStyle", :disabled => true}
+                    = date_select "search", "date_processing_from", {:start_year => 1950, :order => [:month, :day, :year]}, {:class => "dateFormStyle", :disabled => true}
                 %tr
                   %td
                     = f.label "To: "
@@ -64,11 +64,11 @@
           %td{:width => "30%"}
             .field
               = f.label "All Technologies"
-            %br
-            -@technologies.each do |row|
-              = check_box_tag row.id.to_s(), row.id.to_s(), false, :name => "technology"
-              = row.name
               %br
+              -@technologies.each do |row|
+                = check_box_tag "technologies_id[]", row.id
+                = row.name
+                %br
           %td{:width => "30%"}
             .field
               = f.label "Interview Results"
@@ -76,10 +76,14 @@
             %table
               -@interview_types.each do |row|
                 %tr
-                  %td{:width => "80px"}
-                    = row.name + ": "
+                  %td{:width => "20px"}
+                    = radio_button("interviewTypesOption", "id", row.id, :checked => true)
                   %td
-                    = f.text_field row.id, :name => "interview_text", :class => "percentageFormStyle"
+                    = row.name
+              %tr
+                %td{:colspan => 2}
+                  = "Points: "
+                  = f.text_field "points", :class => "percentageFormStyle"
             %br
           %td{:width => "40%"}
             = f.label "Aditional Options"
@@ -90,7 +94,8 @@
                 %td
                   = f.text_field "placeOrigin", :name => "interview_text", :class => "textFormStyle"
     %br
-    = submit_tag "Search"
+    .actions
+      = submit_tag "Search"
   %br
   .clear
 <!-- Sidebar -->

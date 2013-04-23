@@ -59,16 +59,7 @@ $(document).ready(function() {
 $(document).ready(function() {
   $('#reportSearchForm').submit(function(e) { 
     var $inputs = $('#reportSearchForm :input');
-    var flag = false;
-
-    for(var i = 0; i < $inputs.length; i++) {
-      if($inputs[i].name==='technology') {
-        boxes = boxes + $inputs[i].value + "," + $inputs[i].checked + ":";
-      }
-    }
-
-
-    alert(boxes);
+    var flag = true;
 
     if(flag) {
       e.submit();
