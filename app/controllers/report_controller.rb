@@ -1,8 +1,7 @@
 class ReportController < ApplicationController
   def index
-    @candidates = Candidate.paginate(:page => params[:page], 
-                                     :conditions => ["admin_flag IS NOT TRUE"],
-                                     :per_page => 20)
+    @technologies = Tag.where("type_tag = 3")
+    @interview_types = InterviewsType.all
   end
 
   def search
