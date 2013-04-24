@@ -1,33 +1,27 @@
 class ReportController < ApplicationController
   def index
-    @technologies = Tag.where("type_tag = 3")
-    @interview_types = InterviewsType.all
+
   end
 
   def search
     
+    #@msg = { "success" => "true", "message" => "hello", "state" => params[:state]}
+ 
     #respond_to do |format|
       #format.html
       #format.json { render json: @msg }
     #end
 
 
-    formt = params["search"]["points"]
-rrrrr = params["interview_text"]
+    #formt = params["search"]["points"]
+    #rrrrr = params["interview_text"]
 
-    flash[:notice] = rrrrr
-
-
-
-
-
-    
     
     @where_tech=""
     @from_tech=""
-    if !params[:technology].nil?
+    if !params[:technologies_id].nil?
       @connector=" "
-      params[:technology].each do |t|
+      params[:technologies_id].each do |t|
         @where_tech = @where_tech + @connector + "ProTag.tags_id=" + t.to_s
         @connector=" OR "
       end
@@ -45,9 +39,5 @@ rrrrr = params["interview_text"]
     @candidates = Candidate.find_by_sql(@sql); 
     #self.connection.execute(sanitize_sql([@sql]) 
     
-    @msg = { "success" => "true", "message" => "hello", "state" => params[:state]}
- 
-    
-
   end
 end

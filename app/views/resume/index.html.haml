@@ -107,6 +107,33 @@
     - else
       %br
       %h4 Please create at least one certification in your resume.
-  .clear	
+  .clear
+  - if(current_candidate.admin_flag)
+    = form_for(:search, :url=>{:action=>'staff_update'}, :html => {:id => "updateCandidateStaffForm"}) do |f|
+      = check_box_tag "isRecruited", true, @candidate.currently_in_4Source
+      Is this candidate already recruited?
+      %br
+      .field
+        = f.hidden_field :id, :value => @candidate.id
+      %table
+        %tr
+          %td
+            Recruited Date: 
+          %td
+            = f.date_select :recruited_date, {:start_year => 1950, :order => [:month, :day, :year], :default => @candidate.recruited_at}, {:class => "dateFormStyle", :disabled => !@candidate.currently_in_4Source}
+        %tr
+          %td
+            Start Date:
+          %td
+            = f.date_select :start_date, {:start_year => 1950, :order => [:month, :day, :year], :default => @candidate.started_at}, {:class => "dateFormStyle", :disabled => !@candidate.currently_in_4Source}
+        %tr
+          %td
+            Recruited In:
+          %td
+            = f.select :recruited_in, assignment_list, {:selected => @candidate.recruited_in}, :disabled => !@candidate.currently_in_4Source
+      %br
+      = submit_tag "Update"
+      %br
+      %br
 <!-- Sidebar -->
 = render 'shared/sidebar_signed'

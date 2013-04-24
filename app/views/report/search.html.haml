@@ -1,4 +1,4 @@
-<!-- Content -->			
+<!-- Content -->      
 #content
   %img(src="http://www.4thsource.com//public/images/subheader_services.jpg" alt="Sub Header" class="subheader")
   %ul#breadcrumbs
@@ -30,7 +30,7 @@
                   %td{:width => "120px"}
                     = f.label "From: "
                   %td
-                    = f.date_select :date_processing_from, {:start_year => 1950, :order => [:month, :day, :year]}, {:class => "dateFormStyle", :disabled => true}
+                    = date_select "search", "date_processing_from", {:start_year => 1950, :order => [:month, :day, :year]}, {:class => "dateFormStyle", :disabled => true}
                 %tr
                   %td
                     = f.label "To: "
@@ -59,17 +59,31 @@
                   %td
                     = "Place of Assignment: "
                   %td
-                    = f.text_field "placeAssignment", :name => "interview_text", :class => "textFormStyle", :disabled => true
+                    = f.text_field "placeAssignment", :class => "textFormStyle", :disabled => true
         %tr
           %td{:width => "30%"}
             .field
               = f.label "All Technologies"
-            %br
+              %br
+              - Tag.where("type_tag = 3").each do |row|
+                = check_box_tag "technologies_id[]", row.id
+                = row.name
+                %br
           %td{:width => "30%"}
             .field
               = f.label "Interview Results"
             %br
             %table
+              - InterviewsType.all.each do |row|
+                %tr
+                  %td{:width => "20px"}
+                    = radio_button("interviewTypesOption", "id", row.id, :checked => true)
+                  %td
+                    = row.name
+              %tr
+                %td{:colspan => 2}
+                  = "Points: "
+                  = f.text_field "points", :class => "percentageFormStyle"
             %br
           %td{:width => "40%"}
             = f.label "Aditional Options"
@@ -78,9 +92,40 @@
                 %td{:width => "90px"}
                   = "Place of Origin: "
                 %td
-                  = f.text_field "placeOrigin", :name => "interview_text", :class => "textFormStyle"
+                  = f.text_field "placeOrigin", :class => "textFormStyle"
     %br
-    = submit_tag "Search"
+    .actions
+      = submit_tag "Search"
+    %br
+    - if @candidates != nil
+      %table#candidates_search_table.display
+        %thead
+          %tr
+            %th
+              Name
+            %th
+              E-Mail
+            %th
+              Roles
+            %th
+              Interview
+        %tbody 
+          -@candidates.each do |row|
+            %tr
+              %td
+                = link_to row.first_name + " " + row.middle_name + " " + row.first_last_name + " " + row.second_last_name, "/candidates/#{row.id}/resume"
+              %td
+                = row.email
+              %td
+                - if row.projects.count > 0
+                  - row.projects.each do |projects|
+                    - if projects.projects_roles.count > 0
+                      - projects.projects_roles.each do |roles|
+                        - roles.roles_responsibilities.each do |role_responsibility|
+                          = role_responsibility.description + ". "
+              %td
+                = link_to "Interview", "/candidates/#{row.id}/candidates_interviews"
+      %br
   %br
   .clear
 <!-- Sidebar -->
