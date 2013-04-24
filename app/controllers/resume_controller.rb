@@ -59,4 +59,61 @@ class ResumeController < ApplicationController
       @total_educations = @candidate.resume.educations
     end
   end
+
+  def staff_update
+    @started_date = ""
+    @recruited_date = ""
+
+    if(params["isRecruited"] == "true")
+      if(params["search"]["recruited_date(2i)"].to_i() < 10)
+        @recruited_date = params["search"]["recruited_date(1i)"] + "/0" +
+                          params["search"]["recruited_date(2i)"]
+
+      else
+        @recruited_date = params["search"]["recruited_date(1i)"] + "/" +
+                          params["search"]["recruited_date(2i)"]
+      end
+      
+      if(params["search"]["recruited_date(3i)"].to_i() < 10)
+        @recruited_date = @recruited_date + "/0" +
+                          params["search"]["recruited_date(3i)"]
+
+      else
+        @recruited_date = @recruited_date + "/" +
+                          params["search"]["recruited_date(3i)"]
+      end
+
+      if(params["search"]["start_date(2i)"].to_i() < 10)
+        @started_date = params["search"]["start_date(1i)"] + "/0" +
+                        params["search"]["start_date(2i)"]
+
+      else
+        @started_date = params["search"]["start_date(1i)"] + "/" +
+                        params["search"]["start_date(2i)"]
+      end
+      
+      if(params["search"]["start_date(3i)"].to_i() < 10)
+        @started_date = @started_date + "/0" +
+                        params["search"]["start_date(3i)"]
+
+      else
+        @started_date = @started_date + "/" +
+                        params["search"]["start_date(3i)"]
+      end
+      
+      Candidate.update(params["search"]["id"], 
+                       :currently_in_4Source => params["isRecruited"], 
+                       :recruited_at => DateTime.strptime(@recruited_date, "%Y/%m/%d"),
+                       :started_at => DateTime.strptime(@started_date, "%Y/%m/%d"),
+                       :recruited_in => params["search"]["recruited_in"])
+    else
+      Candidate.update(params["search"]["id"], 
+                       :currently_in_4Source => nil, 
+                       :recruited_at => nil,
+                       :started_at => nil,
+                       :recruited_in => nil)
+    end
+
+    redirect_to File.join('/candidates/', params["search"]["id"], '/resume')
+  end
 end

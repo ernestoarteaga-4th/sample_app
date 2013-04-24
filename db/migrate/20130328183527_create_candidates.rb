@@ -49,6 +49,10 @@ class CreateCandidates < ActiveRecord::Migration
       t.integer :updated_by
       t.has_attached_file :avatar
       t.boolean :admin_flag
+      t.boolean :currently_in_4Source
+      t.datetime :recruited_at
+      t.datetime :started_at
+      t.string :recruited_in
 
       t.timestamps
     end
