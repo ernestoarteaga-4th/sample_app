@@ -97,6 +97,17 @@
     .actions
       = submit_tag "Search"
   %br
+  - if !@candidates.nil? then
+    - @candidates.each do |row|
+      Name:
+      = row.first_name
+      &nbsp; - - - 
+      Last name:
+      = row.first_last_name
+      %br
+      %br
+    
+    
   .clear
 <!-- Sidebar -->
 = render 'shared/sidebar_signed'
