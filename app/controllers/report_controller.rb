@@ -59,8 +59,5 @@ class ReportController < ApplicationController
     @candidates = Candidate.find_by_sql(@sql); 
     #self.connection.execute(sanitize_sql([@sql]) 
     
-    @msg = { "success" => "true", "message" => "hello", "state" => params[:state]}
- 
-    render :index
   end
 end

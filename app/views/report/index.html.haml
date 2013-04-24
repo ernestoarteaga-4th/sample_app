@@ -96,6 +96,10 @@
     %br
     .actions
       = submit_tag "Search"
+    %br
+    - if @candidates != nil
+      - @candidates.each do |row|
+        row.id
   %br
   - if !@candidates.nil? then
     - @candidates.each do |row|
