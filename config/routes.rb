@@ -1,5 +1,8 @@
 SampleApp::Application.routes.draw do  
 
+  resources :candidates_profiles
+
+
   get "email/remind"
 
   post "email/remind"
