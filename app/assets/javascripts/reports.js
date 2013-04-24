@@ -41,7 +41,11 @@ $(document).ready(function() {
       $("#search_start_date_2i").removeAttr('disabled');
       $("#search_start_date_3i").removeAttr('disabled');
       $("#search_start_date_1i").removeAttr('disabled');
+      $("#search_recruited_date_2i").removeAttr('disabled');
+      $("#search_recruited_date_3i").removeAttr('disabled');
+      $("#search_recruited_date_1i").removeAttr('disabled');
       $("#search_placeAssignment").removeAttr('disabled');
+      $("#search_recruited_in").removeAttr('disabled');
     }
 
     else {
@@ -51,7 +55,11 @@ $(document).ready(function() {
       $("#search_start_date_2i").attr('disabled', 'disabled');
       $("#search_start_date_3i").attr('disabled', 'disabled');
       $("#search_start_date_1i").attr('disabled', 'disabled');
+      $("#search_recruited_date_2i").attr('disabled', 'disabled');
+      $("#search_recruited_date_3i").attr('disabled', 'disabled');
+      $("#search_recruited_date_1i").attr('disabled', 'disabled');
       $("#search_placeAssignment").attr('disabled', 'disabled');
+      $("#search_recruited_in").attr('disabled', 'disabled');
     }
   });         
 });

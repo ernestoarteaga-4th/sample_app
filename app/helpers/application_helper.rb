@@ -124,6 +124,14 @@ module ApplicationHelper
     ]
   end
 
+  def assignment_list
+    [
+      ['Merida','Merida'],
+      ['Colima', 'Colima'],
+      ['D.F.', 'D.F.']
+    ]
+  end
+
   def yes_or_no_list
     [
       ['- Select one -', '0'],

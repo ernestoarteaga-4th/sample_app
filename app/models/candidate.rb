@@ -48,7 +48,11 @@ class Candidate < ActiveRecord::Base
   :password,
   :password_confirmation,
   :change_password_flag,
-  :admin_flag
+  :admin_flag,
+  :currently_in_4Source,
+  :recruited_at,
+  :started_at,
+  :recruited_in
 
   has_many        :microposts,         :dependent => :destroy   
   has_many        :followings,         :foreign_key => "follower_id",
