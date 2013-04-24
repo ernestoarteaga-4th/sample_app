@@ -144,6 +144,15 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
+  $('#candidates_search_table').dataTable({
+      "bPaginate": false,
+      "bLengthChange": false,
+      "bFilter": false,
+      "bInfo": false
+    });
+});
+
+$(document).ready(function() {
   $('#EducationDegreeTableForm').submit(function(e) { 
     var $inputs = $('#EducationDegreeTableForm :input');
     var boxes = "";
