@@ -59,7 +59,7 @@
           %h6= projects.company_name
           %h6= projects.name
         .experience_right
-          - projects.projroles.each do |role|
+          - projects.projects_roles.each do |role|
             = Date::MONTHNAMES[role.date_in.month]
             = role.date_in.year
             = raw(' - ')
@@ -70,7 +70,7 @@
         #experience-description
           = projects.summary
         %ul
-          - projects.projroles.each do |roles|
+          - projects.projects_roles.each do |roles|
             - roles.roles_responsibilities.each do |role_responsibility|
               %li= role_responsibility.description
 
