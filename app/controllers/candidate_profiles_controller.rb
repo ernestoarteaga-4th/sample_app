@@ -22,20 +22,17 @@ class CandidateProfilesController < ApplicationController
   end
 
   def edit
-    @candidate = Candidate.find(params[:id])
+    @candidate = Candidate.find(params[:candidate_id])
 
     redirect_to File.join('/candidates/', current_candidate.id.to_s(), '/candidate_profiles')
 
 
   end
 
-  def show
-
-  end
-
   def delete
     CandidatesProfile.delete(params[:candidate_profile_id])
-    redirect_to File.join('/candidates/', current_candidate.id.to_s(), '/candidates_profiles')
+    @candidate  = Candidate.find(params[:candidate_id])
+    render :index
   end
 
 end
