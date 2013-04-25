@@ -27,10 +27,7 @@ class CandidateProfilesController < ApplicationController
 
   def edit
     @candidate = Candidate.find(params[:id])
-
-    redirect_to File.join('/candidates/', current_candidate.id.to_s(), '/candidate_profiles')
-
-
+    @total_projects_tags = @candidate.projects.projects_roles.projects_tags
   end
 
 end
