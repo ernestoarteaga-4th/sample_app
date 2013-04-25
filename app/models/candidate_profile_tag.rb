@@ -1,7 +1,7 @@
 class CandidateProfileTag < ActiveRecord::Base
   self.per_page = 10
 
-  attr_accessible :candidate_profiles_id, :projects_tags_id  
+  attr_accessible :candidates_profile_id, :projects_tags_id  
   
   #validates :candidate_profiles_id,      presence: true
   
