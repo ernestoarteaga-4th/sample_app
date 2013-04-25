@@ -191,7 +191,8 @@ SampleApp::Application.routes.draw do
   match "/staff/:id/interviews_types/:interview_type_id/delete" => 'interviews_types#delete'
   
   ## Candidates Profiles
-  match "/candidates/:id/candidate_profiles" => 'CandidateProfiles#index'
+  match "/candidates/:id/candidate_profiles" => 'candidate_profiles#index'
+  match "/candidates/:id/candidate_profiles/edit" => 'candidate_profiles#edit'
 
   root :to => 'pages#home'
 end

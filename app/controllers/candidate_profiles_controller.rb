@@ -25,4 +25,12 @@ class CandidateProfilesController < ApplicationController
     logger.debug @error
   end
 
+  def edit
+    @candidate = Candidate.find(params[:id])
+
+    redirect_to File.join('/candidates/', current_candidate.id.to_s(), '/candidate_profiles')
+
+
+  end
+
 end
