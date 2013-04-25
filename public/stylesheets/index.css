@@ -981,6 +981,7 @@ table.microposts tr td.micropost-delete {
 
 .experience_details_wrapper {
 	width: 550px;
+	clear: both
 }
 
 .experience_details_left {
@@ -1127,14 +1128,21 @@ select, input{width: 230px;}
   padding-top: 7px;
 }
 
-#cprofile_box_wrapper {
-	display:block;
-	float:left;
-	width:100%;
+/*Float elements inside a DIV*/
+.clearfix:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    line-height: 0;
+    visibility: hidden;
 }
-#cprofile_list {
-	display:block;
-	float:left;
-	width:100%;
-	height:auto;
+html[xmlns] .clearfix {
+    display: block;
+}
+.container {
+    border: 1px solid red;
+}
+.clearfix {
+    display: inline-block;
 }

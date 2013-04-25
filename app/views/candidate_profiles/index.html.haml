@@ -19,24 +19,23 @@
   %br
 
   - if @candidate.candidates_profiles.count > 0
-    #cprofile_list
+    .clearfix
       - @candidate.candidates_profiles.each do |candidate_profile|
-        %br
-        #cprofile_row
-          .experience_details_wrapper
-            .experience_details_left
-              %h4
-                = candidate_profile.name
-              %h7
-                = candidate_profile.summary
-              
-              %br
-            .experience_details_right
-
+        %br        
+        .experience_details_wrapper
+          .experience_details_left
+            %h4
+              = candidate_profile.name
+            %h7
+              = candidate_profile.summary
+            
+            %br
+          .experience_details_right
             = link_to "Edit", :controller => "candidate_profiles", :action => "edit", candidate_id:@candidate.id, :candidate_profile_id=> candidate_profile.id
             &nbsp;&nbsp;&nbsp;
             
             = link_to "Delete", url_options = { :controller => "candidate_profiles", :action => "delete", :candidate_id => current_candidate.id, :candidate_profile_id => candidate_profile.id }, html_options = { :confirm => "Are you sure?" }
+            %br
             %br
 
               
@@ -44,7 +43,8 @@
     %h4 Please create at least one profile for the candidate
     .divider
 
-
+  %br
+  %br
   #cprofile_box_wrapper
     %h3.page_headline
       New Candidate Profile
