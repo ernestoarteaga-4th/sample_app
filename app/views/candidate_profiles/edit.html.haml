@@ -1,0 +1,66 @@
+<!-- Content -->
+#content
+  %img(src="http://www.4thsource.com//public/images/subheader_services.jpg" alt="Sub Header" class="subheader")
+  %ul#breadcrumbs
+    %li
+      = link_to 'Home', root_path
+      = raw '&raquo;'
+    %li
+      = raw '<em>'
+      Register
+      = raw '</em>'
+    .clear
+
+  %h3.page_headline
+    %i.iconExperience
+    .h3-page-headline
+      List of Project Tags
+  .divider
+  %br
+  - if @total_candidate_profiles.count > 0
+    #list
+      - @total_candidate_profiles.each do |candidate_profile|
+        %br
+        #row
+          .experience_details_wrapper
+            .experience_details_left
+              %h6
+                = candidate_profile.summary
+              #experience-date
+
+              %br
+            .experience_details_right
+            = link_to "Edit", :controller => "candidate_profiles", :action => "edit", id:@candidate.id, :candidate_profile_id=> candidate_profile.id
+            &nbsp;&nbsp;&nbsp;
+            
+            = link_to "Delete", url_options = { :controller => "candidate_profiles", :action => "new", id:@candidate.id, :candidate_profile_id=> candidate_profile.id }, html_options = { :confirm => "Are you sure?" }
+
+              
+  - else
+    %h4 Please create at least one profile for the candidate
+    .divider
+
+
+  %h3.page_headline
+    New Candidate Profile
+
+  = form_for(:candidateprofile) do |f|
+    %h4
+      Please enter the following information
+    .divider
+    .row-fluid
+      .field
+        = f.label :profile_id
+        %br
+        = f.select :profile_id, options_from_collection_for_select(Profile.all, "id", "name")
+    .row-fluid
+      .field.width100percent
+        = f.label :summary
+        %br
+        = f.text_area :summary, {"class"=>"width100percent"}
+    .actions
+      %br
+      = f.submit "Submit",{"class"=>"btn btn-primary"}
+
+<!-- Sidebar -->
+= render 'shared/sidebar_signed'    
