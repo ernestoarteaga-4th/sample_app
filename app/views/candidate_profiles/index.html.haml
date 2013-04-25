@@ -33,7 +33,6 @@
           .experience_details_right
             = link_to "Edit", :controller => "candidate_profiles", :action => "edit", candidate_id:@candidate.id, :candidate_profile_id=> candidate_profile.id
             &nbsp;&nbsp;&nbsp;
-            
             = link_to "Delete", url_options = { :controller => "candidate_profiles", :action => "delete", :candidate_id => current_candidate.id, :candidate_profile_id => candidate_profile.id }, html_options = { :confirm => "Are you sure?" }
             %br
             %br

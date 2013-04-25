@@ -22,11 +22,15 @@ class CandidateProfilesController < ApplicationController
   end
 
   def edit
-    @candidate = Candidate.find(params[:candidate_id])
-
-    redirect_to File.join('/candidates/', current_candidate.id.to_s(), '/candidate_profiles')
-
-
+    @candidate = Candidate.find(params[:id])
+    
+    @candidate.projects.each do |projects|
+      projects.projects_roles.each do |projects_roles|
+        projects_roles.projects_tags.each do |projects_tags|
+          puts projects_tags.id
+        end
+      end
+    end
   end
 
   def delete
