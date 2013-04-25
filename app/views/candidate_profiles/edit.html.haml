@@ -17,23 +17,23 @@
       List of Project Tags
   .divider
   %br
-  - if @total_projects_tags.count > 0
+  - if @total_candidate_profile_tags.count > 0
     #list
-      - @total_projects_tags.each do |projects_tag|
+      - @total_candidate_profile_tags.each do |candidate_profile_tags|
         %br
         #row
           .experience_details_wrapper
             .experience_details_left
               %h6
-                = projects_tag.description
+                = candidate_profile_tags.id
               #experience-date
 
               %br
             .experience_details_right
-            = link_to "Edit", :controller => "candidate_profiles", :action => "edit", id:@candidate.id, :candidate_profile_id=> projects_tag.id
+            = link_to "Edit", :controller => "candidate_profiles", :action => "edit", id:@candidate.id, :candidate_profile_id=> candidate_profile_tags.id
             &nbsp;&nbsp;&nbsp;
             
-            = link_to "Delete", url_options = { :controller => "candidate_profiles", :action => "new", id:@candidate.id, :candidate_profile_id=> projects_tag.id }, html_options = { :confirm => "Are you sure?" }
+            = link_to "Delete", url_options = { :controller => "candidate_profiles", :action => "new", id:@candidate.id, :candidate_profile_id=> candidate_profile_tags.id }, html_options = { :confirm => "Are you sure?" }
 
               
   - else

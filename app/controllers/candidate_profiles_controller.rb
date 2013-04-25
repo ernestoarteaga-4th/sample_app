@@ -22,15 +22,8 @@ class CandidateProfilesController < ApplicationController
   end
 
   def edit
-    @candidate = Candidate.find(params[:id])
-    
-    @candidate.projects.each do |projects|
-      projects.projects_roles.each do |projects_roles|
-        projects_roles.projects_tags.each do |projects_tags|
-          puts projects_tags.id
-        end
-      end
-    end
+    @candidates_profile  = CandidatesProfile.find(params[:id])
+    @total_candidate_profile_tags = @candidates_profile.candidate_profile_tags
   end
 
   def delete

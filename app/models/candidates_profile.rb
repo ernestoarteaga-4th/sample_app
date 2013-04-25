@@ -10,5 +10,5 @@ class CandidatesProfile < ActiveRecord::Base
 
   validates :summary,       :presence => true
 
-  has_many        :candidate_profiles_tags,      :dependent => :destroy                                            
+  has_many        :candidate_profile_tags,      :dependent => :destroy                                            
 end
