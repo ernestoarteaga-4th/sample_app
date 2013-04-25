@@ -17,9 +17,10 @@
       Candidates Profiles
   .divider
   %br
-  - if @total_candidate_profiles.count > 0
+
+  - if @candidate.candidates_profiles.count > 0
     #cprofile_list
-      - @total_candidate_profiles.each do |candidate_profile|
+      - @candidate.candidates_profiles.each do |candidate_profile|
         %br
         #cprofile_row
           .experience_details_wrapper
@@ -31,10 +32,12 @@
               
               %br
             .experience_details_right
-              = link_to "Edit", :controller => "candidate_profiles", :action => "edit", id:@candidate.id, :candidate_profile_id=> candidate_profile.id
-              &nbsp;&nbsp;&nbsp;
-              
-              = link_to "Delete", url_options = { :controller => "candidate_profiles", :action => "new", id:@candidate.id, :candidate_profile_id=> candidate_profile.id }, html_options = { :confirm => "Are you sure?" }
+
+            = link_to "Edit", :controller => "candidate_profiles", :action => "edit", candidate_id:@candidate.id, :candidate_profile_id=> candidate_profile.id
+            &nbsp;&nbsp;&nbsp;
+            
+            = link_to "Delete", url_options = { :controller => "candidate_profiles", :action => "delete", :candidate_id => current_candidate.id, :candidate_profile_id => candidate_profile.id }, html_options = { :confirm => "Are you sure?" }
+            %br
 
               
   - else
