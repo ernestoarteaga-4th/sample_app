@@ -23,16 +23,19 @@ class CandidateProfilesController < ApplicationController
 
   def edit
     @candidate = Candidate.find(params[:id])
-    @total_projects_tags = @candidate.projects.projects_roles.projects_tags
+    
+    @candidate.projects.each do |projects|
+      projects.projects_roles.each do |projects_roles|
+        projects_roles.projects_tags.each do |projects_tags|
+          puts projects_tags.id
+        end
+      end
+    end
   end
 
-  def show
-
-  end
-
-  def delete
-    CandidatesProfile.delete(params[:candidate_profile_id])
-    redirect_to File.join('/candidates/', current_candidate.id.to_s(), '/candidates_profiles')
+  def destroy
+    #CandidatesProfile.delete(params[:candidate_profile_id])
+    redirect_to File.join('/candidates/', current_candidate.id.to_s(), '/candidate_profiles')
   end
 
 end
