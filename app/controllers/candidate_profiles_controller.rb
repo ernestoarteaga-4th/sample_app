@@ -33,9 +33,10 @@ class CandidateProfilesController < ApplicationController
     end
   end
 
-  def destroy
-    #CandidatesProfile.delete(params[:candidate_profile_id])
-    redirect_to File.join('/candidates/', current_candidate.id.to_s(), '/candidate_profiles')
+  def delete
+    CandidatesProfile.delete(params[:candidate_profile_id])
+    @candidate  = Candidate.find(params[:candidate_id])
+    render :index
   end
 
 end
