@@ -15,12 +15,6 @@ class CandidateProfilesController < ApplicationController
     
 	@candidateprofile.save          
 
-    #if @candidatesprofile.save          
-    #  redirect_to root_path
-    #else
-    #  redirect_to root_path
-    #end  	
-
 	@error = @candidateprofile.errors.full_messages.to_sentence
     logger.debug @error
 
@@ -30,6 +24,15 @@ class CandidateProfilesController < ApplicationController
   def edit
     @candidate = Candidate.find(params[:id])
     @total_projects_tags = @candidate.projects.projects_roles.projects_tags
+  end
+
+  def show
+
+  end
+
+  def delete
+    CandidatesProfile.delete(params[:candidate_profile_id])
+    redirect_to File.join('/candidates/', current_candidate.id.to_s(), '/candidates_profiles')
   end
 
 end
