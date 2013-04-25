@@ -77,8 +77,8 @@
               %i.iconCertification
               = link_to_resume('Certification', current_candidate.id, :action => 'certification', :class => 'profile-sub_navigation')
             %li
-              %li.iconExperience
-              = link_to('Candidates Profiles','/candidates/'+current_candidate.id.to_s+'/candidate_profiles')
+              %i.iconExperience
+              = link_to_resume('Candidate Profiles', current_candidate.id, :action => 'candidate_profiles', :class => 'profile-sub_navigation')
             %li.last
               %i.iconInterests
               = link_to_resume('Languages', current_candidate.id, :action => 'languages', :class => 'profile-sub_navigation')
