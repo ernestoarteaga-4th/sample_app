@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130417245802) do
+ActiveRecord::Schema.define(:version => 20130424201618) do
 
   create_table "candidate_certifications", :force => true do |t|
     t.integer  "candidate_id"
@@ -55,8 +55,7 @@ ActiveRecord::Schema.define(:version => 20130417245802) do
 
   create_table "candidate_profile_tags", :force => true do |t|
     t.integer  "candidate_profiles_id"
-    t.integer  "projects_roles_id"
-    t.integer  "tags_id"
+    t.integer  "project_tags_id"
     t.datetime "created_at",            :null => false
     t.datetime "updated_at",            :null => false
   end
@@ -131,6 +130,13 @@ ActiveRecord::Schema.define(:version => 20130417245802) do
     t.string   "comments"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+  end
+
+  create_table "candidates_profiles", :force => true do |t|
+    t.string   "name"
+    t.string   "summary"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "candidates_states", :force => true do |t|

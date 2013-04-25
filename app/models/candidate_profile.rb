@@ -3,17 +3,13 @@ class CandidateProfile < ActiveRecord::Base
 
   self.per_page = 10
 
-  attr_accessible :candidate_id, :profile_id, :summary
+  attr_accessible :name, :summary
   
   belongs_to :candidate
   
-  validates :candidate_id,      presence: true
-  
-  validates :profile_id,   		presence: true
+  validates :name,   		presence: true
 
   validates :summary,       	presence: true
-
-  belongs_to :candidate
 
   has_many        :candidate_profiles_tags,      :dependent => :destroy                                            
 end
