@@ -44,15 +44,15 @@
   %h3.page_headline
     New Candidate Profile
 
-  = form_for(:candidateprofile) do |f|
+  = form_for(:candidateprofile, :url=>{:action=>'create'}) do |f|
     %h4
       Please enter the following information
     .divider
     .row-fluid
       .field
-        = f.label :profile_id
+        = f.label :name
         %br
-        = f.select :profile_id, options_from_collection_for_select(Profile.all, "id", "name")
+        = f.text_field :name
     .row-fluid
       .field.width100percent
         = f.label :summary
