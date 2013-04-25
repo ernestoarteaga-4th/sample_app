@@ -14,7 +14,7 @@
   %h3.page_headline
     %i.iconExperience
     .h3-page-headline
-      List of profiles
+      List of Project Tags
   .divider
   %br
   - if @total_candidate_profiles.count > 0
@@ -33,8 +33,7 @@
             = link_to "Edit", :controller => "candidate_profiles", :action => "edit", id:@candidate.id, :candidate_profile_id=> candidate_profile.id
             &nbsp;&nbsp;&nbsp;
             
-            = link_to "Delete", url_options = { :controller => "candidate_profiles", :action => "delete", :id => current_candidate.id, :candidate_profile_id => candidate_profile.id }, html_options = { :confirm => "Are you sure?" }
-            %br 
+            = link_to "Delete", url_options = { :controller => "candidate_profiles", :action => "new", id:@candidate.id, :candidate_profile_id=> candidate_profile.id }, html_options = { :confirm => "Are you sure?" }
 
               
   - else
@@ -45,15 +44,15 @@
   %h3.page_headline
     New Candidate Profile
 
-  = form_for(:candidateprofile, :url=>{:action=>'create'}) do |f|
+  = form_for(:candidateprofile) do |f|
     %h4
       Please enter the following information
     .divider
     .row-fluid
       .field
-        = f.label :name
+        = f.label :profile_id
         %br
-        = f.text_field :name
+        = f.select :profile_id, options_from_collection_for_select(Profile.all, "id", "name")
     .row-fluid
       .field.width100percent
         = f.label :summary

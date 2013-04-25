@@ -10,13 +10,23 @@ class CandidateProfilesController < ApplicationController
 
   def create
   	logger.debug "****** **********************************"
-	@candidateprofile = CandidateProfile.new(params[:candidateprofile])
+	@candidateprofile = CandidatesProfile.new(params[:candidateprofile])
 	@candidateprofile.candidate_id = params[:candidate_id]
     
 	@candidateprofile.save          
 
 	@error = @candidateprofile.errors.full_messages.to_sentence
     logger.debug @error
+
+    redirect_to File.join('/candidates/', current_candidate.id.to_s(), '/candidate_profiles')
+  end
+
+  def edit
+    @candidate = Candidate.find(params[:id])
+
+    redirect_to File.join('/candidates/', current_candidate.id.to_s(), '/candidate_profiles')
+
+
   end
 
   def show
