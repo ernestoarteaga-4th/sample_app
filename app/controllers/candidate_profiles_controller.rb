@@ -4,7 +4,7 @@ class CandidateProfilesController < ApplicationController
 
   def index
     @candidate  = Candidate.find(params[:candidate_id])
-    @total_candidate_profiles = @candidate.candidate_profiles
+    @total_candidate_profiles = @candidate.candidates_profiles
     #@total_candidate_profiles = CandidateProfile.all
   end
 

@@ -11,32 +11,34 @@
       = raw '</em>'
     .clear
 
-    %h4
-      List of profiles
-    .divider
-    %br
-    - if @total_candidate_profiles.count > 0
-      #list
-        - @total_candidate_profiles.each do |candidate_profile|
-          %br
-          #row
-            .experience_details_wrapper
-              .experience_details_left
-                %h6
-                  = candidate_profile.summary
-                #experience-date
+  %h3.page_headline
+    %i.iconExperience
+      .h3-page-headline
+        List of profiles
+  .divider
+  %br
+  - if @total_candidate_profiles.count > 0
+    #list
+      - @total_candidate_profiles.each do |candidate_profile|
+        %br
+        #row
+          .experience_details_wrapper
+            .experience_details_left
+              %h6
+                = candidate_profile.summary
+              #experience-date
 
-                %br
-              .experience_details_right
-              = link_to "Edit", :controller => "candidate_profiles", :action => "index", id:@candidate.id, :candidate_profile_id=> candidate_profile.id
-              &nbsp;&nbsp;&nbsp;
+              %br
+            .experience_details_right
+            = link_to "Edit", :controller => "candidate_profiles", :action => "index", id:@candidate.id, :candidate_profile_id=> candidate_profile.id
+            &nbsp;&nbsp;&nbsp;
+            
+            = link_to "Delete", url_options = { :controller => "candidate_profiles", :action => "new", id:@candidate.id, :candidate_profile_id=> candidate_profile.id }, html_options = { :confirm => "Are you sure?" }
+
               
-              = link_to "Delete", url_options = { :controller => "candidate_profiles", :action => "new", id:@candidate.id, :candidate_profile_id=> candidate_profile.id }, html_options = { :confirm => "Are you sure?" }
-
-                
-    - else
-      %h4 Please create at least one profile for the candidate
-      .divider
+  - else
+    %h4 Please create at least one profile for the candidate
+    .divider
 
 
   %h3.page_headline
@@ -61,4 +63,4 @@
       = f.submit "Submit",{"class"=>"btn btn-primary"}
 
 <!-- Sidebar -->
-= render 'shared/sidebar'    
+= render 'shared/sidebar_signed'    
