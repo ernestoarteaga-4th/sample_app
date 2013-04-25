@@ -1140,9 +1140,6 @@ select, input{width: 230px;}
 html[xmlns] .clearfix {
     display: block;
 }
-.container {
-    border: 1px solid red;
-}
 .clearfix {
     display: inline-block;
 }
