@@ -19,7 +19,8 @@
     .h3-page-headline
       Edit Candidate Profile
   .divider
-  = form_for :profile, :url=>{:action=>'update'} do |f|
+
+  = form_for :candidate_profile, :url=>{:action=>'update'} do |f|
     .row-fluid
       .field
         = f.label :name
@@ -37,7 +38,7 @@
   %h4
     Please Select Your Project Tags:
 
-  = form_for(:project_tags, :url=>{:action=>'index'}, :html => {:multipart => true, :id => "EducationDegreeTableForm"}) do |f|
+  = form_for(:project_tags, :url=>{:action=>'update_tags'}, :html => {:multipart => true, :id => "EducationDegreeTableForm"}) do |f|
     %table#candidates_search_table.display
       %thead
         %tr
@@ -57,7 +58,12 @@
             -project_roles.projects_tags.each do |projects_tags|
               %tr
                 %td
-                  = check_box_tag "id" , row.id.to_s(), row.id, :name => "approved_flag", :class => "id"
+                  - if @total_candidate_profile_tags.count == 0
+                    = check_box_tag "projects_tags_id[]", projects_tags.id, false
+                  - else
+                    - @total_candidate_profile_tags.each do |profile_tags|
+                      - if profile_tags.project_tags_id == projects_tags.id
+                        = check_box_tag "projects_tags_id[]", projects_tags.id, true
                 %td
                   = row.name
                 %td
