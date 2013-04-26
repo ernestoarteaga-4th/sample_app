@@ -257,22 +257,22 @@ ActiveRecord::Schema.define(:version => 20130424201618) do
   end
 
   create_table "projects_roles", :force => true do |t|
-    t.integer  "projects_id"
-    t.integer  "roles_id"
+    t.integer  "project_id"
+    t.integer  "role_id"
     t.date     "date_in"
     t.date     "date_out"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "projects_tags", :force => true do |t|
-    t.integer  "projects_roles_id"
+    t.integer  "projects_role_id"
     t.integer  "tags_id"
     t.string   "description"
     t.date     "date_in"
     t.date     "date_out"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "resume_details", :force => true do |t|

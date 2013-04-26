@@ -34,16 +34,16 @@ class CandidateProfilesController < ApplicationController
     
     if request.post?
       @candidate = Candidate.find(params[:id])
-      @profile = CandidatesProfile.find(params[:id])
+      @profile = CandidatesProfile.find(params[:candidate_profile_id])
       @profile.update_attributes(params[:profile])
       if @profile.save
-        redirect_to File.join('/candidates/', current_candidate.id.to_s(), '/candidate_profiles')
+        ##redirect_to File.join('/candidates/', current_candidate.id.to_s(), '/candidate_profiles')
         flash[:success] = "Candidate Profile was saved successfully."
       else
         flash[:notice] = "An error occurred while the system save the candidate profile."
       end
     else
-      @profile = CandidatesProfile.find_by_id(params[:id])
+      @profile = CandidatesProfile.find_by_id(params[:candidate_profile_id])
       @error = @profile.errors
     end 
   end   

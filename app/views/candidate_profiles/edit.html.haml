@@ -13,26 +13,26 @@
       = raw '&raquo;'
     %li= raw('<em>Edit</em>')
     .clear
+
   %h3.page_headline
     %i.iconExperience
     .h3-page-headline
       Edit Candidate Profile
   .divider
-
-  = form_for :candidate_profile, :url=>{:action=>'edit'} do |f|
+  = form_for :profile, :url=>{:action=>'update'} do |f|
     .row-fluid
       .field
         = f.label :name
         %br
-        = f.text_field :name
+        = f.text_field :name, :value=>@candidates_profile.name
     .row-fluid
       .field.width100percent
         = f.label :summary
         %br
-        = f.text_area :summary, {"class"=>"width100percent"}
+        = f.text_area :summary, :value=>@candidates_profile.summary
     .actions
-      %br
       = f.submit "Update",{"class"=>"btn btn-primary"}
+  %br
 
   %h4
     Please Select Your Project Tags:
@@ -67,7 +67,7 @@
                 %td
                   = projects_tags.description
     %br
-    = submit_tag "Update", :name => 'update_button', :class => 'btn-primary'
+    = submit_tag "Update", :name => 'update_button', :class => "btn btn-primary"
     &nbsp;&nbsp;&nbsp;&nbsp;
 
 <!-- Sidebar -->
