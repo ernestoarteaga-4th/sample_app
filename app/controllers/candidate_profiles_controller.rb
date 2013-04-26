@@ -22,6 +22,14 @@ class CandidateProfilesController < ApplicationController
   end
 
   def edit
+    @candidates_profile  = CandidatesProfile.find(params[:id])
+    @total_candidate_profile_tags = @candidates_profile.candidate_profile_tags
+
+    @candidate  = Candidate.find(params[:candidate_id])
+    @total_projects = @candidate.projects
+  end
+
+  def update
     @candidate = current_candidate
     
     if request.post?
@@ -37,8 +45,8 @@ class CandidateProfilesController < ApplicationController
     else
       @profile = CandidatesProfile.find_by_id(params[:id])
       @error = @profile.errors
-    end
-  end
+    end 
+  end   
 
   def delete
     CandidatesProfile.delete(params[:candidate_profile_id])

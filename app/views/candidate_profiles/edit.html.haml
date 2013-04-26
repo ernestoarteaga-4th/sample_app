@@ -19,7 +19,6 @@
       Edit Candidate Profile
   .divider
 
-
   = form_for :candidate_profile, :url=>{:action=>'edit'} do |f|
     .row-fluid
       .field
@@ -34,6 +33,42 @@
     .actions
       %br
       = f.submit "Update",{"class"=>"btn btn-primary"}
+
+  %h4
+    Please Select Your Project Tags:
+
+  = form_for(:project_tags, :url=>{:action=>'index'}, :html => {:multipart => true, :id => "EducationDegreeTableForm"}) do |f|
+    %table#candidates_search_table.display
+      %thead
+        %tr
+          %th
+            Selection
+          %th
+            Project Name
+          %th
+            Summary
+          %th
+            Company Name
+          %th
+            Project Tag Description
+      %tbody
+        -@total_projects.each do |row|
+          -row.projects_roles.each do |project_roles|
+            -project_roles.projects_tags.each do |projects_tags|
+              %tr
+                %td
+                  = check_box_tag "id" , row.id.to_s(), row.id, :name => "approved_flag", :class => "id"
+                %td
+                  = row.name
+                %td
+                  = row.summary
+                %td 
+                  = row.company_name
+                %td
+                  = projects_tags.description
+    %br
+    = submit_tag "Update", :name => 'update_button', :class => 'btn-primary'
+    &nbsp;&nbsp;&nbsp;&nbsp;
 
 <!-- Sidebar -->
 = render 'shared/sidebar_signed'    
