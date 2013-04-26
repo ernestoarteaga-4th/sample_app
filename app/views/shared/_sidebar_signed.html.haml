@@ -1,7 +1,7 @@
 #sidebar
   <!-- Subnav -->
   %h4#if_sub_nav
-    = link_to 'Profile Information', '#'
+    Profile Information
   #if_subnav.divider
     - if signed_in?
       #sidebar-profile
@@ -25,8 +25,8 @@
           %i.iconResume
           = link_to_candidates('Candidates', current_candidate.id, :action => 'candidates', :class => 'profile-sub_navigation')
         %li
-          %i.iconResume
-          = link_to 'Reports', '/staff/' + current_candidate.id.to_s() + '/report', :class => 'profile-sub_navigation'
+          %i.iconReport
+          = link_to 'Report', '/staff/' + current_candidate.id.to_s() + '/report', :class => 'profile-sub_navigation'
         %li
           %i.iconSummary
           = link_to_resume('Catalogs', current_candidate.id, :action => 'educ_degree', :class => 'profile-sub_navigation')

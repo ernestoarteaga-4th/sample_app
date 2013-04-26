@@ -6,7 +6,7 @@
       = link_to 'Home', root_path 
       = raw '&raquo;'
     %li
-      = link_to_resume("My profile", @candidate.id, :action => "resume")
+      = link_to_resume('Resume', @candidate.id, :action => 'resume')
       = raw '&raquo;'
     %li
       =link_to_project("Projects", @candidate.id, :action => "index")
@@ -17,9 +17,11 @@
     %li= raw('<em>update</em>')
     .clear
   %h3.page_headline 
-    %i.iconExperienceHeadLine
+    %i.iconRolesHeadLine
     .h3-page-headline
-      = @title
+      = Role.find(@projectsrole.roles_id).name 
+      for 
+      = @project.name
   .divider-headline
   %br
   #flash

@@ -4,19 +4,6 @@ class ReportController < ApplicationController
   end
 
   def search
-    
-    #@msg = { "success" => "true", "message" => "hello", "state" => params[:state]}
- 
-    #respond_to do |format|
-      #format.html
-      #format.json { render json: @msg }
-    #end
-
-
-    #formt = params["search"]["points"]
-    #rrrrr = params["interview_text"]
-
-    
     @where_tech=""
     @from_tech=""
     if !params[:technologies_id].nil?
@@ -49,15 +36,30 @@ class ReportController < ApplicationController
       event = params[:search]
       @date_hired = Date.new event["hire_date(1i)"].to_i, event["hire_date(2i)"].to_i, event["hire_date(3i)"].to_i
       @date_start = Date.new event["start_date(1i)"].to_i, event["start_date(2i)"].to_i, event["start_date(3i)"].to_i
-      @where_recru = " AND ( DATE_FORMAT(Cand.recruited_at, '%Y-%m-%d') = '"+@date_hired.to_s+"' OR  DATE_FORMAT(Cand.started_at, '%Y-%m-%d') = '"+@date_start.to_s+"' OR Cand.recruited_in = '"+params[:search][:placeAssignment]+"'  )"
+      @where_recru = " AND ( DATE_FORMAT(Cand.recruited_at, '%Y-%m-%d') = '"+@date_hired.to_s+"' OR  DATE_FORMAT(Cand.started_at, '%Y-%m-%d') = '"+@date_start.to_s+"' OR Cand.office_id = '"+params[:search][:office_id]+"'  )"
+    end
+    
+    
+    @where_resul=""
+    @from_resul=""
+    if !params[:search][:points].nil? && params[:search][:points]!='' 
+      @where_resul = " AND ( CandInt2.interview_type_id="+params[:interviewTypesOption][:id]+" AND CandInt2.result REGEXP '"+params[:search][:points]+"'  )"
+      @from_resul=" LEFT JOIN candidates_interviews CandInt2 ON Cand.id=CandInt2.candidate_id "
+    end
+    
+    
+    @where_orig=""
+    @from_orig=""
+    if !params[:search][:placeOrigin].nil? && params[:search][:placeOrigin]!='' 
+      @where_orig = " AND ( Cand.city REGEXP '"+params[:search][:placeOrigin]+"'  )"
     end
     
     
     @sql ="SELECT DISTINCT Cand.* 
-      FROM candidates Cand " + @from_tech + @from_proc + @from_recru +
-      "WHERE 1=1 "+ @where_tech + @where_proc + @where_recru
-    @candidates = Candidate.find_by_sql(@sql); 
-    #self.connection.execute(sanitize_sql([@sql]) 
+      FROM candidates Cand " + @from_tech + @from_proc + @from_recru + @from_resul + @from_orig +
+      "WHERE 1=1 "+ @where_tech + @where_proc + @where_recru + @where_resul + @where_orig
+    @candidates = Candidate.find_by_sql(@sql)
     
   end
+  
 end

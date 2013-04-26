@@ -17,12 +17,27 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @candidate  = Candidate.find_by_id(params[:id])
-    #@microposts = @candidate.microposts.paginate(:page => params[:page])
-
-    @project = Project.find_by_id(params[:project_id])
-    @title = @project.name
-    @projects_role  = ProjectsRole.new
+    @candidate = current_candidate
+    
+    if request.post?
+      @candidate = Candidate.find(params[:id])
+      @project = Project.find(params[:project_id])
+      @project.update_attributes(params[:project])
+      if @project.save
+        flash[:success] = "Project was saved successfully."
+        @projects_items = @candidate.projects
+        render :index
+      else
+        flash[:notice] = "An error occurred while the system save the project."
+      end
+    else
+      @project = Project.find_by_id(params[:project_id])
+      @title = @project.name
+      @projects_role  = ProjectsRole.new
+      @roles_items = Role.all
+    end
+    
+    
   end
   
   def prepare_project_form
@@ -54,7 +69,9 @@ class ProjectsController < ApplicationController
     if request.post?
       @candidate = Candidate.find(params[:id])
       @project = Project.find(params[:project_id])
+      @antes= @project.name
       @project.update_attributes(params[:project])
+      @despues= @project.name
       if @project.save
         flash[:success] = "Project was saved successfully."
         @projects_items = @candidate.projects

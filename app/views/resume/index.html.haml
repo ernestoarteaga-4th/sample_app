@@ -130,7 +130,7 @@
           %td
             Recruited In:
           %td
-            = f.select :recruited_in, assignment_list, {:selected => @candidate.recruited_in}, :disabled => !@candidate.currently_in_4Source
+            = f.select :office_id, options_from_collection_for_select(Office.order("id").all, "id", "name", @candidate.office_id)
       %br
       = submit_tag "Update"
       %br

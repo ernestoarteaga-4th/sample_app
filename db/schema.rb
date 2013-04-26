@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130417245802) do
+ActiveRecord::Schema.define(:version => 20130425142835) do
 
   create_table "candidate_certifications", :force => true do |t|
     t.integer  "candidate_id"
@@ -120,7 +120,7 @@ ActiveRecord::Schema.define(:version => 20130417245802) do
     t.boolean  "currently_in_4Source"
     t.datetime "recruited_at"
     t.datetime "started_at"
-    t.string   "recruited_in"
+    t.integer  "office_id"
   end
 
   create_table "candidates_interviews", :force => true do |t|
@@ -230,6 +230,15 @@ ActiveRecord::Schema.define(:version => 20130417245802) do
   end
 
   add_index "microposts", ["candidate_id"], :name => "index_microposts_on_candidate_id"
+
+  create_table "offices", :force => true do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "city"
+    t.string   "comments"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "profiles", :force => true do |t|
     t.string   "name"

@@ -45,7 +45,7 @@ $(document).ready(function() {
       $("#search_recruited_date_3i").removeAttr('disabled');
       $("#search_recruited_date_1i").removeAttr('disabled');
       $("#search_placeAssignment").removeAttr('disabled');
-      $("#search_recruited_in").removeAttr('disabled');
+      $("#search_office_id").removeAttr('disabled');
     }
 
     else {
@@ -59,7 +59,7 @@ $(document).ready(function() {
       $("#search_recruited_date_3i").attr('disabled', 'disabled');
       $("#search_recruited_date_1i").attr('disabled', 'disabled');
       $("#search_placeAssignment").attr('disabled', 'disabled');
-      $("#search_recruited_in").attr('disabled', 'disabled');
+      $("#search_office_id").attr('disabled', 'disabled');
     }
   });         
 });

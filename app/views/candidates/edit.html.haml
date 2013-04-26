@@ -6,12 +6,7 @@
       = link_to 'Home', root_path
       = raw '&raquo;'
     %li
-      = link_to_resume('My Profile', @candidate.id, :action => 'resume')
-      = raw '&raquo;'
-    %li
-      = raw '<em>'
-      Edit
-      = raw '</em>'
+      = raw '<em>My Profile</em>'
     .clear
   %h3.page_headline
     %i.iconContact-infoHeadLine
@@ -22,50 +17,62 @@
   = form_for(@candidate) do |f|
     = render 'shared/error_messages', :object => f.object
     .row-fluid
-      .field
-        = f.label "Image"
-        %br
-        = f.file_field :avatar_file_name
+      .span12
+        .field
+          = f.label "Image"
+          %br
+          = f.file_field :avatar_file_name
     .row-fluid
       .span5
         .field
           = f.label :first_name
-        = f.text_field :first_name
-        .field
-          = f.label :first_last_name
-        = f.text_field :first_last_name
+          .mandatory *
+          = f.text_field :first_name
       .span5
         .field
           = f.label :middle_name
-        = f.text_field :middle_name
+          = f.text_field :middle_name
+    .row-fluid
+      .span5
+        .field
+          = f.label :first_last_name
+          .mandatory *
+          = f.text_field :first_last_name
+      .span5
         .field
           = f.label :second_last_name
-        = f.text_field :second_last_name
+          = f.text_field :second_last_name
     .row-fluid
       .span5
         .field
           = f.label :gender
           %br
-        = f.select :gender, gender_list
+          = f.select :gender, gender_list
       .span7
         .field
           = f.label :birthdate
           %br
-        .birthdate= date_select(:candidate, :birthdate, :start_year => 1950, :order => [:month, :day, :year])
+        .birthdate
+          = date_select(:candidate, :birthdate, :start_year => 1950, :order => [:month, :day, :year])
+          /= calendar_date_select_tag "bday", :birthdate, :year_range => 10.years.ago..0.years.ago
+          /= calendar_date_select_tag "name", "2007-01-01", :embedded => true
+          /= f.datepicker 'availability', :minDate => 0, :maxDate => "+8Y"
         %br
     .divider
     .row-fluid
       .span5
         .field
           = f.label :email
-        = f.text_field :email
+        = f.text_field :email, {:disabled => 'true'}
       .span3
         .field
           = f.label :password
+          .mandatory *
         = f.password_field :password
       .span3
         .field
           = f.label :password_confirmation
+          .mandatory *
         = f.password_field :password_confirmation
     .row-fluid
     %br
@@ -82,7 +89,7 @@
       .span3
         .field
           = f.label :zip_code
-        = f.text_field :zip_code
+        = f.text_field :zip_code, {:as => "integer"}
     .row-fluid
       .span5
         .field
@@ -150,7 +157,7 @@
       .span3
         .field
           = f.label :salary_expectancy
-          = f.text_field :salary_expectancy
+          = f.text_field :salary_expectancy, :value => (number_to_currency(@candidate.salary_expectancy, :precision => 2) || 0)
     .row-fluid
       = f.label :comments
       = f.text_area :comments
@@ -158,5 +165,9 @@
       %br      
       = f.submit "Update",{"class"=>"btn btn-primary"}
       %script jQuery(document).ready(function(){Profile.start();});
+    .mandatory * 
+    Field is mandatory
+    %br
+    %br
 <!-- Sidebar -->
 = render 'shared/sidebar_signed'

@@ -20,6 +20,8 @@ gem 'rails3-jquery-autocomplete'
 gem 'jquery-rails'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
+#Added April/2013
+gem "calendar_date_select", "~> 1.16.4"
 
 #gem 'sqlite3'
 # Use unicorn as the web server

@@ -9,27 +9,18 @@ class ResumeController < ApplicationController
   end
   
   def summary
+    @candidate = Candidate.find(params[:id])
     if request.post?
-
-      @candidate = Candidate.find(params[:id])
-      #resume_details = ResumeDetail.new
-      #details = params[:resume_detail]
-      #logger.debug "********* #{details} ************"
-      #resume_details.summary = details[:summary]
-      #resume_details.resume_id = @candidate.resume.id
-      #if resume_details.save
-      if @candidate.candidate_prof_summary.new(params[:candidate_prof_summary]).save
-        flash.now[:success] = "Summary was saved successfully."
+      if !params[:candidate_prof_summary][:summary].nil? && params[:candidate_prof_summary][:summary] != ''
+        @summary =@candidate.candidate_prof_summary.new(params[:candidate_prof_summary])
+        if @summary.save
+          flash.now[:success] = "Summary was saved successfully."
+        else
+          flash.now[:notice] = "An error occurred while the system save the summary. Please try again."
+        end
       else
-        flash.now[:notice] = "An error occurred while the system save the summary. Please try again."
+        flash.now[:notice] = "Write a summary."
       end
-    else
-      @candidate = Candidate.find(params[:id])
-      #if @candidate.resume.nil?
-        #@resume = @candidate.build_resume
-        #@resume.save
-      #end
-      #@resume_details = ResumeDetail.new
     end
   end
   
@@ -105,13 +96,13 @@ class ResumeController < ApplicationController
                        :currently_in_4Source => params["isRecruited"], 
                        :recruited_at => DateTime.strptime(@recruited_date, "%Y/%m/%d"),
                        :started_at => DateTime.strptime(@started_date, "%Y/%m/%d"),
-                       :recruited_in => params["search"]["recruited_in"])
+                       :office_id => params["search"]["office_id"])
     else
       Candidate.update(params["search"]["id"], 
                        :currently_in_4Source => nil, 
                        :recruited_at => nil,
                        :started_at => nil,
-                       :recruited_in => nil)
+                       :office_id => nil)
     end
 
     redirect_to File.join('/candidates/', params["search"]["id"], '/resume')
