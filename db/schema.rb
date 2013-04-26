@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(:version => 20130424201618) do
   end
 
   create_table "candidate_profile_tags", :force => true do |t|
-    t.integer  "candidate_profiles_id"
+    t.integer  "candidates_profile_id"
     t.integer  "project_tags_id"
     t.datetime "created_at",            :null => false
     t.datetime "updated_at",            :null => false

@@ -3,56 +3,29 @@
   %img(src="http://www.4thsource.com//public/images/subheader_services.jpg" alt="Sub Header" class="subheader")
   %ul#breadcrumbs
     %li
-      = link_to 'Home', root_path
+      = link_to 'Home', root_path 
       = raw '&raquo;'
     %li
-      = raw '<em>'
-      Register
-      = raw '</em>'
+      = link_to_resume("My profile", @candidate.id, :action => "resume")
+      = raw '&raquo;'
+    %li
+      = link_to_resume("Candidate Profile", @candidate.id, :action => "candidate_profiles")
+      = raw '&raquo;'
+    %li= raw('<em>Edit</em>')
     .clear
-
   %h3.page_headline
     %i.iconExperience
     .h3-page-headline
-      List of Project Tags
+      Edit Candidate Profile
   .divider
-  %br
-  - if @total_candidate_profile_tags.count > 0
-    #list
-      - @total_candidate_profile_tags.each do |candidate_profile_tags|
-        %br
-        #row
-          .experience_details_wrapper
-            .experience_details_left
-              %h6
-                = candidate_profile_tags.id
-              #experience-date
-
-              %br
-            .experience_details_right
-            = link_to "Edit", :controller => "candidate_profiles", :action => "edit", id:@candidate.id, :candidate_profile_id=> candidate_profile_tags.id
-            &nbsp;&nbsp;&nbsp;
-            
-            = link_to "Delete", url_options = { :controller => "candidate_profiles", :action => "new", id:@candidate.id, :candidate_profile_id=> candidate_profile_tags.id }, html_options = { :confirm => "Are you sure?" }
-
-              
-  - else
-    %h4 Please create at least one profile for the candidate
-    .divider
 
 
-  %h3.page_headline
-    New Candidate Profile
-
-  = form_for(:candidateprofile) do |f|
-    %h4
-      Please enter the following information
-    .divider
+  = form_for :candidate_profile, :url=>{:action=>'edit'} do |f|
     .row-fluid
       .field
-        = f.label :profile_id
+        = f.label :name
         %br
-        = f.select :profile_id, options_from_collection_for_select(Profile.all, "id", "name")
+        = f.text_field :name
     .row-fluid
       .field.width100percent
         = f.label :summary
@@ -60,7 +33,7 @@
         = f.text_area :summary, {"class"=>"width100percent"}
     .actions
       %br
-      = f.submit "Submit",{"class"=>"btn btn-primary"}
+      = f.submit "Update",{"class"=>"btn btn-primary"}
 
 <!-- Sidebar -->
 = render 'shared/sidebar_signed'    
