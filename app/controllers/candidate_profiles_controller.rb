@@ -35,4 +35,19 @@ class CandidateProfilesController < ApplicationController
     render :index
   end
 
+  def update_tags
+    CandidateProfileTag.where(:candidates_profile_id => params[:id]).destroy_all
+
+    if !params[:projects_tags_id].nil?
+      params[:projects_tags_id].each do |t|
+          @relation = CandidateProfileTag.new
+          @relation.candidates_profile_id =  params[:id]
+          @relation.project_tags_id = t.to_i
+          @relation.save
+      end
+    end
+
+    redirect_to File.join('/candidates/', current_candidate.id.to_s(), '/candidate_profiles/' + params[:id] + '/edit')
+  end
+
 end

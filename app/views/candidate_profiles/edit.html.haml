@@ -17,26 +17,7 @@
       List of Project Tags
   .divider
   %br
-  - if @total_candidate_profile_tags.count > 0
-    #list
-      - @total_candidate_profile_tags.each do |candidate_profile_tags|
-        %br
-        #row
-          .experience_details_wrapper
-            .experience_details_left
-              %h6
-                = candidate_profile_tags.id
-              #experience-date
-
-              %br
-            .experience_details_right
-            = link_to "Edit", :controller => "candidate_profiles", :action => "edit", id:@candidate.id, :candidate_profile_id=> candidate_profile_tags.id
-            &nbsp;&nbsp;&nbsp;
-            
-            = link_to "Delete", url_options = { :controller => "candidate_profiles", :action => "new", id:@candidate.id, :candidate_profile_id=> candidate_profile_tags.id }, html_options = { :confirm => "Are you sure?" }
-
-              
-  - else
+  - if @total_candidate_profile_tags.count == 0
     %h4 Please create at least one profile for the candidate
     .divider
 
@@ -47,7 +28,7 @@
   %h4
     Please Select Your Project Tags:
 
-  = form_for(:project_tags, :url=>{:action=>'index'}, :html => {:multipart => true, :id => "EducationDegreeTableForm"}) do |f|
+  = form_for(:project_tags, :url=>{:action=>'update_tags'}, :html => {:multipart => true, :id => "EducationDegreeTableForm"}) do |f|
     %table#candidates_search_table.display
       %thead
         %tr
@@ -67,7 +48,12 @@
             -project_roles.projects_tags.each do |projects_tags|
               %tr
                 %td
-                  = check_box_tag "id" , row.id.to_s(), row.id, :name => "approved_flag", :class => "id"
+                  - if @total_candidate_profile_tags.count == 0
+                    = check_box_tag "projects_tags_id[]", projects_tags.id, false
+                  - else
+                    - @total_candidate_profile_tags.each do |profile_tags|
+                      - if profile_tags.project_tags_id == projects_tags.id
+                        = check_box_tag "projects_tags_id[]", projects_tags.id, true
                 %td
                   = row.name
                 %td
