@@ -29,6 +29,25 @@ class CandidateProfilesController < ApplicationController
     @total_projects = @candidate.projects
   end
 
+  def update
+    @candidate = current_candidate
+    
+    if request.post?
+      @candidate = Candidate.find(params[:id])
+      @profile = CandidatesProfile.find(params[:id])
+      @profile.update_attributes(params[:profile])
+      if @profile.save
+        redirect_to File.join('/candidates/', current_candidate.id.to_s(), '/candidate_profiles')
+        flash[:success] = "Candidate Profile was saved successfully."
+      else
+        flash[:notice] = "An error occurred while the system save the candidate profile."
+      end
+    else
+      @profile = CandidatesProfile.find_by_id(params[:id])
+      @error = @profile.errors
+    end 
+  end   
+
   def delete
     CandidatesProfile.delete(params[:candidate_profile_id])
     @candidate  = Candidate.find(params[:candidate_id])
