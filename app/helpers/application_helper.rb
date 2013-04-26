@@ -52,6 +52,8 @@ module ApplicationHelper
                 "/candidates/#{candidateId}/resume/training/new"
               when 'educ_degree'
                 "/candidates/#{candidateId}/education_degree"
+              when 'candidate_profiles'
+                "/candidates/#{candidateId}/candidate_profiles"
             end
       link_to( name, url, options, html_options )
   end

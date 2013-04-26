@@ -1,5 +1,8 @@
 SampleApp::Application.routes.draw do  
 
+  resources :candidates_profiles
+
+
   get "email/remind"
 
   post "email/remind"
@@ -187,5 +190,12 @@ SampleApp::Application.routes.draw do
   match "/staff/:id/interviews_types/:interview_type_id/edit" => 'interviews_types#edit'
   match "/staff/:id/interviews_types/:interview_type_id/delete" => 'interviews_types#delete'
   
+  ## Candidates Profiles
+  match "/candidates/:candidate_id/candidate_profiles" => 'candidate_profiles#index'
+  match "/candidates/:candidate_id/candidate_profiles/:candidate_profile_id/delete" => 'candidate_profiles#delete'
+  match "/candidates/:candidate_id/candidate_profiles/:candidate_profile_id/edit" => 'candidate_profiles#edit'
+  match "/candidates/:candidate_id/candidate_profiles/:candidate_profile_id/update" => 'candidate_profiles#update'
+  match "/candidates/candidate_profiles/:id/update_tags" => 'candidate_profiles#update_tags'
+
   root :to => 'pages#home'
 end

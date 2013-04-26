@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Tag name:</b>
+  <%= @candidates_profile.tag_name %>
+</p>
+
+<p>
+  <b>Tag type:</b>
+  <%= @candidates_profile.tag_type %>
+</p>
+
+<p>
+  <b>Profiles:</b>
+  <%= @candidates_profile.profiles_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_candidates_profile_path(@candidates_profile) %> |
+<%= link_to 'Back', candidates_profiles_path %>

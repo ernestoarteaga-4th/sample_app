@@ -1,0 +1,27 @@
+<h1>Listing candidates_profiles</h1>
+
+<table>
+  <tr>
+    <th>Tag name</th>
+    <th>Tag type</th>
+    <th>Profiles</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @candidates_profiles.each do |candidates_profile| %>
+  <tr>
+    <td><%= candidates_profile.tag_name %></td>
+    <td><%= candidates_profile.tag_type %></td>
+    <td><%= candidates_profile.profiles_id %></td>
+    <td><%= link_to 'Show', candidates_profile %></td>
+    <td><%= link_to 'Edit', edit_candidates_profile_path(candidates_profile) %></td>
+    <td><%= link_to 'Destroy', candidates_profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Candidates profile', new_candidates_profile_path %>

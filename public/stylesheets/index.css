@@ -273,7 +273,7 @@ a.nivo-prevNav {
 .column ul#nav_sub li a { color: #2268ae; }
 
 /* Page Headline Colors */
-#content h3.page_headline { font-weight: normal; font-size: 20px; color: #333; }
+#content h3.page_headline { font-weight: normal; font-size: 20px; color: #333; text-align: left; }
 #content h2.page_headline { font-weight: normal; font-size: 16px; color: #333; }
 
 /* Blocks */
@@ -981,6 +981,7 @@ table.microposts tr td.micropost-delete {
 
 .experience_details_wrapper {
 	width: 550px;
+	clear: both
 }
 
 .experience_details_left {
@@ -992,7 +993,7 @@ table.microposts tr td.micropost-delete {
 
 .experience_details_right {
 	float:right;
-	width: 50px;
+	width: 60px;
 	padding-bottom: 3px;
 }
 
@@ -1125,4 +1126,20 @@ select, input{width: 230px;}
   vertical-align: top;
   padding-left: 10px;
   padding-top: 7px;
+}
+
+/*Float elements inside a DIV*/
+.clearfix:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    line-height: 0;
+    visibility: hidden;
+}
+html[xmlns] .clearfix {
+    display: block;
+}
+.clearfix {
+    display: inline-block;
 }
