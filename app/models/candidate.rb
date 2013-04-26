@@ -118,6 +118,39 @@ class Candidate < ActiveRecord::Base
 
   before_save :encrypt_password
 
+
+
+def self.to_csv(options = {})
+  csv_string = CSV.generate do |csv|
+         csv << ["Name", "Email"]
+         all.each do |u|
+           csv << [u.name, u.email]
+         end
+    end    
+    send_data csv_string,
+   :type => 'text/csv; charset=iso-8859-1; header=present',
+   :disposition => "attachment; filename=users.csv" 
+end
+
+
+
+ 
+ def export_to_csv       
+    @users = User.find(:all)
+    csv_string = CSV.generate do |csv|
+         csv << ["Id", "Name", "Email","Role"]
+         @users.each do |user|
+           csv << [user.id, user.name, user.name, user.role]
+         end
+    end         
+  
+   send_data csv_string,
+   :type => 'text/csv; charset=iso-8859-1; header=present',
+   :disposition => "attachment; filename=users.csv" 
+ end 
+
+
+
 def validate
     if country == '0'
       errors.add_to_base("Country is invalid")

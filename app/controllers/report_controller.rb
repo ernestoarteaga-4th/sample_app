@@ -1,6 +1,15 @@
 class ReportController < ApplicationController
   def index
+    
+  end
 
+  def show
+      @candidate = Candidate.all
+      respond_to do |format|
+        format.html
+        format.xls { send_data @candidate.to_xls, content_type: 'application/vnd.ms-excel', filename: 'candidate.xls' }
+        
+      end
   end
 
   def search
@@ -17,7 +26,7 @@ class ReportController < ApplicationController
     #rrrrr = params["interview_text"]
 
     
-    @where_tech=""
+    @where_tech=""    
     @from_tech=""
     if !params[:technologies_id].nil?
       @connector=" "
@@ -36,9 +45,11 @@ class ReportController < ApplicationController
     @sql ="SELECT Cand.* 
       FROM candidates Cand " + @from_tech +
       "WHERE 1=1 "+ @where_tech 
-    @candidates = Candidate.find_by_sql(@sql); 
-    #self.connection.execute(sanitize_sql([@sql]) 
+    #@candidates = Candidate.find_by_sql(@sql); 
+    @candidates = Candidate.all
     
+    #self.connection.execute(sanitize_sql([@sql]) 
+l    
     @msg = { "success" => "true", "message" => "hello", "state" => params[:state]}
  
     render :index
