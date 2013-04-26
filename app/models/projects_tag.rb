@@ -1,7 +1,7 @@
 class ProjectsTag < ActiveRecord::Base
   self.per_page = 10
 
-  attr_accessible :date_in, :date_out, :description, :tags_id, :projects_roles_id
+  attr_accessible :date_in, :date_out, :description, :tags_id, :projects_role_id
   
   belongs_to :projects_roles
   belongs_to :tags

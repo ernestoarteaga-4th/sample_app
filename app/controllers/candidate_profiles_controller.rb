@@ -24,6 +24,9 @@ class CandidateProfilesController < ApplicationController
   def edit
     @candidates_profile  = CandidatesProfile.find(params[:id])
     @total_candidate_profile_tags = @candidates_profile.candidate_profile_tags
+
+    @candidate  = Candidate.find(params[:candidate_id])
+    @total_projects = @candidate.projects
   end
 
   def delete
