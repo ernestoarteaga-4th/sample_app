@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130417245802) do
+ActiveRecord::Schema.define(:version => 20130424201618) do
 
   create_table "candidate_certifications", :force => true do |t|
     t.integer  "candidate_id"
@@ -54,9 +54,8 @@ ActiveRecord::Schema.define(:version => 20130417245802) do
   end
 
   create_table "candidate_profile_tags", :force => true do |t|
-    t.integer  "candidate_profiles_id"
-    t.integer  "projects_roles_id"
-    t.integer  "tags_id"
+    t.integer  "candidates_profile_id"
+    t.integer  "project_tags_id"
     t.datetime "created_at",            :null => false
     t.datetime "updated_at",            :null => false
   end
@@ -117,6 +116,10 @@ ActiveRecord::Schema.define(:version => 20130417245802) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.boolean  "admin_flag"
+    t.boolean  "currently_in_4Source"
+    t.datetime "recruited_at"
+    t.datetime "started_at"
+    t.string   "recruited_in"
   end
 
   create_table "candidates_interviews", :force => true do |t|
@@ -127,6 +130,14 @@ ActiveRecord::Schema.define(:version => 20130417245802) do
     t.string   "comments"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+  end
+
+  create_table "candidates_profiles", :force => true do |t|
+    t.integer  "candidate_id"
+    t.string   "name"
+    t.string   "summary"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "candidates_states", :force => true do |t|

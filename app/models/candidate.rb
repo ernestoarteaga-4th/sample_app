@@ -48,7 +48,11 @@ class Candidate < ActiveRecord::Base
   :password,
   :password_confirmation,
   :change_password_flag,
-  :admin_flag
+  :admin_flag,
+  :currently_in_4Source,
+  :recruited_at,
+  :started_at,
+  :recruited_in
 
   has_many        :microposts,         :dependent => :destroy   
   has_many        :followings,         :foreign_key => "follower_id",
@@ -74,7 +78,7 @@ class Candidate < ActiveRecord::Base
   has_many        :candidates_interviews,   :foreign_key => "candidate_id",
                                             :dependent => :destroy
 
-  has_many        :candidate_profiles,      :dependent => :destroy                                            
+  has_many        :candidates_profiles,      :dependent => :destroy                                            
 
   has_attached_file :avatar, :styles => { :medium => "300x300#", :thumb => "40x40#" },
                              :default_url => "/images/4thsource_avatar.jpg"
@@ -117,38 +121,6 @@ class Candidate < ActiveRecord::Base
   #                            :allow_nil => true
 
   before_save :encrypt_password
-
-
-
-def self.to_csv(options = {})
-  csv_string = CSV.generate do |csv|
-         csv << ["Name", "Email"]
-         all.each do |u|
-           csv << [u.name, u.email]
-         end
-    end    
-    send_data csv_string,
-   :type => 'text/csv; charset=iso-8859-1; header=present',
-   :disposition => "attachment; filename=users.csv" 
-end
-
-
-
- 
- def export_to_csv       
-    @users = User.find(:all)
-    csv_string = CSV.generate do |csv|
-         csv << ["Id", "Name", "Email","Role"]
-         @users.each do |user|
-           csv << [user.id, user.name, user.name, user.role]
-         end
-    end         
-  
-   send_data csv_string,
-   :type => 'text/csv; charset=iso-8859-1; header=present',
-   :disposition => "attachment; filename=users.csv" 
- end 
-
 
 
 def validate

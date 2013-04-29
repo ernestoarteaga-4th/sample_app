@@ -1,7 +1,7 @@
 class CandidateProfileTag < ActiveRecord::Base
   self.per_page = 10
 
-  attr_accessible :candidate_profiles_id, :tags_id, :projects_roles_id  
+  attr_accessible :candidates_profile_id, :projects_tags_id  
   
   #validates :candidate_profiles_id,      presence: true
   
@@ -10,5 +10,6 @@ class CandidateProfileTag < ActiveRecord::Base
   #validates :projects_roles_id,       	presence: true
 
   belongs_to :candidate_profile
+  belongs_to :projects_tag
 
 end

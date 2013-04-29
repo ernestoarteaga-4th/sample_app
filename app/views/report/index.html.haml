@@ -95,8 +95,14 @@
                   = f.text_field "placeOrigin", :class => "textFormStyle"
     %br
     .actions
+      
       = submit_tag "Search"
-      = link_to "Export XLS", :controller => "productos", :action => "index" 
+      
+       
+    %br
+    - if @candidates != nil
+      - @candidates.each do |row|
+        row.id
   %br
   .clear
 <!-- Sidebar -->

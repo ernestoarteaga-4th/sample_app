@@ -1,5 +1,8 @@
 SampleApp::Application.routes.draw do  
 
+  resources :candidates_profiles
+
+
   get "email/remind"
 
   post "email/remind"
@@ -21,9 +24,7 @@ SampleApp::Application.routes.draw do
     end
   end
   
-  resources :productos
-  resources :report
-  
+  resources :ExportExcel  
   
   resources :candidates do
     resources :candidate_certifications
@@ -65,6 +66,7 @@ SampleApp::Application.routes.draw do
   match '/home',    :to => 'pages#home'
 
   match "/candidates/:id/resume" => 'resume#index'
+  match "/candidates/:id/resume/staff_update" => 'resume#staff_update'
   match "/candidates/:id/resume/summary" => 'resume#summary'
   match "/candidates/:id/resume/experience" => 'resume#experience'
   match "/candidates/:id/resume/experience/new" => 'experiences#new'
@@ -191,5 +193,10 @@ SampleApp::Application.routes.draw do
   match "/staff/:id/interviews_types/:interview_type_id/edit" => 'interviews_types#edit'
   match "/staff/:id/interviews_types/:interview_type_id/delete" => 'interviews_types#delete'
   
+  ## Candidates Profiles
+  match "/candidates/:candidate_id/candidate_profiles" => 'candidate_profiles#index'
+  match "/candidates/:candidate_id/candidate_profiles/:candidate_profile_id/delete" => 'candidate_profiles#delete'
+  match "/candidates/:candidate_id/candidate_profiles/:candidate_profile_id/edit" => 'candidate_profiles#edit'
+
   root :to => 'pages#home'
 end

@@ -45,13 +45,14 @@ class ReportController < ApplicationController
     @sql ="SELECT Cand.* 
       FROM candidates Cand " + @from_tech +
       "WHERE 1=1 "+ @where_tech 
-    #@candidates = Candidate.find_by_sql(@sql); 
-    @candidates = Candidate.all
     
-    #self.connection.execute(sanitize_sql([@sql]) 
-l    
-    @msg = { "success" => "true", "message" => "hello", "state" => params[:state]}
- 
-    render :index
+    puts @sql
+    
+    session["excelQry"] = @sql   
+    
+    @candidates = Candidate.find_by_sql(@sql); 
+    #@candidates = Candidate.all
+    
   end
+  
 end
