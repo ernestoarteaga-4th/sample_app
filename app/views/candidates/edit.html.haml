@@ -157,7 +157,7 @@
       .span3
         .field
           = f.label :salary_expectancy
-          = f.text_field :salary_expectancy, :value => (number_to_currency(@candidate.salary_expectancy, :precision => 2) || 0)
+          = f.text_field :salary_expectancy, :value => (number_to_currency(@candidate.salary_expectancy, :precision => 2) || "$0.00")
     .row-fluid
       = f.label :comments
       = f.text_area :comments

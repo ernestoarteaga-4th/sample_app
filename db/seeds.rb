@@ -17,10 +17,10 @@ if File.exist?(path_to_file)
 	    first = false
 	  else
 #if all row is blank don't show
-		if row[0].blank? and row[1].blank? and row[2].blank? and row[3].blank? and row[4].blank? and row[5].blank?  and row[6].blank?
+		if row[0].blank? and row[1].blank? and row[2].blank? Red TabsRed Tabsand row[3].blank? and row[4].blank? and row[5].blank?  and row[6].blank?
 #puts "blank"
 		else
-			if Candidate.find_by_id(row[0]).nil? or EducDegree.find_by_id(row[3]).nil?
+			if Candidate.find_by_id(row[0]).nil? or EducDegreRed Tabse.find_by_id(row[3]).nil?
 				puts "Candidate id: " + row[0].to_s + " or Education Degree id: " + row[3].to_s + " , No exist in database"
 			else
 				@candidate = Candidate.find_by_id(row[0])
@@ -208,9 +208,11 @@ end
 puts "----------------PROJECTS & ROLES----------------"
 file_name  = "Projects - CSV"
 file_name2 = "Projects roles - CSV"
+file_name3 = "Projects Tags - CSV"
 
 path_to_file  = directory + "/CSV_Files/" + file_name  + ".csv"
 path_to_file2 = directory + "/CSV_Files/" + file_name2 + ".csv"
+path_to_file3 = directory + "/CSV_Files/" + file_name3 + ".csv"
 
 first = true
 
@@ -249,18 +251,47 @@ if File.exist?(path_to_file) and File.exist?(path_to_file2)
 						if row2[0] == row[0] and row2[2] == row[2]
 							msg2 = "Candidate: " + @candidate.id.to_s + " - " + @candidate.name + " -- Project Name:  " + row[2] + " -- Role id: " + row2[3].to_s
 
-							@projrole  = Projrole.new
-							@projrole.projects_id = @project.id
-							@projrole.roles_id = row2[3]
+							@projectsrole  = ProjectsRole.new
+							@projectsrole.projects_id = @project.id
+							@projectsrole.roles_id = row2[3]
 							if !row2[4].blank?
-								@projrole.date_in = row2[4].to_date	
+								@projectsrole.date_in = row2[4].to_date	
 							end
 							if !row2[5].blank?
-								@projrole.date_out = row2[5].to_date
+								@projectsrole.date_out = row2[5].to_date
 							end							
 
-							if @projrole.save
+							if @projectsrole.save
 								puts msg2 + " - was saved successfully."
+
+#TAGS
+								#Looking if the candidate & Projects roles have tags
+								CSV.parse File.read(path_to_file3).force_encoding('BINARY').encode('UTF-8', :invalid => :replace, :undef => :replace, :replace => '?') do |row3|
+									if row3[0].blank? and row3[1].blank? and row3[2].blank? and row3[3].blank? and row3[4].blank? and row3[5].blank? and row3[6].blank?
+#Empty Row						
+									else
+										if row3[0] == row[0] and row3[1] == row2[2] and row3[2] = row2[3]
+											msg3 = "Candidate: " + @candidate.id.to_s + " - " + @candidate.name + " -- Project Name:  " + row[2] + " -- Role id: " + row2[3].to_s + " -- Tag id: " + row3[3]
+
+											@projtag = ProjectsTag.new
+											@projtag.projects_roles_id = @projectsrole.id
+											@projtag.tags_id = row3[3]
+											@projtag.description = row3[4]											
+											if !row3[5].blank?
+												@projtag.date_in = row3[5].to_date	
+											end
+											if !row3[6].blank?
+												@projtag.date_out = row3[6].to_date
+											end							
+
+											if @projtag.save
+												puts msg3 + " - was saved successfully."
+											else
+												puts msg3 +  " - An error occurred while the system save"
+											end					
+										end
+									end
+								end								
 							else
 								puts msg2 +  " - An error occurred while the system save"
 							end					
@@ -275,5 +306,5 @@ if File.exist?(path_to_file) and File.exist?(path_to_file2)
 	  end
 	end
 else
-	puts "File does not exist: " + path_to_file + " OR " + path_to_file2
+	puts "File does not exist: " + path_to_file + " OR " + path_to_file2 + " OR " + path_to_file3
 end

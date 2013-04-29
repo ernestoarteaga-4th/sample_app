@@ -6,7 +6,7 @@
       = link_to 'Home', root_path
       = raw '&raquo;'
     %li
-      = link_to_resume('Resume', @candidate.id, :action => 'resume')
+      = link_to_resume('Resume', current_candidate.id, :action => 'resume')
       = raw '&raquo;'
     %li
       = raw '<em>'
@@ -53,6 +53,6 @@
       %br
       = f.date_select :date_out, :start_year => 1950, :order => [:month, :day, :year]
     .actions
-      = f.submit "Accept"
+      = f.submit "Accept", :class => "btn-primary"
 <!-- Sidebar -->
 = render 'shared/sidebar_signed'

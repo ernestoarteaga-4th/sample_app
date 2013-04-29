@@ -10,7 +10,7 @@
       = link_to 'Home', home_path 
       = raw '&raquo;'
     %li
-      = link_to_resume('Resume', @candidate.id, :action => 'resume')
+      = link_to_resume('Resume', current_candidate.id, :action => 'resume')
       = raw '&raquo;'
     %li= raw('<em>languages</em>')
     .clear

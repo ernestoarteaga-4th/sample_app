@@ -29,11 +29,13 @@
           = link_to 'Report', '/staff/' + current_candidate.id.to_s() + '/report', :class => 'profile-sub_navigation'
         %li
           %i.iconSummary
-          = link_to_resume('Catalogs', current_candidate.id, :action => 'educ_degree', :class => 'profile-sub_navigation')
+            = label_tag 'Catalogs', nil, :class => 'profile-sub_navigation'
+          %br
+          %br
           %ul#nav_sub.sub_navigation
-            %li
-              %i.iconStatus
-              = link_to 'Candidate Status', '/staff/' + current_candidate.id.to_s() + '/candidate_status', :class => 'profile-sub_navigation'
+            //%li
+            //  %i.iconStatus
+            //  = link_to 'Candidate Status', '/staff/' + current_candidate.id.to_s() + '/candidate_status', :class => 'profile-sub_navigation'
             %li
               %i.iconIntervieweType
               = link_to "Interview Types", url_options = { :controller => "interviews_types", :action => "index", :id => current_candidate.id}, html_options = { :class => 'profile-sub_navigation' }

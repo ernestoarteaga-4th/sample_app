@@ -6,7 +6,7 @@
       = link_to 'Home', root_path
       = raw '&raquo;'
     %li
-      = link_to_resume('My Profile', current_candidate.id, :action => 'resume')
+      = link_to_resume('Resume', current_candidate.id, :action => 'resume')
       = raw '&raquo;'
     %li
       = raw '<em>'
@@ -36,6 +36,6 @@
       %br
       = f.text_field :description
     .actions
-      = f.submit "Accept"
+      = f.submit "Accept", :class => "btn-primary"
 <!-- Sidebar -->
 = render 'shared/sidebar_signed'
