@@ -37,7 +37,7 @@
           .experience_details_right
             = link_to "Edit", :controller => "interviews_types", :action => "edit", :id => current_candidate.id, :interview_type_id => interview_type.id
             &nbsp;&nbsp;&nbsp;
-            = link_to "Delete", url_options = { :controller => "interviews_types", :action => "delete", :id => current_candidate.id, :interview_type_id => interview_type.id }, html_options = { :confirm => "Are you sure?" }
+            = link_to "Delete", url_options = { :controller => "interviews_types", :action => "delete", :id => current_candidate.id, :interview_type_id => interview_type.id }, html_options = { :confirm => "Are you sure you want to delete this interview type?" }
           %br 
   - else
     %h4 Please create at least one interview type.
