@@ -62,7 +62,7 @@
           .experience_details_wrapper
           .experience_details_left
             %strong
-              = Role.find_by_id(role.roles_id).name
+              = Role.find_by_id(role.role_id).name
           .experience_details_right
             /= link_to "View", :controller => "projectsRoles", :action => "show", id:@candidate.id, :project_id=> @project.id, :projrole_id=> role.id
             /&nbsp;&nbsp;&nbsp;

@@ -61,9 +61,13 @@
                   - if @total_candidate_profile_tags.count == 0
                     = check_box_tag "projects_tags_id[]", projects_tags.id, false
                   - else
+                    - flag = false
                     - @total_candidate_profile_tags.each do |profile_tags|
                       - if profile_tags.project_tags_id == projects_tags.id
                         = check_box_tag "projects_tags_id[]", projects_tags.id, true
+                        - flag = true
+                    - if !flag
+                      = check_box_tag "projects_tags_id[]", projects_tags.id, false
                 %td
                   = row.name
                 %td

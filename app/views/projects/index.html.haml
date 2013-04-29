@@ -47,7 +47,7 @@
               %i.iconRolesHeadLine
               .project_role_left
                 %h6
-                  = Role.find_by_id(role.roles_id).name
+                  = Role.find_by_id(role.role_id).name
                 .divider-headline-middle
               .project_role_right
                 = Date::MONTHNAMES[role.date_in.month]

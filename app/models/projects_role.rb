@@ -7,11 +7,12 @@ class ProjectsRole < ActiveRecord::Base
   
   belongs_to   :roles
   has_many     :projects_tags
+  has_many     :roles_responsibilities
 
   
-  validates :projects_id, presence: true
+  validates :project_id, presence: true
   
-  validates :roles_id,    presence: true
+  validates :role_id,    presence: true
 
   validates :date_in,    :presence => true
   
