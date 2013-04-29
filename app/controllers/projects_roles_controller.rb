@@ -8,10 +8,10 @@ class ProjectsRolesController < ApplicationController
       @project = @candidate.projects.find(params[:project_id])
       @projectsrole = @project.projects_roles.build(params[:projectsrole])
       if @projectsrole.save
-        flash[:success] = "Project was saved successfully."
+        flash[:success] = "Role was saved successfully."
         render 'projects/show'
       else
-        flash[:notice] = "An error occurred while the system save the project."
+        flash[:notice] = "An error occurred while the system save the role."
       end
     else
       @candidate = Candidate.find(params[:id])
@@ -35,10 +35,10 @@ class ProjectsRolesController < ApplicationController
       @projectsrole = @project.projects_roles.find(params[:projects_role_id])
       @projectsrole.update_attributes(params[:projectsrole])
       if @projectsrole.save
-        flash[:success] = "Project was saved successfully."
+        flash[:success] = "Role was saved successfully."
         render 'projects/show'
       else
-        flash[:notice] = "An error occurred while the system save the project."
+        flash[:notice] = "An error occurred while the system save the role."
       end
     else
       @candidate = Candidate.find(params[:id])

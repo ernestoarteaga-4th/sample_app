@@ -5,98 +5,24 @@
     %li
       = link_to 'Home', root_path
       = raw '&raquo;'
-    %li= raw('<em>Candidates</em>')
+    %li
+      = raw('<em>Report</em>')
+      = raw '&raquo;'
+    %li= raw("<em>Search's candidates</em>")
     .clear
-  %h3.page_headline
-    All Candidates
-  .divider
-  %br
+  %h3.page_headline 
+    %i.iconReport
+    .h3-page-headline
+      Search's candidates
+  .divider-headline
   #flash
     - flash.each do |key, value|
       .flash{:class => key}= value
-  = form_for(:search, :url=>{:action=>'search'}, :html => {:id => "reportSearchForm"}) do |f|
-    %table.reportTable
-      %tbody
-        %tr
-          %td{:colspan => 3}
-            .field
-              = f.label "Processing Date"
-              %br
-              = check_box_tag "recruitingProcess"
-              = "Is the Candidate in a Recruiting Process?"
-              %br
-              %table
-                %tr
-                  %td{:width => "120px"}
-                    = f.label "From: "
-                  %td
-                    = date_select "search", "date_processing_from", {:start_year => 1950, :order => [:month, :day, :year]}, {:class => "dateFormStyle", :disabled => true}
-                %tr
-                  %td
-                    = f.label "To: "
-                  %td
-                    = f.date_select :date_processing_to, {:start_year => 1950, :order => [:month, :day, :year]}, {:class => "dateFormStyle", :disabled => true}
-        %tr
-          %td{:colspan => 3}
-            .field
-              = f.label "Candidates Recruited"
-              %br
-              = check_box_tag "isRecruited"
-              = "Is the Candidate Recruited?"
-              %br
-              %table
-                %tr
-                  %td{:width => "120px"}
-                    = f.label "Hire Date: "
-                  %td
-                    = f.date_select :hire_date, {:start_year => 1950, :order => [:month, :day, :year]}, {:class => "dateFormStyle", :disabled => true}
-                %tr
-                  %td
-                    = f.label "Start Date: "
-                  %td
-                    = f.date_select :start_date, {:start_year => 1950, :order => [:month, :day, :year]}, {:class => "dateFormStyle", :disabled => true}
-                %tr
-                  %td
-                    = "Place of Assignment: "
-                  %td
-                    = f.text_field "placeAssignment", :class => "textFormStyle", :disabled => true
-        %tr
-          %td{:width => "30%"}
-            .field
-              = f.label "All Technologies"
-              %br
-              - Tag.where("type_tag = 3").each do |row|
-                = check_box_tag "technologies_id[]", row.id
-                = row.name
-                %br
-          %td{:width => "30%"}
-            .field
-              = f.label "Interview Results"
-            %br
-            %table
-              - InterviewsType.all.each do |row|
-                %tr
-                  %td{:width => "20px"}
-                    = radio_button("interviewTypesOption", "id", row.id, :checked => true)
-                  %td
-                    = row.name
-              %tr
-                %td{:colspan => 2}
-                  = "Points: "
-                  = f.text_field "points", :class => "percentageFormStyle"
-            %br
-          %td{:width => "40%"}
-            = f.label "Aditional Options"
-            %table
-              %tr
-                %td{:width => "90px"}
-                  = "Place of Origin: "
-                %td
-                  = f.text_field "placeOrigin", :class => "textFormStyle"
+  .search
+    = link_to "New search", :controller => "report", :action => "index"
+    = raw ' &#124; '
+    = link_to "Export XLS", :controller => "ExportExcel", :action => "index"
     %br
-    .actions
-      = submit_tag "Search"
-      = link_to "Export XLS", :controller => "ExportExcel", :action => "index"
     %br
     - if @candidates != nil
       %table#candidates_search_table.display
@@ -105,9 +31,9 @@
             %th
               Name
             %th
-              E-Mail
+              Hired
             %th
-              Roles
+              Technologies
             %th
               Interview
         %tbody 
@@ -116,14 +42,24 @@
               %td
                 = link_to row.first_name + " " + row.middle_name + " " + row.first_last_name + " " + row.second_last_name, "/candidates/#{row.id}/resume"
               %td
-                = row.email
+                - if !row.recruited_at.nil?
+                  = Date::MONTHNAMES[row.recruited_at.month]
+                  = row.recruited_at.year
+                  = raw(' / ')
+                  - if !row.office_id.nil?
+                    = Office.find(row.office_id).name
+                  - else
+                    N/A
+                - else
+                  Not hired
               %td
                 - if row.projects.count > 0
                   - row.projects.each do |projects|
                     - if projects.projects_roles.count > 0
-                      - projects.projects_roles.each do |roles|
-                        - roles.roles_responsibilities.each do |role_responsibility|
-                          = role_responsibility.description + ". "
+                      - projects.projects_roles.each do |project_roles|
+                        - if project_roles.tags3.count > 0
+                          - project_roles.tags3.each do |project_tag|
+                            = Tag.find(project_tag.tags_id).name + " - "
               %td
                 = link_to "Interview", "/candidates/#{row.id}/candidates_interviews"
       %br

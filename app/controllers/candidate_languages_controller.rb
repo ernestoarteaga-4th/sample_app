@@ -26,7 +26,14 @@ class CandidateLanguagesController < ApplicationController
           end
 
      else
-       language = Language.find(params[:language_id])
+       if params[:language_id].nil?
+         flash[:notice] = "If language is not in the list, add it manually."
+         @language = CandidateLanguage.new
+         language = nil
+       else
+         language = Language.find(params[:language_id])
+       end
+       
      
      end
      @candidate_language.language = language

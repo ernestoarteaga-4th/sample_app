@@ -8,5 +8,10 @@ class CreateRoles < ActiveRecord::Migration
 
       t.timestamps
     end
+
+  Role.create(:name => 'Developer', :description => 'Responsible of make applications.', :approved_flag => 1, :approved_by => 'System')
+  Role.create(:name => 'Manager', :description => 'Responsible of coordinate the team.', :approved_flag => 1, :approved_by => 'System')
+  Role.create(:name => 'Tester', :description => 'Responsible of test applications', :approved_flag => 1, :approved_by => 'System')
+  
   end
 end

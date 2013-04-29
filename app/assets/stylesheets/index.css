@@ -864,7 +864,7 @@ table.microposts tr td.micropost-delete {
   .iconSkills, .iconSkillsHeadLine, .iconMembershipAwards, .iconInterests, .iconInterestsHeadLine, 
   .iconResponsibilitiesHeadLine, .iconRolesHeadLine, 
   .iconKnowledgeHeadLine, .iconToolsHeadLine, .iconTechnologyHeadLine, 
-  .iconInterviewer, .iconIntervieweType, .iconStatus, .iconTags {
+  .iconInterviewer, .iconIntervieweType, .iconStatus, .iconTags, .iconReport {
 	background: url(/images/probook_icons_img.axd);
 	background-repeat: no-repeat;
 	display: inline-block;
@@ -979,6 +979,14 @@ table.microposts tr td.micropost-delete {
 	margin-left: 0px;
 	background-position: -176px 0px;
 	width: 13px; 
+	height: 16px;
+}
+
+.iconReport {
+	margin-top: 6px;
+	margin-left: 0px;
+	background-position: -411px -39px;
+	width: 16px; 
 	height: 16px;
 }
 
@@ -1440,5 +1448,11 @@ select, input{width: 230px;}
     visibility: hidden; }
   * html .digg_pagination {
     height: 1%; }
-  *:first-child + html .digg_pagination {
+  *:first-child + html .digg_pagiation {
     overflow: hidden; }
+.mandatory {
+	color: #CC0000;
+	font-size: 12px;
+	font-weight: bold;
+	display: inline;
+}

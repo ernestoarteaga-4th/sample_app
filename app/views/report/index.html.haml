@@ -5,11 +5,13 @@
     %li
       = link_to 'Home', root_path
       = raw '&raquo;'
-    %li= raw('<em>Candidates</em>')
+    %li= raw('<em>Report</em>')
     .clear
-  %h3.page_headline
-    All Candidates
-  .divider
+  %h3.page_headline 
+    %i.iconReport
+    .h3-page-headline
+      Report
+  .divider-headline
   %br
   #flash
     - flash.each do |key, value|
@@ -57,9 +59,9 @@
                     = f.date_select :start_date, {:start_year => 1950, :order => [:month, :day, :year]}, {:class => "dateFormStyle", :disabled => true}
                 %tr
                   %td
-                    = "Place of Assignment: "
+                    = "Assignment's place: "
                   %td
-                    = f.text_field "placeAssignment", :class => "textFormStyle", :disabled => true
+                    = f.select :office_id, options_from_collection_for_select(Office.order("id").all, "id", "name")
         %tr
           %td{:width => "30%"}
             .field
@@ -69,7 +71,7 @@
                 = check_box_tag "technologies_id[]", row.id
                 = row.name
                 %br
-          %td{:width => "30%"}
+          %td{:width => "40%", :style => "vertical-align: top;"}
             .field
               = f.label "Interview Results"
             %br
@@ -82,15 +84,17 @@
                     = row.name
               %tr
                 %td{:colspan => 2}
-                  = "Points: "
+                  = "Result: "
                   = f.text_field "points", :class => "percentageFormStyle"
             %br
-          %td{:width => "40%"}
-            = f.label "Aditional Options"
+          %td{:width => "30%", :style => "vertical-align: top;"}
+            .field
+              = f.label " "
             %table
               %tr
                 %td{:width => "90px"}
                   = "Place of Origin: "
+              %tr 
                 %td
                   = f.text_field "placeOrigin", :class => "textFormStyle"
     %br
@@ -100,10 +104,6 @@
       
        
     %br
-    - if @candidates != nil
-      - @candidates.each do |row|
-        row.id
-  %br
   .clear
 <!-- Sidebar -->
 = render 'shared/sidebar_signed'

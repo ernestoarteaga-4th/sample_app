@@ -18,7 +18,7 @@ class RolesResponsibilitiesController < ApplicationController
       @candidate = Candidate.find(params[:id])
       @project = @candidate.projects.find(params[:project_id])
       @projectsrole  = @project.projects_roles.find(params[:projects_role_id])
-      @title = Role.find(@projectsrole.roles_id).name + " in " + @project.name
+      @title = Role.find(@projectsrole.role_id).name + " in " + @project.name
       @rolerespon = RolesResponsibility.new
       @error = @rolerespon.errors
     end
@@ -27,7 +27,7 @@ class RolesResponsibilitiesController < ApplicationController
   def destroy
     @candidate = Candidate.find(params[:id])
     @project = @candidate.projects.find(params[:project_id])
-    @projectsrole = @project.projects_roles.find(params[:projects_role_id])
+    @projectsrole = @project.projects_role.find(params[:projects_role_id])
     
     RolesResponsibility.find(params[:rolerespon_id]).destroy
     render 'projects/show'

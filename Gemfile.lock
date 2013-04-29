@@ -33,11 +33,12 @@ GEM
       rails (>= 3.0)
     arel (3.0.2)
     builder (3.0.4)
+    calendar_date_select (1.16.4)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.1)
       climate_control (>= 0.0.3, < 1.0)
-    diff-lcs (1.2.3)
+    diff-lcs (1.2.4)
     erubis (2.7.0)
     factory_girl (4.2.0)
       activesupport (>= 3.0.0)
@@ -152,6 +153,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts_as_ferret (>= 0.5)
+  calendar_date_select (~> 1.16.4)
   factory_girl_rails
   faker
   ferret

@@ -52,7 +52,7 @@ class CreateCandidates < ActiveRecord::Migration
       t.boolean :currently_in_4Source
       t.datetime :recruited_at
       t.datetime :started_at
-      t.string :recruited_in
+      t.integer :office_id
 
       t.timestamps
     end

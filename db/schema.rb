@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130424201618) do
+ActiveRecord::Schema.define(:version => 20130425142835) do
 
   create_table "candidate_certifications", :force => true do |t|
     t.integer  "candidate_id"
@@ -119,7 +119,7 @@ ActiveRecord::Schema.define(:version => 20130424201618) do
     t.boolean  "currently_in_4Source"
     t.datetime "recruited_at"
     t.datetime "started_at"
-    t.string   "recruited_in"
+    t.integer  "office_id"
   end
 
   create_table "candidates_interviews", :force => true do |t|
@@ -238,6 +238,15 @@ ActiveRecord::Schema.define(:version => 20130424201618) do
 
   add_index "microposts", ["candidate_id"], :name => "index_microposts_on_candidate_id"
 
+  create_table "offices", :force => true do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "city"
+    t.string   "comments"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "profiles", :force => true do |t|
     t.string   "name"
     t.string   "description"
@@ -257,22 +266,22 @@ ActiveRecord::Schema.define(:version => 20130424201618) do
   end
 
   create_table "projects_roles", :force => true do |t|
-    t.integer  "projects_id"
-    t.integer  "roles_id"
+    t.integer  "project_id"
+    t.integer  "role_id"
     t.date     "date_in"
     t.date     "date_out"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "projects_tags", :force => true do |t|
-    t.integer  "projects_roles_id"
+    t.integer  "projects_role_id"
     t.integer  "tags_id"
     t.string   "description"
     t.date     "date_in"
     t.date     "date_out"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "resume_details", :force => true do |t|
@@ -306,10 +315,10 @@ ActiveRecord::Schema.define(:version => 20130424201618) do
   end
 
   create_table "roles_responsibilities", :force => true do |t|
-    t.integer  "projects_roles_id"
+    t.integer  "projects_role_id"
     t.string   "description"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "skills", :force => true do |t|

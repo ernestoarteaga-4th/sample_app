@@ -52,7 +52,7 @@ class Candidate < ActiveRecord::Base
   :currently_in_4Source,
   :recruited_at,
   :started_at,
-  :recruited_in
+  :office_id
 
   has_many        :microposts,         :dependent => :destroy   
   has_many        :followings,         :foreign_key => "follower_id",
@@ -108,22 +108,29 @@ class Candidate < ActiveRecord::Base
   #validates :gender,          :inclusion => { :in => %w(M F),
   #                            :message => "is invalid" }
       
-  #validates :zip_code,        :length => { :minimum => 5 },
-  #                            :numericality => { :only_integer => true }
-  #validates :home_phone,      :format => { :with => phone_regex },
-  #                            :allow_blank => true,
-  #                            :allow_nil => true
-  #validates :cell_phone,      :format => { :with => phone_regex },
-  #                            :allow_blank => true,
-  #                            :allow_nil => true
-  #validates :office_phone,    :format => { :with => phone_regex },
-  #                            :allow_blank => true,
-  #                            :allow_nil => true
+  validates :zip_code,        :length => { :minimum => 5 }, :allow_nil => true,
+                              :numericality => { :only_integer => true }
+  validates :home_phone,      :format => { :with => phone_regex },
+                              :allow_blank => true,
+                              :allow_nil => true,
+                              :numericality => { :only_integer => true },
+                              :length => { :minimum => 10 }
+  validates :cell_phone,      :format => { :with => phone_regex },
+                              :allow_blank => true,
+                              :allow_nil => true,
+                              :numericality => { :only_integer => true },
+                              :length => { :minimum => 10 }
+  validates :office_phone,    :format => { :with => phone_regex },
+                              :allow_blank => true,
+                              :allow_nil => true,
+                              :numericality => { :only_integer => true },
+                              :length => { :minimum => 10 }
 
   before_save :encrypt_password
 
 
 def validate
+
     if country == '0'
       errors.add_to_base("Country is invalid")
     end
@@ -159,6 +166,10 @@ def validate
   def self.authenticate_with_salt(id, cookie_salt) 
     user = find_by_id(id)
     (user && user.salt == cookie_salt) ? user : nil
+  end
+  
+  def salary_expectancy=(num)
+    self[:salary_expectancy] = num.to_s.scan(/\b-?[\d.]+/).join.to_f
   end
 
   private

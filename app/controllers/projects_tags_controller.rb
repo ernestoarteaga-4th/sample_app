@@ -32,7 +32,7 @@ class ProjectsTagsController < ApplicationController
       @candidate = Candidate.find(params[:id])
       @project = @candidate.projects.find(params[:project_id])
       @projectsrole  = @project.projects_roles.find(params[:projects_role_id])
-      @title = @tag_title + " for " + Role.find(@projectsrole.roles_id).name + " in " + @project.name
+      @title = @tag_title + " for " + Role.find(@projectsrole.role_id).name + " in " + @project.name
       @projtag = ProjectsTag.new
       @projtag.date_in = @projectsrole.date_in
       @projtag.date_out = @projectsrole.date_out
