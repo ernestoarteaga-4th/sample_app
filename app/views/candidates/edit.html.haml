@@ -1,5 +1,8 @@
 <!-- Content -->
 #content
+  = stylesheet_link_tag "flick/jquery-ui-1.10.2.custom" 
+
+  
   %img(src="http://www.4thsource.com//public/images/subheader_services.jpg" alt="Sub Header" class="subheader")
   %ul#breadcrumbs
     %li
@@ -53,10 +56,8 @@
           = f.label :birthdate
           %br
         .birthdate
-          = date_select(:candidate, :birthdate, :start_year => 1950, :order => [:month, :day, :year])
-          /= calendar_date_select_tag "bday", :birthdate, :year_range => 10.years.ago..0.years.ago
-          /= calendar_date_select_tag "name", "2007-01-01", :embedded => true
-          /= f.datepicker 'availability', :minDate => 0, :maxDate => "+8Y"
+          /= date_select(:candidate, :birthdate, :start_year => 1950, :order => [:month, :day, :year])
+          = f.text_field :birthdate, :id => 'birthdate', :readonly => 'true', :style => 'cursor: pointer; background-color: white', :value => @candidate.try(:birthdate).try(:strftime,'%Y-%m-%d')
         %br
     .divider
     .row-fluid
@@ -169,5 +170,9 @@
     Field is mandatory
     %br
     %br
+  :javascript
+    jQuery(document).ready(function(){ 
+      $("#birthdate").datepicker({changeMonth: true,changeYear: true, dateFormat: 'yy-mm-dd', yearRange: "1920:2013"});
+    });
 <!-- Sidebar -->
 = render 'shared/sidebar_signed'
