@@ -16,6 +16,7 @@ class Candidate < ActiveRecord::Base
   :created_at, 
   :current_salary, 
   :currently_employed, 
+  :marital_status,
   :degree, 
   :email, 
   :first_last_name, 
@@ -128,7 +129,9 @@ class Candidate < ActiveRecord::Base
 
   before_save :encrypt_password
 
-  def validate
+
+def validate
+
     if country == '0'
       errors.add_to_base("Country is invalid")
     end

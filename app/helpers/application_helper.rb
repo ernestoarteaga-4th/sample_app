@@ -82,6 +82,16 @@ module ApplicationHelper
       link_to( name, url, options, html_options )
   end
   
+  def marital_status_list
+    [
+      ['- Select one -', 'Select one'],
+      ['Single', 1],
+      ['Married',2],
+      ['Divorced',3],
+      ['Widowed',4]
+    ]
+  end
+
   def degree_level_list
     [
       ['- Select one -', ''],

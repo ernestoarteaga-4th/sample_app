@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(:version => 20130425142835) do
     t.boolean  "is_willing_to_travel"
     t.boolean  "is_willing_to_relocate"
     t.boolean  "currently_employed"
+    t.integer  "marital_status"
     t.string   "company"
     t.string   "position"
     t.integer  "salary_expectancy"

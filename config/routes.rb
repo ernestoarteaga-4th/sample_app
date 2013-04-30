@@ -23,7 +23,9 @@ SampleApp::Application.routes.draw do
       get 'search'
     end
   end
-
+  
+  resources :ExportExcel  
+  
   resources :candidates do
     resources :candidate_certifications
     resources :candidate_profiles
@@ -170,6 +172,7 @@ SampleApp::Application.routes.draw do
   # Report
   match "/staff/:id/report" => 'report#index'
   match "/staff/:id/report/search" => 'report#search'
+ 
 
   # Autocomplete
   match "/tool/autocomplete" => 'tool_tag#autocomplete'

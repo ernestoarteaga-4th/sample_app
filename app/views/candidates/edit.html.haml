@@ -51,6 +51,11 @@
           = f.label :gender
           %br
           = f.select :gender, gender_list
+      .span3
+        .field
+          = f.label :marital_status
+          = f.select :marital_status, marital_status_list    
+    .row-fluid      
       .span7
         .field
           = f.label :birthdate
