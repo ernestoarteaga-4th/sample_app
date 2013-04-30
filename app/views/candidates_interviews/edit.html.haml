@@ -6,7 +6,7 @@
       = link_to 'Home', root_path 
       = raw '&raquo;'
     %li
-      = link_to_resume("Administration", @candidate.id, :action => "resume")
+      = raw('<em>Administration</em>')
       = raw '&raquo;'
     %li
       = link_to "Interviews", :controller => "candidates_interviews", :action => "index", id:@candidate.id

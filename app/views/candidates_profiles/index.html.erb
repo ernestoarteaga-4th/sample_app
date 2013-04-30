@@ -17,7 +17,7 @@
     <td><%= candidates_profile.profiles_id %></td>
     <td><%= link_to 'Show', candidates_profile %></td>
     <td><%= link_to 'Edit', edit_candidates_profile_path(candidates_profile) %></td>
-    <td><%= link_to 'Destroy', candidates_profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Destroy', candidates_profile, method: :delete, data: { confirm: 'Are you sure you want to delete this profile?' } %></td>
   </tr>
 <% end %>
 </table>

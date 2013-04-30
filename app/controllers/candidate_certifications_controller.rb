@@ -42,18 +42,24 @@ class CandidateCertificationsController < ApplicationController
         certification = nil
       end
     else
-      certification = Certification.find(params[:certification][:selectName])
+      if params[:certification][:selectName].nil?
+        certification = nil
+      else
+        certification = Certification.find(params[:certification][:selectName])
+      end
     end
     @candidate_certification = @candidate.candidate_certifications.build(params[:candidate_certification])
     #logger.debug "********************************************"
     #logger.debug certification.id
 
-    if !certificationExist && CandidateCertification.find_by_certification_id(certification.id).nil? 
-      @candidate_certification.certification = certification
-    else
-      flash[:notice] = "You already have this certification in your list"
-      certification = nil
-      @candidate_certification = nil
+    if  !certification.nil?
+      if !certificationExist && CandidateCertification.find_by_certification_id(certification.id).nil? 
+        @candidate_certification.certification = certification
+      else
+        flash[:notice] = "You already have this certification in your list"
+        certification = nil
+        @candidate_certification = nil
+      end
     end
 
     if(certification!= nil)
@@ -62,6 +68,8 @@ class CandidateCertificationsController < ApplicationController
       else
         flash[:notice] = "An error occurred while the system save the languages#{@candidate_language.errors.as_json}"
       end
+    else
+      flash[:notice] = "Select a language or add manually"
     end
     redirect_to request.referer
   end

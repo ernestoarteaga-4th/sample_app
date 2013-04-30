@@ -33,9 +33,9 @@
           %br
           %br
           %ul#nav_sub.sub_navigation
-            %li
-              %i.iconStatus
-              = link_to 'Candidate Status', '/staff/' + current_candidate.id.to_s() + '/candidate_status', :class => 'profile-sub_navigation'
+            //%li
+            //  %i.iconStatus
+            //  = link_to 'Candidate Status', '/staff/' + current_candidate.id.to_s() + '/candidate_status', :class => 'profile-sub_navigation'
             %li
               %i.iconIntervieweType
               = link_to "Interview Types", url_options = { :controller => "interviews_types", :action => "index", :id => current_candidate.id}, html_options = { :class => 'profile-sub_navigation' }

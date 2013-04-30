@@ -129,7 +129,9 @@ class Candidate < ActiveRecord::Base
 
   before_save :encrypt_password
 
-  def validate
+
+def validate
+
     if country == '0'
       errors.add_to_base("Country is invalid")
     end
