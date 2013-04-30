@@ -95,6 +95,11 @@
         .field
           = f.label :country
         = f.select :country, country_list
+      .span3
+        .field
+          = f.label :marital_status
+          .mandatory *
+          = f.select :marital_status, marital_status_list
     %br
     .divider
     .row-fluid

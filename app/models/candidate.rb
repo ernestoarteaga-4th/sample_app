@@ -16,6 +16,7 @@ class Candidate < ActiveRecord::Base
   :created_at, 
   :current_salary, 
   :currently_employed, 
+  :marital_status,
   :degree, 
   :email, 
   :first_last_name, 
