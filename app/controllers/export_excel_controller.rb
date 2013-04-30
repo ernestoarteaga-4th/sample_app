@@ -1,14 +1,8 @@
 class ExportExcelController < ApplicationController
+  
   def index 
       
-     # puts session["excelQry"]
-      
-    @candidates = Candidate.find_by_sql(session["excelQry"]); 
-    #@candidates = Candidate.all
-    
-    
-    
-    
+    @candidates = Candidate.find_by_sql(session["excelQry"]);    
     
     csv_string = CSV.generate do |csv|
          csv << ["Name","E-mail", "Phone","Location", "Willing to relocate","Status", 
@@ -20,7 +14,9 @@ class ExportExcelController < ApplicationController
            @techSkill =""
            @managerial=""
            @status = ""
+           @maritalStatus = ""
            
+           # Status general de candidado
            if candi.currently_in_4Source == 1
              @status= "Hired"
            elsif candi.candidates_interviews.length == 0 
@@ -28,10 +24,19 @@ class ExportExcelController < ApplicationController
            else
              @status = "on hold"
            end
-            
            
+           # Descripcion del estado marital del candidato
+           if candi.marital_status == 1
+              @maritalStatus = "Single"
+           elsif candi.marital_status == 2
+              @maritalStatus = "Married"
+           elsif candi.marital_status == 3
+              @maritalStatus = "Divorced"
+           elsif candi.marital_status == 4
+              @maritalStatus = "Widowed"
+           end 
            
-           
+           # Se obtienen los resultado de las entrevistas del candidato
            candi.candidates_interviews.each do |inter|
              
               if inter.interview_type_id == 2
@@ -45,10 +50,12 @@ class ExportExcelController < ApplicationController
               end
            end
            
+           # Se genera la estructura del archivo CVS
            csv << [ "#{candi.first_name}  #{candi.first_last_name}", candi.email, candi.cell_phone,
               candi.city, candi.is_willing_to_relocate==true ? "SI":"NO", @status,
              candi.has_visa==true ? "SI":"NO", candi.has_passport==true ? "SI":"NO", 
-             candi.salary_expectancy,@english, @techSkill , @managerial, candi.current_salary, ""]
+             candi.salary_expectancy,@english, @techSkill , @managerial, candi.current_salary, 
+             @maritalStatus]
          end
     end         
   
