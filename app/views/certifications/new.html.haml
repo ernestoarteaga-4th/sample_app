@@ -6,11 +6,11 @@
       = link_to 'Home', root_path
       = raw '&raquo;'
     %li
-      = link_to_resume('Resume', current_candidate.id, :action => 'resume')
+      = link_to "Certifications", :controller => "certifications", :action => "index"
       = raw '&raquo;'
     %li
       = raw '<em>'
-      Certifications
+      New Certification
       = raw '</em>'
     .clear
   %h3.page_headline
@@ -24,18 +24,19 @@
   %br
   %br
   %h3.page_headline
-    New:
+    New
   = form_for(:certification, :url=>{:action=>'new'}, :html => {:multipart => true, :id => "CertificationForm"}) do |f|
     //= render 'shared/error_messages', :object => f.object
     .field
       = f.label :name
       %br
       = f.text_field :name
+      = label_tag "requiredUniversity", "", :id =>"requiredUniversity", :class => "educationValidatorText"
     .field
       = f.label :description
       %br
       = f.text_field :description
     .actions
-      = f.submit "Accept"
+      = f.submit "Accept", {"class"=>"btn btn-primary"}
 <!-- Sidebar -->
 = render 'shared/sidebar_signed'

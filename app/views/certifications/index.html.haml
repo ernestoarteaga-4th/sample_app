@@ -6,9 +6,6 @@
       = link_to 'Home', root_path
       = raw '&raquo;'
     %li
-      = link_to_resume('Resume', current_candidate.id, :action => 'resume')
-      = raw '&raquo;'
-    %li
       = raw '<em>'
       Certifications
       = raw '</em>'
@@ -38,11 +35,8 @@
             %tr
               %th
                 Approved&nbsp;&nbsp;&nbsp;&nbsp;
-                = check_box_tag "approved_flag_all", @certifications.count.to_s()
               %th
                 Name
-              %th
-                Description
               %th
                 Approved By
           %tbody
@@ -53,15 +47,22 @@
                   = check_box_tag "id" + i.to_s(), row.id.to_s(), false, :name => "approved_flag_" + row.id.to_s(), :class => "id" + i.to_s()
                 %td
                   = row.name
-                %td
-                  = row.description
                 %td 
                   = row.approved_by
               -i = i + 1
-        %br
-        = submit_tag "Update", :name => 'update_button', :class => 'btn-primary'
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        = submit_tag "Delete", :name => 'delete_button', :class => 'btn-primary', :confirm => "Do you want to delete the selected elements?"
+
+        .row-fluid
+          .span5
+            .field
+              &nbsp;&nbsp;
+              %label
+                = check_box_tag "approved_flag_all", @certifications.count.to_s()
+                &nbsp;Check/Uncheck all&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            .field
+              %br
+              = submit_tag "Update", :name => 'update_button', :class => 'btn btn-primary'
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              = submit_tag "Delete", :name => 'delete_button', :class => 'btn btn-primary', :confirm => "Do you want to delete the selected elements?"
   -else
     .educationEmptyTitle
       This User Have not Permission in this Catalog
