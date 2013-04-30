@@ -84,6 +84,7 @@ module ApplicationHelper
   
   def marital_status_list
     [
+      ['- Select one -', 'Select one'],
       ['Single', 1],
       ['Married',2],
       ['Divorced',3],
