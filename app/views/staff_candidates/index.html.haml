@@ -14,32 +14,38 @@
   #flash
     - flash.each do |key, value|
       .flash{:class => key}= value
+  = link_to "Back", request.env["HTTP_REFERER"]
+  %br
+  %br
   = form_for(:table, :url=>{:action=>'index'}) do |f|
     %table#candidates_table.display
       %thead
         %tr
           %th
-            Name
+            First Name
+          %th
+            Middle Name
+          %th
+            First Last Name
+          %th
+            Second Last Name
           %th
             E-Mail
-          %th
-            Roles
           %th
             Interview
       %tbody 
         -@candidates.each do |row|
           %tr
             %td
-              = link_to row.first_name + " " + row.middle_name + " " + row.first_last_name + " " + row.second_last_name, "/candidates/#{row.id}/resume"
+              = link_to row.first_name, "/candidates/#{row.id}/resume"
+            %td
+              = link_to row.middle_name, "/candidates/#{row.id}/resume"
+            %td
+              = link_to row.first_last_name, "/candidates/#{row.id}/resume"
+            %td
+              = link_to row.second_last_name, "/candidates/#{row.id}/resume"
             %td
               = row.email
-            %td
-              - if row.projects.count > 0
-                - row.projects.each do |projects|
-                  - if projects.projects_roles.count > 0
-                    - projects.projects_roles.each do |roles|
-                      - roles.roles_responsibilities.each do |role_responsibility|
-                        = role_responsibility.description + ". "
             %td
               = link_to "Interview", "/candidates/#{row.id}/candidates_interviews"
   %br
