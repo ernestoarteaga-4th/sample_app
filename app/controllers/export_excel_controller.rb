@@ -52,8 +52,8 @@ class ExportExcelController < ApplicationController
            
            # Se genera la estructura del archivo CVS
            csv << [ "#{candi.first_name}  #{candi.first_last_name}", candi.email, candi.cell_phone,
-              candi.city, candi.is_willing_to_relocate==true ? "SI":"NO", @status,
-             candi.has_visa==true ? "SI":"NO", candi.has_passport==true ? "SI":"NO", 
+              candi.city, candi.is_willing_to_relocate==true ? "yes":"no", @status,
+             candi.has_visa==true ? "yes":"no", candi.has_passport==true ? "yes":"no", 
              candi.salary_expectancy,@english, @techSkill , @managerial, candi.current_salary, 
              @maritalStatus]
          end

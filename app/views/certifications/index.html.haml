@@ -44,7 +44,7 @@
             -@certifications.each do |row|
               %tr
                 %td
-                  = check_box_tag "id" + i.to_s(), row.id.to_s(), false, :name => "approved_flag_" + row.id.to_s(), :class => "id" + i.to_s()
+                  = check_box_tag "id" + i.to_s(), row.id.to_s(), row.approved_flag, :name => "approved_flag_" + row.id.to_s(), :class => "id" + i.to_s()
                 %td
                   = row.name
                 %td 
