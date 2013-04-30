@@ -19,6 +19,18 @@ class ExportExcelController < ApplicationController
            @english =""
            @techSkill =""
            @managerial=""
+           @status = ""
+           
+           if candi.currently_in_4Source == 1
+             @status= "Hired"
+           elsif candi.candidates_interviews.length == 0 
+             @status = "Archived"
+           else
+             @status = "on hold"
+           end
+            
+           
+           
            
            candi.candidates_interviews.each do |inter|
              
@@ -34,7 +46,7 @@ class ExportExcelController < ApplicationController
            end
            
            csv << [ "#{candi.first_name}  #{candi.first_last_name}", candi.email, candi.cell_phone,
-              candi.city, candi.is_willing_to_relocate==true ? "SI":"NO", candi.status_id,
+              candi.city, candi.is_willing_to_relocate==true ? "SI":"NO", @status,
              candi.has_visa==true ? "SI":"NO", candi.has_passport==true ? "SI":"NO", 
              candi.salary_expectancy,@english, @techSkill , @managerial, candi.current_salary, ""]
          end
