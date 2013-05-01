@@ -35,7 +35,7 @@
         .field
           = f.label "Interview type"
           %br
-          = f.select :interview_type_id, options_from_collection_for_select(InterviewsType.order("id").all, "id", "description")
+          = f.select :interview_type_id, options_from_collection_for_select(InterviewsType.order("id").all, "id", "name")
       .span6 
         .field
           = f.label "Interviewer"
