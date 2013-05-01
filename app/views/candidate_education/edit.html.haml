@@ -50,12 +50,10 @@
       = f.label :date_in
       %br
       = f.text_field :date_in, :id => 'date_in', :readonly => 'true', :style => 'cursor: pointer; background-color: white', :value => @e.try(:date_in).try(:strftime,'%Y-%m-%d')
-      //= f.date_select :date_in, :default => @e.date_in, :start_year => 1950, :order => [:month, :day, :year]
     .field
       = f.label :date_out
       %br
       = f.text_field :date_out, :id => 'date_out', :readonly => 'true', :style => 'cursor: pointer; background-color: white', :value => @e.try(:date_out).try(:strftime,'%Y-%m-%d')
-      //= f.date_select :date_out, :default => @e.date_out, :start_year => 1950, :order => [:month, :day, :year]
     .actions
       = f.submit "Update", :class => "btn-primary"
   :javascript
