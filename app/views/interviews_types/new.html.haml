@@ -6,16 +6,18 @@
       = link_to 'Home', root_path 
       = raw '&raquo;'
     %li
-      = raw('<em>Catalogues</em>')
+      = raw('<em>Catalogs</em>')
       = raw '&raquo;'
     %li
-      = raw('<em>Interview Type</em>')
-    %li= raw('<em>New</em>')
+      = link_to 'Interview Types', '/staff/' + current_candidate.id.to_s + '/interviews_types'
+      = raw '&raquo;'
+    %li
+      = raw('<em>New</em>')
     .clear
   %h3.page_headline 
     %i.iconExperienceHeadLine
     .h3-page-headline
-      New interview type
+      New Interview Type
   .divider-headline
   %br
   #flash
@@ -32,9 +34,9 @@
     .field
       = f.label "Description"
       %br
-      = f.text_field :name
+      = f.text_field :name, :onkeyup => "checkMaxlength(this);", :maxlength => 30
     .actions
       %br
-      = f.submit "Update"
+      = f.submit "Update", :class => "btn-primary"
 <!-- Sidebar -->
 = render 'shared/sidebar_signed'

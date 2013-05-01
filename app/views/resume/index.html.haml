@@ -5,7 +5,12 @@
     %li
       = link_to 'Home', root_path 
       = raw '&raquo;'
-    %li= raw('<em>Resume</em>')
+    - if current_candidate.admin_flag
+      %li
+        = link_to 'Candidates', "/staff/" + current_candidate.id.to_s + "/candidates"
+        = raw '&raquo;'
+    %li
+      = raw('<em>Resume</em>')
     .clear
   %h3.page_headline 
     %i.iconResumeHeadLine
@@ -24,7 +29,10 @@
   %br
   .experience_wrapper
     - if @candidate.candidate_prof_summary.empty?
-      %h4 Please write a summary in your resume.
+      - if current_candidate.admin_flag
+        %h4 This candidate has not a summary in the resume.
+      - else
+        %h4 Please write a summary in your resume.
       .divider
       %br
       %br
@@ -35,7 +43,10 @@
         - @candidate.candidate_prof_summary.each do |summary|
           %li= summary.summary
     - if @candidate.candidate_education.empty?
-      %h4 Please specify at least one education in your resume.
+      - if current_candidate.admin_flag
+        %h4 This candidate has not specified any education in the resume.
+      - else
+        %h4 Please specify at least one education in your resume.
       .divider
     - else
       %h4 Education
@@ -76,8 +87,10 @@
 
     - else
       %br
-      %h4 Please create at least one labor project.
-
+      - if current_candidate.admin_flag
+        %h4 This candidate has not created a labor project.
+      - else
+        %h4 Please create at least one labor project.
       .divider
     %br
     - if @candidate.candidate_languages.count > 0
@@ -91,7 +104,10 @@
             =language_level_list[candidate_language.level_id][0]
     - else
       %br
-      %h4 Please create at least one language in your resume.
+      - if current_candidate.admin_flag
+        %h4 This candidate has not created a language in the resume.
+      - else
+        %h4 Please create at least one language in your resume.
       .divider 
     %br
     - if @candidate.candidate_certifications.count > 0
@@ -106,7 +122,10 @@
       %br
     - else
       %br
-      %h4 Please create at least one certification in your resume.
+      - if current_candidate.admin_flag
+        %h4 This candidate has not created a certification in the resume.
+      - else
+        %h4 Please create at least one certification in your resume.
   .clear
   - if(current_candidate.admin_flag)
     = form_for(:search, :url=>{:action=>'staff_update'}, :html => {:id => "updateCandidateStaffForm"}) do |f|
@@ -130,9 +149,9 @@
           %td
             Recruited In:
           %td
-            = f.select :office_id, options_from_collection_for_select(Office.order("id").all, "id", "name", @candidate.office_id)
+            = f.select :office_id, options_from_collection_for_select(Office.order("id").all, "id", "name", @candidate.office_id), {}, {:disabled => !@candidate.currently_in_4Source}
       %br
-      = submit_tag "Update"
+      = submit_tag "Update", :class => "btn-primary"
       %br
       %br
 <!-- Sidebar -->
