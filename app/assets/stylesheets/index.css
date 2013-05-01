@@ -1323,9 +1323,9 @@ select, input{width: 230px;}
 }
 
 .project_right {
-	padding: 0 10px;
+	
 	width: 25%;
-	text-align: right;
+	
 	display: inline-block;
 	/*padding-top: 0;*/
 }
