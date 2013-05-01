@@ -6,11 +6,11 @@
       = link_to 'Home', root_path
       = raw '&raquo;'
     %li
-      = link_to_resume('Resume', current_candidate.id, :action => 'resume')
+      = "Catalogs" 
       = raw '&raquo;'
     %li
       = raw '<em>'
-      Education Degrees
+      = link_to "Education Degrees", :controller => "educ_degree", :action => "index"
       = raw '</em>'
     .clear
   %h3.page_headline
@@ -28,6 +28,9 @@
         = link_to "New", :controller => "educ_degree", :action => "new"
     %br
     %br
+    %br
+    = check_box_tag "approved_flag_all", @degrees.count.to_s()
+    Select all
     -if @degrees.length == 0
       .educationEmptyTitle
         Please Insert at Least one Education Degree
@@ -38,11 +41,8 @@
             %tr
               %th
                 Approved&nbsp;&nbsp;&nbsp;&nbsp;
-                = check_box_tag "approved_flag_all", @degrees.count.to_s()
               %th
                 Name
-              %th
-                Description
               %th
                 Approved By
           %tbody
@@ -53,8 +53,6 @@
                   = check_box_tag "id" + i.to_s(), row.id.to_s(), row.approved_flag, :name => "approved_flag", :class => "id" + i.to_s()
                 %td
                   = row.name
-                %td
-                  = row.description
                 %td 
                   = row.approved_by
               -i = i + 1

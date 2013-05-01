@@ -42,9 +42,13 @@
           %td= cand_inter.result
           %td= cand_inter.comments
           %td
-            = link_to "Edit", :controller => "candidates_interviews", :action => "edit", id:@candidate.id, :cand_inter_id=> cand_inter.id
-            &nbsp;&nbsp;&nbsp;
-            = link_to "Delete", url_options = { :controller => "candidates_interviews", :action => "delete", id:@candidate.id, :cand_inter_id=> cand_inter.id }, html_options = { :confirm => "Are you sure you want to delete this interview?" }
+            .btn-group
+              %button.btn.btn-primary
+                = link_to "Edit", :controller => "candidates_interviews", :action => "edit", id:@candidate.id, :cand_inter_id=> cand_inter.id
+              %button.btn.btn-primary.dropdown-toggle
+                %span.caret
+              %ul.dropdown-menu
+                = link_to "Delete", url_options = { :controller => "candidates_interviews", :action => "delete", id:@candidate.id, :cand_inter_id=> cand_inter.id }, html_options = { :confirm => "Are you sure you want to delete this interview?" }
     %br
   - else
     %h4 Please create at least one interview.

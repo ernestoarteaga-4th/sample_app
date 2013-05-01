@@ -1,2 +1,8 @@
-// Place all the behaviors and hooks related to the matching controller here.
-// All this logic will automatically be available in application.js.
+function checkMaxlength(object) {
+  var iMaxLen = parseInt(object.getAttribute('maxlength'));
+  var iCurLen = object.value.length;
+
+  if(object.getAttribute && iCurLen > iMaxLen) {
+    object.value = object.value.substring(0, iMaxLen);
+  }
+}
