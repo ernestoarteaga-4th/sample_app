@@ -9,7 +9,7 @@
       = raw('<em>Catalogs</em>')
       = raw '&raquo;'
     %li
-      = link_to "Interviewers", :controller => "interviewers", :action => "index", :id => current_candidate.id
+      = link_to "Interviewer", :controller => "interviewers", :action => "index", :id => current_candidate.id
       = raw '&raquo;'
     %li= raw('<em>Edit</em>')
     .clear
@@ -36,6 +36,6 @@
       = f.text_field :name
     .actions
       %br
-      = f.submit "Update"
+      = f.submit "Update", :class => "btn-primary"
 <!-- Sidebar -->
 = render 'shared/sidebar_signed'

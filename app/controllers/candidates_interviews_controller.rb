@@ -15,10 +15,10 @@ class CandidatesInterviewsController < ApplicationController
     if request.post?
       @cand_inter = @candidate.candidates_interviews.build(params[:cand_inter])
       if @cand_inter.save
-        flash[:success] = "Project was saved successfully."
+        flash[:success] = "The interview was saved successfully."
         render :index
       else
-        flash[:notice] = "An error occurred while the system save the project."
+        flash[:notice] = "An error occurred while the system save the interview data."
       end
     else
       @cand_inter  = CandidatesInterview.new
@@ -37,7 +37,7 @@ class CandidatesInterviewsController < ApplicationController
         flash[:success] = "Interview was saved successfully."
         render 'index'
       else
-        flash[:notice] = "An error occurred while the system save the project."
+        flash[:notice] = "An error occurred while the system save the interview."
       end
     else
       @candidate = Candidate.find(params[:id])

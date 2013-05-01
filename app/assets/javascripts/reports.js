@@ -35,31 +35,17 @@ $(document).ready(function() {
 $(document).ready(function() {
   $("#isRecruited").click(function() {
     if(this.checked) {
-      $("#search_hire_date_2i").removeAttr('disabled');
-      $("#search_hire_date_3i").removeAttr('disabled');
-      $("#search_hire_date_1i").removeAttr('disabled');
-      $("#search_start_date_2i").removeAttr('disabled');
-      $("#search_start_date_3i").removeAttr('disabled');
-      $("#search_start_date_1i").removeAttr('disabled');
-      $("#search_recruited_date_2i").removeAttr('disabled');
-      $("#search_recruited_date_3i").removeAttr('disabled');
-      $("#search_recruited_date_1i").removeAttr('disabled');
-      $("#search_placeAssignment").removeAttr('disabled');
-      $("#search_office_id").removeAttr('disabled');
+      $("#date_processing_from").removeAttr('disabled');
+      $("#date_processing_to").removeAttr('disabled');
+      $("#hire_date").removeAttr('disabled');
+      $("#start_date").removeAttr('disabled');
     }
 
     else {
-      $("#search_hire_date_2i").attr('disabled', 'disabled');
-      $("#search_hire_date_3i").attr('disabled', 'disabled');
-      $("#search_hire_date_1i").attr('disabled', 'disabled');
-      $("#search_start_date_2i").attr('disabled', 'disabled');
-      $("#search_start_date_3i").attr('disabled', 'disabled');
-      $("#search_start_date_1i").attr('disabled', 'disabled');
-      $("#search_recruited_date_2i").attr('disabled', 'disabled');
-      $("#search_recruited_date_3i").attr('disabled', 'disabled');
-      $("#search_recruited_date_1i").attr('disabled', 'disabled');
-      $("#search_placeAssignment").attr('disabled', 'disabled');
-      $("#search_office_id").attr('disabled', 'disabled');
+      $("#date_processing_from").attr('disabled', 'disabled');
+      $("#date_processing_to").attr('disabled', 'disabled');
+      $("#hire_date").attr('disabled', 'disabled');
+      $("#start_date").attr('disabled', 'disabled');
     }
   });         
 });

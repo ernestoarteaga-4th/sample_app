@@ -78,7 +78,7 @@ class Candidate < ActiveRecord::Base
   has_many        :candidate_languages, :dependent => :destroy
   has_many        :candidate_education,      :dependent => :destroy
 
-  has_many        :candidate_prof_summary,      :dependent => :destroy
+  has_one         :candidate_prof_summary,  :dependent => :destroy
   has_many        :candidates_interviews,   :foreign_key => "candidate_id",
                                             :dependent => :destroy
 

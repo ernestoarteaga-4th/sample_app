@@ -28,7 +28,7 @@
       = @candidate.email
   %br
   .experience_wrapper
-    - if @candidate.candidate_prof_summary.empty?
+    - if @candidate.candidate_prof_summary.nil?
       - if current_candidate.admin_flag
         %h4 This candidate has not a summary in the resume.
       - else
@@ -40,8 +40,7 @@
       %h4 Professional Summary
       .divider-headline
       %ul
-        - @candidate.candidate_prof_summary.each do |summary|
-          %li= summary.summary
+        %li= @candidate.candidate_prof_summary.summary
     - if @candidate.candidate_education.empty?
       - if current_candidate.admin_flag
         %h4 This candidate has not specified any education in the resume.

@@ -49,7 +49,28 @@ class CandidateLanguagesController < ApplicationController
   end
   
   def destroy
-    CandidateLanguage.find(params[:id]).destroy
+    CandidateLanguage.find(params[:candidate_language]).destroy
     redirect_to request.referer
+  end
+
+  def edit
+    @candidate = current_candidate
+    
+    
+    if request.post?
+      @candidate = Candidate.find(params[:id])
+      @language = CandidateLanguage.find(params[:candidate_language])
+      @language.update_attributes(params[:language])
+      if @language.save
+        flash[:success] = "Language was saved successfully."
+        @projects_items = @candidate.projects
+        render :index
+      else
+        flash[:notice] = "An error occurred while the system save the language."
+      end
+    else
+      @language = CandidateLanguage.find(params[:candidate_language])
+      @error = @language.errors
+    end
   end
 end

@@ -1,5 +1,6 @@
 <!-- Content -->      
 #content
+  = stylesheet_link_tag "flick/jquery-ui-1.10.2.custom" 
   %img(src="http://www.4thsource.com//public/images/subheader_services.jpg" alt="Sub Header" class="subheader")
   %ul#breadcrumbs
     %li
@@ -32,12 +33,14 @@
                   %td{:width => "120px"}
                     = f.label "From: "
                   %td
-                    = date_select "search", "date_processing_from", {:start_year => 1950, :order => [:month, :day, :year]}, {:class => "dateFormStyle", :disabled => true}
+                    //= date_select "search", "date_processing_from", {:start_year => 1950, :order => [:month, :day, :year]}, {:class => "dateFormStyle", :disabled => true}
+                    = f.text_field :seach, :id => 'date_processing_from', :readonly => 'true', :style => 'cursor: pointer; background-color: white'
                 %tr
                   %td
                     = f.label "To: "
                   %td
-                    = f.date_select :date_processing_to, {:start_year => 1950, :order => [:month, :day, :year]}, {:class => "dateFormStyle", :disabled => true}
+                    // = f.date_select :date_processing_to, {:start_year => 1950, :order => [:month, :day, :year]}, {:class => "dateFormStyle", :disabled => true}
+                    = f.text_field :search, :id => 'date_processing_to', :readonly => 'true', :style => 'cursor: pointer; background-color: white'
         %tr
           %td{:colspan => 3}
             .field
@@ -51,12 +54,14 @@
                   %td{:width => "120px"}
                     = f.label "Hire Date: "
                   %td
-                    = f.date_select :hire_date, {:start_year => 1950, :order => [:month, :day, :year]}, {:class => "dateFormStyle", :disabled => true}
+                    //= f.date_select :hire_date, {:start_year => 1950, :order => [:month, :day, :year]}, {:class => "dateFormStyle", :disabled => true}
+                    = f.text_field :seach, :id => 'hire_date', :readonly => 'true', :style => 'cursor: pointer; background-color: white'
                 %tr
                   %td
                     = f.label "Start Date: "
                   %td
-                    = f.date_select :start_date, {:start_year => 1950, :order => [:month, :day, :year]}, {:class => "dateFormStyle", :disabled => true}
+                    //= f.date_select :start_date, {:start_year => 1950, :order => [:month, :day, :year]}, {:class => "dateFormStyle", :disabled => true}
+                    = f.text_field :seach, :id => 'start_date', :readonly => 'true', :style => 'cursor: pointer; background-color: white'
                 %tr
                   %td
                     = "Assignment's place: "
@@ -105,5 +110,13 @@
        
     %br
   .clear
+  :javascript
+    jQuery(document).ready(function(){ 
+      $("#date_processing_from").datepicker({changeMonth: true,changeYear: true, dateFormat: 'yy-mm-dd', yearRange: "1920:2013"});
+      $("#date_processing_to").datepicker({changeMonth: true,changeYear: true, dateFormat: 'yy-mm-dd', yearRange: "1920:2013"});
+      $("#hire_date").datepicker({changeMonth: true,changeYear: true, dateFormat: 'yy-mm-dd', yearRange: "1920:2013"});
+      $("#start_date").datepicker({changeMonth: true,changeYear: true, dateFormat: 'yy-mm-dd', yearRange: "1920:2013"});
+      
+    });
 <!-- Sidebar -->
 = render 'shared/sidebar_signed'

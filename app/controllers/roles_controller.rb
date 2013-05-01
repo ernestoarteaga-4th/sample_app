@@ -1,5 +1,4 @@
 class RolesController < ApplicationController
-  
   def index
     @roles = Role.all
   end
@@ -11,14 +10,18 @@ class RolesController < ApplicationController
       if @cat_role_rows.length > 0
         flash[:notice] = "The Role already exists"
       else
-        @role.approved_flag = true
-        @role.approved_by = current_candidate.first_name + " " + 
-                              current_candidate.middle_name + " " + 
-                              current_candidate.first_last_name + " " + 
-                              current_candidate.second_last_name
-        @role.save
-        @roles = Role.all
-        render 'index'
+        if params[:role][:name].strip == ""
+          flash[:notice] = "Name field is invalid."
+        else
+          @role.approved_flag = true
+          @role.approved_by = current_candidate.first_name + " " + 
+                                current_candidate.middle_name + " " + 
+                                current_candidate.first_last_name + " " + 
+                                current_candidate.second_last_name
+          @role.save
+          @role = Role.all
+          redirect_to File.join('/staff/', current_candidate.id.to_s(), '/roles')
+        end
       end
     else
       @role = Role.new
@@ -49,12 +52,13 @@ class RolesController < ApplicationController
     else
       @roles.each do |row|
         @role = params["approved_flag_" + row.id.to_s()]
+
         if(@role != nil)
           Role.delete(row.id)
         end
       end
     end
 
-    render 'index'
+    redirect_to File.join('/staff/', current_candidate.id.to_s(), '/roles')
   end
 end
