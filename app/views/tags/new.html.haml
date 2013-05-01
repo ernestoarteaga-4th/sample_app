@@ -6,11 +6,11 @@
       = link_to 'Home', root_path
       = raw '&raquo;'
     %li
-      = link_to_resume('Resume', current_candidate.id, :action => 'resume')
+      = link_to 'Tags', '/staff/' + current_candidate.id.to_s + '/tags'
       = raw '&raquo;'
     %li
       = raw '<em>'
-      Tag
+      Add New Tag
       = raw '</em>'
     .clear
   %h3.page_headline
@@ -24,7 +24,7 @@
   %br
   %br
   %h3.page_headline
-    New:
+    New Tag:
   = form_for(:tag, :url=>{:action=>'create'}, :html => {:multipart => true, :id => "TagDegreeForm"}) do |f|
     .field
       = f.label :name
@@ -40,6 +40,6 @@
       %br
       = f.text_field :description
     .actions
-      = f.submit "Accept"
+      = f.submit "Accept", :class => 'btn-primary'
 <!-- Sidebar -->
 = render 'shared/sidebar_signed'

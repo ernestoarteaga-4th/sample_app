@@ -1,8 +1,6 @@
 <!-- Content -->
 #content
   = stylesheet_link_tag "flick/jquery-ui-1.10.2.custom" 
-
-  
   %img(src="http://www.4thsource.com//public/images/subheader_services.jpg" alt="Sub Header" class="subheader")
   %ul#breadcrumbs
     %li
@@ -70,17 +68,35 @@
         .field
           = f.label :email
         = f.text_field :email, {:disabled => 'true'}
-      .span3
+      .span5
+        .field
+          = f.label "alternate email"
+        = f.text_field :email_alternate_1
+    .row-fluid
+      .span5
+        .field
+          = f.label "alternate email"
+        = f.text_field :email_alternate_2
+      .span5
+        .field
+          = f.label "alternate email"
+        = f.text_field :email_alternate_3
+
+    .divider
+    .row-fluid
+      .span5
         .field
           = f.label :password
           .mandatory *
-        = f.password_field :password
-      .span3
+          %br
+          = f.password_field :password
+      .span5
         .field
           = f.label :password_confirmation
           .mandatory *
+          %br
         = f.password_field :password_confirmation
-    .row-fluid
+
     %br
     .divider
     .row-fluid

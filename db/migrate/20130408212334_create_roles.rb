@@ -8,10 +8,19 @@ class CreateRoles < ActiveRecord::Migration
 
       t.timestamps
     end
-
-  Role.create(:name => 'Developer', :description => 'Responsible of make applications.', :approved_flag => 1, :approved_by => 'System')
-  Role.create(:name => 'Manager', :description => 'Responsible of coordinate the team.', :approved_flag => 1, :approved_by => 'System')
-  Role.create(:name => 'Tester', :description => 'Responsible of test applications', :approved_flag => 1, :approved_by => 'System')
+  
+  Role.create(:name => "Architect", :description => '', :approved_flag => 1, :approved_by => 'System')
+  Role.create(:name => "Consultant", :description => '', :approved_flag => 1, :approved_by => 'System')
+  Role.create(:name => "Project manager", :description => '', :approved_flag => 1, :approved_by => 'System')
+  Role.create(:name => "Analyst Programmer", :description => '', :approved_flag => 1, :approved_by => 'System')
+  Role.create(:name => "IT specialist", :description => '', :approved_flag => 1, :approved_by => 'System')
+  Role.create(:name => "Data seeding specialist", :description => '', :approved_flag => 1, :approved_by => 'System')
+  Role.create(:name => "System Analyst", :description => '', :approved_flag => 1, :approved_by => 'System')
+  Role.create(:name => "Project Leader", :description => '', :approved_flag => 1, :approved_by => 'System')
+  Role.create(:name => "developer", :description => '', :approved_flag => 1, :approved_by => 'System')
+  Role.create(:name => "IT Manager", :description => '', :approved_flag => 1, :approved_by => 'System')
+  Role.create(:name => "Editor", :description => '', :approved_flag => 1, :approved_by => 'System')
+  Role.create(:name => "Application Support", :description => '', :approved_flag => 1, :approved_by => 'System')
   
   end
 end

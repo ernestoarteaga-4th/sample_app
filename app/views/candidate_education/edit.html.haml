@@ -56,6 +56,10 @@
       = f.text_field :date_out, :id => 'date_out', :readonly => 'true', :style => 'cursor: pointer; background-color: white', :value => @e.try(:date_out).try(:strftime,'%Y-%m-%d')
     .actions
       = f.submit "Update", :class => "btn-primary"
+    %br
+    %br
+    %br
+    %br
   :javascript
     jQuery(document).ready(function(){ 
       $( "#date_in" ).datepicker({

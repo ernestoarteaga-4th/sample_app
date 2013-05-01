@@ -112,6 +112,8 @@ SampleApp::Application.routes.draw do
   match "/candidates/:id/education_degree/destroy" => 'educ_degree#destroy'
   match "/candidates/:id/education_degree/action" => 'educ_degree#action'
 
+  match "/candidates/:id/candidate_certifications/new" => 'candidate_certifications#new'
+
   # Candidate
   match "/staff/:id/candidates" => 'staff_candidates#index'
   match "/staff/:id/candidates/detail" => 'staff_candidates#search'
