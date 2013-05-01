@@ -6,7 +6,7 @@
       = link_to 'Home', root_path
       = raw '&raquo;'
     %li
-      = link_to_resume('Resume', current_candidate.id, :action => 'resume')
+      = "Catalogs" 
       = raw '&raquo;'
     %li
       = raw '<em>'
@@ -42,8 +42,6 @@
               %th
                 Name
               %th
-                Description
-              %th
                 Approved By
           %tbody
             -i = 0
@@ -51,10 +49,8 @@
               %tr
                 %td
                   = check_box_tag "id" + i.to_s(), row.id.to_s(), row.approved_flag, :name => "approved_flag_" + row.id.to_s(), :class => "id" + i.to_s()
-                %td
-                  = row.name
-                %td
-                  = row.description
+                %td              
+                  = row.name                                   
                 %td 
                   = row.approved_by
               -i = i + 1
