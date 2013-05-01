@@ -6,10 +6,11 @@
       = link_to 'Home', root_path 
       = raw '&raquo;'
     %li
-      = raw('<em>Catalogues</em>')
+      = raw('<em>Catalogs</em>')
       = raw '&raquo;'
     %li
-      = raw('<em>Interviewer</em>')
+      = link_to "Interviewers", :controller => "interviewers", :action => "index", :id => current_candidate.id
+      = raw '&raquo;'
     %li= raw('<em>Edit</em>')
     .clear
   %h3.page_headline 

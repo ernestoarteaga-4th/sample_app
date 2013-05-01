@@ -9,7 +9,7 @@ class InterviewsTypesController < ApplicationController
       @interview_type = InterviewsType.new(params[:interviewtype])
       if @interview_type.save
         flash[:success] = "Interview type was saved successfully."
-        render 'index'
+        redirect_to File.join('/staff/', current_candidate.id.to_s, '/interviews_types')
       else
         flash[:notice] = "An error occurred while the system save the interview type."
       end
@@ -25,7 +25,7 @@ class InterviewsTypesController < ApplicationController
       @interview_type.update_attributes(params[:interview_type])
       if @interview_type.save
         flash[:success] = "Interview type was saved successfully."
-        render 'index'
+        redirect_to File.join('/staff/', current_candidate.id.to_s, '/interviews_types')
       else
         flash[:notice] = "An error occurred while the system save the interview type."
       end

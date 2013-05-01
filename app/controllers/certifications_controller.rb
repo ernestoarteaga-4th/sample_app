@@ -10,14 +10,18 @@ class CertificationsController < ApplicationController
       if @cat_certification_rows.length > 0
         flash[:notice] = "The Certification already exists"
       else
-        @certification.approved_flag = true
-        @certification.approved_by = current_candidate.first_name + " " + 
-                              current_candidate.middle_name + " " + 
-                              current_candidate.first_last_name + " " + 
-                              current_candidate.second_last_name
-        @certification.save
-        @certifications = Certification.all
-        render 'index'
+        if params[:certification][:name].strip == ""
+          flash[:notice] = "Name field is invalid."
+        else
+          @certification.approved_flag = true
+          @certification.approved_by = current_candidate.first_name + " " + 
+                                current_candidate.middle_name + " " + 
+                                current_candidate.first_last_name + " " + 
+                                current_candidate.second_last_name
+          @certification.save
+          @certifications = Certification.all
+          redirect_to File.join('/staff/', current_candidate.id.to_s(), '/certifications')
+        end
       end
     else
       @certification = Certification.new
@@ -55,6 +59,6 @@ class CertificationsController < ApplicationController
       end
     end
 
-    render 'index'
+    redirect_to File.join('/staff/', current_candidate.id.to_s(), '/certifications')
   end
 end

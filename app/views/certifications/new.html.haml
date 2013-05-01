@@ -6,25 +6,28 @@
       = link_to 'Home', root_path
       = raw '&raquo;'
     %li
-      = link_to_resume('Resume', current_candidate.id, :action => 'resume')
+      = link_to "Certifications", :controller => "certifications", :action => "index"
       = raw '&raquo;'
     %li
       = raw '<em>'
-      Certifications
+      New Certification
       = raw '</em>'
     .clear
   %h3.page_headline
     %i.iconCertification
     .h3-page-headline
-      Certifications
+      Certifications      
   .divider-headline
-  %br
+  #flash
+    - flash.each do |key, value|
+      .flash{:class => key}= value  
+  %br  
     %strong
       = link_to "Back", :controller => "certifications", :action => "index"
   %br
   %br
   %h3.page_headline
-    New:
+    New
   = form_for(:certification, :url=>{:action=>'new'}, :html => {:multipart => true, :id => "CertificationForm"}) do |f|
     //= render 'shared/error_messages', :object => f.object
     .field
@@ -36,6 +39,6 @@
       %br
       = f.text_field :description
     .actions
-      = f.submit "Accept"
+      = f.submit "Accept", {"class"=>"btn btn-primary"}
 <!-- Sidebar -->
 = render 'shared/sidebar_signed'

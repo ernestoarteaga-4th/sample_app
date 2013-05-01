@@ -7,5 +7,5 @@ class Certification < ActiveRecord::Base
   :approved_flag,
   :approved_by
 
-  validates :name, :presence => true
+  validate :name, :allow_blank => false
 end

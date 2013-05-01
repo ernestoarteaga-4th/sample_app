@@ -12,6 +12,10 @@ class EducDegreeController < ApplicationController
 
     @cat_degree_rows = EducDegree.where("name = ?", @degree.name)
 
+    if @degree.name.blank? == true
+       flash[:notice] = "Invalid education degree name." 
+    end
+
     if @cat_degree_rows.length > 0
       flash[:notice] = "The Education Degree Already Exists"
 

@@ -6,7 +6,7 @@ class ExportExcelController < ApplicationController
     
     csv_string = CSV.generate do |csv|
          csv << ["Name","E-mail", "Phone","Location", "Willing to relocate","Status", 
-           "Visa", "Passport", "Rate", "English Score", "Result Tech Interview", 
+           "Visa", "Passport", "Rate (Salary expectation)", "English Score", "Result Tech Interview", 
            "Result Managerial Interview", "Current Salary", "Marital Status"]
          @candidates.each do |candi|
            

@@ -11,7 +11,11 @@ class LanguagesController < ApplicationController
     @language = Language.new(params[:language])
 
     @cat_language_rows = Language.where("name = ?", @language.name)
-
+    
+    if @language.name.blank? == true
+       flash[:notice] = "Invalid language name." 
+    end
+    
     if @cat_language_rows.length > 0
       flash[:notice] = "The Language Already Exists"
 
