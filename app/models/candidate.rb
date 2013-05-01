@@ -53,7 +53,10 @@ class Candidate < ActiveRecord::Base
   :currently_in_4Source,
   :recruited_at,
   :started_at,
-  :office_id
+  :office_id,
+  :email_alternate_1,
+  :email_alternate_2,
+  :email_alternate_3
 
   has_many        :microposts,         :dependent => :destroy   
   has_many        :followings,         :foreign_key => "follower_id",

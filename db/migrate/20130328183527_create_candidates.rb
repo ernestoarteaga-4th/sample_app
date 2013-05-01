@@ -54,6 +54,9 @@ class CreateCandidates < ActiveRecord::Migration
       t.datetime :recruited_at
       t.datetime :started_at
       t.integer :office_id
+      t.string :email_alternate_1
+      t.string :email_alternate_2
+      t.string :email_alternate_3
 
       t.timestamps
     end
