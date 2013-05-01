@@ -9,10 +9,7 @@ class CandidateCertificationsController < ApplicationController
   end
 
   def new
-  	logger.debug "*******************new**********************"
-    /@certification  = Certification.new
-    @error = @certification.errors
-    @title = "New Certification"/
+  	
   end
 
   def destroy
@@ -66,12 +63,13 @@ class CandidateCertificationsController < ApplicationController
       if(@candidate_certification.save)
         flash[:success] = "Certification was saved successfully."
       else
-        flash[:notice] = "An error occurred while the system save the languages#{@candidate_language.errors.as_json}"
+        flash[:notice] = "An error occurred while the system save the certification #{@candidate_language.errors.as_json}"
       end
     else
-      flash[:notice] = "Select a language or add manually"
+      flash[:notice] = "You already have this certification in your list"
     end
-    redirect_to request.referer
+    #redirect_to request.referer
+    redirect_to File.join('/candidates/', current_candidate.id.to_s(), '/candidate_certifications')
   end
 end
 
