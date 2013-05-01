@@ -28,8 +28,6 @@
         = link_to "New", :controller => "languages", :action => "new"
     %br
     %br
-    = check_box_tag "approved_flag_all", @languages.count.to_s()
-    Select all
     -if @languages.length == 0
       .educationEmptyTitle
         Please Insert at Least one Language
@@ -55,6 +53,10 @@
                 %td 
                   = row.approved_by
               -i = i + 1
+        &nbsp;&nbsp;
+        = check_box_tag "approved_flag_all", @languages.count.to_s()
+        Select all
+        %br
         %br
         = submit_tag "Update", :name => 'update_button', :class => 'btn-primary'
         &nbsp;&nbsp;&nbsp;&nbsp;
