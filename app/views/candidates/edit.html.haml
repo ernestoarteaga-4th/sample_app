@@ -87,14 +87,14 @@
       .span5
         .field
           = f.label :password
-          .mandatory *
-          %br
-          = f.password_field :password
+        %br
+        = f.password_field :password
       .span5
         .field
-          = f.label :password_confirmation
+          = f.label 'Confirmation'
+          \(
           .mandatory *
-          %br
+          If write new password)
         = f.password_field :password_confirmation
 
     %br
@@ -138,24 +138,28 @@
         .field
           .alignCheckBox= f.check_box :is_willing_to_relocate
           .alignCheckBox= f.label :is_willing_to_relocate
-        .field
-          .alignCheckBox= f.check_box :is_willing_to_travel
-          .alignCheckBox= f.label :is_willing_to_travel 
       .span3
         .field
           .alignCheckBox= f.check_box :has_visa
           .alignCheckBox= f.label :has_visa
-        .field
-          .alignCheckBox= f.check_box :has_passport
-          .alignCheckBox= f.label :has_passport
       .span3
         .visaContent
           .field#visaShowHide
             = f.label :visa_expiration_year
-            = f.text_field :visa_expiration_year
+            = f.text_field :visa_expiration_year, {:maxlength=>'4'}
+    .row-fluid 
+      .span3
+        .field
+          .alignCheckBox= f.check_box :is_willing_to_travel
+          .alignCheckBox= f.label :is_willing_to_travel
+      .span3
+        .field
+          .alignCheckBox= f.check_box :has_passport
+          .alignCheckBox= f.label :has_passport
+      .span3
         .field#passportShowHide
           = f.label :passport_expiration_year
-          = f.text_field :passport_expiration_year   
+          = f.text_field :passport_expiration_year, {:maxlength=>'4'}   
     %br
     .divider
     .row-fluid
@@ -174,12 +178,12 @@
       .span3
         .field.employedShowHide
           = f.label :current_salary
-          = f.text_field :current_salary
+          = f.text_field :current_salary, :maxlength=>'7', :value => (number_to_currency(@candidate.current_salary, :precision => 0) || "$0")
     .row-fluid
       .span3
         .field
           = f.label :salary_expectancy
-          = f.text_field :salary_expectancy, :value => (number_to_currency(@candidate.salary_expectancy, :precision => 2) || "$0.00")
+          = f.text_field :salary_expectancy, :maxlength=>'7', :value => (number_to_currency(@candidate.salary_expectancy, :precision => 0) || "$0")
     .row-fluid
       = f.label :comments
       = f.text_area :comments

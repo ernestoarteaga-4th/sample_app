@@ -111,7 +111,10 @@ class Candidate < ActiveRecord::Base
   
   #validates :gender,          :inclusion => { :in => %w(M F),
   #                            :message => "is invalid" }
-      
+  validates :passport_expiration_year,     :length => { :minimum => 4 }, :allow_nil => true,
+                                           :numericality => { :only_integer => true } 
+  validates :visa_expiration_year,     :length => { :minimum => 4 }, :allow_nil => true,
+                                       :numericality => { :only_integer => true }
   validates :zip_code,        :length => { :minimum => 5 }, :allow_nil => true,
                               :numericality => { :only_integer => true }
   validates :home_phone,      :format => { :with => phone_regex },
@@ -172,8 +175,12 @@ def validate
     (user && user.salt == cookie_salt) ? user : nil
   end
   
+  def current_salary=(num)
+    self[:current_salary] = num.to_s.scan(/\b-?[\d]+/).join.to_f
+  end
+  
   def salary_expectancy=(num)
-    self[:salary_expectancy] = num.to_s.scan(/\b-?[\d.]+/).join.to_f
+    self[:salary_expectancy] = num.to_s.scan(/\b-?[\d]+/).join.to_f
   end
 
   private

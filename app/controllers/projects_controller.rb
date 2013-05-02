@@ -24,11 +24,11 @@ class ProjectsController < ApplicationController
       @project = Project.find(params[:project_id])
       @project.update_attributes(params[:project])
       if @project.save
-        flash[:success] = "Project was saved successfully."
+        flash.now[:success] = "Project was saved successfully."
         @projects_items = @candidate.projects
         render :index
       else
-        flash[:notice] = "An error occurred while the system save the project."
+        flash.now[:notice] = "An error occurred while the system save the project."
       end
     else
       @project = Project.find_by_id(params[:project_id])
@@ -51,11 +51,11 @@ class ProjectsController < ApplicationController
       @candidate = Candidate.find(params[:id])
       @project = @candidate.projects.build(params[:project])
       if @project.save
-        flash[:success] = "Project was saved successfully."
+        flash.now[:success] = "Project was saved successfully."
         @projects_items = @candidate.projects
         render :index
       else
-        flash[:notice] = "An error occurred while the system save the project."
+        flash.now[:notice] = "An error occurred while the system save the project."
       end
     else
       @project  = Project.new
@@ -73,11 +73,11 @@ class ProjectsController < ApplicationController
       @project.update_attributes(params[:project])
       @despues= @project.name
       if @project.save
-        flash[:success] = "Project was saved successfully."
+        flash.now[:success] = "Project was saved successfully."
         @projects_items = @candidate.projects
         render :index
       else
-        flash[:notice] = "An error occurred while the system save the project."
+        flash.now[:notice] = "An error occurred while the system save the project."
       end
     else
       @project = Project.find_by_id(params[:project_id])

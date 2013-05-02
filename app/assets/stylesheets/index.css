@@ -1306,8 +1306,10 @@ select, input{width: 230px;}
 	color: #222;
 }
 
-.project-description {
+#project-description {
 	margin: 4px 0;
+	width: 60%;
+	display: inline-block;
 }
 
 .project_wrapper {
@@ -1455,4 +1457,9 @@ select, input{width: 230px;}
 	font-size: 12px;
 	font-weight: bold;
 	display: inline;
+}
+.field_with_errors{
+	display: inline;
+	background-color: #ffa;
+	color: #f00;
 }
