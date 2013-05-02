@@ -32,8 +32,8 @@
         %h6= project.name
       .project_right
         .btn-group
-          %button.btn.btn-primary
-            = link_to "Edit", :controller => "projects", :action => "show", id:@candidate.id, :project_id=> project.id
+          //%button.btn.btn-primary
+          = link_to "Edit", url_options = {:controller => "projects", :action => "show", id:@candidate.id, :project_id=> project.id}, html_options = {:tabindex =>"-1", :class=>"btn btn-primary ajax-modal", :style=>"color:white;"}
           %button.btn.btn-primary.dropdown-toggle
             %span.caret
           %ul.dropdown-menu

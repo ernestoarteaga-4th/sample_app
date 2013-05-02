@@ -49,8 +49,8 @@
                   = row.description
                 %td
                   .btn-group
-                    %button.btn.btn-primary
-                      = link_to "Edit", :controller => "tags", :action => "edit", :id => row.id, :name => row.name, :type_tag => row.type_tag, :description => row.description
+                    //%button.btn.btn-primary
+                    = link_to "Edit", url_options = {:controller => "tags", :action => "edit", :id => row.id, :name => row.name, :type_tag => row.type_tag, :description => row.description}, html_options = {:tabindex =>"-1", :class=>"btn btn-primary ajax-modal", :style=>"color:white;"}
                     %button.btn.btn-primary.dropdown-toggle
                       %span.caret
                     %ul.dropdown-menu
