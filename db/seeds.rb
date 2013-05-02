@@ -17,10 +17,10 @@ if File.exist?(path_to_file)
 	    first = false
 	  else
 #if all row is blank don't show
-		if row[0].blank? and row[1].blank? and row[2].blank? Red TabsRed Tabsand row[3].blank? and row[4].blank? and row[5].blank?  and row[6].blank?
+		if row[0].blank? and row[1].blank? and row[2].blank? and row[3].blank? and row[4].blank? and row[5].blank?  and row[6].blank?
 #puts "blank"
 		else
-			if Candidate.find_by_id(row[0]).nil? or EducDegreRed Tabse.find_by_id(row[3]).nil?
+			if Candidate.find_by_id(row[0]).nil? or EducDegree.find_by_id(row[3]).nil?
 				puts "Candidate id: " + row[0].to_s + " or Education Degree id: " + row[3].to_s + " , No exist in database"
 			else
 				@candidate = Candidate.find_by_id(row[0])
@@ -252,8 +252,8 @@ if File.exist?(path_to_file) and File.exist?(path_to_file2)
 							msg2 = "Candidate: " + @candidate.id.to_s + " - " + @candidate.name + " -- Project Name:  " + row[2] + " -- Role id: " + row2[3].to_s
 
 							@projectsrole  = ProjectsRole.new
-							@projectsrole.projects_id = @project.id
-							@projectsrole.roles_id = row2[3]
+							@projectsrole.project_id = @project.id
+							@projectsrole.role_id = row2[3]
 							if !row2[4].blank?
 								@projectsrole.date_in = row2[4].to_date	
 							end
@@ -274,7 +274,7 @@ if File.exist?(path_to_file) and File.exist?(path_to_file2)
 											msg3 = "Candidate: " + @candidate.id.to_s + " - " + @candidate.name + " -- Project Name:  " + row[2] + " -- Role id: " + row2[3].to_s + " -- Tag id: " + row3[3]
 
 											@projtag = ProjectsTag.new
-											@projtag.projects_roles_id = @projectsrole.id
+											@projtag.projects_role_id = @projectsrole.id
 											@projtag.tags_id = row3[3]
 											@projtag.description = row3[4]											
 											if !row3[5].blank?
