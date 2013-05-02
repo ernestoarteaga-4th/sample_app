@@ -147,7 +147,7 @@ $(document).ready(function() {
   $('#candidates_search_table').dataTable({
       "bPaginate": false,
       "bLengthChange": false,
-      "bFilter": false,
+      "bFilter": true,
       "bInfo": false
     });
 });

@@ -8,12 +8,12 @@
     %li
       = raw('<em>Report</em>')
       = raw '&raquo;'
-    %li= raw("<em>Search's candidates</em>")
+    %li= raw("<em>Advanced Search</em>")
     .clear
   %h3.page_headline 
     %i.iconReport
     .h3-page-headline
-      Search's candidates
+      Advanced Search
   .divider-headline
   #flash
     - flash.each do |key, value|
@@ -21,7 +21,8 @@
   .search
     = link_to "New search", :controller => "report", :action => "index"
     = raw ' &#124; '
-    = link_to "Export XLS", :controller => "ExportExcel", :action => "index"
+    = link_to "Export to Excel", :controller => "ExportExcel", :action => "index"
+    %br
     %br
     %br
     - if @candidates != nil
@@ -30,6 +31,20 @@
           %tr
             %th
               Name
+            %th
+              First
+              %br
+              Last
+              %br
+              Name
+            %th
+              Second
+              %br
+              Last
+              %br
+              Name
+            %th
+              Email
             %th
               Hired
             %th
@@ -40,7 +55,13 @@
           -@candidates.each do |row|
             %tr
               %td
-                = link_to row.first_name + " " + row.middle_name + " " + row.first_last_name + " " + row.second_last_name, "/candidates/#{row.id}/resume"
+                = link_to row.first_name + " " + row.middle_name, "/candidates/#{row.id}/resume"
+              %td
+                = row.first_last_name 
+              %td
+                = row.second_last_name
+              %td
+                = row.email
               %td
                 - if !row.recruited_at.nil?
                   = Date::MONTHNAMES[row.recruited_at.month]
