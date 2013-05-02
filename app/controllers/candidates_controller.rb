@@ -52,17 +52,20 @@ class CandidatesController < ApplicationController
   def create
     @candidate = Candidate.new(params[:candidate])
     @error = @candidate.errors
-    if @candidate.save && verify_recaptcha()
-      sign_in @candidate
-      #UserMailer.welcome_email(@user).deliver
-      flash[:success] = "Welcome to the Sample App!"
-      redirect_to root_path
-    else
-      if verify_recaptcha() == false
-        @candidate.errors[:recaptcha] = "is invalid"
-      end
+    if verify_recaptcha() == false
+      @candidate.errors[:recaptcha] = "is invalid"
       @title = "Sign up"
       render :new
+    else
+      if @candidate.save  
+        sign_in @candidate
+        #UserMailer.welcome_email(@user).deliver
+        flash[:success] = "Welcome to the Sample App!"
+        redirect_to root_path
+      else
+        @title = "Sign up"
+        render :new
+      end
     end
   end
 

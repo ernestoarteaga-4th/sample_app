@@ -12,6 +12,10 @@ class ResumeController < ApplicationController
     @candidate = Candidate.find(params[:id])
     if request.post?
       if !params[:candidate_prof_summary][:summary].nil? && params[:candidate_prof_summary][:summary].strip != ''
+        if @candidate.candidate_prof_summary.nil?
+          @candidate.candidate_prof_summary = CandidateProfSummary.new(:summary=>params[:candidate_prof_summary])
+          @candidate.candidate_prof_summary.save
+        end
         if @candidate.candidate_prof_summary.update_attributes(params[:candidate_prof_summary])
           flash.now[:success] = "Summary was saved successfully."
           render 'index'
