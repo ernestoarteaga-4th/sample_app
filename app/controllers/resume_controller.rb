@@ -22,11 +22,7 @@ class ResumeController < ApplicationController
         flash.now[:notice] = "Write a summary."
       end
     else
-      if !@candidate.candidate_prof_summary.nil?
-        @candidate_prof_summary=@candidate.candidate_prof_summary
-      else
-        @candidate_prof_summary=@candidate.candidate_prof_summary.new
-      end
+      @candidate_prof_summary=@candidate.candidate_prof_summary
     end
   end
   
