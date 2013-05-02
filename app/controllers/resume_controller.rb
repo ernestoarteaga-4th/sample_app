@@ -11,7 +11,7 @@ class ResumeController < ApplicationController
   def summary
     @candidate = Candidate.find(params[:id])
     if request.post?
-      if !params[:candidate_prof_summary][:summary].nil? && params[:candidate_prof_summary][:summary] != ''
+      if !params[:candidate_prof_summary][:summary].nil? && params[:candidate_prof_summary][:summary].strip != ''
         if @candidate.candidate_prof_summary.update_attributes(params[:candidate_prof_summary])
           flash.now[:success] = "Summary was saved successfully."
           render 'index'
@@ -22,7 +22,7 @@ class ResumeController < ApplicationController
         flash.now[:notice] = "Write a summary."
       end
     else
-        @candidate_prof_summary=@candidate.candidate_prof_summary
+      @candidate_prof_summary=@candidate.candidate_prof_summary
     end
   end
   
