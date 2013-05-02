@@ -66,3 +66,21 @@ $(document).ready(function() {
     return false;
   });
 });
+
+$(document).ready(function() {
+  $('#summaryForm').submit(function(e) { 
+    var $input = $('#candidate_prof_summary_summary');
+    var flag = false;
+
+    if($input.val().length >= 150) {
+      e.submit();
+    }
+
+    else {
+      alert("You have to capture at least 150 characters in the summary");
+      e.preventDefault();
+    }
+    
+    return false;
+  });
+});

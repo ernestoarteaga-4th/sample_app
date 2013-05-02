@@ -55,16 +55,16 @@ class CandidateLanguagesController < ApplicationController
 
   def edit
     @candidate = current_candidate
-    
+    @candidate_language_id = params[:candidate_language]
+    @language_name_selected = params[:language_name]
     
     if request.post?
-      @candidate = Candidate.find(params[:id])
       @language = CandidateLanguage.find(params[:candidate_language])
       @language.update_attributes(params[:language])
       if @language.save
         flash[:success] = "Language was saved successfully."
         @projects_items = @candidate.projects
-        render :index
+        redirect_to File.join('/candidates/', current_candidate.id.to_s(), '/resume/languages')
       else
         flash[:notice] = "An error occurred while the system save the language."
       end

@@ -48,8 +48,8 @@
               =language_level_list[candidate_language.level_id][0]
           %td
             .btn-group
-              %button.btn.btn-primary
-                = link_to "Edit", :controller => "candidate_languages", :action => "edit", :id => current_candidate.id, :candidate_language => candidate_language.id
+              //%button.btn.btn-primary
+              = link_to "Edit", url_options = {:controller => "candidate_languages", :action => "edit", :id => current_candidate.id, :candidate_language => candidate_language.id, :language_name => candidate_language.language.name}, html_options = {:tabindex =>"-1", :class=>"btn btn-primary ajax-modal", :style=>"color:white;"}
               %button.btn.btn-primary.dropdown-toggle
                 %span.caret
               %ul.dropdown-menu

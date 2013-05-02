@@ -26,7 +26,7 @@
           = link_to_candidates('Candidates', current_candidate.id, :action => 'candidates', :class => 'profile-sub_navigation')
         %li
           %i.iconReport
-          = link_to 'Report', '/staff/' + current_candidate.id.to_s() + '/report', :class => 'profile-sub_navigation'
+          = link_to 'Advanced search', '/staff/' + current_candidate.id.to_s() + '/report', :class => 'profile-sub_navigation'
         %li
           %i.iconSummary
             = label_tag 'Catalogs', nil, :class => 'profile-sub_navigation'

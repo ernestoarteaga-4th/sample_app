@@ -26,6 +26,7 @@ class EducDegreeController < ApplicationController
                             current_candidate.first_last_name + " " + 
                             current_candidate.second_last_name
       @degree.save
+      flash[:notice] = "The Education Degree was saved successful!!"
     end
 
     redirect_to File.join('/candidates/', current_candidate.id.to_s(), '/education_degree')

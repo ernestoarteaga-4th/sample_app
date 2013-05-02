@@ -1463,3 +1463,7 @@ select, input{width: 230px;}
 	background-color: #ffa;
 	color: #f00;
 }
+
+textarea {
+    resize: none;
+}

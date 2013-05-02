@@ -5,7 +5,7 @@ class ExportExcelController < ApplicationController
     @candidates = Candidate.find_by_sql(session["excelQry"]);    
     
     csv_string = CSV.generate do |csv|
-         csv << ["Name","E-mail", "Phone","Location", "Willing to relocate","Status", 
+         csv << ["Name", "First Last Name", "Second Last Name","E-mail", "Phone","Location", "Willing to relocate","Status", 
            "Visa", "Passport", "Rate (Salary expectation)", "English Score", "Result Tech Interview", 
            "Result Managerial Interview", "Current Salary", "Marital Status"]
          @candidates.each do |candi|
@@ -51,8 +51,9 @@ class ExportExcelController < ApplicationController
            end
            
            # Se genera la estructura del archivo CVS
-           csv << [ "#{candi.first_name}  #{candi.first_last_name}", candi.email, candi.cell_phone,
-              candi.city, candi.is_willing_to_relocate==true ? "yes":"no", @status,
+           csv << [ candi.first_name,  candi.first_last_name, candi.second_last_name, 
+             candi.email, candi.cell_phone,
+             candi.city, candi.is_willing_to_relocate==true ? "yes":"no", @status,
              candi.has_visa==true ? "yes":"no", candi.has_passport==true ? "yes":"no", 
              candi.salary_expectancy,@english, @techSkill , @managerial, candi.current_salary, 
              @maritalStatus]

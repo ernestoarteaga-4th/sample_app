@@ -35,8 +35,8 @@
             %strong
               = interview_type.name
           .btn-group
-            %button.btn.btn-primary
-              = link_to "Edit", :controller => "interviews_types", :action => "edit", :id => current_candidate.id, :interview_type_id => interview_type.id
+            //%button.btn.btn-primary
+            = link_to "Edit", url_options = {:controller => "interviews_types", :action => "edit", :id => current_candidate.id, :interview_type_id => interview_type.id}, html_options = {:tabindex =>"-1", :class=>"btn btn-primary ajax-modal", :style=>"color:white;"}
             %button.btn.btn-primary.dropdown-toggle
               %span.caret
             %ul.dropdown-menu

@@ -31,24 +31,26 @@
     = link_to_resume('Back', current_candidate.id, :action => 'languages', :class => 'profile-sub_navigation')
     %br
     %br
-    %br
-    %br 
     .experience_details_wrapper
       .experience_details_left
         = form_for(:language, :action => "edit", :html => {:class => "experience"}) do |f|
           %br
           %h4
-            Add a language in your resume
+            Edit your Level
           .divider_name
           %br
           .field
+            = f.hidden_field :candidate_language, :value=>@candidate_language_id
+          .field
             = f.label "Language"
             %br
-            = select_tag 'language_id', options_from_collection_for_select(Language.where({:approved_flag => [true]}).order("name").all, "id", "name")
-            %br
-            = label_tag "language_notinlist", "My language is not in the list, add manually", :style=>'cursor:pointer;'
-            = check_box_tag 'language_notinlist'
-            = text_field_tag 'lang_name'
+            = f.label @language_name_selected, class: "educationLabelTitle"
+          %br
+            //= f.label 'language_id', options_from_collection_for_select(Language.where({:approved_flag => [true]}).order("name").all, "id", "name", :selected => @language_id_selected.to_i)
+            //%br
+            //= label_tag "language_notinlist", "My language is not in the list, add manually", :style=>'cursor:pointer;'
+            //= check_box_tag 'language_notinlist'
+            //= text_field_tag 'lang_name'
           .field
             = f.label  :level
             %br

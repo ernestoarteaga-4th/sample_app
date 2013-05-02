@@ -46,7 +46,7 @@
                     = education.end_date.year                    
                   #experience-description
                     = education.degree_level
-                %br
+                /%br
               .experience_details_right
                 = link_to "Delete", :controller => "educations", :action => "destroy", :id=> education.id
           %br
