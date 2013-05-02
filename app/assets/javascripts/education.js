@@ -91,7 +91,7 @@ $(document).ready(function() {
     
     for(var i = 0; i < $inputs.length; i++) {
       if($inputs[i].id === 'degree_name') {
-        if($inputs[i].value === '') {
+        if($inputs[i].value.trim() === '') {
           $('#requiredName').text('* This Field is Mandatory');
           flag = false;
         }
