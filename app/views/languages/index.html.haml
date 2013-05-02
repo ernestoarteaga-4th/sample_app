@@ -6,7 +6,7 @@
       = link_to 'Home', root_path
       = raw '&raquo;'
     %li
-      = link_to_resume('My Profile', current_candidate.id, :action => 'resume')
+      = "Catalogs" 
       = raw '&raquo;'
     %li
       = raw '<em>'
@@ -38,11 +38,8 @@
             %tr
               %th
                 Approved&nbsp;&nbsp;&nbsp;&nbsp;
-                = check_box_tag "approved_flag_all", @languages.count.to_s()
               %th
                 Name
-              %th
-                Description
               %th
                 Approved By
           %tbody
@@ -51,13 +48,15 @@
               %tr
                 %td
                   = check_box_tag "id" + i.to_s(), row.id.to_s(), row.approved_flag, :name => "approved_flag_" + row.id.to_s(), :class => "id" + i.to_s()
-                %td
-                  = row.name
-                %td
-                  = row.description
+                %td              
+                  = row.name                                   
                 %td 
                   = row.approved_by
               -i = i + 1
+        &nbsp;&nbsp;
+        = check_box_tag "approved_flag_all", @languages.count.to_s()
+        Select all
+        %br
         %br
         = submit_tag "Update", :name => 'update_button', :class => 'btn-primary'
         &nbsp;&nbsp;&nbsp;&nbsp;

@@ -20,6 +20,8 @@
       .flash{:class => key}= value
   .search
     = link_to "New search", :controller => "report", :action => "index"
+    = raw ' &#124; '
+    = link_to "Export XLS", :controller => "ExportExcel", :action => "index"
     %br
     %br
     - if @candidates != nil

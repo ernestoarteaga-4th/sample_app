@@ -22,6 +22,7 @@ class CreateCandidates < ActiveRecord::Migration
       t.boolean :is_willing_to_travel
       t.boolean :is_willing_to_relocate
       t.boolean :currently_employed
+      t.integer :marital_status
       t.string :company
       t.string :position
       t.integer :salary_expectancy
@@ -53,6 +54,9 @@ class CreateCandidates < ActiveRecord::Migration
       t.datetime :recruited_at
       t.datetime :started_at
       t.integer :office_id
+      t.string :email_alternate_1
+      t.string :email_alternate_2
+      t.string :email_alternate_3
 
       t.timestamps
     end

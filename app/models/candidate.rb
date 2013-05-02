@@ -16,6 +16,7 @@ class Candidate < ActiveRecord::Base
   :created_at, 
   :current_salary, 
   :currently_employed, 
+  :marital_status,
   :degree, 
   :email, 
   :first_last_name, 
@@ -52,7 +53,10 @@ class Candidate < ActiveRecord::Base
   :currently_in_4Source,
   :recruited_at,
   :started_at,
-  :office_id
+  :office_id,
+  :email_alternate_1,
+  :email_alternate_2,
+  :email_alternate_3
 
   has_many        :microposts,         :dependent => :destroy   
   has_many        :followings,         :foreign_key => "follower_id",
@@ -74,7 +78,7 @@ class Candidate < ActiveRecord::Base
   has_many        :candidate_languages, :dependent => :destroy
   has_many        :candidate_education,      :dependent => :destroy
 
-  has_many        :candidate_prof_summary,      :dependent => :destroy
+  has_one         :candidate_prof_summary,  :dependent => :destroy
   has_many        :candidates_interviews,   :foreign_key => "candidate_id",
                                             :dependent => :destroy
 
@@ -128,7 +132,9 @@ class Candidate < ActiveRecord::Base
 
   before_save :encrypt_password
 
-  def validate
+
+def validate
+
     if country == '0'
       errors.add_to_base("Country is invalid")
     end

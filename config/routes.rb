@@ -23,7 +23,9 @@ SampleApp::Application.routes.draw do
       get 'search'
     end
   end
-
+  
+  resources :ExportExcel  
+  
   resources :candidates do
     resources :candidate_certifications
     resources :candidate_profiles
@@ -110,6 +112,8 @@ SampleApp::Application.routes.draw do
   match "/candidates/:id/education_degree/destroy" => 'educ_degree#destroy'
   match "/candidates/:id/education_degree/action" => 'educ_degree#action'
 
+  match "/candidates/:id/candidate_certifications/new" => 'candidate_certifications#new'
+
   # Candidate
   match "/staff/:id/candidates" => 'staff_candidates#index'
   match "/staff/:id/candidates/detail" => 'staff_candidates#search'
@@ -152,6 +156,7 @@ SampleApp::Application.routes.draw do
   # Languages
   match "/candidates/:id/resume/languages" => 'candidate_languages#index'
   match "/candidates/resume/languages/new" => 'candidate_languages#new'
+  match "/candidates/:id/resume/:candidate_language/languages/edit" => 'candidate_languages#edit'  
   match "/languages/destroy" => 'candidate_languages#destroy'
   match "/staff/:id/languages" => 'languages#index'
   match "/staff/:id/languages/new" => 'languages#new'
@@ -170,6 +175,7 @@ SampleApp::Application.routes.draw do
   # Report
   match "/staff/:id/report" => 'report#index'
   match "/staff/:id/report/search" => 'report#search'
+ 
 
   # Autocomplete
   match "/tool/autocomplete" => 'tool_tag#autocomplete'

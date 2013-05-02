@@ -6,10 +6,11 @@
       = link_to 'Home', root_path 
       = raw '&raquo;'
     %li
-      = raw('<em>Catalogues</em>')
+      = raw('<em>Catalogs</em>')
       = raw '&raquo;'
     %li
-      = raw('<em>Interviewer</em>')
+      = link_to "Interviewer", :controller => "interviewers", :action => "index", :id => current_candidate.id
+      = raw '&raquo;'
     %li= raw('<em>New</em>')
     .clear
   %h3.page_headline 
@@ -35,6 +36,6 @@
       = f.text_field :name
     .actions
       %br
-      = f.submit "Update"
+      = f.submit "Update", :class => "btn-primary"
 <!-- Sidebar -->
 = render 'shared/sidebar_signed'

@@ -12,15 +12,17 @@ class ResumeController < ApplicationController
     @candidate = Candidate.find(params[:id])
     if request.post?
       if !params[:candidate_prof_summary][:summary].nil? && params[:candidate_prof_summary][:summary] != ''
-        @summary =@candidate.candidate_prof_summary.new(params[:candidate_prof_summary])
-        if @summary.save
+        if @candidate.candidate_prof_summary.update_attributes(params[:candidate_prof_summary])
           flash.now[:success] = "Summary was saved successfully."
+          render 'index'
         else
           flash.now[:notice] = "An error occurred while the system save the summary. Please try again."
         end
       else
         flash.now[:notice] = "Write a summary."
       end
+    else
+      @candidate_prof_summary=@candidate.candidate_prof_summary
     end
   end
   

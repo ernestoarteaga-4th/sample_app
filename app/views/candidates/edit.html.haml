@@ -1,5 +1,6 @@
 <!-- Content -->
 #content
+  = stylesheet_link_tag "flick/jquery-ui-1.10.2.custom" 
   %img(src="http://www.4thsource.com//public/images/subheader_services.jpg" alt="Sub Header" class="subheader")
   %ul#breadcrumbs
     %li
@@ -48,15 +49,18 @@
           = f.label :gender
           %br
           = f.select :gender, gender_list
+      .span3
+        .field
+          = f.label :marital_status
+          = f.select :marital_status, marital_status_list    
+    .row-fluid      
       .span7
         .field
           = f.label :birthdate
           %br
         .birthdate
-          = date_select(:candidate, :birthdate, :start_year => 1950, :order => [:month, :day, :year])
-          /= calendar_date_select_tag "bday", :birthdate, :year_range => 10.years.ago..0.years.ago
-          /= calendar_date_select_tag "name", "2007-01-01", :embedded => true
-          /= f.datepicker 'availability', :minDate => 0, :maxDate => "+8Y"
+          /= date_select(:candidate, :birthdate, :start_year => 1950, :order => [:month, :day, :year])
+          = f.text_field :birthdate, :id => 'birthdate', :readonly => 'true', :style => 'cursor: pointer; background-color: white', :value => @candidate.try(:birthdate).try(:strftime,'%Y-%m-%d')
         %br
     .divider
     .row-fluid
@@ -64,17 +68,35 @@
         .field
           = f.label :email
         = f.text_field :email, {:disabled => 'true'}
-      .span3
+      .span5
+        .field
+          = f.label "alternate email"
+        = f.text_field :email_alternate_1
+    .row-fluid
+      .span5
+        .field
+          = f.label "alternate email"
+        = f.text_field :email_alternate_2
+      .span5
+        .field
+          = f.label "alternate email"
+        = f.text_field :email_alternate_3
+
+    .divider
+    .row-fluid
+      .span5
         .field
           = f.label :password
           .mandatory *
-        = f.password_field :password
-      .span3
+          %br
+          = f.password_field :password
+      .span5
         .field
           = f.label :password_confirmation
           .mandatory *
+          %br
         = f.password_field :password_confirmation
-    .row-fluid
+
     %br
     .divider
     .row-fluid
@@ -157,7 +179,7 @@
       .span3
         .field
           = f.label :salary_expectancy
-          = f.text_field :salary_expectancy, :value => (number_to_currency(@candidate.salary_expectancy, :precision => 2) || 0)
+          = f.text_field :salary_expectancy, :value => (number_to_currency(@candidate.salary_expectancy, :precision => 2) || "$0.00")
     .row-fluid
       = f.label :comments
       = f.text_area :comments
@@ -169,5 +191,9 @@
     Field is mandatory
     %br
     %br
+  :javascript
+    jQuery(document).ready(function(){ 
+      $("#birthdate").datepicker({changeMonth: true,changeYear: true, dateFormat: 'yy-mm-dd', yearRange: "1920:2013"});
+    });
 <!-- Sidebar -->
 = render 'shared/sidebar_signed'

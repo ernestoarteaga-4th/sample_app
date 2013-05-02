@@ -9,10 +9,7 @@ class CandidateCertificationsController < ApplicationController
   end
 
   def new
-  	logger.debug "*******************new**********************"
-    /@certification  = Certification.new
-    @error = @certification.errors
-    @title = "New Certification"/
+  	
   end
 
   def destroy
@@ -42,28 +39,37 @@ class CandidateCertificationsController < ApplicationController
         certification = nil
       end
     else
-      certification = Certification.find(params[:certification][:selectName])
+      if params[:certification][:selectName].nil?
+        certification = nil
+      else
+        certification = Certification.find(params[:certification][:selectName])
+      end
     end
     @candidate_certification = @candidate.candidate_certifications.build(params[:candidate_certification])
     #logger.debug "********************************************"
     #logger.debug certification.id
 
-    if !certificationExist && CandidateCertification.find_by_certification_id(certification.id).nil? 
-      @candidate_certification.certification = certification
-    else
-      flash[:notice] = "You already have this certification in your list"
-      certification = nil
-      @candidate_certification = nil
+    if  !certification.nil?
+      if !certificationExist && CandidateCertification.find_by_certification_id(certification.id).nil? 
+        @candidate_certification.certification = certification
+      else
+        flash[:notice] = "You already have this certification in your list"
+        certification = nil
+        @candidate_certification = nil
+      end
     end
 
     if(certification!= nil)
       if(@candidate_certification.save)
         flash[:success] = "Certification was saved successfully."
       else
-        flash[:notice] = "An error occurred while the system save the languages#{@candidate_language.errors.as_json}"
+        flash[:notice] = "An error occurred while the system save the certification #{@candidate_language.errors.as_json}"
       end
+    else
+      flash[:notice] = "You already have this certification in your list"
     end
-    redirect_to request.referer
+    #redirect_to request.referer
+    redirect_to File.join('/candidates/', current_candidate.id.to_s(), '/candidate_certifications')
   end
 end
 

@@ -6,7 +6,7 @@
       = link_to 'Home', root_path 
       = raw '&raquo;'
     %li
-      = raw('<em>Catalogues</em>')
+      = raw('<em>Catalogs</em>')
       = raw '&raquo;'
     %li
       = raw('<em>Interview Type</em>')
@@ -14,7 +14,7 @@
   %h3.page_headline 
     %i.iconExperienceHeadLine
     .h3-page-headline
-      Interviews type
+      Interview Type
   .divider-headline
   %br
   #flash
@@ -34,10 +34,13 @@
           .experience_details_left
             %strong
               = interview_type.name
-          .experience_details_right
-            = link_to "Edit", :controller => "interviews_types", :action => "edit", :id => current_candidate.id, :interview_type_id => interview_type.id
-            &nbsp;&nbsp;&nbsp;
-            = link_to "Delete", url_options = { :controller => "interviews_types", :action => "delete", :id => current_candidate.id, :interview_type_id => interview_type.id }, html_options = { :confirm => "Are you sure?" }
+          .btn-group
+            %button.btn.btn-primary
+              = link_to "Edit", :controller => "interviews_types", :action => "edit", :id => current_candidate.id, :interview_type_id => interview_type.id
+            %button.btn.btn-primary.dropdown-toggle
+              %span.caret
+            %ul.dropdown-menu
+              = link_to "Delete", url_options = { :controller => "interviews_types", :action => "delete", :id => current_candidate.id, :interview_type_id => interview_type.id }, html_options = {:confirm => "Are you sure you want to delete the entry?"}
           %br 
   - else
     %h4 Please create at least one interview type.

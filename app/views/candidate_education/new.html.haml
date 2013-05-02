@@ -1,12 +1,13 @@
 <!-- Content -->
 #content
+  = stylesheet_link_tag "flick/jquery-ui-1.10.2.custom"
   %img(src="http://www.4thsource.com//public/images/subheader_services.jpg" alt="Sub Header" class="subheader")
   %ul#breadcrumbs
     %li
       = link_to 'Home', root_path
       = raw '&raquo;'
     %li
-      = link_to_resume('Resume', @candidate.id, :action => 'resume')
+      = link_to_resume('Resume', current_candidate.id, :action => 'resume')
       = raw '&raquo;'
     %li
       = raw '<em>'
@@ -47,12 +48,37 @@
     .field
       = f.label :date_in
       %br
-      = f.date_select :date_in, :start_year => 1950, :order => [:month, :day, :year]
+      = f.text_field :date_in, :id => 'date_in', :readonly => 'true', :style => 'cursor: pointer; background-color: white', :value => @education.try(:date_in).try(:strftime,'%Y-%m-%d')
     .field
       = f.label :date_out
       %br
-      = f.date_select :date_out, :start_year => 1950, :order => [:month, :day, :year]
+      = f.text_field :date_out, :id => 'date_out', :readonly => 'true', :style => 'cursor: pointer; background-color: white', :value => @education.try(:date_out).try(:strftime,'%Y-%m-%d')
     .actions
-      = f.submit "Accept"
+      = f.submit "Accept", :class => "btn-primary"
+    %br
+    %br
+    %br
+    %br
+  :javascript
+    jQuery(document).ready(function(){ 
+      $( "#date_in" ).datepicker({
+        changeMonth: true, 
+        changeYear: true, 
+        dateFormat: 'yy-mm-dd', 
+        yearRange: "1950:2013",
+        onClose: function( selectedDate ) {
+        $( "#date_out" ).datepicker( "option", "minDate", selectedDate );
+        }
+        });
+        $( "#date_out" ).datepicker({        
+        changeMonth: true, 
+        changeYear: true, 
+        dateFormat: 'yy-mm-dd', 
+        yearRange: "1950:2013",
+        onClose: function( selectedDate ) {
+        $( "#date_in" ).datepicker( "option", "maxDate", selectedDate );
+        }
+        });
+    });
 <!-- Sidebar -->
 = render 'shared/sidebar_signed'

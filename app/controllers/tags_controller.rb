@@ -10,7 +10,13 @@ class TagsController < ApplicationController
 
   def create
     @tag = Tag.new(params[:tag])
-    @tag.save
+
+    if(@tag.name.strip == "" || @tag.type_tag.to_i == 0)
+      flash[:notice] = "The tag has empty elements"
+    else
+      @tag.save
+    end
+
     redirect_to File.join('/staff/', current_candidate.id.to_s(), '/tags')
   end
 
@@ -19,6 +25,11 @@ class TagsController < ApplicationController
                    :name => params[:name],
                    :type_tag => params[:type_tag],
                    :description => params[:description])
+  end
+
+  def destroy
+    Tag.delete(params[:id])
+    redirect_to File.join('/staff/', current_candidate.id.to_s(), '/tags')
   end
 
   def action

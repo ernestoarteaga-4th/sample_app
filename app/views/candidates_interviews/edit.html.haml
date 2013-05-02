@@ -6,7 +6,7 @@
       = link_to 'Home', root_path 
       = raw '&raquo;'
     %li
-      = link_to_resume("Administration", @candidate.id, :action => "resume")
+      = raw('<em>Administration</em>')
       = raw '&raquo;'
     %li
       = link_to "Interviews", :controller => "candidates_interviews", :action => "index", id:@candidate.id
@@ -35,7 +35,7 @@
         .field
           = f.label "Interview type"
           %br
-          = f.select :interview_type_id, options_from_collection_for_select(InterviewsType.order("id").all, "id", "description")
+          = f.select :interview_type_id, options_from_collection_for_select(InterviewsType.order("id").all, "id", "name")
       .span6 
         .field
           = f.label "Interviewer"
