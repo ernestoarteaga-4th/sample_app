@@ -24,8 +24,8 @@ class ResumeController < ApplicationController
     else
       if !@candidate.candidate_prof_summary.nil?
         @candidate_prof_summary=@candidate.candidate_prof_summary
-      else
-        @candidate_prof_summary=@candidate.candidate_prof_summary.new
+    #  else
+    #    @candidate_prof_summary=@candidate.candidate_prof_summary.new
       end
     end
   end
