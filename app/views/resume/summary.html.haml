@@ -22,7 +22,7 @@
   %br
   = link_to_resume('Back to Resume', @candidate.id, :action => 'resume')
   %br
-  = form_for(:candidate_prof_summary, :controller => "resume", :action => "summary") do |f|     
+  = form_for(:candidate_prof_summary, :controller => "resume", :action => "summary", :html => {:id => "summaryForm"}) do |f|     
     .field.width100percent
       = f.label "Summary"
       %br
