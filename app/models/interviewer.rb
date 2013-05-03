@@ -4,4 +4,6 @@ class Interviewer < ActiveRecord::Base
   attr_accessible :name,
                   :updated_by
 
+  validates :name, :presence => true
+
 end

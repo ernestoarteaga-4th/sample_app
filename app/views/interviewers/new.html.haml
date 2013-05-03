@@ -16,7 +16,7 @@
   %h3.page_headline 
     %i.iconExperienceHeadLine
     .h3-page-headline
-      New interviewer
+      New Interviewer
   .divider-headline
   %br
   #flash
@@ -33,7 +33,7 @@
     .field
       = f.label "Name"
       %br
-      = f.text_field :name
+      = f.text_field :name, :onkeyup => "checkMaxlength(this);", :maxlength => 30
     .actions
       %br
       = f.submit "Update", :class => "btn-primary"

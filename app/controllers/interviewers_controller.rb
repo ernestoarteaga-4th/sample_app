@@ -1,4 +1,5 @@
 class InterviewersController < ApplicationController
+
   def index
     @candidate = current_candidate
   end
@@ -8,9 +9,14 @@ class InterviewersController < ApplicationController
       @interviewer = Interviewer.new(params[:interviewer])
       if @interviewer.save
         flash[:success] = "Interviewer was saved successfully."
-        render 'index'
+        #render 'index'
+        redirect_to File.join('/staff/', current_candidate.id.to_s, '/interviewers')
       else
-        flash[:notice] = "An error occurred while the system save the interviewer."
+        if @interviewer.id.to_s.empty?
+          flash[:notice] = "The interviewer can not be null."
+        else
+          flash[:notice] = "An error occurred while the system save the interviewer."
+        end
       end
     else
       @interviewer  = Interviewer.new

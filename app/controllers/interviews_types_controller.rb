@@ -11,7 +11,11 @@ class InterviewsTypesController < ApplicationController
         flash[:success] = "Interview type was saved successfully."
         redirect_to File.join('/staff/', current_candidate.id.to_s, '/interviews_types')
       else
-        flash[:notice] = "An error occurred while the system save the interview type."
+        if @interview_type.id.to_s.empty?
+          flash[:notice] = "The interview type can not be null."
+        else
+          flash[:notice] = "An error occurred while the system save the interview type."
+        end
       end
     else
       @interview_type  = InterviewsType.new

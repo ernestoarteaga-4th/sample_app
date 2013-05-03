@@ -38,15 +38,14 @@ class RolesController < ApplicationController
                           current_candidate.middle_name + " " + 
                           current_candidate.first_last_name + " " + 
                           current_candidate.second_last_name
-
         if(@role == nil)
           Role.update(row.id, 
-                          :approved_flag => false,
-                          :approved_by => row.approved_by)
+                      :approved_flag => false,
+                      :approved_by => row.approved_by)
         else
           Role.update(row.id, 
-                          :approved_flag => true,
-                          :approved_by => row.approved_by)
+                      :approved_flag => true,
+                      :approved_by => row.approved_by)
         end
       end
     else
