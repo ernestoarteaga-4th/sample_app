@@ -6,6 +6,9 @@
       = link_to 'Home', root_path
       = raw '&raquo;'
     %li
+      Catalogs
+      = raw '&raquo;'
+    %li
       = link_to 'Tags', '/staff/' + current_candidate.id.to_s + '/tags'
       = raw '&raquo;'
     %li
@@ -35,10 +38,12 @@
       = f.label "Tag Type"
       %br
       = f.select :type_tag, tag_type_list
+      = label_tag "requiredName2", "", :id =>"requiredName2", :class => "educationValidatorText"
     .field
       = f.label :description
       %br
       = f.text_field :description
+      = label_tag "requiredName3", "", :id =>"requiredName3", :class => "educationValidatorText"
     .actions
       = f.submit "Accept", :class => 'btn-primary'
 <!-- Sidebar -->
