@@ -128,7 +128,7 @@
   .clear
   - if(current_candidate.admin_flag)
     = form_for(:search, :url=>{:action=>'staff_update'}, :html => {:id => "updateCandidateStaffForm"}) do |f|
-      = check_box_tag "isRecruited", true, @candidate.currently_in_4Source
+      = check_box_tag "isRecruitedResume", true, @candidate.currently_in_4Source
       Is this candidate already recruited?
       %br
       .field

@@ -51,6 +51,32 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
+  $("#isRecruitedResume").click(function() {
+    if(this.checked) {
+      $("#search_recruited_date_1i").removeAttr('disabled');
+      $("#search_recruited_date_2i").removeAttr('disabled');
+      $("#search_recruited_date_3i").removeAttr('disabled');
+      $("#search_start_date_1i").removeAttr('disabled');
+      $("#search_start_date_2i").removeAttr('disabled');
+      $("#search_start_date_3i").removeAttr('disabled');
+      $("#search_office_id").removeAttr('disabled');
+    }
+    else {
+      $("#search_recruited_date_1i").attr('disabled', 'disabled');
+      $("#search_recruited_date_2i").attr('disabled', 'disabled');
+      $("#search_recruited_date_3i").attr('disabled', 'disabled');
+      $("#search_start_date_1i").attr('disabled', 'disabled');
+      $("#search_start_date_2i").attr('disabled', 'disabled');
+      $("#search_start_date_3i").attr('disabled', 'disabled');
+      $("#search_office_id").attr('disabled', 'disabled');
+    }
+  });         
+});
+
+
+
+
+$(document).ready(function() {
   $('#reportSearchForm').submit(function(e) { 
     var $inputs = $('#reportSearchForm :input');
     var flag = true;

@@ -90,12 +90,20 @@ $(document).ready(function() {
     var flag = true;
     
     for(var i = 0; i < $inputs.length; i++) {
+      if($inputs[i].id === 'language_name') {
+      	if($inputs[i].value.trim() === '') {
+          $('#requiredName').text('* This Field is Mandatory');
+          flag = false;
+        }
+        else {
+          $('#requiredName').text('');
+        }
+      }	
       if($inputs[i].id === 'degree_name') {
         if($inputs[i].value.trim() === '') {
           $('#requiredName').text('* This Field is Mandatory');
           flag = false;
         }
-
         else {
           $('#requiredName').text('');
         }

@@ -61,7 +61,10 @@ class ResumeController < ApplicationController
     @started_date = ""
     @recruited_date = ""
 
-    if(params["isRecruited"] == "true")
+
+    if(params["isRecruitedResume"] == "true")
+
+    begin
       if(params["search"]["recruited_date(2i)"].to_i() < 10)
         @recruited_date = params["search"]["recruited_date(1i)"] + "/0" +
                           params["search"]["recruited_date(2i)"]
@@ -98,11 +101,17 @@ class ResumeController < ApplicationController
                         params["search"]["start_date(3i)"]
       end
       
-      Candidate.update(params["search"]["id"], 
-                       :currently_in_4Source => params["isRecruited"], 
-                       :recruited_at => DateTime.strptime(@recruited_date, "%Y/%m/%d"),
-                       :started_at => DateTime.strptime(@started_date, "%Y/%m/%d"),
-                       :office_id => params["search"]["office_id"])
+      
+        Candidate.update(params["search"]["id"], 
+                         :currently_in_4Source => params["isRecruitedResume"], 
+                         :recruited_at => DateTime.strptime(@recruited_date, "%Y/%m/%d"),
+                         :started_at => DateTime.strptime(@started_date, "%Y/%m/%d"),
+                         :office_id => params["search"]["office_id"])
+      rescue Exception => exc
+        flash[:notice] = "Invalid date selected!!"
+      
+      end
+    
     else
       Candidate.update(params["search"]["id"], 
                        :currently_in_4Source => nil, 
