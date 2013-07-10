@@ -1,25 +1,42 @@
 class CandidateCertificationsController < ApplicationController
   def index
   	logger.debug "*******************index**********************"
-	  @candidate  = Candidate.find(params[:candidate_id])
-   	@error = @candidate.errors
+    id = params[:candidate_id] unless params.blank?
+    if !current_candidate.admin_flag.nil?
+      @candidate = Candidate.find(id)
+      @error = @candidate.errors
+    else
+      @candidate = Candidate.find(current_candidate.id)
+      @error  = current_candidate.errors
+    end
+	  #@candidate  = Candidate.find(params[:candidate_id])
+   	#@error = @candidate.errors
     @total_certifications = @candidate.candidate_certifications
     #@certification = @candidate.resume.certifications.new
     #@certification  = Certification.new
   end
 
   def new
-  	
+  	#WTF???
   end
 
   def destroy
-	  CandidateCertification.find(params[:id]).destroy
+    CandidateCertification.find(params[:id]).destroy  
     redirect_to request.referer
   end
 
   def create
   	logger.debug "*******************create**********************"
-    @candidate = current_candidate
+    #@candidate = current_candidate
+    id = params[:candidate_id] unless params.blank?
+    if !current_candidate.admin_flag.nil?
+      @candidate = Candidate.find(id)
+      @error = @candidate.errors
+    else
+      @candidate = Candidate.find(current_candidate)
+      @error  = current_candidate.errors
+    end
+    
     puts "json params is:"
     puts  params.to_json 
     certificationExist = false
@@ -27,7 +44,7 @@ class CandidateCertificationsController < ApplicationController
     if params[:certification_chBNotInList]
       if(!params[:certification][:name].empty?)
         if Certification.find_by_name(params[:certification][:name])!=nil
-          flash[:notice] = "The certification already exist, pleas search it again in the list."
+          flash[:notice] = "The certification already exist, please search it again in the list."
           certification = nil
           certificationExist = true
         else
@@ -69,7 +86,15 @@ class CandidateCertificationsController < ApplicationController
       flash[:notice] = "You already have this certification in your list"
     end
     #redirect_to request.referer
-    redirect_to File.join('/candidates/', current_candidate.id.to_s(), '/candidate_certifications')
+    #id = params[:candidate_id] unless params.blank?
+    if !current_candidate.admin_flag.nil?
+      #is admin
+      redirect_to File.join('/candidates/', id.to_s(), '/candidate_certifications')
+    else
+      #not an admin
+      redirect_to File.join('/candidates/', current_candidate.id.to_s(), '/candidate_certifications')
+    end
+    
   end
 end
 

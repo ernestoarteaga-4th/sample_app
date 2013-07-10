@@ -3,22 +3,46 @@ class CandidateProfilesController < ApplicationController
   end
 
   def index
-    @candidate  = Candidate.find(params[:candidate_id])
+    
+    id = params[:id] unless params.blank?
+    if !current_candidate.admin_flag.nil?
+      @candidate  = Candidate.find(params[:candidate_id])
+      @error = @candidate.errors
+    else
+      @candidate = Candidate.find(current_candidate.id)
+      @error  = current_candidate.errors
+    end
     @total_candidate_profiles = @candidate.candidates_profiles
     #@total_candidate_profiles = CandidateProfile.all
   end
 
   def create
-  	logger.debug "****** **********************************"
-	@candidateprofile = CandidatesProfile.new(params[:candidateprofile])
-	@candidateprofile.candidate_id = params[:candidate_id]
+    @candidateprofile = CandidatesProfile.new(params[:candidateprofile])
+    id = params[:candidate_id] unless params.blank?
+    if !current_candidate.admin_flag.nil?
+      @candidateprofile.candidate_id = id
+      @error  = current_candidate.errors
+    else
+      @candidateprofile.candidate_id = current_candidate.id
+      @error = @candidate.errors
+    end
+
+	
+	#@candidateprofile.candidate_id = params[:candidate_id]
     
 	@candidateprofile.save          
 
 	@error = @candidateprofile.errors.full_messages.to_sentence
     logger.debug @error
 
-    redirect_to File.join('/candidates/', current_candidate.id.to_s(), '/candidate_profiles')
+    if !current_candidate.admin_flag.nil?
+      #is admin
+      redirect_to File.join('/candidates/', id.to_s(), '/candidate_profiles')
+    else
+      #not an admin
+      redirect_to File.join('/candidates/', current_candidate.id.to_s(), '/candidate_profiles')
+    end
+
   end
 
   def edit

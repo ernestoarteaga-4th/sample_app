@@ -98,15 +98,22 @@ $(document).ready(function() {
     var $input = $('#candidate_prof_summary_summary');
     var flag = false;
 
-    if($input.val().length >= 150) {
-      e.submit();
+    if($input.val().length >= 150)
+    { 
+    if ($input.val().length < 255) 
+      {
+       e.submit();
+      }
+    else
+      {
+       alert("You can't exceed 255 characters in the summary");
+      }
     }
 
     else {
       alert("You have to capture at least 150 characters in the summary");
       e.preventDefault();
     }
-    
     return false;
   });
 });

@@ -130,7 +130,7 @@ SampleApp::Application.routes.draw do
   match "/staff/:id/interviewers/:interviewer_id/delete" => 'interviewers#delete'
     
   # Candidate Certification
-  #match "/candidates/:id/resume/certification" => 'candidate_certification#index'
+  match "/candidates/:id/certification" => 'candidate_certification#index'
   #match "/candidates/:id/resume/certification/new" => 'candidate_certification#new'
   match "/candidate_certifications/destro" => 'candidate_certifications#destro'
   #match "/resume_details/destro" => 'resume_details#destro'

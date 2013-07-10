@@ -17,6 +17,7 @@
       %br
     %br
     -if current_candidate.admin_flag
+      =raw "Edit as #{current_candidate.first_name} #{current_candidate.first_last_name}"
       %ul#nav_sub.sub_navigation
         %li
           %i.iconContact-info

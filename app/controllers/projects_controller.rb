@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_filter :authenticate
-  before_filter :correct_candidate
+  #before_filter :correct_candidate
   
   def index
     @candidate  = Candidate.find_by_id(params[:id])

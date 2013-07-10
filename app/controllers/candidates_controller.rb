@@ -1,6 +1,7 @@
+
 class CandidatesController < ApplicationController
   before_filter :authenticate, :except => [:show, :new, :create, :change]
-  before_filter :correct_user, :only => [:edit, :update]
+  #before_filter :correct_user, :only => [:edit, :update]
   before_filter :admin_user,   :only => [:destroy]
 
   def index
@@ -23,8 +24,15 @@ class CandidatesController < ApplicationController
   end
 
   def edit
+    id = params[:id] unless params.blank?
+    if !current_candidate.admin_flag.nil?
+      @candidate = Candidate.find(id)
+      @error = @candidate.errors
+    else
+      @candidate = Candidate.find(current_candidate.id)
+      @error  = current_candidate.errors
+    end
    @title  = "Edit user"
-   @error  = current_candidate.errors
   end
 
   def change

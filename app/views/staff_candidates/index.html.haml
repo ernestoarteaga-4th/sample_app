@@ -41,12 +41,16 @@
             Last 
             %br
             Name
-          %th
-            Roles
+          / %th
+          /   Roles
           %th
             E-Mail
           %th
             Interview
+          %th
+            Summary   
+          %th
+            Info         
       %tbody 
         -@candidates.each do |row|
           %tr
@@ -58,18 +62,22 @@
               = link_to row.first_last_name, "/candidates/#{row.id}/resume"
             %td
               = link_to row.second_last_name, "/candidates/#{row.id}/resume"
-            %td
-              - if row.projects.count > 0
-                - row.projects.each do |projects|
-                  - if projects.projects_roles.count > 0
-                    - projects.projects_roles.each do |project_roles|
-                      - if project_roles.tags3.count > 0
-                        - project_roles.tags3.each do |project_tag|
-                          = Tag.find(project_tag.tags_id).name + " - "
+            / %td
+            /   - if row.projects.count > 0
+            /     - row.projects.each do |projects|
+            /       - if projects.projects_roles.count > 0
+            /         - projects.projects_roles.each do |project_roles|
+            /           - if project_roles.tags3.count > 0
+            /             - project_roles.tags3.each do |project_tag|
+            /               = Tag.find(project_tag.tags_id).name + " - "
             %td
               = row.email
             %td
               = link_to "Interview", "/candidates/#{row.id}/candidates_interviews"
+            %td
+              = link_to "Edit", "/candidates/#{row.id}/resume/summary"     
+            %td
+              = link_to "Edit", "/candidates/#{row.id}/edit"         
   %br
   = will_paginate @candidates, :class => "digg_pagination"
   %br

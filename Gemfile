@@ -22,7 +22,7 @@ gem 'jquery-rails'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 #Added April/2013
 gem "calendar_date_select", "~> 1.16.4"
-
+gem 'pry'
 #gem 'sqlite3'
 # Use unicorn as the web server
 # gem 'unicorn'

@@ -38,6 +38,7 @@ GEM
       activesupport (>= 3.0)
     cocaine (0.5.1)
       climate_control (>= 0.0.3, < 1.0)
+    coderay (1.0.9)
     diff-lcs (1.2.4)
     erubis (2.7.0)
     factory_girl (4.2.0)
@@ -64,6 +65,7 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    method_source (0.8.1)
     mime-types (1.23)
     multi_json (1.7.2)
     mysql2 (0.3.11)
@@ -77,6 +79,10 @@ GEM
       cocaine (~> 0.5.0)
       mime-types
     polyglot (0.3.3)
+    pry (0.9.12.2)
+      coderay (~> 1.0.5)
+      method_source (~> 0.8)
+      slop (~> 3.4)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -125,6 +131,7 @@ GEM
     sequel (3.20.0)
     sinatra (1.0)
       rack (>= 1.0)
+    slop (3.4.5)
     spork (0.9.2)
     sprockets (2.2.2)
       hike (~> 1.2)
@@ -164,6 +171,7 @@ DEPENDENCIES
   mysql2
   paginator
   paperclip (~> 3.0)
+  pry
   rails (>= 3.2)
   rails3-jquery-autocomplete
   recaptcha
