@@ -58,21 +58,31 @@ class CandidatesController < ApplicationController
   end
 
   def create
-    @candidate = Candidate.new(params[:candidate])
-    @error = @candidate.errors
-    if verify_recaptcha() == false
-      @candidate.errors[:recaptcha] = "is invalid"
-      @title = "Sign up"
-      render :new
-    else
+    if !current_candidate.admin_flag.nil?
+      #algo
+      @candidate = Candidate.new(params[:candidate])
+      @error = @candidate.errors
       if @candidate.save  
-        sign_in @candidate
-        #UserMailer.welcome_email(@user).deliver
-        flash[:success] = "Welcome to the Sample App!"
-        redirect_to root_path
-      else
+          #Se guardo, redireccionar al edit http://localhost:3000/candidates/6/admin
+          redirect_to "/candidates/#{@candidate.id}/admin"
+      end
+    else
+      @candidate = Candidate.new(params[:candidate])
+      @error = @candidate.errors
+      if verify_recaptcha() == false
+        @candidate.errors[:recaptcha] = "is invalid"
         @title = "Sign up"
         render :new
+      else
+        if @candidate.save  
+          sign_in @candidate
+          #UserMailer.welcome_email(@user).deliver
+          flash[:success] = "Welcome to the Sample App!"
+          redirect_to root_path
+        else
+          @title = "Sign up"
+          render :new
+        end
       end
     end
   end
@@ -122,6 +132,11 @@ class CandidatesController < ApplicationController
       render 'index'
     end
   end
+
+  def newcandidate
+     @candidate = Candidate.new
+     render '/candidates/newcandidate_admin'
+  end  
 
   private
     def param_posted?(sym)

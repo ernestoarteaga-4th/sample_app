@@ -206,5 +206,8 @@ SampleApp::Application.routes.draw do
   #match "/candidates/:candidate_id/admin" => 'candidate_profiles#admin'
   match "/candidates/:candidate_id/admin" => 'candidates_profiles#admin'
 
+  ##New Candidate by admin
+  match "/staff/newcandidate" => 'candidates#newcandidate'
+
   root :to => 'pages#home'
 end
