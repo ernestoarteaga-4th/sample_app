@@ -200,4 +200,7 @@
       $("#birthdate").datepicker({changeMonth: true,changeYear: true, dateFormat: 'yy-mm-dd', yearRange: "1920:2013"});
     });
 <!-- Sidebar -->
+-if !current_candidate.admin_flag.nil?
+  = render 'shared/admin_sidebar_signed'
+-else
   = render 'shared/sidebar_signed'

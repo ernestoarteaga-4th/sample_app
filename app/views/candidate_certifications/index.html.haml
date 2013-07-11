@@ -50,4 +50,7 @@
   %br
 <!-- Sidebar -->
 %script $(document).ready({CandidateCertification.start()});
-= render 'shared/sidebar_signed'
+-if !current_candidate.admin_flag.nil?
+  = render 'shared/admin_sidebar_signed'
+-else
+  = render 'shared/sidebar_signed'

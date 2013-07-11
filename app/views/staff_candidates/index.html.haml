@@ -73,7 +73,7 @@
             %td
               = link_to "Interview", "/candidates/#{row.id}/candidates_interviews"    
             %td
-              = link_to "Edit", "/candidates/#{row.id}/admin"         
+              = link_to "Edit", "/candidates/#{row.id}/admin" , {:target => '__blank'}                  
   %br
   = will_paginate @candidates, :class => "digg_pagination"
   %br

@@ -1,6 +1,14 @@
 class CandidateEducationController < ApplicationController
   def index
     @education = current_candidate.candidate_education
+    id = params[:id] unless params.blank?
+    if !current_candidate.admin_flag.nil?
+      @candidate = Candidate.find(id)
+      @error = @candidate.errors
+    else
+      @candidate = Candidate.find(current_candidate.id)
+      @error  = current_candidate.errors
+    end
   end
 
   def new
