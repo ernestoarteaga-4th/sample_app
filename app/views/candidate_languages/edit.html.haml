@@ -10,10 +10,10 @@
       = link_to 'Home', home_path 
       = raw '&raquo;'
     %li
-      = link_to_resume('Resume', current_candidate.id, :action => 'resume')
+      = link_to_resume('Resume', @candidate.id, :action => 'resume')
       = raw '&raquo;'
     %li
-      = link_to_resume('Languages', current_candidate.id, :action => 'languages')
+      = link_to_resume('Languages', @candidate.id, :action => 'languages')
       = raw '&raquo;'
     %li
       = raw('<em>Edit</em>')
@@ -28,7 +28,7 @@
     - flash.each do |key, value|
       .flash{:class => key}= value
     %br
-    = link_to_resume('Back', current_candidate.id, :action => 'languages', :class => 'profile-sub_navigation')
+    = link_to_resume('Back', @candidate.id, :action => 'languages', :class => 'profile-sub_navigation')
     %br
     %br
     .experience_details_wrapper
@@ -41,6 +41,8 @@
           %br
           .field
             = f.hidden_field :candidate_language, :value=>@candidate_language_id
+          .field
+            = f.hidden_field :idurl, :value=>@candidate.id
           .field
             = f.label "Language"
             %br

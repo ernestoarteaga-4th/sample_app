@@ -46,9 +46,7 @@
           %th
             E-Mail
           %th
-            Interview
-          %th
-            Summary   
+            Interview  
           %th
             Info         
       %tbody 
@@ -73,11 +71,9 @@
             %td
               = row.email
             %td
-              = link_to "Interview", "/candidates/#{row.id}/candidates_interviews"
+              = link_to "Interview", "/candidates/#{row.id}/candidates_interviews"    
             %td
-              = link_to "Edit", "/candidates/#{row.id}/resume/summary"     
-            %td
-              = link_to "Edit", "/candidates/#{row.id}/edit"         
+              = link_to "Edit", "/candidates/#{row.id}/admin"         
   %br
   = will_paginate @candidates, :class => "digg_pagination"
   %br

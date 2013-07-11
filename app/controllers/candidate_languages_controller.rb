@@ -2,16 +2,30 @@ class CandidateLanguagesController < ApplicationController
   before_filter :authenticate
   
    def index
-    @candidate = current_candidate
-    @error = @candidate.errors
+    
+    id = params[:id] unless params.blank?
+    if !current_candidate.admin_flag.nil?
+      @candidate = Candidate.find(id)
+      @error = @candidate.errors
+    else
+      @candidate = current_candidate
+      @error  = current_candidate.errors
+    end  
     
     @total_languages = @candidate.candidate_languages
     @language = CandidateLanguage.new
-
   end
  
   def new
-    @candidate = current_candidate
+    
+    id = params[:candidate_language]['idurl'] unless params.blank?
+    if !current_candidate.admin_flag.nil?
+      @candidate = Candidate.find(id)
+      @error = @candidate.errors
+    else
+      @candidate = current_candidate
+      @error  = current_candidate.errors
+    end  
     @candidate_language = @candidate.candidate_languages.build(params[:candidate_language])
     language = Language.new 
 
@@ -54,7 +68,14 @@ class CandidateLanguagesController < ApplicationController
   end
 
   def edit
-    @candidate = current_candidate
+    id = params[:id] unless params.blank?
+    if !current_candidate.admin_flag.nil?
+      @candidate = Candidate.find(id)
+      @error = @candidate.errors
+    else
+      @candidate = current_candidate
+      @error  = current_candidate.errors
+    end
     @candidate_language_id = params[:candidate_language]
     @language_name_selected = params[:language_name]
     
@@ -64,7 +85,7 @@ class CandidateLanguagesController < ApplicationController
       if @language.save
         flash[:success] = "Language was saved successfully."
         @projects_items = @candidate.projects
-        redirect_to File.join('/candidates/', current_candidate.id.to_s(), '/resume/languages')
+        redirect_to File.join('/candidates/', @candidate.id.to_s(), '/resume/languages')
       else
         flash[:notice] = "An error occurred while the system save the language."
       end

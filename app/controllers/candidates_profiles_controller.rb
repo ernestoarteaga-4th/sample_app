@@ -80,4 +80,13 @@ class CandidatesProfilesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def admin
+    #binding.pry
+    @candidate = Candidate.find_by_id(params[:candidate_id])
+
+
+    render "candidate_profiles/admin"
+  end
 end
+

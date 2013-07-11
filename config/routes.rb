@@ -65,6 +65,7 @@ SampleApp::Application.routes.draw do
   match '/help',    :to => 'pages#help'
   match '/home',    :to => 'pages#home'
 
+
   match "/candidates/:id/resume" => 'resume#index'
   match "/candidates/:id/resume/staff_update" => 'resume#staff_update'
   match "/candidates/:id/resume/summary" => 'resume#summary'
@@ -202,6 +203,8 @@ SampleApp::Application.routes.draw do
   match "/candidates/:candidate_id/candidate_profiles/:candidate_profile_id/edit" => 'candidate_profiles#edit'
   match "/candidates/:candidate_id/candidate_profiles/:candidate_profile_id/update" => 'candidate_profiles#update'
   match "/candidates/candidate_profiles/:id/update_tags" => 'candidate_profiles#update_tags'
+  #match "/candidates/:candidate_id/admin" => 'candidate_profiles#admin'
+  match "/candidates/:candidate_id/admin" => 'candidates_profiles#admin'
 
   root :to => 'pages#home'
 end
