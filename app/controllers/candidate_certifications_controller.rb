@@ -26,9 +26,7 @@ class CandidateCertificationsController < ApplicationController
   end
 
   def create
-  	logger.debug "*******************create**********************"
-    #@candidate = current_candidate
-    id = params[:candidate_id] unless params.blank?
+  	id = params[:candidate_id] unless params.blank?
     if !current_candidate.admin_flag.nil?
       @candidate = Candidate.find(id)
       @error = @candidate.errors
@@ -36,7 +34,8 @@ class CandidateCertificationsController < ApplicationController
       @candidate = Candidate.find(current_candidate)
       @error  = current_candidate.errors
     end
-    
+    @candidate = Candidate.find(current_candidate)
+
     puts "json params is:"
     puts  params.to_json 
     certificationExist = false
@@ -63,13 +62,11 @@ class CandidateCertificationsController < ApplicationController
       end
     end
     @candidate_certification = @candidate.candidate_certifications.build(params[:candidate_certification])
-    #logger.debug "********************************************"
-    #logger.debug certification.id
-
     if  !certification.nil?
       if !certificationExist && CandidateCertification.find_by_certification_id(certification.id).nil? 
         @candidate_certification.certification = certification
       else
+
         flash[:notice] = "You already have this certification in your list"
         certification = nil
         @candidate_certification = nil
@@ -83,6 +80,7 @@ class CandidateCertificationsController < ApplicationController
         flash[:notice] = "An error occurred while the system save the certification #{@candidate_language.errors.as_json}"
       end
     else
+      
       flash[:notice] = "You already have this certification in your list"
     end
     #redirect_to request.referer

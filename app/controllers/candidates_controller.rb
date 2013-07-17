@@ -58,13 +58,16 @@ class CandidatesController < ApplicationController
   end
 
   def create
-    if !current_candidate.admin_flag.nil?
-      #algo
-      @candidate = Candidate.new(params[:candidate])
-      @error = @candidate.errors
-      if @candidate.save  
-          #Se guardo, redireccionar al edit http://localhost:3000/candidates/6/admin
-          redirect_to "/candidates/#{@candidate.id}/admin"
+    #If no current_candidate, there's no login so act as new candidate.
+    if !current_candidate.nil?
+      if !current_candidate.admin_flag.nil?
+        #algo
+        @candidate = Candidate.new(params[:candidate])
+        @error = @candidate.errors
+        if @candidate.save  
+            #Se guardo, redireccionar al edit http://localhost:3000/candidates/6/admin
+            redirect_to "/candidates/#{@candidate.id}/admin"
+        end
       end
     else
       @candidate = Candidate.new(params[:candidate])

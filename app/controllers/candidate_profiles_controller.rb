@@ -4,7 +4,7 @@ class CandidateProfilesController < ApplicationController
 
   def index
     
-    id = params[:id] unless params.blank?
+    id = params[:candidate_id] unless params.blank?
     if !current_candidate.admin_flag.nil?
       @candidate  = Candidate.find(params[:candidate_id])
       @error = @candidate.errors
@@ -17,23 +17,15 @@ class CandidateProfilesController < ApplicationController
   end
 
   def create
+    #binding.pry
     @candidateprofile = CandidatesProfile.new(params[:candidateprofile])
-    id = params[:candidate_id] unless params.blank?
-    if !current_candidate.admin_flag.nil?
-      @candidateprofile.candidate_id = id
-      @error  = current_candidate.errors
-    else
-      @candidateprofile.candidate_id = current_candidate.id
-      @error = @candidate.errors
-    end
-
-	
-	#@candidateprofile.candidate_id = params[:candidate_id]
     
-	@candidateprofile.save          
+	
+	  @candidateprofile.candidate_id = params[:candidate_id]
+    
+	  @candidateprofile.save          
 
-	@error = @candidateprofile.errors.full_messages.to_sentence
-    logger.debug @error
+	  @error = @candidateprofile.errors.full_messages.to_sentence
 
     if !current_candidate.admin_flag.nil?
       #is admin
@@ -55,13 +47,13 @@ class CandidateProfilesController < ApplicationController
 
   def update
     @candidate = current_candidate
-    
+    #binding.pry
     if request.post?
-      @candidate = Candidate.find(params[:id])
+      @candidate = Candidate.find(params[:candidate_id])
       @profile = CandidatesProfile.find(params[:candidate_profile_id])
-      @profile.update_attributes(params[:profile])
+      @profile.update_attributes(params[:candidate_profile])
       if @profile.save
-        ##redirect_to File.join('/candidates/', current_candidate.id.to_s(), '/candidate_profiles')
+        redirect_to File.join('/candidates/', current_candidate.id.to_s(), '/candidate_profiles')
         flash[:success] = "Candidate Profile was saved successfully."
       else
         flash[:notice] = "An error occurred while the system save the candidate profile."
@@ -93,4 +85,33 @@ class CandidateProfilesController < ApplicationController
     redirect_to File.join('/candidates/', current_candidate.id.to_s(), '/candidate_profiles/' + params[:id] + '/edit')
   end
 
+
+  def docx
+    # Generate docx file
+    @candidate = Candidate.find(params[:candidate_id])
+    require 'docx_builder'
+
+    file_path = "#{File.dirname(__FILE__)}/cvtemplate.xml"
+    dir_path = "#{File.dirname(__FILE__)}/cvtemplate"
+
+    report = DocxBuilder.new(file_path, dir_path).build do |template|
+    template['candiname'] = @candidate.first_name
+    template['candilast'] = @candidate.first_last_name
+    template['candemail'] = @candidate.email
+    template['company'] = @candidate.company
+    template['positionheld'] = @candidate.position
+    template['profsum']= CandidateProfSummary.find(params[:candidate_id]).summary
+    
+    if @candidate.candidate_education.count > 0
+         @candidate.candidate_education.each do |education|
+         #binding.pry
+        end    
+      end
+    end 
+    response.headers['Content-disposition'] = 'attachment; filename=CandidateResume_'+@candidate.first_name+'_'+@candidate.first_last_name+'.docx'
+    render :text => report, :content_type => 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+  end
+
 end
+
+

@@ -202,12 +202,15 @@ SampleApp::Application.routes.draw do
   match "/candidates/:candidate_id/candidate_profiles/:candidate_profile_id/delete" => 'candidate_profiles#delete'
   match "/candidates/:candidate_id/candidate_profiles/:candidate_profile_id/edit" => 'candidate_profiles#edit'
   match "/candidates/:candidate_id/candidate_profiles/:candidate_profile_id/update" => 'candidate_profiles#update'
+  match "/candidates/:candidate_id/candidate_profiles/:candidate_profile_id" => 'candidate_profiles#update'
   match "/candidates/candidate_profiles/:id/update_tags" => 'candidate_profiles#update_tags'
   #match "/candidates/:candidate_id/admin" => 'candidate_profiles#admin'
   match "/candidates/:candidate_id/admin" => 'candidates_profiles#admin'
 
-  ##New Candidate by admin
+  ## New Candidate by admin
   match "/staff/newcandidate" => 'candidates#newcandidate'
 
+  ## Docx Generator
+  match "/candidates/:candidate_id/docx" =>'candidate_profiles#docx'
   root :to => 'pages#home'
 end
