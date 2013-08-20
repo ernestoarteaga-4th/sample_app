@@ -12,8 +12,12 @@
           = current_candidate.first_name
           = current_candidate.first_last_name
           %br
-          -#= current_candidate.microposts.count
-          microposts
+          -if current_candidate.microposts.count > 0
+            = current_candidate.microposts.count
+          -else
+            %br
+            No microposts
+          %br
       %br
     %br
     -if current_candidate.admin_flag
@@ -24,6 +28,10 @@
         %li
           %i.iconResume
           = link_to_candidates('Candidates', current_candidate.id, :action => 'candidates', :class => 'profile-sub_navigation')
+        %li
+          %i.iconReport
+          //= link_to 'Admin users', 'admin_users', :class => 'profile-sub_navigation'
+          = link_to 'Admin users', url_options = { :controller => "admin_users", :action => "index", :id => current_candidate.id}, html_options = { :class => 'profile-sub_navigation' }
         %li
           %i.iconReport
           = link_to 'Advanced search', '/staff/' + current_candidate.id.to_s() + '/report', :class => 'profile-sub_navigation'

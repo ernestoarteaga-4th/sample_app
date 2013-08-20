@@ -7,6 +7,8 @@ SampleApp::Application.routes.draw do
 
   post "email/remind"
 
+  resources :admin_users
+
   resources :candidates do
     member do
       get :following, :followers, :change, :index
