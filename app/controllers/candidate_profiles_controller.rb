@@ -18,23 +18,17 @@ class CandidateProfilesController < ApplicationController
 
   def create
     #binding.pry
-    @candidateprofile = CandidatesProfile.new(params[:candidateprofile])
-    
-	
-	  @candidateprofile.candidate_id = params[:candidate_id]
-    
+    @candidateprofile = CandidatesProfile.new(params[:candidateprofile]) 
+	  @candidateprofile.candidate_id = params[:candidate_id]  
 	  @candidateprofile.save          
-
 	  @error = @candidateprofile.errors.full_messages.to_sentence
-
     if !current_candidate.admin_flag.nil?
       #is admin
-      redirect_to File.join('/candidates/', id.to_s(), '/candidate_profiles')
+      redirect_to File.join('/candidates/', @candidateprofile.candidate_id.to_s(), '/candidate_profiles')
     else
       #not an admin
       redirect_to File.join('/candidates/', current_candidate.id.to_s(), '/candidate_profiles')
     end
-
   end
 
   def edit
@@ -53,7 +47,13 @@ class CandidateProfilesController < ApplicationController
       @profile = CandidatesProfile.find(params[:candidate_profile_id])
       @profile.update_attributes(params[:candidate_profile])
       if @profile.save
-        redirect_to File.join('/candidates/', current_candidate.id.to_s(), '/candidate_profiles')
+        if !current_candidate.admin_flag.nil?
+          #is admin
+          redirect_to File.join('/candidates/', @candidate.id.to_s(), '/candidate_profiles')
+        else
+          #not an admin
+          redirect_to File.join('/candidates/', current_candidate.id.to_s(), '/candidate_profiles')
+        end
         flash[:success] = "Candidate Profile was saved successfully."
       else
         flash[:notice] = "An error occurred while the system save the candidate profile."

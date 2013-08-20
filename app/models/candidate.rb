@@ -1,5 +1,6 @@
 class Candidate < ActiveRecord::Base
   self.per_page = 10
+  self.avatar = ""
 
   attr_accessor   :password
 

@@ -91,6 +91,7 @@ class CandidatesController < ApplicationController
   end
 
   def update
+    #binding.pry
     @candidate = Candidate.find(params[:id])
     @error = @candidate.errors
     if @candidate.update_attributes(params[:candidate])
