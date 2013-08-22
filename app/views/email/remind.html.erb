@@ -8,18 +8,20 @@
   </ul>
   <h3 class="page_headline ">Change my old password</h3>
   <div class="divider"></div>
-    <% form_for :candidate do |f| %> 
+    <%= form_for :candidate do |f| %> 
       <% flash.each do |key, value| %>
         <div class="flash <%= key %>"><%= value %></div><br/>
       <% end %>
+      <% logger.info "inside the form..." %>
       <div class="field">
         <%= f.label :email %><br />
-        <%= f.text_field :email %> 
+        <%= f.text_field :email%> 
       </div>
       <div class="actions">
-        <%= f.submit "Submit" %> 
+        <%= f.submit "Submit",{"class"=>"btn btn-primary"}%> 
       </div>
     <% end %>
+    <% logger.info "Exit the form..." %>
     <p>New candidate? <%= link_to "Sign up now!", signup_path %></p>
     <div class="clear"></div>
 </div> <!-- End Content -->
