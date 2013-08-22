@@ -1,7 +1,8 @@
 
 class CandidatesController < ApplicationController
-  before_filter :authenticate, :except => [:show, :new, :create, :change]
+  #before_filter :authenticate, :except => [:show, :new, :create, :change]
   #before_filter :correct_user, :only => [:edit, :update]
+  skip_filter :verify_signed_in, :only => [:new, :create]
   before_filter :admin_user,   :only => [:destroy]
 
   def index
@@ -78,6 +79,7 @@ class CandidatesController < ApplicationController
         render :new
       else
         if @candidate.save  
+		  set_user_type(@candidate)
           sign_in @candidate
           #UserMailer.welcome_email(@user).deliver
           flash[:success] = "Welcome to the Sample App!"

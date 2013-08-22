@@ -2,6 +2,7 @@ class Candidate < ActiveRecord::Base
   self.per_page = 10
 
   attr_accessor   :password
+  attr_accessor   :role
 
   attr_accessible :address, 
   :address1, 
@@ -157,16 +158,18 @@ def validate
     end 
  end
 
+
   def has_password?(submitted_password)
     encrypted_password == encrypt(submitted_password)
   end
+  
 
   def self.authenticate(email, submitted_password)
-    user = find_by_email(email)
+	user = find_by_email(email)
     if user.nil?
       nil
     elsif user.has_password?(submitted_password)
-      user
+	  user
     end
   end
 
@@ -174,6 +177,7 @@ def validate
     user = find_by_id(id)
     (user && user.salt == cookie_salt) ? user : nil
   end
+
   
   def current_salary=(num)
     self[:current_salary] = num.to_s.scan(/\b-?[\d]+/).join.to_f
@@ -202,4 +206,5 @@ def validate
     def secure_hash(string) 
       Digest::SHA2.hexdigest(string)
     end
+	
 end
