@@ -1,0 +1,101 @@
+:javascript
+  function updateValue(url, id)
+  {
+    $('#datatbl').hide();
+    $('#imgloading').show();
+    $.ajax({
+
+      type: "GET",
+      url: url,
+      success: function(data) {
+           // data is ur summary
+          $('#imgloading').hide();
+          $('#datatbl').html(data);
+          $('#datatbl').show();
+      }
+    });
+    return false;
+  }
+
+<!-- Content -->			
+#content
+  %img(src="http://www.4thsource.com//public/images/subheader_services.jpg" alt="Sub Header" class="subheader")
+  %ul#breadcrumbs
+    %li
+      = link_to 'Home', root_path
+      = raw '&raquo;'
+    %li= raw('<em>Admin users</em>')
+    .clear
+  %h3.page_headline
+    All Admin Users
+  .divider
+  %br
+  #flash
+    - flash.each do |key, value|
+      .flash{:class => key}= value
+  = link_to "Back", root_path
+
+  %br  
+  %img(id="imgloading" src="/images/loading.gif" style="display: none; padding-left: 100px;")
+  #datatbl
+    = form_for(:table, :url=>{:action=>'index'}) do |f|
+      %table#candidates_table.display
+        %thead
+          %tr
+            %th
+              First 
+              %br
+              Name
+            %th
+              Middle
+              %br
+              Name
+            %th
+              First 
+              %br
+              Last
+              %br
+              Name
+            %th
+              Second 
+              %br
+              Last 
+              %br
+              Name
+            / %th
+            /   Roles
+            %th
+              E-Mail
+            %th
+              Enabled
+        %tbody 
+          -@candidates.each do |row|
+            %tr
+              %td
+                = link_to row.candidate.first_name, "/candidates/#{row.id}/resume"
+              %td
+                = link_to row.candidate.middle_name, "/candidates/#{row.id}/resume"
+              %td
+                = link_to row.candidate.first_last_name, "/candidates/#{row.id}/resume"
+              %td
+                = link_to row.candidate.second_last_name, "/candidates/#{row.id}/resume"
+              / %td
+              /   - if row.projects.count > 0
+              /     - row.projects.each do |projects|
+              /       - if projects.projects_roles.count > 0
+              /         - projects.projects_roles.each do |project_roles|
+              /           - if project_roles.tags3.count > 0
+              /             - project_roles.tags3.each do |project_tag|
+              /               = Tag.find(project_tag.tags_id).name + " - "
+              %td
+                = row.candidate.email
+              %td
+                = link_to (row.is_active ? "yes": "no"), '#!', :onclick => "updateValue('/admin_users/#{row.id}/edit',2)"
+                  
+  %br
+  = will_paginate @candidates, :class => "digg_pagination"
+  %br
+  %br
+  .clear
+<!-- Sidebar -->
+= render 'shared/sidebar_signed'

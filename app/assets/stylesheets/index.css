@@ -858,7 +858,7 @@ table.microposts tr td.micropost-delete {
 	margin-top: 7px;
 }
 
-.iconSummaryHeadLine, .iconSummary, .iconContact-info, .iconContact-infoHeadLine, 
+.iconSummaryHeadLine, .iconAdminUser, .iconSummary, .iconContact-info, .iconContact-infoHeadLine, 
   .iconCoinsHeadLine, .iconResume, .iconResumeHeadLine, .iconPhoto, .iconPhotoHeadLine, 
   .iconSummary, .iconExperience, .iconExperienceHeadLine, .iconEducation, .iconEducationHeadLine, 
   .iconSkills, .iconSkillsHeadLine, .iconMembershipAwards, .iconInterests, .iconInterestsHeadLine, 
@@ -986,6 +986,14 @@ table.microposts tr td.micropost-delete {
 	margin-top: 6px;
 	margin-left: 0px;
 	background-position: -411px -39px;
+	width: 16px; 
+	height: 16px;
+}
+
+.iconAdminUser {
+	margin-top: 6px;
+	margin-left: 0px;
+	background-position: -394px -39px;
 	width: 16px; 
 	height: 16px;
 }
