@@ -162,7 +162,7 @@ def validate
   end
 
   def self.authenticate(email, submitted_password)
-    user = find_by_email(email)
+	user = find_by_email(email)
     if user.nil?
       nil
     elsif user.has_password?(submitted_password)
