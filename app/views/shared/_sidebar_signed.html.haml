@@ -29,7 +29,7 @@
           %i.iconResume
           = link_to_candidates('Candidates', current_candidate.id, :action => 'candidates', :class => 'profile-sub_navigation')
         %li
-          %i.iconReport
+          %i.iconAdminUser
           //= link_to 'Admin users', 'admin_users', :class => 'profile-sub_navigation'
           = link_to 'Admin users', url_options = { :controller => "admin_users", :action => "index", :id => current_candidate.id}, html_options = { :class => 'profile-sub_navigation' }
         %li
