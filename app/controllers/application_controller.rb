@@ -2,8 +2,32 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   
   include SessionsHelper
-
   helper :date
+  helper_method :set_user_type, :get_user_type
+  before_filter :verify_signed_in
+
+  def verify_signed_in
+    unless signed_in?
+      redirect_to '/signin' if request.path != '/'
+    end
+  end
+  
+  def set_user_type(user)
+  
+    admin_user = AdminUsers.find_by_candidates_id(user.id)
+	roles = {'0' => 'Admin', '1' => 'Super Admin'}
+	
+	if admin_user
+	  @@user_type = roles[admin_user.lvl.to_s] 
+	else
+	   @@user_type = 'Candidate'
+	end
+	
+  end
+  
+  def get_user_type
+    @@user_type
+  end
 
   def paginate(results, per_page)
     if(params[:page].to_i>0)

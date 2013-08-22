@@ -1,11 +1,13 @@
 class SessionsController < ApplicationController
+  
+  skip_filter :verify_signed_in, :only => [:new, :create, :destroy]
+  
   def new
     @title = "Sign in"
   end
 
-
-def create
-
+  def create
+  
     @flag = false
     if validateEmail4thSource(params[:session][:email])
       if authCandidateInPopEmailServer(params[:session][:email], params[:session][:password])
@@ -15,6 +17,7 @@ def create
     else
       candidate = Candidate.authenticate(params[:session][:email],params[:session][:password])
     end
+	
     if candidate.nil?
       if @flag
         flash.now[:error] = "You do not have a profile. Please, go to Register now!."
@@ -24,9 +27,12 @@ def create
       @title = "Sign in"
       render :new
     else
+	  set_user_type(candidate)
       sign_in candidate
+	  
       redirect_back_or root_path
     end
+	
   end
 
 
@@ -50,9 +56,8 @@ def create
 =end
 
   def destroy
-  
-
     sign_out
     redirect_to root_path
   end
+  
 end
