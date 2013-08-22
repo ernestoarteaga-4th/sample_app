@@ -30,7 +30,8 @@ class SessionsController < ApplicationController
 	  set_user_type(candidate)
       sign_in candidate
 	  
-      redirect_back_or root_path
+      redirect_back_or @@admin_roles.include?( get_user_type ) ? "/candidates/#{candidate.id}/admin" : root_path
+	  
     end
 	
   end

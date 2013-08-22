@@ -12,6 +12,8 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  @@admin_roles = ['Admin', 'Super Admin']
+  
   def set_user_type(user)
   
     admin_user = AdminUsers.find_by_candidates_id(user.id)
