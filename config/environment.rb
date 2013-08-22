@@ -14,5 +14,5 @@ ActionMailer::Base.smtp_settings = {
   :password  => "4thsource",
   :openssl_verify_mode => 'none',
   :authentication       => "plain",
-  :enable_starttls_auto => true
+  :enable_starttls_auto => false,
 }

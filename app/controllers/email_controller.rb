@@ -6,7 +6,7 @@ class EmailController < ApplicationController
       if candidate
         candidate.password = candidate.password_confirmation = candidate.change_password_flag = new_hash(25)
         candidate.save!
-        CandidateMailer.deliver_reminder(candidate)
+        CandidateMailer.reminder(candidate).deliver
         flash[:notice] = "Login information was sent successfully."
       end 
     end
