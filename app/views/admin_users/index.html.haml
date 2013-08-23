@@ -4,13 +4,12 @@
     $('#datatbl').hide();
     $('#imgloading').show();
     $.ajax({
-
       type: "GET",
       url: url,
       success: function(data) {
            // data is ur summary
           $('#imgloading').hide();
-          $('#datatbl').html(data);
+          $('#candidates_table tbody').html(data);
           $('#datatbl').show();
       }
     });
@@ -65,9 +64,11 @@
             / %th
             /   Roles
             %th
-              E-Mail
+              User
             %th
-              Enabled
+              Admin
+            %th
+              Super admin
         %tbody 
           -@candidates.each do |row|
             %tr
@@ -88,12 +89,15 @@
               /             - project_roles.tags3.each do |project_tag|
               /               = Tag.find(project_tag.tags_id).name + " - "
               %td
-                = row.candidate.email
+                = radio_button_tag 'Role', 'User', row.lvl == 0  ? true: false, :onclick => "updateValue('/admin_users/#{row.id}/edit/0',2)"
               %td
-                = link_to (row.is_active ? "yes": "no"), '#!', :onclick => "updateValue('/admin_users/#{row.id}/edit',2)"
+                = radio_button_tag 'Role', 'Admin', row.lvl == 1  ? true: false, :onclick => "updateValue('/admin_users/#{row.id}/edit/1',2)"
+              %td
+                = radio_button_tag 'Role', 'SuperAdmin', row.lvl == 2 ? true: false, :onclick => "updateValue('/admin_users/#{row.id}/edit/2',2)"
+                /= link_to (row.is_active ? "yes": "no"), '#!', :onclick => "updateValue('/admin_users/#{row.id}/edit',2)"
                   
-  %br
-  = will_paginate @candidates, :class => "digg_pagination"
+    %br
+    = will_paginate @candidates, :class => "digg_pagination"
   %br
   %br
   .clear
