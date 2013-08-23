@@ -86,7 +86,7 @@ class CandidatesController < ApplicationController
           sign_in @candidate
           #UserMailer.welcome_email(@user).deliver
           flash[:success] = "Welcome to the Sample App!"
-          redirect_to @@admin_roles.include?( get_user_type ) ? "/candidates/#{@candidate.id}/admin" : root_path
+          redirect_to root_path
         else
           @title = "Sign up"
           render :new
