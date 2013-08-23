@@ -11,14 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130820203602) do
+ActiveRecord::Schema.define(:version => 20130822223439) do
 
   create_table "admin_users", :force => true do |t|
     t.integer  "candidates_id"
-    t.boolean  "is_active"
+    t.boolean  "is_active",                  :default => true
     t.integer  "edited_by"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
+    t.integer  "lvl",           :limit => 1
   end
 
   create_table "candidate_certifications", :force => true do |t|
