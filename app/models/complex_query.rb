@@ -16,4 +16,5 @@ class ComplexQuery < ActiveRecord::Base
     @sql ="SELECT * FROM projects_tags AS pt WHERE 1=1 AND ("+ @tecnologies + ")"
     self.connection.execute(sanitize_sql([@sql]))
   end
+  
 end
