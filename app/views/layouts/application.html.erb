@@ -62,7 +62,7 @@
 		        <li><%= link_to "Home", root_path %></li>
 		        <% if signed_in? %>
 				  <% if ['Admin', 'Super Admin'].include?( get_user_type ) %>
-		        <li><%= link_to "Candidates", candidates_path %></li>
+		        <li><%= link_to "Candidates", "/staff/#{current_candidate.id}/candidates" %></li>
 				  <% end %>
 		        <li class="parent_here"><%=link_to_resume('My Profile', current_candidate.id, :action => 'resume')%></li>
 		        </li>

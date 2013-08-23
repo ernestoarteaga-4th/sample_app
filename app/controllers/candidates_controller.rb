@@ -26,7 +26,8 @@ class CandidatesController < ApplicationController
 
   def edit
     id = params[:id] unless params.blank?
-    if !current_candidate.admin_flag.nil?
+    #if !current_candidate.admin_flag.nil?
+	if @@admin_roles.include?( get_user_type )
       @candidate = Candidate.find(id)
       @error = @candidate.errors
     else
@@ -59,6 +60,7 @@ class CandidatesController < ApplicationController
   end
 
   def create
+=begin
     #If no current_candidate, there's no login so act as new candidate.
     if !current_candidate.nil?
       if !current_candidate.admin_flag.nil?
@@ -71,6 +73,7 @@ class CandidatesController < ApplicationController
         end
       end
     else
+=end
       @candidate = Candidate.new(params[:candidate])
       @error = @candidate.errors
       if verify_recaptcha() == false
@@ -83,13 +86,14 @@ class CandidatesController < ApplicationController
           sign_in @candidate
           #UserMailer.welcome_email(@user).deliver
           flash[:success] = "Welcome to the Sample App!"
-          redirect_to root_path
+          redirect_to @@admin_roles.include?( get_user_type ) ? "/candidates/#{@candidate.id}/admin" : root_path
         else
           @title = "Sign up"
           render :new
         end
       end
-    end
+    #end
+	
   end
 
   def update
