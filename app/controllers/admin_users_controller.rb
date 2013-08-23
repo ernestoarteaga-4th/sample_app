@@ -8,10 +8,11 @@ class AdminUsersController < ApplicationController
 	def edit
 	    if !params.blank?
 	      @user = AdminUsers.find(params[:id])
-        if params[:role].to_i > 0
-          @user.is_active = true
-        else
+        @user.lvl = params[:role].to_i
+        if @user.lvl == 0
           @user.is_active = false
+        else
+          @user.is_active = true
         end
 	      if @user.save
 	        flash[:success] = "Profile updated."

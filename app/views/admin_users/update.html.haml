@@ -3,14 +3,14 @@
     %td
       = link_to row.candidate.first_name, "/candidates/#{row.id}/resume"
     %td
-      = link_to row.is_active, "/candidates/#{row.id}/resume"
+      = link_to row.candidate.middle_name, "/candidates/#{row.id}/resume"
     %td
       = link_to row.candidate.first_last_name, "/candidates/#{row.id}/resume"
     %td
       = link_to row.candidate.second_last_name, "/candidates/#{row.id}/resume"
     %td
-      = radio_button_tag 'User', 'yes', row.is_active ? true: false, :onclick => "updateValue('/admin_users/#{row.id}/edit/1',2)"
+      = radio_button_tag 'Role', 'User', row.lvl == 0  ? true: false, :onclick => "updateValue('/admin_users/#{row.id}/edit/0',2)"
     %td
-      = radio_button_tag 'Admin', 'yes', row.is_active ? true: false, :onclick => "updateValue('/admin_users/#{row.id}/edit/2',2)"
+      = radio_button_tag 'Role', 'Admin', row.lvl == 1  ? true: false, :onclick => "updateValue('/admin_users/#{row.id}/edit/1',2)"
     %td
-      = radio_button_tag 'SuperAdmin', 'yes', row.is_active ? true: false, :onclick => "updateValue('/admin_users/#{row.id}/edit/0',2)"
+      = radio_button_tag 'Role', 'SuperAdmin', row.lvl == 2 ? true: false, :onclick => "updateValue('/admin_users/#{row.id}/edit/2',2)"
