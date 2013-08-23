@@ -8,8 +8,11 @@ class AdminUsersController < ApplicationController
 	def edit
 	    if !params.blank?
 	      @user = AdminUsers.find(params[:id])
-	      @active = @user.is_active
-	      @user.is_active = !@active	      
+        if params[:role].to_i > 0
+          @user.is_active = true
+        else
+          @user.is_active = false
+        end
 	      if @user.save
 	        flash[:success] = "Profile updated."
 	      end	     
@@ -19,4 +22,16 @@ class AdminUsersController < ApplicationController
 	                                     :per_page => 20)	    
 	    render :update, :layout => false
 	end
+
+  def search
+    if params[:q]
+      query = params[:q]
+      @users = User.find_with_ferret(query + "*", :limit => :all)
+      @users = @users.sort_by{ |user| user.name}
+      paginate(@users, 10)
+      flash[:success] = "About #{@users.count} results."
+      render 'index'
+    end
+  end
+
 end
