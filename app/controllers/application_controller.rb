@@ -20,15 +20,15 @@ class ApplicationController < ActionController::Base
 	roles = {'0' => 'Admin', '1' => 'Super Admin'}
 	
 	if admin_user
-	  @@user_type = roles[admin_user.lvl.to_s] 
+	  session[:user_type] = roles[admin_user.lvl.to_s] 
 	else
-	   @@user_type = 'Candidate'
+	   session[:user_type] = 'Candidate'
 	end
 	
   end
   
   def get_user_type
-    @@user_type
+    session[:user_type]
   end
 
   def paginate(results, per_page)

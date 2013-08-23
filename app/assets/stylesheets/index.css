@@ -399,6 +399,7 @@ background: url(http://www.4thsource.com/public/images/read_more_brown.jpg) no-r
 	padding: 0px 20px;
 	position: relative;
 	display: inline-block;
+	float: left;
 }
 
 #content {
