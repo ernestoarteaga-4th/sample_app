@@ -19,11 +19,15 @@ class ApplicationController < ActionController::Base
     admin_user = AdminUsers.find_by_candidates_id(user.id)
 	roles = {'0' => 'Admin', '1' => 'Super Admin'}
 	
-	if admin_user
-	  session[:user_type] = roles[admin_user.lvl.to_s] 
+	if admin_user 
+	  if admin_user.is_active
+	    session[:user_type] = admin_user.lvl.nil? ? 'Admin' : roles[admin_user.lvl.to_s]
+	  end
 	else
 	   session[:user_type] = 'Candidate'
 	end
+	
+	 session[:user_type]
 	
   end
   
