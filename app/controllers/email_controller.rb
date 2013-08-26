@@ -1,4 +1,7 @@
 class EmailController < ApplicationController
+  
+  skip_filter :verify_signed_in, :only => [:remind]
+  
   def remind
     if param_posted?(:candidate)
       email = params[:candidate][:email]
