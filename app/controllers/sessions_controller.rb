@@ -27,10 +27,14 @@ class SessionsController < ApplicationController
       @title = "Sign in"
       render :new
     else
-	  set_user_type(candidate)
-      sign_in candidate
-	  
-      redirect_back_or root_path
+	  if set_user_type(candidate)
+        sign_in candidate 
+        redirect_back_or root_path
+	  else
+	    flash.now[:error] = "Please contact the system administrator, your account is not active!"
+		@title = "Sign in"
+        render :new
+	  end
 	  
     end
 	
@@ -58,6 +62,7 @@ class SessionsController < ApplicationController
 
   def destroy
     sign_out
+	session[:user_type] = nil
     redirect_to root_path
   end
   
