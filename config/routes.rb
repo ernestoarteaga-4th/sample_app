@@ -59,6 +59,8 @@ SampleApp::Application.routes.draw do
   end
 
   match "admin_users/:id/edit/:role" => 'admin_users#edit'
+  match "admin_users/new/:letra" => 'admin_users#new'
+  match "admin_users/:id/add" => 'admin_users#add'
 
   match '/signup',  :to => 'candidates#new'
   match '/signin',  :to => 'sessions#new'
