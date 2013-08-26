@@ -5,17 +5,28 @@ development:
  adapter: mysql2
  #driver: SQLServerDriver
  database: 4thsourcejobs
- host: localhost
+ host: pantera-jira.dyndns.org
  username: root
- password: admin
+ password: Admin!mysql1
+ #---------Old Connection dev--------
+ #adapter: mysql2
+ #driver: SQLServerDriver
+ #database: 4thsourcejobs
+ #host: localhost
+ #username: root
+ #password: admin
  #port: 1433
  #dsn: connect
 
-#development:
-#  adapter: sqlite3
-#  database: db/development.sqlite3
-#  pool: 5
-#  timeout: 5000
+test:
+ adapter: mysql2
+ #driver: SQLServerDriver
+ database: 4thsourcejobs
+ host: pantera-jira.dyndns.org
+ username: root
+ password: Admin!mysql1
+ #port: 1433
+ #dsn: connect
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
