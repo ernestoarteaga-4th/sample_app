@@ -1,5 +1,6 @@
+-i = 0
 -@candidates.each do |row|
-  %tr
+  %tr{:class=> i%2 > 0 ? "even": "odd" }
     %td
       = link_to row.candidate.first_name, "/candidates/#{row.id}/resume"
     %td
@@ -9,8 +10,9 @@
     %td
       = link_to row.candidate.second_last_name, "/candidates/#{row.id}/resume"
     %td
-      = radio_button_tag 'Role', 'User', row.lvl == 0  ? true: false, :onclick => "updateValue('/admin_users/#{row.id}/edit/0',2)"
+      = radio_button_tag 'Role'+row.id.to_s, 'User', row.lvl == 0  ? true: false, :onclick => "updateValue('/admin_users/#{row.id}/edit/0',2)"
     %td
-      = radio_button_tag 'Role', 'Admin', row.lvl == 1  ? true: false, :onclick => "updateValue('/admin_users/#{row.id}/edit/1',2)"
+      = radio_button_tag 'Role'+row.id.to_s, 'Admin', row.lvl == 1  ? true: false, :onclick => "updateValue('/admin_users/#{row.id}/edit/1',2)"
     %td
-      = radio_button_tag 'Role', 'SuperAdmin', row.lvl == 2 ? true: false, :onclick => "updateValue('/admin_users/#{row.id}/edit/2',2)"
+      = radio_button_tag 'Role'+row.id.to_s, 'SuperAdmin', row.lvl == 2 ? true: false, :onclick => "updateValue('/admin_users/#{row.id}/edit/2',2)"
+    -i = i + 1
