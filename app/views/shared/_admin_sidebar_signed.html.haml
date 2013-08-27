@@ -60,6 +60,17 @@
               = link_to "Tags", url_options = { :controller => "tags", :action => "index", :id => current_candidate.id}, html_options = { :class => 'profile-sub_navigation' }
     -else
       %ul#nav_sub.sub_navigation
+
+        -if is_follow?(@candidate.id)
+          = link_to('send Message', '#', html_options = {:id => "send_message", :class=>"show_hide", :rel=>"#slidingDiv"})
+          %div#slidingDiv
+            = form_for(:microposts, :url=>{:controller => "microposts", :action=>'create'}, :html => {:id => "createMicroPostForm"}) do |f|
+              = hidden_field_tag :candidate_id , @candidate.id
+              = text_area_tag "message_text"
+              = submit_tag "Send", :class => "btn-primary"
+          %div#emptyDiv
+            %br
+        %br
         = link_to 'Return Home', edit_candidate_path(current_candidate), :class => "profile-sub_navigation"
         %h4 "Edit as #{current_candidate.first_name} #{current_candidate.first_last_name}" 
         %li

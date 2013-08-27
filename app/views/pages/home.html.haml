@@ -25,23 +25,12 @@
         %td.main
           #content-margin
             %h1.micropost What is happening?
-            = render 'shared/micropost_form'
+            -if current_candidate.microposts.count > 0
+              - @postcount = "Unread:"  + current_candidate.microposts.count.to_s
+              %h1{:style => "float:right;"}= @postcount 
+            -else
+              = "Unread: 0"
             %br
-            #feed
-            - if !@page_results.nil? || !params[:q].empty?
-              #search
-                #search-form
-                  - form_tag({ :action => "search" }, :method => "get") do
-                    = raw '<fieldset>'
-                    .form_row
-                      %label{:for => "q"} Search feeds:
-                      = text_field_tag "q", params[:q], :class => "search-text-field" 
-                      %input{:type => "submit", :value => "Search"}
-                    = raw '</fieldset>'
-                #search-results
-                  #flash
-                    - flash.each do |key, value|
-                      .flash{:class => key}= value
             #feed
               = render 'shared/feed'
   - else

@@ -1,9 +1,10 @@
 %tr.feed-content
+  - admin_candidate = Candidate.find(feed_item.created_by)
   %td.gravatar
-    = link_to gravatar_for(feed_item.candidate), feed_item.candidate 
+    = link_to gravatar_for(admin_candidate), admin_candidate 
   %td.micropost 
     %span(class='candidate')
-      = link_to feed_item.candidate.first_name, feed_item.candidate 
+      = link_to admin_candidate.first_name, admin_candidate 
     %span(class='content')
       = feed_item.content
     %span(class='timestamp')
@@ -13,3 +14,4 @@
   - if current_candidate?(feed_item.candidate) 
     %td.micropost-delete
       = link_to "delete", feed_item, :method => :delete, :confirm => "You sure?", :title => feed_item.content
+  

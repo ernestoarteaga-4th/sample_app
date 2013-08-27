@@ -4,18 +4,20 @@ require 'acts_as_ferret'
 class Micropost < ActiveRecord::Base
   #acts_as_ferret
   self.per_page = 5
-  attr_accessible :content
+  attr_accessible :content, :candidate_id, :created_by, :checked
   belongs_to :candidate
 
   validates :content, :presence => true, :length => { :maximum => 140 }
   validates :candidate_id, :presence => true
+  validates :created_by, :presence => true
 
   default_scope :order => "microposts.created_at DESC"
 
   def self.from_candidates_followed_by(candidate)
       followed_ids = candidate.following.map(&:id).join(", ")
       followed_ids = 0 if (followed_ids == nil || followed_ids.empty?)
-      where("candidate_id IN (#{followed_ids}) OR candidate_id = ?", candidate)
+      where("candidate_id = ?", candidate.id)
+      #binding.pry
   end
 
   def self.search_from_candidates_followed_by(candidate, words)
