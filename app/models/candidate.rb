@@ -85,6 +85,10 @@ class Candidate < ActiveRecord::Base
 
   has_many        :candidates_profiles,      :dependent => :destroy                                            
 
+  has_one         :admin_users, :foreign_key => "candidates_id",
+                                :dependent => :destroy
+
+
   has_attached_file :avatar, :styles => { :medium => "300x300#", :thumb => "40x40#" },
                              :default_url => "/images/4thsource_avatar.jpg"
   

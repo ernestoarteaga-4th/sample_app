@@ -1,16 +1,18 @@
 class AdminUsersController < ApplicationController
-  
+before_filter :isSuperAdmin
+
 	def index
-    @candidates = AdminUsers.joins(:candidate).paginate(:page => params[:page], 
+    @candidates = Candidate.joins(:admin_users).paginate(:page => params[:page], 
                                      #:conditions => [""],
-                                     :per_page => 20).order('candidates.first_last_name')
+                                     :per_page => 20,
+                                     :order => 'first_last_name')
 	end
 
   def new
     unless params[:letra].nil?
-      @candidates = Candidate.where('first_last_name LIKE ?', params[:letra] + '%').order('first_last_name')
+      @candidates = Candidate.includes(:admin_users).where('first_last_name LIKE ?', params[:letra] + '%').order('first_last_name')
     else
-      @candidates = Candidate.where('first_last_name LIKE "a%"').order('first_last_name')
+      @candidates = Candidate.includes(:admin_users).where('first_last_name LIKE "a%"').order('first_last_name')
     end
   end
 
@@ -33,18 +35,34 @@ class AdminUsersController < ApplicationController
   end
 
 	def edit
-	    unless params[:role].nil?
-	      @user = AdminUsers.find(params[:id])
-        @user.lvl = params[:role].to_i
-
-        @user.is_active = @user.lvl != 0
-	      @user.save
-
-	    end		
-	    @candidates = AdminUsers.joins(:candidate).paginate(:page => params[:page], 
-                                     #:conditions => [""],
-                                     :per_page => 20).order('candidates.first_last_name')
-	    render :update, :layout => false
+    begin
+      @user = AdminUsers.find(params[:id])
+      if @user == nil
+        render text: "User not found"
+      else
+        case params[:role].to_i
+        when 0 then
+          @user.lvl = 0
+          @user.is_active = 0
+        when 1
+          @user.lvl = 0
+          @user.is_active = 1
+        when 2
+          @user.lvl = 1
+          @user.is_active = 1
+        end          
+        if @user.save
+          @candidates = Candidate.joins(:admin_users).paginate(:page => params[:page], 
+                                           #:conditions => [""],
+                                           :per_page => 20).order('first_last_name')
+          render :update, :layout => false
+        else
+          render text: @user.errors.full_messages
+        end
+      end
+    rescue
+      render text: "User not found"
+    end
 	end
 
 end

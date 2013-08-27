@@ -33,11 +33,13 @@
     - flash.each do |key, value|
       .flash{:class => key}= value
   = link_to "New", '/admin_users/new'
-  %br  
-  %img(id="imgloading" src="/images/loading.gif" style="display: none; padding-left: 100px;")
+  %br
+  %br
+  %br
+  %img(id="imgloading" src="/images/loading.gif" style="display: none; padding-left: 200px;padding-top:25px")
   #datatbl
     = form_for(:table, :url=>{:action=>'index'}) do |f|
-      %table#candidates_table.display
+      %table#adminusers_table.display
         %thead
           %tr
             %th
@@ -70,20 +72,19 @@
           -@candidates.each do |row|
             %tr
               %td
-                = link_to row.candidate.first_name, "/candidates/#{row.id}/resume"
+                = link_to row.first_name, "/candidates/#{row.id}/resume"
               %td
-                = link_to row.candidate.middle_name, "/candidates/#{row.id}/resume"
+                = link_to row.middle_name, "/candidates/#{row.id}/resume"
               %td
-                = link_to row.candidate.first_last_name, "/candidates/#{row.id}/resume"
+                = link_to row.first_last_name, "/candidates/#{row.id}/resume"
               %td
-                = link_to row.candidate.second_last_name, "/candidates/#{row.id}/resume"
+                = link_to row.second_last_name, "/candidates/#{row.id}/resume"
               %td
-                = radio_button_tag 'Role'+row.id.to_s, 'User', row.lvl == 0  ? true: false, :onclick => "updateValue('/admin_users/#{row.id}/edit/0',2)"
+                = radio_button_tag 'Role'+row.id.to_s, 'User', ( !row.admin_users.lvl? and !row.admin_users.is_active? )  ? true: false, :onclick => "updateValue('/admin_users/#{row.id}/edit/0',2)"
               %td
-                = radio_button_tag 'Role'+row.id.to_s, 'Admin', row.lvl == 1  ? true: false, :onclick => "updateValue('/admin_users/#{row.id}/edit/1',2)"
+                = radio_button_tag 'Role'+row.id.to_s, 'Admin', ( !row.admin_users.lvl? and row.admin_users.is_active? )  ? true: false, :onclick => "updateValue('/admin_users/#{row.id}/edit/1',2)"
               %td
-                = radio_button_tag 'Role'+row.id.to_s, 'SuperAdmin', row.lvl == 2 ? true: false, :onclick => "updateValue('/admin_users/#{row.id}/edit/2',2)"
-                  
+                = radio_button_tag 'Role'+row.id.to_s, 'SuperAdmin', ( row.admin_users.lvl? and row.admin_users.is_active? ) ? true: false, :onclick => "updateValue('/admin_users/#{row.id}/edit/2',2)"                  
     %br
     = will_paginate @candidates, :class => "digg_pagination"
   %br

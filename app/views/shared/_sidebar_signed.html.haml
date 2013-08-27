@@ -28,10 +28,11 @@
         %li
           %i.iconResume
           = link_to_candidates('Candidates', current_candidate.id, :action => 'candidates', :class => 'profile-sub_navigation')
-        %li
-          %i.iconAdminUser
-          //= link_to 'Admin users', 'admin_users', :class => 'profile-sub_navigation'
-          = link_to 'Admin users', url_options = { :controller => "admin_users", :action => "index", :id => current_candidate.id}, html_options = { :class => 'profile-sub_navigation' }
+        -if role == SessionsHelper::SUPERADMIN
+          %li
+            %i.iconAdminUser
+            //= link_to 'Admin users', 'admin_users', :class => 'profile-sub_navigation'
+            = link_to 'Admin users', '/admin_users', html_options = { :class => 'profile-sub_navigation' }
         %li
           %i.iconReport
           = link_to 'Advanced search', '/staff/' + current_candidate.id.to_s() + '/report', :class => 'profile-sub_navigation'
