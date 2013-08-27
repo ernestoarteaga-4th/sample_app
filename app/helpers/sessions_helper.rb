@@ -1,6 +1,13 @@
 module SessionsHelper
+  USER = 0
+  ADMIN = 1
+  SUPERADMIN = 2
 
   require 'net/pop'
+
+  def isSuperAdmin
+    deny_access unless role == SessionsHelper::SUPERADMIN
+  end
 
   def authenticate
     deny_access unless signed_in?
@@ -72,6 +79,20 @@ module SessionsHelper
         return true
       rescue Net::POPAuthenticationError
         return false
+      end
+    end
+
+    def role
+      if !current_candidate.nil?
+        if !current_candidate.admin_users.is_active?
+          0
+        elsif current_candidate.admin_users.is_active? and !current_candidate.admin_users.lvl?
+          1
+        elsif current_candidate.admin_users.is_active? and current_candidate.admin_users.lvl?
+          2
+        end
+      else
+        -1
       end
     end
 
