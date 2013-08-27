@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130822223439) do
+ActiveRecord::Schema.define(:version => 20130826153551) do
 
   create_table "admin_users", :force => true do |t|
     t.integer  "candidates_id"
@@ -245,8 +245,10 @@ ActiveRecord::Schema.define(:version => 20130822223439) do
   create_table "microposts", :force => true do |t|
     t.string   "content"
     t.integer  "candidate_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.integer  "created_by"
+    t.integer  "checked",      :limit => 1
   end
 
   add_index "microposts", ["candidate_id"], :name => "index_microposts_on_candidate_id"
@@ -356,39 +358,6 @@ ActiveRecord::Schema.define(:version => 20130822223439) do
     t.datetime "updated_at",  :null => false
   end
 
-  create_table "tools", :force => true do |t|
-    t.integer  "skill_id"
-    t.integer  "experience_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-  end
+# Could not dump table "tools" because of following ActiveRecord::StatementInvalid
+#   Mysql2::Error: Lost connection to MySQL server during query: SHOW CREATE TABLE `tools`
 
-  create_table "users", :force => true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.datetime "created_at",                                           :null => false
-    t.datetime "updated_at",                                           :null => false
-    t.string   "encrypted_password"
-    t.string   "salt"
-    t.boolean  "admin",                             :default => false
-    t.string   "change_password_flag"
-    t.string   "gender"
-    t.date     "birthday"
-    t.string   "address"
-    t.string   "city"
-    t.integer  "zip_code",             :limit => 8
-    t.string   "country"
-    t.integer  "home_phone",           :limit => 8
-    t.integer  "office_phone",         :limit => 8
-    t.integer  "cell_phone",           :limit => 8
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
-    t.string   "last_name"
-    t.string   "second_last_name"
-  end
-
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
-
-end
