@@ -3,7 +3,11 @@ class MicropostsController < ApplicationController
   before_filter :authorized_candidate, :only => :destroy
 
   def create
-    @micropost = current_candidate.microposts.build(params[:micropost])
+    content = params[:message_text]
+    candidate_id = params[:candidate_id]
+    created_by = current_candidate.id
+    @candidate = Candidate.find(candidate_id)
+    @micropost = @candidate.microposts.build(:content => content, :candidate_id => candidate_id, :created_by => created_by)
     @error = @micropost.errors
     if @micropost.save
       flash[:success] = "Micropost created!"

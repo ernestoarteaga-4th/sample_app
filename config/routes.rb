@@ -69,6 +69,9 @@ SampleApp::Application.routes.draw do
   match '/help',    :to => 'pages#help'
   match '/home',    :to => 'pages#home'
 
+  match "/candidates/:id/followings" => 'followings#follow'
+  match "/candidates/:id/unfollow" => 'followings#destroy'
+  #match "/candidates/:id/microposts" => 'microposts#create'
 
   match "/candidates/:id/resume" => 'resume#index'
   match "/candidates/:id/resume/staff_update" => 'resume#staff_update'

@@ -149,7 +149,7 @@ def validate
   end
 
   def is_follow?(follow_user)
-    follow = Following.where("follower_id = ? AND followed_user = ?", id, follow_user)
+    follow = Following.where("follower_id = ? AND followed_id = ?", id, follow_user)
      
     if follow.empty?
      false
