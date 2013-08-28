@@ -37,10 +37,14 @@
     - flash.each do |key, value|
       .flash{:class => key}= value
   %br  
+  %div#srch{:style=>'width:100%; text-align:right'}
+    %span
+      = raw('Search: ')
+    %input#searchCandidates{ :type => 'text'}
   %img(id="imgloading" src="/images/loading.gif" style="display: none; padding-left: 100px;")
   #datatbl
-    = form_for(:table, :url=>{:action=>'index'}) do |f|
-      %table#candidates_table.display
+    = form_for(:table, :url=>'') do |f|
+      %table#adminusersnew_table.display
         %thead
           %tr
             %th

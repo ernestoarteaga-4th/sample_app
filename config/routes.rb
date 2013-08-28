@@ -61,6 +61,7 @@ SampleApp::Application.routes.draw do
   match "admin_users/:id/edit/:role" => 'admin_users#edit'
   match "admin_users/new/:letra" => 'admin_users#new'
   match "admin_users/:id/add" => 'admin_users#add'
+  match "admin_users/search/:txt" => 'admin_users#search'
 
   match '/signup',  :to => 'candidates#new'
   match '/signin',  :to => 'sessions#new'
