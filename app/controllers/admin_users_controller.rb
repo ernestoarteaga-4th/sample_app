@@ -70,4 +70,9 @@ before_filter :isSuperAdmin
     render :newajax, :layout => false
   end
 
+  def search    
+    @candidates = Candidate.includes(:admin_users).where('first_name LIKE ? OR first_last_name LIKE ? OR email LIKE ?', params[:txt] + '%',params[:txt] + '%',params[:txt] + '%').order('first_last_name')
+    render :newajax, :layout => false
+  end
+
 end
