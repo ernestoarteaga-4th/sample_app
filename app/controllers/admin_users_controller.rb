@@ -36,9 +36,9 @@ before_filter :isSuperAdmin
 
 	def edit
     begin
-      @user = AdminUsers.find(params[:id])
+      @user = AdminUsers.where('candidates_id = ?', params[:id].to_i).first()
       if @user == nil
-        render text: "User not found"
+        render text: "User not found " + params[:id]
       else
         case params[:role].to_i
         when 0 then
@@ -60,9 +60,14 @@ before_filter :isSuperAdmin
           render text: @user.errors.full_messages
         end
       end
-    rescue
-      render text: "User not found"
+    rescue Exception => e  
+      render text: "User not found " + params[:id] + ", " + e.message + ", " + e.backtrace.inspect
     end
 	end
+
+  def search    
+    @candidates = Candidate.includes(:admin_users).where('first_name LIKE ? OR first_last_name LIKE ? OR email LIKE ?', params[:txt] + '%',params[:txt] + '%',params[:txt] + '%').order('first_last_name')
+    render :newajax, :layout => false
+  end
 
 end
