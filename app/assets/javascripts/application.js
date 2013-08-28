@@ -86,7 +86,13 @@ $(document).ready(function() {
         $("#emptyDiv, #slidingDiv").toggle();
     });
 
-
+    $("#slidingDiv2").hide();
+    $(".show_hide").on("click", function(){
+        $("#can_id").val($(this).attr('id'));
+        $("#emptyDiv2, #slidingDiv2").toggle();
+        $("#reply_text").focus();
+        $("#slidingDiv2").focus();
+    });
     /*$("#message_button").click(function() {
 
       $.ajax({ 

@@ -16,7 +16,7 @@
     %i.iconResumeHeadLine
     .h3-page-headline
       Resume
-      - if current_candidate.admin_flag
+      - if ['Admin', 'Super Admin'].include?( get_user_type )
         - if !current_candidate.is_follow?(@candidate.id)
           = button_tag "Follow", :id => "follow_button", :class => "btn-primary",  :style => "float:right;", :type => "button", :value => "Follow"
         -else
