@@ -13,5 +13,10 @@
       ago.
   - if current_candidate?(feed_item.candidate) 
     %td.micropost-delete
-      = link_to "delete", feed_item, :method => :delete, :confirm => "You sure?", :title => feed_item.content
+      - @value = "/reply/#{feed_item.created_by}"
+      = label_tag :reply, t("reply"), :id => "#{feed_item.created_by}", :class=>"show_hide", :rel=>"#slidingDiv2"
+      - if (current_candidate.id == feed_item.created_by)
+        = link_to "Remove", feed_item, :method => :update, :confirm => "You sure?", :title => feed_item.content
+
+
   

@@ -26,13 +26,20 @@
           #content-margin
             %h1.micropost What is happening?
             -if current_candidate.microposts.count > 0
-              - @postcount = "Unread:"  + current_candidate.microposts.count.to_s
+              - @postcount = "Unread: " + current_candidate.unread.to_s
               %h1{:style => "float:right;"}= @postcount 
             -else
               = "Unread: 0"
             %br
-            #feed
-              = render 'shared/feed'
+            %div#slidingDiv2
+              = form_for(:microposts, :url=>{:controller => "microposts", :action => "reply"}, :html => {:id =>   "replyMicroPostForm"}) do |f|
+                = hidden_field_tag "can_id" , ""
+                = text_area_tag "reply_text"
+                = submit_tag "Reply", :class => "btn-primary"
+            %div#emptyDiv2
+            %br
+            = render 'shared/feed'
+            - current_candidate.check_microposts
   - else
     %h1 Sample App
     %p

@@ -146,11 +146,23 @@ def validate
     if country == '0'
       errors.add_to_base("Country is invalid")
     end
-  end
+end
   
   def feed
      Micropost.from_candidates_followed_by(self)
   end
+
+def unread
+  Micropost.select("*").where("is_active = 1 AND checked != 1 AND candidate_id = ?", self.id).size
+end
+
+def check_microposts
+
+  microposts_list = Micropost.select("*").where("is_active = 1 AND checked != 1 AND candidate_id = ?", self.id)
+  if microposts_list.size > 0
+    microposts_list.update_all "checked = 1"
+  end
+end
 
   def is_follow?(follow_user)
     follow = Following.where("follower_id = ? AND followed_id = ?", id, follow_user)

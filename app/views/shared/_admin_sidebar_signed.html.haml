@@ -11,12 +11,9 @@
         #sidebar-candidate
           = @candidate.first_name
           = @candidate.first_last_name
-          %br
-          -#= current_candidate.microposts.count
-          microposts
       %br
     %br
-    -if !current_candidate.admin_flag?
+    -if !['Admin', 'Super Admin'].include?( get_user_type )
       
       %ul#nav_sub.sub_navigation
         %li
