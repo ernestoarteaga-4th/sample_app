@@ -9,14 +9,24 @@
       success: function(data) {
            // data is ur summary
           $('#imgloading').hide();
-          $('#candidates_table tbody').html(data);
+          $('#adminusers_table').empty();
+          $('#adminusers_table').html('<tbody></tbody>');
+          $('#adminusers_table tbody').html(data);
           $('#datatbl').show();
+          $('#adminusers_table').dataTable({
+            "bPaginate": false,
+            "bLengthChange": false,
+            "bFilter": false,
+            "bDestroy": true,
+            "bInfo": false,
+            "aaSorting": [[2,'asc'],[0,'asc']]
+          });
       }
     });
     return false;
   }
 
-<!-- Content -->			
+<!-- Content -->      
 #content
   %img(src="http://www.4thsource.com//public/images/subheader_services.jpg" alt="Sub Header" class="subheader")
   %ul#breadcrumbs
