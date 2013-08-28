@@ -22,7 +22,7 @@
     - flash.each do |key, value|
       .flash{:class => key}= value
   %br
-  -if current_candidate.admin_flag
+  -if ['Admin','Super Admin'].include?( get_user_type ) #current_candidate.admin_flag
     %br
       %strong
         = link_to "New", :controller => "certifications", :action => "new"
