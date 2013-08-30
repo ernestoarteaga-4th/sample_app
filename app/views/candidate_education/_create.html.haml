@@ -1,4 +1,4 @@
-= javascript_include_tag "parsley.js"
+
 %h3.page_headline
   Fill Your Data Correctly:
 = form_for(:educations, :url=>{:action=>'create'}, :html => {:multipart => true, :id => "newEducationForm", :data => { :validate => 'parsley' }}) do |f|

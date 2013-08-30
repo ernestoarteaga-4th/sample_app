@@ -129,7 +129,7 @@ module ApplicationHelper
 
   def tag_type_list
     [
-      ['- Select one -', '0'],
+      ['- Select one -', ''],
       ['Tool','1'],
       ['Knowledge', '2'],
       ['Technology', '3']

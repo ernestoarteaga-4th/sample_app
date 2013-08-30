@@ -30,13 +30,12 @@
   %br
   %h3.page_headline
     New:
-  = form_for(:language, :url=>{:action=>'create'}, :html => {:multipart => true, :id => "EducationDegreeForm"}) do |f|
+  = form_for(:language, :url=>{:action=>'create'}, :html => {:multipart => true, 'data-validate' => "parsley", :id => "EducationDegreeForm"}) do |f|
     //= render 'shared/error_messages', :object => f.object
     .field
       = f.label :name
       %br
-      = f.text_field :name
-      = label_tag "requiredName", "", :id =>"requiredName", :class => "educationValidatorText"
+      = f.text_field :name, :data => { :required => "true" }
     .actions
       = f.submit "Accept", :class => "btn-primary"
 <!-- Sidebar -->
