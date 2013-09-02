@@ -1,3 +1,4 @@
+= javascript_include_tag "parsley.js"
 <!-- Content -->
 #content
   = stylesheet_link_tag "flick/jquery-ui-1.10.2.custom" 
@@ -15,7 +16,7 @@
       Contact Information
   .divider-headline
   %br
-  = form_for(@candidate) do |f|
+  = form_for(@candidate, :html => {:multipart => true, 'data-validate' => 'parsley', :id => 'candidateForm' }) do |f|
     = render 'shared/error_messages', :object => f.object
     .row-fluid
       .span12
@@ -28,21 +29,21 @@
         .field
           = f.label :first_name
           .mandatory *
-          = f.text_field :first_name
+          = f.text_field :first_name, :maxlength => '255', 'data-required' => 'true'
       .span5
         .field
           = f.label :middle_name
-          = f.text_field :middle_name
+          = f.text_field :middle_name, :maxlength => '255'
     .row-fluid
       .span5
         .field
           = f.label :first_last_name
           .mandatory *
-          = f.text_field :first_last_name
+          = f.text_field :first_last_name, :maxlength => '255', 'data-required' => 'true'
       .span5
         .field
           = f.label :second_last_name
-          = f.text_field :second_last_name
+          = f.text_field :second_last_name, :maxlength => '255'
     .row-fluid
       .span5
         .field
@@ -67,20 +68,20 @@
       .span5
         .field
           = f.label :email
-        = f.text_field :email
+        = f.text_field :email, :maxlength => '255', 'data-type' => 'email'
       .span5
         .field
           = f.label "alternate email"
-        = f.text_field :email_alternate_1
+        = f.text_field :email_alternate_1, :maxlength => '255', 'data-type' => 'email'
     .row-fluid
       .span5
         .field
           = f.label "alternate email"
-        = f.text_field :email_alternate_2
+        = f.text_field :email_alternate_2, :maxlength => '255', 'data-type' => 'email'
       .span5
         .field
           = f.label "alternate email"
-        = f.text_field :email_alternate_3
+        = f.text_field :email_alternate_3, :maxlength => '255', 'data-type' => 'email'
 
     .divider
     .row-fluid
@@ -88,14 +89,14 @@
         .field
           = f.label :password
         %br
-        = f.password_field :password
+        = f.password_field :password, :maxlength => '255', :data => {:equalto => '#candidate_password_confirmation', 'error-message' => 'This value must be the same in confirmation field'}
       .span5
         .field
           = f.label 'Confirmation'
           \(
           .mandatory *
           If write new password)
-        = f.password_field :password_confirmation
+        = f.password_field :password_confirmation, :maxlength => '255'
 
     %br
     .divider
@@ -103,15 +104,15 @@
       .span5
         .field
           = f.label :address
-        = f.text_field :address
+        = f.text_field :address, :maxlength => '255'
       .span3
         .field
           = f.label :city
-        = f.text_field :city
+        = f.text_field :city, :maxlength => '255'
       .span3
         .field
           = f.label :zip_code
-        = f.text_field :zip_code, {:as => "integer"}
+        = f.text_field :zip_code, {:as => "integer", :maxlength => '5', 'data-type' => 'digits'}
     .row-fluid
       .span5
         .field
@@ -123,15 +124,15 @@
       .span3
         .field
           = f.label :home_phone
-        = f.text_field :home_phone
+        = f.text_field :home_phone, :maxlength => 10, 'data-type' => 'phone'
       .span3
         .field
           = f.label :office_phone
-        = f.text_field :office_phone
+        = f.text_field :office_phone, :maxlength => 10, 'data-type' => 'phone'
       .span3
         .field
           = f.label :cell_phone
-        = f.text_field :cell_phone
+        = f.text_field :cell_phone, :maxlength => 10, 'data-type' => 'phone'
     .divider
     .row-fluid
       .span3
@@ -146,7 +147,7 @@
         .visaContent
           .field#visaShowHide
             = f.label :visa_expiration_year
-            = f.text_field :visa_expiration_year, {:maxlength=>'4'}
+            = f.text_field :visa_expiration_year, {:maxlength=>'4', 'data-type' => 'digits'}
     .row-fluid 
       .span3
         .field
@@ -159,7 +160,7 @@
       .span3
         .field#passportShowHide
           = f.label :passport_expiration_year
-          = f.text_field :passport_expiration_year, {:maxlength=>'4'}   
+          = f.text_field :passport_expiration_year, {:maxlength=>'4', 'data-type' => 'digits'}   
     %br
     .divider
     .row-fluid
@@ -170,23 +171,23 @@
       .span3
         .field.employedShowHide
           = f.label :company
-          = f.text_field :company
+          = f.text_field :company, :maxlength => '255'
       .span3
         .field.employedShowHide
           = f.label :position
-          = f.text_field :position
+          = f.text_field :position, :maxlength => '255'
       .span3
         .field.employedShowHide
           = f.label :current_salary
-          = f.text_field :current_salary, :maxlength=>'7', :value => (number_to_currency(@candidate.current_salary, :precision => 0) || "$0")
+          = f.text_field :current_salary, :maxlength=>'7', :value => (number_to_currency(@candidate.current_salary, :precision => 0) || "0")
     .row-fluid
       .span3
         .field
           = f.label :salary_expectancy
-          = f.text_field :salary_expectancy, :maxlength=>'7', :value => (number_to_currency(@candidate.salary_expectancy, :precision => 0) || "$0")
+          = f.text_field :salary_expectancy, :maxlength=>'7', :value => (number_to_currency(@candidate.salary_expectancy, :precision => 0) || "0")
     .row-fluid
       = f.label :comments
-      = f.text_area :comments
+      = f.text_area :comments, :maxlength => '255'
     .actions
       %br      
       = f.submit "Update",{"class"=>"btn btn-primary"}
