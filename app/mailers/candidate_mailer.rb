@@ -11,4 +11,5 @@ class CandidateMailer < ActionMailer::Base
     @from = 'Admin <jesus.parra@4thsource.com>'
     mail(to: @recipients, subject: 'Your login information at tweet.4thsource.com')
   end
+  
 end
