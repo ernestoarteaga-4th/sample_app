@@ -1,3 +1,4 @@
+
 <!-- Content -->
 #content
   %img(src="http://www.4thsource.com//public/images/subheader_services.jpg" alt="Sub Header" class="subheader")
@@ -31,12 +32,12 @@
   %br
   %h3.page_headline
     New
-  = form_for(:certification, :url=>{:action=>'new'}, :html => {:multipart => true, :id => "CertificationForm"}) do |f|
+  = form_for(:certification, :url=>{:action=>'new'}, :html => {:multipart => true, :data => { :validate => 'parsley' }, :id => "CertificationForm"}) do |f|
     //= render 'shared/error_messages', :object => f.object
     .field
       = f.label :name
       %br
-      = f.text_field :name
+      = f.text_field :name, :maxlength => 255, :data => { :required => "true" }
     .actions
       = f.submit "Accept", {"class"=>"btn btn-primary"}
 <!-- Sidebar -->

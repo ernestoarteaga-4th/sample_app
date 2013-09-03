@@ -33,12 +33,13 @@
   %br
   %h3.page_headline
     New:
-  = form_for(:role, :url=>{:action=>'new'}, :html => {:multipart => true, :id => "RoleForm"}) do |f|
+  = form_for(:role, :url=>{:action=>'new'}, :html => {:multipart => true, 'data-validate' => "parsley", :id => "RoleForm"}) do |f|
     //= render 'shared/error_messages', :object => f.object
     .field
       = f.label :name
       %br
-      = f.text_field :name
+      = f.text_field :name, :data => { :required => "true" }
+    %br
     .field
       = f.label :description
       %br

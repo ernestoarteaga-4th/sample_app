@@ -1,4 +1,5 @@
 <!-- Content -->
+
 #content
   %img(src='http://www.4thsource.com//public/images/subheader_services.jpg' class='subheader' alt='Sub Header')
   %ul#breadcrumbs
@@ -34,7 +35,7 @@
     %br
     .experience_details_wrapper
       .experience_details_left
-        = form_for(:certification, :url=>{:action=>'create'}, :html => {:multipart => true}) do |f|
+        = form_for(:certification, :url=>{:action=>'create'}, :html => {:multipart => true, :data => { :validate => 'parsley' }}) do |f|
           = render 'shared/error_messages', :object => f.object
           .field
             = f.label "Certification"
@@ -51,7 +52,6 @@
           .clear
       .experience_details_right
 <!-- Sidebar -->
-%script $(document).ready({CandidateCertification.start()});
 -if !current_candidate.admin_flag.nil?
   = render 'shared/admin_sidebar_signed'
 -else

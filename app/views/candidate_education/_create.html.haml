@@ -1,11 +1,12 @@
+
 %h3.page_headline
   Fill Your Data Correctly:
-= form_for(:educations, :url=>{:action=>'create'}, :html => {:multipart => true, :id => "newEducationForm"}) do |f|
+= form_for(:educations, :url=>{:action=>'create'}, :html => {:multipart => true, :id => "newEducationForm", :data => { :validate => 'parsley' }}) do |f|
   // = render 'shared/error_messages', :object => f.object
   .field
     = f.label :title
     %br
-    = f.text_field :title
+    = f.text_field :title, :data => {:required => "true"}
   .field
     = f.label :educ_degree_id
     %br

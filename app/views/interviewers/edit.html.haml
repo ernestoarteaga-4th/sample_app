@@ -1,3 +1,4 @@
+
 <!-- Content -->			
 #content
   %img(src='http://www.4thsource.com//public/images/subheader_services.jpg' class='subheader' alt='Sub Header')
@@ -25,7 +26,7 @@
   = link_to "Back", :controller => "interviewers", :action => "index", :id => current_candidate.id
   %br
   %br
-  = form_for(:interviewer, :html => {:class => "experience", :method => "post"}) do |f|
+  = form_for(:interviewer, :html => {:class => "experience", 'data-validate' => "parsley", :method => "post"}) do |f|
     %h4
       Please enter the following information
     .divider
@@ -33,7 +34,7 @@
     .field
       = f.label "Name"
       %br
-      = f.text_field :name
+      = f.text_field :name, :maxlength => 30, :data => { :required => "true" }
     .actions
       %br
       = f.submit "Update", :class => "btn-primary"

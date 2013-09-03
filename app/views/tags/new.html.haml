@@ -28,22 +28,19 @@
   %br
   %h3.page_headline
     New Tag:
-  = form_for(:tag, :url=>{:action=>'create'}, :html => {:multipart => true, :id => "TagDegreeForm"}) do |f|
+  = form_for(:tag, :url=>{:action=>'create'}, :html => {:multipart => true, 'data-validate' => "parsley", :id => "TagDegreeForm"}) do |f|
     .field
       = f.label :name
       %br
-      = f.text_field :name
-      = label_tag "requiredName", "", :id =>"requiredName", :class => "educationValidatorText"
+      = f.text_field :name, :data => { :required => "true" }
     .field
       = f.label "Tag Type"
       %br
-      = f.select :type_tag, tag_type_list
-      = label_tag "requiredName2", "", :id =>"requiredName2", :class => "educationValidatorText"
+      = f.select :type_tag,  tag_type_list, {}, { :data => { :required => "true" } }
     .field
       = f.label :description
       %br
       = f.text_field :description
-      = label_tag "requiredName3", "", :id =>"requiredName3", :class => "educationValidatorText"
     .actions
       = f.submit "Accept", :class => 'btn-primary'
 <!-- Sidebar -->

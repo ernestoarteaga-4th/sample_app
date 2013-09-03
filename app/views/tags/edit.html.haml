@@ -25,18 +25,17 @@
   %br
   %h3.page_headline
     Edit Tag:
-  = form_for(:tag, :url=>{:action=>'action'}, :html => {:multipart => true, :id => "TagDegreeForm"}) do |f|
+  = form_for(:tag, :url=>{:action=>'action'}, :html => {:multipart => true, 'data-validate' => "parsley", :id => "TagDegreeForm"}) do |f|
     .field
       = f.hidden_field :id
     .field
       = f.label :name
       %br
-      = f.text_field :name
-      = label_tag "requiredName", "", :id =>"requiredName", :class => "educationValidatorText"
+      = f.text_field :name, :data => { :required => "true" }
     .field
       = f.label "Tag Type"
       %br
-      = f.select :type_tag, tag_type_list
+      = f.select :type_tag, tag_type_list, {}, { :data => { :required => "true" } }
     .field
       = f.label :description
       %br

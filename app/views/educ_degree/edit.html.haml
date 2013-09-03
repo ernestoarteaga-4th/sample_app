@@ -1,3 +1,4 @@
+
 <!-- Content -->
 #content
   %img(src="http://www.4thsource.com//public/images/subheader_services.jpg" alt="Sub Header" class="subheader")
@@ -25,7 +26,7 @@
   %br
   %h3.page_headline
     = @d.name
-  = form_for(:degree, :url => {:action=>'update'}, :html => {:multipart => true, :id => "EducationDegreeForm"}) do |f|
+  = form_for(:degree, :url => {:action=>'update'}, :html => {:multipart => true, :data => { :validate => 'parsley' }, :id => "EducationDegreeForm"}) do |f|
     //= render 'shared/error_messages', :object => f.object
     .field
       = f.hidden_field :id, :value => @d.id
