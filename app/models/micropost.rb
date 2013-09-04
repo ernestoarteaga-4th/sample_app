@@ -16,7 +16,7 @@ class Micropost < ActiveRecord::Base
   def self.from_candidates_followed_by(candidate)
       followed_ids = candidate.following.map(&:id).join(", ")
       followed_ids = 0 if (followed_ids == nil || followed_ids.empty?)
-      where("is_active = 1 AND candidate_id = ?", candidate.id)
+      where("is_active = 1 AND (candidate_id = ? OR created_by = ?)", candidate.id, candidate.id)
       #binding.pry
   end
 

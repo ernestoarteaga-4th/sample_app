@@ -20,6 +20,7 @@
         = raw '</em>'
     .clear						
   - if signed_in?
+    = hidden_field_tag "current_id", current_candidate.id
     %table{:class => 'front'}
       %tr
         %td.main
@@ -38,7 +39,14 @@
                 = submit_tag "Reply", :class => "btn-primary"
             %div#emptyDiv2
             %br
-            = render 'shared/feed'
+            -if !['Admin', 'Super Admin'].include?( get_user_type )
+              = render 'shared/feed'
+            - else
+              = render 'shared/admin_feed'
+              %div#AdminFeeds
+                = render 'shared/feed'
+                #feed-pagination
+                  = will_paginate @page_results
             - current_candidate.check_microposts
   - else
     %h1 Sample App
