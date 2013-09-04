@@ -17,7 +17,8 @@ class User < ActiveRecord::Base
 
   attr_accessor   :password
   attr_accessible :avatar,
-                  :name,
+                  :first_name,
+                  :middle_name,
                   :last_name,
                   :second_last_name,
                   :gender,
@@ -55,17 +56,29 @@ class User < ActiveRecord::Base
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   phone_regex = /\A[0-9]{10}\Z/
+  password_regex = /^(?=.{6,12})(?=.*[a-zA-Z])(?=.*\d)(?=.*[\!\#\$\%\&\? \"])$/
 
-  validates :name,            :presence => true,
+  validates :first_name,      :presence => true,
                               :length   => { :maximum => 50 }
-  validates :last_name,       :presence => true,
+  validates :middle_name,     :presence => true,
+                              :length   => { :maximum => 50 }
+  validates :first_last_name, :presence => true,
                               :length   => { :maximum => 50 }
   validates :second_last_name,:presence => true,
                               :length   => { :maximum => 50 }
   validates :email,           :presence => true,
                               :format   => { :with => email_regex },
                               :uniqueness => { :case_sensitive => false }
-  validates :password,        :confirmation => true
+  validates :password,        :presence => true,
+                              :confirmation => true,
+                              :format   => { :with => password_regex },
+                              :uniqueness => { :case_sensitive => true },
+                              :length   => { :minimum => 6, :maximum => 12 }
+  validates :password_confirmation, :presence => true,
+                              :confirmation => true,
+                              :format   => { :with => password_regex },
+                              :uniqueness => { :case_sensitive => true },
+                              :length   => { :minimum => 6, :maximum => 12 }
   validates :address,         :presence => true
   validates :city,            :presence => true
   
@@ -89,6 +102,9 @@ class User < ActiveRecord::Base
   def validate
     if country == '0'
       errors.add_to_base("Country is invalid")
+    end
+    if password == ''
+      errors.add_to_base("Password cannot be empty")
     end
   end
   
