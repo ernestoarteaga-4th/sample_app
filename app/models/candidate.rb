@@ -97,6 +97,7 @@ class Candidate < ActiveRecord::Base
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   phone_regex = /\A[0-9]{10}\Z/
+  password_regex = /^(?=.*\d)(?=.*([a-z]|[A-Z]))([\x20-\x7E]){6,12}$/
 
   #validates :name,            :presence => true,
   #                            :length   => { :maximum => 50 }
@@ -110,7 +111,11 @@ class Candidate < ActiveRecord::Base
   validates :email,           :presence => true,
                               :format   => { :with => email_regex },
                               :uniqueness => { :case_sensitive => false }
-  validates :password,        :confirmation => true
+  validates :password,        :confirmation => true,
+                              :format   => { :with => password_regex },
+                              :presence => true
+  validates :password_confirmation, :confirmation => true,
+                                    :presence => true
   #validates :address,         :presence => true
   #validates :city,            :presence => true
   

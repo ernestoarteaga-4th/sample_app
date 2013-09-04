@@ -103,3 +103,15 @@ $(document).ready(function() {
 	});*/
 
 });
+
+function validatePassword(password){
+    var passwordRegex = new RegExp("^.(?=.{6,12})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&? \"]).$");
+
+    if(passwordRegex.test(password)){
+        jQuery('#')
+    }else{
+
+    }
+
+    return passwordRegex.test(password);
+}
