@@ -110,9 +110,6 @@ class Candidate < ActiveRecord::Base
   validates :email,           :presence => true,
                               :format   => { :with => email_regex },
                               :uniqueness => { :case_sensitive => false }
-<<<<<<< Updated upstream
-  validates :password,        :confirmation => true
-=======
   validates :password,        :confirmation => true,
                               :format   => { :with => password_regex },
                               :presence => true,
@@ -125,7 +122,6 @@ class Candidate < ActiveRecord::Base
                                     :on => :create
   validates :password_confirmation, :confirmation => true,
                                     :on => :update, allow_blank: true
->>>>>>> Stashed changes
   #validates :address,         :presence => true
   #validates :city,            :presence => true
   
