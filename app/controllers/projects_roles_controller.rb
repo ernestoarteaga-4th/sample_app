@@ -53,7 +53,7 @@ class ProjectsRolesController < ApplicationController
     @candidate = Candidate.find(params[:id])
     @project = @candidate.projects.find(params[:project_id])
     @projectsrole = @project.projects_roles.find(params[:projects_role_id])
-    ProjectsRoles.find(params[:projects_role_id]).destroy
+    ProjectsRole.find(params[:projects_role_id]).destroy
     render 'projects/show'
   end
   
