@@ -104,10 +104,8 @@ $(document).ready(function() {
 function pena_validation(select_value){
   strin1 = 'feed_admin/';
   onlymine = 0;
-  current_page = select_value;
-  console.log(current_page);
-  if (current_page && succesfully_requested_micropost_data){
-    console.log("loading");
+  current_page = select_value;  
+  if (current_page && succesfully_requested_micropost_data){    
     succesfully_requested_micropost_data = false;
     jQuery('#onlyMyPosts').attr('disabled', 'disabled');
     jQuery('#select_follower').attr('disabled', 'disabled');
@@ -121,8 +119,7 @@ function pena_validation(select_value){
           dataType: 'json',
           data: {solomicro: onlymine, user_followed: current_page},
           url: strin1.concat(current_page), 
-          success: function (response) {
-            console.log("success");
+          success: function (response) {            
             table_microposts = '<table id="microposts" class="microposts" style="opacity:0;height:\'0px\'">';
 
             jQuery.each(response,function(k,v){
@@ -163,8 +160,7 @@ function pena_validation(select_value){
             jQuery('#AdminFeeds').empty();                  
             jQuery('#AdminFeeds').append(table_microposts);
             
-            feedsSize = jQuery('#microposts').css('height');
-            console.log(feedsSize);
+            feedsSize = jQuery('#microposts').css('height');            
             $(".show_hide").bind("click", function(){
                 $("#can_id").val($(this).attr('id'));
                 $("#emptyDiv2, #slidingDiv2").toggle();
@@ -175,13 +171,11 @@ function pena_validation(select_value){
                 jQuery('#microposts').animate({opacity:1}, 200);                
               });
             });                                 
-          },fail: function (jqXHR, textStatus) {
-            console.log("fail");
+          },fail: function (jqXHR, textStatus) {            
             jQuery('#onlyMyPosts').removeAttr('disabled');
             jQuery('#select_follower').removeAttr('disabled');
             succesfully_requested_micropost_data = true;
-          },complete: function () {
-            console.log("completed");            
+          },complete: function () {                    
             $("#AdminFeeds").show();
             succesfully_requested_micropost_data = true;
             jQuery('#onlyMyPosts').removeAttr('disabled');
