@@ -27,7 +27,7 @@ class RolesResponsibilitiesController < ApplicationController
   def destroy
     @candidate = Candidate.find(params[:id])
     @project = @candidate.projects.find(params[:project_id])
-    @projectsrole = @project.projects_role.find(params[:projects_role_id])
+    @projectsrole = @project.projects_roles.find(params[:projects_role_id])
     
     RolesResponsibility.find(params[:rolerespon_id]).destroy
     render 'projects/show'

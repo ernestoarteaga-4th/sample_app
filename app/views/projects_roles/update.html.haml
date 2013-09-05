@@ -19,7 +19,7 @@
   %h3.page_headline 
     %i.iconRolesHeadLine
     .h3-page-headline
-      = Role.find(@projectsrole.roles_id).name 
+      = Role.find(@projectsrole.role_id).name 
       for 
       = @project.name
   .divider-headline
@@ -38,7 +38,7 @@
     .field
       = f.label "Role type"
       %br
-      = f.select :roles_id, options_from_collection_for_select(Role.where({:approved_flag => [true]}).order("name").all, "id", "name", @projectsrole.roles_id)
+      = f.select :role_id, options_from_collection_for_select(Role.where({:approved_flag => [true]}).order("name").all, "id", "name", @projectsrole.role_id)
     .field
       = f.label "Date In"
       %br

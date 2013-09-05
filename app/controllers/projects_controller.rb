@@ -105,6 +105,7 @@ class ProjectsController < ApplicationController
   
   def destroy
     Project.find(params[:project_id]).destroy
+    @candidate = Candidate.find(params[:id])
     @projects_items = @candidate.projects
     render :index
   end
