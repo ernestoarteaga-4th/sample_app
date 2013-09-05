@@ -70,17 +70,10 @@ jQuery(document).ready(function(){
     };
 })(jQuery);*/
 
+var succesfully_requested_micropost_data;
 
-$(document).ready(function() {
-
-	/*$('.show_hide').showHide({
-        speed: 1000,  // speed you want the toggle to happen
-        easing: '',  // the animation effect you want. Remove this line if you dont want an effect and if you haven't included jQuery UI
-        changeText: 1, // if you dont want the button text to change, set this to 0
-        showText: 'send Message',// the button text to show when a div is closed
-        hideText: 'Close' // the button text to show when a div is open
- 
-    });*/
+$(document).ready(function() {    
+    succesfully_requested_micropost_data = true;
     $("#slidingDiv").hide();
     $("#send_message").on("click", function(){
         $("#emptyDiv, #slidingDiv").toggle();
@@ -90,131 +83,115 @@ $(document).ready(function() {
     $(".show_hide").on("click", function(){
         $("#can_id").val($(this).attr('id'));
         $("#emptyDiv2, #slidingDiv2").toggle();
-        $("#reply_text").focus();
-        //$("#slidingDiv2").focus();
+        $("#reply_text").focus();        
     });
 
-
-    /*$("#message_button").click(function() {
-
-      $.ajax({ 
-            type: 'POST', 
-            url: 'microposts',  
-            
-          });
-	});*/
     var container;
     var refreshContent;
 
     $("#AdminFeeds").hide();
+
     jQuery('#select_follower').change(function(){
-        /*var strin1 = 'feed_admin/'
-        jQuery.ajax({ 
-            type: 'POST', 
-            url:  strin1.concat(this.value),  
-            success: function(){
-              
-              alert(jQuery('#select_follower'));
-              container = $('#AdminFeeds');
-              container.innerHTML = refreshContent;
-              refreshContent = container.innerHTML;
-              //jQuery('#div').html(response);
-              $("#AdminFeeds").show();
-              
-            }
-          });*/
-        var strin1 = 'feed_admin/'
+      pena_validation(this.value);
+    });
 
-        if (this.value){
-          jQuery.ajax({
-            type: "POST",
-            dataType: 'json',
-            url: strin1.concat(this.value), 
-            //data: { hname : hname },
-            success: function (response) {
+    jQuery('#onlyMyPosts').click(function(){
+      console.log(jQuery('#select_follower').val());
+      pena_validation(jQuery('#select_follower').val());
+    });
+});
 
-              var table_microposts = '<table id="microposts" class="microposts">';
-              jQuery.each(response,function(k,v){
+function pena_validation(select_value){
+  strin1 = 'feed_admin/';
+  onlymine = 0;
+  current_page = select_value;
+  console.log(current_page);
+  if (current_page && succesfully_requested_micropost_data){
+    console.log("loading");
+    succesfully_requested_micropost_data = false;
+    jQuery('#onlyMyPosts').attr('disabled', 'disabled');
+    jQuery('#select_follower').attr('disabled', 'disabled');
+    jQuery('#AdminFeeds').stop().animate({opacity: 0}, 200, function(){
+      jQuery('#AdminFeeds').animate({height: '0px'}, 600, function(){        
+        if($('#onlyMyPosts').is(':checked')){
+          onlymine = 1;
+        }
+        jQuery.ajax({
+          type: "POST",
+          dataType: 'json',
+          data: {solomicro: onlymine, user_followed: current_page},
+          url: strin1.concat(current_page), 
+          success: function (response) {
+            console.log("success");
+            table_microposts = '<table id="microposts" class="microposts" style="opacity:0;height:\'0px\'">';
 
-                table_microposts += '<tr class="feed-content">' 
-                      + '<td class="gravatar"><a href=/candidate/' + v.micropost.created_by  + '>'
-                      + '<img alt="Gravatar" class="gravatar" height="50" src="http://gravatar.com/avatar/c2600ff37ef837584fd976599dded22d?size=50" width="50" />'
-                      + '</a></td>'
-                      + '<td class="micropost"><span class="candidate"><a href=/candidates/' + v.micropost.created_by  
-                      + '>' + v.micropost.first_name +'</a></span>'
-                      + '<span class="content">'
-                      + v.micropost.content
-                      + '</span>'
-                      + '<span class="timestamp">'
-                      + 'Posted '
-                      + jQuery.timeago(v.micropost.created_at)
-                      + '</span>'
-                      + '</td>'
-                      + '<td class="micropost-delete">'
-                      + '<label class="show_hide" for="reply" id="' + v.micropost.candidate_id
-                      + '" rel="#slidingDiv2">'
-                      + '<span class="translation_missing" title="Replying the message">Reply</span>'
-                      + '</label>';
+            jQuery.each(response,function(k,v){
+              table_microposts += '<tr class="feed-content">' 
+              + '<td class="gravatar"><a href=/candidate/' + v.micropost.created_by  + '>'
+              + '<img alt="Gravatar" class="gravatar" height="50" src="http://gravatar.com/avatar/c2600ff37ef837584fd976599dded22d?size=50" width="50" />'
+              + '</a></td>'
+              + '<td class="micropost"><span class="candidate"><a href=/candidates/' + v.micropost.created_by  
+              + '>' + v.micropost.first_name +'</a></span>'
+              + '<span class="content">'
+              + v.micropost.content
+              + '</span>'
+              + '<span class="timestamp">'
+              + 'Posted '
+              + jQuery.timeago(v.micropost.created_at)
+              + '</span>'
+              + '</td>'
+              + '<td class="micropost-delete">'
+              + '<label class="show_hide" for="reply" id="' + v.micropost.candidate_id
+              + '" rel="#slidingDiv2">'
+              + '<span class="translation_missing" title="Replying the message">Reply</span>'
+              + '</label>';
 
-                      if ($("#current_id").val() == v.micropost.created_by){
-                        table_microposts += '<a href=/microposts/' + v.micropost.id
-                                      + ' data-confirm="You sure?" data-method="update" rel="nofollow"'
-                                      + ' title="Removing the message">Remove</a>'
-                                      + '</td></tr>';
-                      }
-                      else{
-                        table_microposts += '</td>' 
-                                        + '</tr>';
-                      }
-                /*table_microposts += '%tr.feed-content'
-                                  +    '- admin_candidate = Candidate.find(' + v.micropost.created_by + ')'
-                                  +    '%td.gravatar'
-                                  +      '= link_to gravatar_for(admin_candidate), admin_candidate' 
-                                  +    '%td.micropost' 
-                                  +      '%span(class="candidate")'
-                                  +        '= link_to admin_candidate.first_name, admin_candidate' 
-                                  +      '%span(class="content")'
-                                  +        '= '+v.micropost.content
-                                  +      '%span(class="timestamp")'
-                                  +        'Posted' 
-                                  +        '= time_ago_in_words('+v.micropost.created_at+')'
-                                  +        'ago.'
-                                  +    '- if current_candidate?('+v.micropost.candidate+')' 
-                                  +      '%td.micropost-delete'
-                                  +        '- @value = "/reply/#{'+v.micropost.created_by+'}"'
-                                  +        '= label_tag :reply, t("reply"), :id => "#{'+v.micropost.created_by+'}", :class=>"show_hide", :rel=>"#slidingDiv2"'
-                                  +        '- if (current_candidate.id == '+v.micropost.created_by+')'
-                                  +          '= link_to "Remove", '+v.micropost+', :method => :update, :confirm => "You sure?", :title =>'+ v.micropost.content
-                */
+              if ($("#current_id").val() == v.micropost.created_by){
+                table_microposts += '<a href=/microposts/' + v.micropost.id
+                      + ' data-confirm="You sure?" data-method="update" rel="nofollow"'
+                      + ' title="Removing the message">Remove</a>'
+                      + '</td></tr>';
+              }
+              else{
+                table_microposts += '</td>' 
+                                  + '</tr>';
+              }
+            });
+            table_microposts += '</table><br>';
 
-              });
-              table_microposts += '</table><br>';
-              //console.log(table_microposts);
-              jQuery('#AdminFeeds').show();
-              jQuery('#AdminFeeds').empty();
-              jQuery('#AdminFeeds').append(table_microposts);
-
-              $(".show_hide").bind("click", function(){
+            jQuery('#AdminFeeds').show();
+            jQuery('#AdminFeeds').empty();                  
+            jQuery('#AdminFeeds').append(table_microposts);
+            
+            feedsSize = jQuery('#microposts').css('height');
+            console.log(feedsSize);
+            $(".show_hide").bind("click", function(){
                 $("#can_id").val($(this).attr('id'));
                 $("#emptyDiv2, #slidingDiv2").toggle();
                 $("#reply_text").focus();
+            });
+            jQuery('#AdminFeeds').animate({height: feedsSize}, 600, function(){
+              jQuery('#AdminFeeds').animate({opacity: 1}, 50, function(){
+                jQuery('#microposts').animate({opacity:1}, 200);                
               });
-
-            },
-            fail: function (jqXHR, textStatus) {
-              alert(textStatus);
-            },
-            complete: function () {
-              //alert("completed");
-              $("#AdminFeeds").show();
-            }
-          });
-        }
-        else{
-          $("#AdminFeeds").hide();
-        }
-        
-        
-    });
-
-});
+            });                                 
+          },fail: function (jqXHR, textStatus) {
+            console.log("fail");
+            jQuery('#onlyMyPosts').removeAttr('disabled');
+            jQuery('#select_follower').removeAttr('disabled');
+            succesfully_requested_micropost_data = true;
+          },complete: function () {
+            console.log("completed");            
+            $("#AdminFeeds").show();
+            succesfully_requested_micropost_data = true;
+            jQuery('#onlyMyPosts').removeAttr('disabled');
+            jQuery('#select_follower').removeAttr('disabled');
+          }
+        });
+      });
+    });      
+  }
+  else{
+    $("#AdminFeeds").hide();
+  }
+}
