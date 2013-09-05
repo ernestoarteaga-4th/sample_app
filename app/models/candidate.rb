@@ -6,6 +6,7 @@ class Candidate < ActiveRecord::Base
 
   attr_accessible :address, 
   :address1, 
+  :avatar,
   :avatar_file_name, 
   :birthdate, 
   :cell_phone, 
@@ -90,7 +91,8 @@ class Candidate < ActiveRecord::Base
 
 
   has_attached_file :avatar, :styles => { :medium => "300x300#", :thumb => "40x40#" },
-                             :default_url => "/images/4thsource_avatar.jpg"
+                             :default_url => "/images/4thsource_avatar.jpg",
+                             :url => "/system/users/avatars/:id/:basename.:extension"
   
   
   acts_as_ferret :fields => ['name', 'email']
