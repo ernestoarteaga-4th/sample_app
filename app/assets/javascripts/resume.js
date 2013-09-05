@@ -5,8 +5,12 @@ $(document).ready(function() {
     }
   });
 
+  $("#send_message").hide();
+
   $("#follow_button").click(function() {
-    if( $("#follow_button").val()=='Follow'){
+    if($("#follow_button").val()=='Follow'){
+      //jQuery("a#send_message").removeAttr('style');
+      
       $("#follow_button").text('Unfollow');
       $("#follow_button").val('Unfollow');
       $("#send_message").show();
@@ -21,7 +25,6 @@ $(document).ready(function() {
           });
 
       
-
     }
     else{
       $("#follow_button").text('Follow');
@@ -31,11 +34,10 @@ $(document).ready(function() {
       $.ajax({ 
             type: 'POST', 
             url: 'unfollow',  
-            /*complete: function(){
-              alert("Following");
-            }*/
             
           });
+
+      
       
     }
   });

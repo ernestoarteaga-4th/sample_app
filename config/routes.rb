@@ -35,7 +35,7 @@ SampleApp::Application.routes.draw do
   end
 
   resources :sessions,   :only => [:new, :create, :destroy]
-  resources :microposts, :only => [:create, :reply, :update, :destroy]
+  resources :microposts, :only => [:create, :reply, :update, :feed_micropost, :destroy]
   
   resources :followings do
     collection do 
@@ -79,6 +79,7 @@ SampleApp::Application.routes.draw do
   match "/reply/:id" => 'microposts#reply'
   match "/reply" => 'microposts#reply'
   match "/microposts/:id" => 'microposts#update'
+  match "/feed_admin/:id" => 'microposts#feed_micropost'
 
   match "/candidates/:id/resume" => 'resume#index'
   match "/candidates/:id/resume/staff_update" => 'resume#staff_update'

@@ -168,6 +168,10 @@ def unread
   Micropost.select("*").where("is_active = 1 AND checked != 1 AND candidate_id = ?", self.id).size
 end
 
+def followers
+  Following.select("followed_id").where("follower_id = ?", id)
+end
+
 def check_microposts
 
   microposts_list = Micropost.select("*").where("is_active = 1 AND checked != 1 AND candidate_id = ?", self.id)
