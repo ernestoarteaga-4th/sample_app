@@ -103,14 +103,17 @@ class CandidatesController < ApplicationController
     #binding.pry
     @candidate = Candidate.find(params[:id])
     @error = @candidate.errors
-    if @candidate.update_attributes(params[:candidate])
-      flash[:success] = "Profile updated."
-      #redirect_to root_path
-      render :edit
+    if @candidate != nil            
+      if Candidate.update(params[:id].to_i, params[:candidate])
+        flash[:success] = "Your profile was updated."
+        render :edit
+      else
+        render :edit
+      end
     else
-      @title = "Edit user"
+      flash[:success] = "Error: candidate not found"
       render :edit
-    end
+    end    
   end
 
   def destroy
