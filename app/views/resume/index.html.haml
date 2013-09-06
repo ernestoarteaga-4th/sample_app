@@ -107,7 +107,7 @@
       %ul
         - @candidate.candidate_languages.each do |candidate_language|
           %li
-            = candidate_language.language.name
+            = candidate_language.language.name unless candidate_language.language.nil?
             = raw ' - '
             =language_level_list[candidate_language.level_id][0]
     - else
@@ -125,7 +125,7 @@
       %ul
         - @candidate.candidate_certifications.each do |certification|
           %li
-            = certification.certification.name
+            = certification.certification.name unless certification.certification.nil?
       %br
       %br
     - else
