@@ -96,7 +96,6 @@ $(document).ready(function() {
     });
 
     jQuery('#onlyMyPosts').click(function(){
-      console.log(jQuery('#select_follower').val());
       pena_validation(jQuery('#select_follower').val());
     });
 });
