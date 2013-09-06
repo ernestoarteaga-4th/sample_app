@@ -1,0 +1,9 @@
+- unless @page_results2.empty?
+  Candidate Following:
+  %br
+  %br
+  = label_tag "Show only my conversations with:"
+  = check_box_tag "onlyMyPosts"
+  %br
+  %br
+  = select_tag "select_follower", options_for_select(@page_results2.collect{ |u| [(u.first_name + " " + u.first_last_name), u.id] }), :prompt => "Select a Candidate"

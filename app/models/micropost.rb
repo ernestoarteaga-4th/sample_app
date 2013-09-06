@@ -4,7 +4,7 @@ require 'acts_as_ferret'
 class Micropost < ActiveRecord::Base
   #acts_as_ferret
   self.per_page = 5
-  attr_accessible :content, :candidate_id, :created_by, :checked
+  attr_accessible :content, :candidate_id, :created_by, :checked, :is_active
   belongs_to :candidate
 
   validates :content, :presence => true, :length => { :maximum => 140 }
@@ -16,7 +16,7 @@ class Micropost < ActiveRecord::Base
   def self.from_candidates_followed_by(candidate)
       followed_ids = candidate.following.map(&:id).join(", ")
       followed_ids = 0 if (followed_ids == nil || followed_ids.empty?)
-      where("candidate_id = ?", candidate.id)
+      where("is_active = 1 AND (candidate_id = ? OR created_by = ?)", candidate.id, candidate.id)
       #binding.pry
   end
 
@@ -28,6 +28,7 @@ class Micropost < ActiveRecord::Base
       else
         followed_ids = candidate.id.to_s
       end
-      where("content LIKE ? AND candidate_id IN (#{followed_ids})", "%#{words}%")
+      where("content LIKE ? AND is_active = 1 AND candidate_id IN (#{followed_ids})", "%#{words}%")
   end
+
 end

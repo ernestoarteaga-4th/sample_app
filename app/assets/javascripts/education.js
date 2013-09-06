@@ -83,7 +83,7 @@ $(document).ready(function() {
     return false;
   });
 });
-
+/*
 $(document).ready(function() {
   $('#EducationDegreeForm').submit(function(e) { 
     var $inputs = $('#EducationDegreeForm :input');
@@ -121,7 +121,7 @@ $(document).ready(function() {
     return false;
   });
 });
-
+*/
 $(document).ready(function() {
   $('#education_degree_table').dataTable({
       "bPaginate": false,

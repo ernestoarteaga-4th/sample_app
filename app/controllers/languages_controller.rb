@@ -8,6 +8,7 @@ class LanguagesController < ApplicationController
   end
 
   def create
+  
     @language = Language.new(params[:language])
 
     @cat_language_rows = Language.where("name = ?", @language.name)

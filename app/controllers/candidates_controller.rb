@@ -68,6 +68,7 @@ class CandidatesController < ApplicationController
         @candidate = Candidate.new(params[:candidate])
         @error = @candidate.errors
         if @candidate.save  
+		   UserMailer.welcome_email(@candidate).deliver
             #Se guardo, redireccionar al edit http://localhost:3000/candidates/6/admin
             redirect_to "/candidates/#{@candidate.id}/edit" #"/candidates/#{@candidate.id}/admin"
         end
@@ -85,7 +86,7 @@ class CandidatesController < ApplicationController
         if @candidate.save  
 		  set_user_type(@candidate)
           sign_in @candidate
-          #UserMailer.welcome_email(@user).deliver
+          UserMailer.welcome_email(@candidate).deliver
           flash[:success] = "Welcome to the Sample App!"
           redirect_to root_path
         else

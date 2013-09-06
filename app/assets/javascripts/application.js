@@ -70,30 +70,122 @@ jQuery(document).ready(function(){
     };
 })(jQuery);*/
 
+var succesfully_requested_micropost_data;
 
-$(document).ready(function() {
-
-	/*$('.show_hide').showHide({
-        speed: 1000,  // speed you want the toggle to happen
-        easing: '',  // the animation effect you want. Remove this line if you dont want an effect and if you haven't included jQuery UI
-        changeText: 1, // if you dont want the button text to change, set this to 0
-        showText: 'send Message',// the button text to show when a div is closed
-        hideText: 'Close' // the button text to show when a div is open
- 
-    });*/
+$(document).ready(function() {    
+    succesfully_requested_micropost_data = true;
     $("#slidingDiv").hide();
     $("#send_message").on("click", function(){
         $("#emptyDiv, #slidingDiv").toggle();
     });
 
+    $("#slidingDiv2").hide();
+    $(".show_hide").on("click", function(){
+        $("#can_id").val($(this).attr('id'));
+        $("#emptyDiv2, #slidingDiv2").toggle();
+        $("#reply_text").focus();        
+    });
 
-    /*$("#message_button").click(function() {
+    var container;
+    var refreshContent;
 
-      $.ajax({ 
-            type: 'POST', 
-            url: 'microposts',  
-            
-          });
-	});*/
+    $("#AdminFeeds").hide();
 
+    jQuery('#select_follower').change(function(){
+      pena_validation(this.value);
+    });
+
+    jQuery('#onlyMyPosts').click(function(){
+      console.log(jQuery('#select_follower').val());
+      pena_validation(jQuery('#select_follower').val());
+    });
 });
+
+function pena_validation(select_value){
+  strin1 = 'feed_admin/';
+  onlymine = 0;
+  current_page = select_value;  
+  if (current_page && succesfully_requested_micropost_data){    
+    succesfully_requested_micropost_data = false;
+    jQuery('#onlyMyPosts').attr('disabled', 'disabled');
+    jQuery('#select_follower').attr('disabled', 'disabled');
+    jQuery('#AdminFeeds').stop().animate({opacity: 0}, 200, function(){
+      jQuery('#AdminFeeds').animate({height: '0px'}, 600, function(){        
+        if($('#onlyMyPosts').is(':checked')){
+          onlymine = 1;
+        }
+        jQuery.ajax({
+          type: "POST",
+          dataType: 'json',
+          data: {solomicro: onlymine, user_followed: current_page},
+          url: strin1.concat(current_page), 
+          success: function (response) {            
+            table_microposts = '<table id="microposts" class="microposts" style="opacity:0;height:\'0px\'">';
+
+            jQuery.each(response,function(k,v){
+              table_microposts += '<tr class="feed-content">' 
+              + '<td class="gravatar"><a href=/candidate/' + v.micropost.created_by  + '>'
+              + '<img alt="Gravatar" class="gravatar" height="50" src="http://gravatar.com/avatar/c2600ff37ef837584fd976599dded22d?size=50" width="50" />'
+              + '</a></td>'
+              + '<td class="micropost"><span class="candidate"><a href=/candidates/' + v.micropost.created_by  
+              + '>' + v.micropost.first_name +'</a></span>'
+              + '<span class="content">'
+              + v.micropost.content
+              + '</span>'
+              + '<span class="timestamp">'
+              + 'Posted '
+              + jQuery.timeago(v.micropost.created_at)
+              + '</span>'
+              + '</td>'
+              + '<td class="micropost-delete">'
+              + '<label class="show_hide" for="reply" id="' + v.micropost.candidate_id
+              + '" rel="#slidingDiv2">'
+              + '<span class="translation_missing" title="Replying the message">Reply</span>'
+              + '</label>';
+
+              if ($("#current_id").val() == v.micropost.created_by){
+                table_microposts += '<a href=/microposts/' + v.micropost.id
+                      + ' data-confirm="You sure?" data-method="update" rel="nofollow"'
+                      + ' title="Removing the message">Remove</a>'
+                      + '</td></tr>';
+              }
+              else{
+                table_microposts += '</td>' 
+                                  + '</tr>';
+              }
+            });
+            table_microposts += '</table><br>';
+
+            jQuery('#AdminFeeds').show();
+            jQuery('#AdminFeeds').empty();                  
+            jQuery('#AdminFeeds').append(table_microposts);
+            
+            feedsSize = jQuery('#microposts').css('height');            
+            $(".show_hide").bind("click", function(){
+                $("#can_id").val($(this).attr('id'));
+                $("#emptyDiv2, #slidingDiv2").toggle();
+                $("#reply_text").focus();
+            });
+            jQuery('#AdminFeeds').animate({height: feedsSize}, 600, function(){
+              jQuery('#AdminFeeds').animate({opacity: 1}, 50, function(){
+                jQuery('#microposts').animate({opacity:1}, 200);                
+              });
+            });                                 
+          },fail: function (jqXHR, textStatus) {            
+            jQuery('#onlyMyPosts').removeAttr('disabled');
+            jQuery('#select_follower').removeAttr('disabled');
+            succesfully_requested_micropost_data = true;
+          },complete: function () {                    
+            $("#AdminFeeds").show();
+            succesfully_requested_micropost_data = true;
+            jQuery('#onlyMyPosts').removeAttr('disabled');
+            jQuery('#select_follower').removeAttr('disabled');
+          }
+        });
+      });
+    });      
+  }
+  else{
+    $("#AdminFeeds").hide();
+  }
+}
