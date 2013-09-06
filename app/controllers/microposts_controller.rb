@@ -50,19 +50,16 @@ class MicropostsController < ApplicationController
   end
 
   def feed_micropost
-    follower_id = params[:id]
-    #@page_results = []
-    #@page_results = Micropost.find(:all, :select =>"microposts.id, microposts.content, microposts.candidate_id, microposts.created_at, microposts.updated_at, microposts.created_by, microposts.checked, microposts.is_active, candidates.id, candidates.first_name, candidates.first_last_name", :joins => "JOIN candidates ON candidates.id = microposts.created_by", :conditions => ["microposts.is_active = 1 AND (microposts.candidate_id = ? OR microposts.created_by = ?)", follower_id, follower_id])
-    #render 'shared/_feed'
+    id_current_candidate = current_candidate.id
 
     respond_to do |format|
-    format.html  
- 
-    format.json { render :json =>  @page_results = Micropost.find(:all, :select =>"microposts.id, microposts.content, microposts.candidate_id, microposts.created_at, microposts.updated_at, microposts.created_by, microposts.checked, microposts.is_active, candidates.id, candidates.first_name, candidates.first_last_name", :joins => "JOIN candidates ON candidates.id = microposts.created_by", :conditions => ["microposts.is_active = 1 AND (microposts.candidate_id = ? OR microposts.created_by = ?)", follower_id, follower_id])}
-    #binding.pry
-    #render 'shared/_feed'
+      format.html
+      if params[:solomicro] == "0"
+        format.json { render :json =>  @page_results = Micropost.find(:all, :select =>"microposts.id, microposts.content, microposts.candidate_id, microposts.created_at, microposts.updated_at, microposts.created_by, microposts.checked, microposts.is_active, candidates.id, candidates.first_name, candidates.first_last_name", :joins => "JOIN candidates ON candidates.id = microposts.created_by", :conditions => ["microposts.is_active = 1 AND (microposts.candidate_id = ? OR microposts.created_by = ?)", params[:id], params[:id]])}
+      else
+        format.json { render :json =>  @page_results = Micropost.find(:all, :select =>"microposts.id, microposts.content, microposts.candidate_id, microposts.created_at, microposts.updated_at, microposts.created_by, microposts.checked, microposts.is_active, candidates.id, candidates.first_name, candidates.first_last_name", :joins => "JOIN candidates ON candidates.id = microposts.created_by", :conditions => ["microposts.created_by != microposts.candidate_id AND microposts.candidate_id NOT IN (SELECT microposts.candidate_id FROM microposts WHERE microposts.candidate_id NOT IN(:follower_id, :user_being_followed)) AND microposts.created_by NOT IN (SELECT microposts.created_by FROM microposts WHERE microposts.created_by NOT IN(:follower_id, :user_being_followed)) AND microposts.is_active = 1",{:follower_id => id_current_candidate.to_i, :user_being_followed => params[:user_followed].to_i}])}
+      end      
     end
-    
   end
 
 
@@ -72,8 +69,8 @@ class MicropostsController < ApplicationController
   end 
 
   private
-    def authorized_candidate
-      @micropost = Micropost.find(params[:id])
-      redirect_to root_path unless current_user?(@micropost.user)
-    end
+  def authorized_candidate
+    @micropost = Micropost.find(params[:id])
+    redirect_to root_path unless current_user?(@micropost.user)
+  end
 end
