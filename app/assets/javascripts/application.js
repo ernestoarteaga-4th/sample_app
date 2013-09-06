@@ -92,16 +92,16 @@ $(document).ready(function() {
     $("#AdminFeeds").hide();
 
     jQuery('#select_follower').change(function(){
-      pena_validation(this.value);
+      feed_admin_microposts(this.value);
     });
 
     jQuery('#onlyMyPosts').click(function(){
-      console.log(jQuery('#select_follower').val());
-      pena_validation(jQuery('#select_follower').val());
+      feed_admin_microposts(jQuery('#select_follower').val());
     });
 });
 
-function pena_validation(select_value){
+
+function feed_admin_microposts(select_value){
   strin1 = 'feed_admin/';
   onlymine = 0;
   current_page = select_value;  
@@ -170,7 +170,10 @@ function pena_validation(select_value){
               jQuery('#AdminFeeds').animate({opacity: 1}, 50, function(){
                 jQuery('#microposts').animate({opacity:1}, 200);                
               });
-            });                                 
+            }); 
+
+            $("#microposts").tablePagination({});
+
           },fail: function (jqXHR, textStatus) {            
             jQuery('#onlyMyPosts').removeAttr('disabled');
             jQuery('#select_follower').removeAttr('disabled');

@@ -117,7 +117,7 @@ class Candidate < ActiveRecord::Base
                               :format   => { :with => password_regex },
                               :presence => true,
                               :on => :create
-  validates :password,        :confirmation => true,
+  validates :password,        :confirmation => false,
                               :format   => { :with => password_regex },
                               :on => :update, allow_blank: true
   validates :password_confirmation, :confirmation => true,

@@ -45,8 +45,6 @@
               = render 'shared/admin_feed'
               %div#AdminFeeds
                 = render 'shared/feed'
-                #feed-pagination
-                  = will_paginate @page_results
             - current_candidate.check_microposts
   - else
     %h1 Sample App
