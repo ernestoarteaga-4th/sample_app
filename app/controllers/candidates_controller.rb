@@ -27,7 +27,7 @@ class CandidatesController < ApplicationController
   def edit
     id = params[:id] unless params.blank?
     #if !current_candidate.admin_flag.nil?
-	if @@admin_roles.include?( get_user_type )
+	  if @@admin_roles.include?( get_user_type )
       @candidate = Candidate.find(id)
       @error = @candidate.errors
     else
@@ -106,6 +106,7 @@ class CandidatesController < ApplicationController
     if @candidate != nil            
       if Candidate.update(params[:id].to_i, params[:candidate])
         flash[:success] = "Your profile was updated."
+        @candidate = Candidate.find(params[:id])
         render :edit
       else
         render :edit
