@@ -68,9 +68,9 @@ class CandidatesController < ApplicationController
         @candidate = Candidate.new(params[:candidate])
         @error = @candidate.errors
         if @candidate.save  
-		   UserMailer.welcome_email(@candidate).deliver
-            #Se guardo, redireccionar al edit http://localhost:3000/candidates/6/admin
-            redirect_to "/candidates/#{@candidate.id}/edit" #"/candidates/#{@candidate.id}/admin"
+		      UserMailer.welcome_email(@candidate).deliver
+          #Se guardo, redireccionar al edit http://localhost:3000/candidates/6/admin
+          redirect_to "/candidates/#{@candidate.id}/edit" #"/candidates/#{@candidate.id}/admin"
         end
       end
 	  

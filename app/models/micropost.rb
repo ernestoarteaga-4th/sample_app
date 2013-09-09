@@ -4,7 +4,7 @@ require 'acts_as_ferret'
 class Micropost < ActiveRecord::Base
   #acts_as_ferret
   self.per_page = 5
-  attr_accessible :content, :candidate_id, :created_by, :checked, :is_active
+  attr_accessible :content, :candidate_id, :created_by, :checked, :is_active, :created_at
   belongs_to :candidate
 
   validates :content, :presence => true, :length => { :maximum => 140 }

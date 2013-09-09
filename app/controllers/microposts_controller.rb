@@ -11,6 +11,7 @@ class MicropostsController < ApplicationController
     @error = @micropost.errors
     if @micropost.save
       flash[:success] = "Micropost created!"
+      MicropostsMailer.micropost(@micropost, @candidate, current_candidate).deliver
       redirect_to root_path
     else
       @feed_items = []
