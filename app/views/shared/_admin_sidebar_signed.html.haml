@@ -7,7 +7,7 @@
       #sidebar-profile
         #sidebar-gravatar
           =link_to("#") do
-            = image_tag @candidate.avatar.url(:thumb)
+            = image_tag @candidate.avatarurl
         #sidebar-candidate
           = @candidate.first_name
           = @candidate.first_last_name

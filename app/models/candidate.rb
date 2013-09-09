@@ -154,9 +154,11 @@ class Candidate < ActiveRecord::Base
 
   before_save :encrypt_password
 
+def avatarurl     
+  (avatar.exists?) ? avatar.url(:thumb): "/images/4thsource_avatar.jpg"  
+end
 
 def validate
-
     if country == '0'
       errors.add_to_base("Country is invalid")
     end

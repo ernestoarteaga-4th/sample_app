@@ -13,7 +13,7 @@
   %h3.page_headline
     %i.iconContact-infoHeadLine
     .h3-page-headline
-      Contact Information
+      Contact Information    
   .divider-headline
   %br
   = form_for(@candidate, :html => {:multipart => true, 'data-validate' => 'parsley', :id => 'candidateForm' }) do |f|
@@ -21,9 +21,9 @@
     .row-fluid
       .span12
         .field
-          = f.label "Image"
+          = f.label "Avatar"
           %br
-          = image_tag @candidate.avatar.url(:thumb)
+          = image_tag @candidate.avatarurl
           = f.file_field :avatar
     .row-fluid
       .span5
