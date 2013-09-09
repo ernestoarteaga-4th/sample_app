@@ -1,7 +1,8 @@
 <!-- Content -->	
 #content
-  %img(src='http://www.4thsource.com//public/images/subheader_services.jpg' class='subheader' alt='Sub Header')
-    %script{:type => "text/javascript",
+  - if !signed_in?
+    %img(src='http://www.4thsource.com//public/images/subheader_services.jpg' class='subheader' alt='Sub Header')
+      %script{:type => "text/javascript",
         :src  => "../../javascripts/candidate_languages.js"}
     
 
