@@ -28,7 +28,8 @@
 
 <!-- Content -->      
 #content
-  %img(src="http://www.4thsource.com//public/images/subheader_services.jpg" alt="Sub Header" class="subheader")
+  - if !signed_in?
+    %img(src="http://www.4thsource.com//public/images/subheader_services.jpg" alt="Sub Header" class="subheader")
   %ul#breadcrumbs
     %li
       = link_to 'Home', root_path
