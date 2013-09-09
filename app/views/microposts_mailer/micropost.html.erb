@@ -8,7 +8,7 @@
 
 		<p>The user: <%= @created_by.first_name %> has posted a message in your wall:</p>
 
-		<p><i><%= @micropost.content.slice!(0 ... 100) %></i></p>
+		<p><i><%= @micropost.content.truncate(100, omission: '... (continued)') %></i></p>
 
 		<p>Message that has been sent <%= @micropost.created_at %></p>
 
