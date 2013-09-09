@@ -5,7 +5,8 @@ $(document).ready(function() {
     }
   });
 
-  $("#send_message").hide();
+  if($("#follow_button").val()=='Follow')
+    $("#send_message").hide();
 
   $("#follow_button").click(function() {
     if($("#follow_button").val()=='Follow'){

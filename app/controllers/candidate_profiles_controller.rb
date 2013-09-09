@@ -109,7 +109,8 @@ class CandidateProfilesController < ApplicationController
       end
     end 
     response.headers['Content-disposition'] = 'attachment; filename=CandidateResume_'+@candidate.first_name+'_'+@candidate.first_last_name+'.docx'
-    render :text => report, :content_type => 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+    render :text => report.inspect, :content_type => 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+    #redirect_to File.join('/candidates/', @candidate.id.to_s(), '/docx')
   end
 
 end

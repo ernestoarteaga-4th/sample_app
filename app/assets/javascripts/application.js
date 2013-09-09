@@ -89,6 +89,19 @@ $(document).ready(function() {
     var container;
     var refreshContent;
 
+    $("#generate_button").click(function() {
+      candidate_id = $("#generate_button").val();
+      strin1 = "/candidates/"+candidate_id+"/docx";
+      //alert(strin1);
+      $.ajax({ 
+            type: 'POST', 
+            url: strin1,  
+            complete: function () {
+              alert("doc generated");
+            }
+          });
+    });
+
     $("#AdminFeeds").hide();
 
     jQuery('#select_follower').change(function(){

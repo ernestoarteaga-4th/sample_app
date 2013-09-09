@@ -12,16 +12,13 @@
         = raw '&raquo;'
     %li
       = raw('<em>Resume</em>')
-    .clear
+    .clearl
   %h3.page_headline 
     %i.iconResumeHeadLine
     .h3-page-headline
       Resume
       - if ['Admin', 'Super Admin'].include?( get_user_type )
-        - if !current_candidate.is_follow?(@candidate.id)
-          = button_tag "Follow", :id => "follow_button", :class => "btn-primary",  :style => "float:right;", :type => "button", :value => "Follow"
-        -else
-          = button_tag "Unfollow", :id => "follow_button", :class => "btn-primary",  :style => "float:right;", :type => "button", :value => "Unfollow"
+        = link_to image_tag('generate_resume.jpg'), '/candidates/'+@candidate.id.to_s+'/docx', :style => "float:right;"
   .divider-headline
   %br
   .photo_wrapper
