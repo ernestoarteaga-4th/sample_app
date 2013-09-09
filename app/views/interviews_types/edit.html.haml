@@ -1,7 +1,8 @@
 = javascript_include_tag "parsley.js"
 <!-- Content -->
 #content
-  %img(src='http://www.4thsource.com//public/images/subheader_services.jpg' class='subheader' alt='Sub Header')
+  - if !signed_in?
+    %img(src='http://www.4thsource.com//public/images/subheader_services.jpg' class='subheader' alt='Sub Header')
   %ul#breadcrumbs
     %li
       = link_to 'Home', root_path 
