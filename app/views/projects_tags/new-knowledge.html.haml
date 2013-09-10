@@ -32,7 +32,7 @@
   = link_to "Back", :controller => "projects", :action => "show", id:@candidate.id, :project_id=> @project.id
   %br
   %br
-  = form_for(:projtag, :html => {:class => "experience", :method => "post"}) do |f|
+  = form_for(:projtag, :html => {:class => "experience", :method => "post", 'data-validate' => 'parsley'}) do |f|
     %h4
       Please enter the following information
     .divider
@@ -45,7 +45,7 @@
       .field.width100percent
         = f.label "Description"
         %br
-        = f.text_area :description, {"class"=>"width100percent"}
+        = f.text_area :description, {"class"=>"width100percent", 'data-required' => 'true'}
     .row-fluid
       .span6
         .field

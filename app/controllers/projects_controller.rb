@@ -31,6 +31,7 @@ class ProjectsController < ApplicationController
         flash.now[:notice] = "An error occurred while the system save the project."
       end
     else
+      @candidate = Candidate.find(params[:id])
       @project = Project.find_by_id(params[:project_id])
       @title = @project.name
       @projects_role  = ProjectsRole.new

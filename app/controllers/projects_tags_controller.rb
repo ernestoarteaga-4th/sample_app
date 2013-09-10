@@ -25,7 +25,7 @@ class ProjectsTagsController < ApplicationController
         flash[:success] = @tag_title + " was saved successfully."
         render 'projects/show'
       else
-        flash[:notice] = "An error occurred while the system save the "+@tag_title + "."
+        flash[:notice] = "An error occurred while the system save the "+@tag_title + ".  " + @projtag.errors.full_messages
         render @new_page
       end
     else
